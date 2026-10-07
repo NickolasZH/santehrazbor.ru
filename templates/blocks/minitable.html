@@ -1,0 +1,24 @@
+{% from "_macros.html" import ad_mark %}
+{#- Компактная таблица «Модель / Материал / Цена» из глобального индекса товаров. Дата сноски — updated статьи-источника. -#}
+<div class="table-wrap">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">Модель</th>
+                <th scope="col">Материал корпуса</th>
+                <th scope="col">Цена*</th>
+            </tr>
+        </thead>
+        <tbody>
+{% for r in rows %}{% set p = r.p %}
+            <tr{% if p.status == 'unavailable' %} class="is-unavailable"{% endif %}>
+                <td>{% if p.status == 'unavailable' %}{{ p.name }} <span class="unavailable-note">Сейчас нет в продаже</span>{% else %}<a href="{{ p.href }}" rel="{{ p.rel }}" target="_blank" data-product="{{ p.label }}" data-place="minitable">{{ p.name }}</a>{{ ad_mark(p) }}{% endif %}</td>
+                <td>{{ p.material or '—' }}</td>
+                <td class="nowrap">{{ '—' if p.status == 'unavailable' else p.price|rub }}</td>
+            </tr>
+{% endfor %}
+        </tbody>
+    </table>
+</div>
+{% set dates = rows|map(attribute='updated_ru')|unique|list %}
+<p><em>*Цена на Яндекс Маркете на {{ dates|join(', ') }}, перед покупкой сверьте актуальную.</em></p>

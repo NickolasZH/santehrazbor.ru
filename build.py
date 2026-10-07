@@ -209,7 +209,7 @@ def build_products(meta, aff, ctx_name):
 
 
 def render_markdown(body_md, aff, used_labels, env, article_ctx):
-    """markdown -> HTML со шорткодами [[picks]], [[compare]], [[product:метка]], [[toc]]."""
+    """markdown -> HTML со шорткодами [[picks]], [[compare]], [[product:метка]], [[minitable:метки]], [[toc]]."""
     name = article_ctx["name"]
     products = article_ctx["products"]
     by_label = {p["label"]: p for p in products}
@@ -228,6 +228,16 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                 fail(f"{name}: шорткод [[photo:файл|подпись]] — нет подписи ({code[:40]})")
             if not (STATIC / "img" / fname.strip()).is_file():
                 fail(f"{name}: фото static/img/{fname.strip()} не найдено")
+        elif code.startswith("minitable:"):
+            labs = [x.strip() for x in code.split(":", 1)[1].split(",") if x.strip()]
+            if not labs:
+                fail(f"{name}: шорткод [[minitable:метка1,метка2]] — не указаны метки")
+            for lab in labs:
+                if lab not in article_ctx["global_products"]:
+                    fail(f"{name}: шорткод [[{code}]] — товара «{lab}» нет в products ни одной статьи")
+                if article_ctx["global_products"][lab].get("conflict"):
+                    fail(f"{name}: шорткод [[{code}]] — метка «{lab}» встречается в статьях с разными "
+                         f"данными ({article_ctx['global_products'][lab]['conflict']})")
         elif code.startswith("product:"):
             lab = code.split(":", 1)[1].strip()
             if lab not in by_label:
@@ -287,6 +297,13 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
             return (f'<figure class="photo"><img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
                     f'width="{w}" height="{h}" loading="lazy" decoding="async">'
                     f'<figcaption>{html_escape(cap)}</figcaption></figure>')
+        if code.startswith("minitable:"):
+            # товары берём из глобального индекса: дата цены — дата обновления статьи-источника
+            rows = [article_ctx["global_products"][x.strip()]
+                    for x in code.split(":", 1)[1].split(",") if x.strip()]
+            for r in rows:
+                used_labels.add(r["p"]["label"])
+            return env.get_template("blocks/minitable.html").render(rows=rows)
         if code.startswith("product:"):
             lab = code.split(":", 1)[1].strip()
             used_labels.add(lab)
@@ -318,6 +335,22 @@ def main():
     env.filters.update(rub=rub, num=fmt_int, plural=plural, count_word=count_word,
                        md=md_inline, nbsp=lambda s: nbsp_text(str(s)))
 
+    # --- глобальный индекс товаров всех статей (для [[minitable:...]]): метка -> {p, updated_ru}
+    global_products = {}
+    for path in sorted(CONTENT.glob("*.md")):
+        meta, _ = split_front_matter(path.read_text(encoding="utf-8"), path)
+        if "date" not in meta:
+            continue  # ошибку про отсутствие поля выдаст основной цикл
+        upd_ru = ru_date(to_date(meta.get("updated", meta["date"])))
+        for p in build_products(meta, aff, path.name)[0]:
+            # конфликт (одна метка с разными данными в двух статьях) — ошибка только при использовании в minitable
+            prev = global_products.get(p["label"])
+            # сравниваем только поля, которые выводит minitable (subtitle, отзывы и т. п. могут различаться)
+            fields = ("name", "material", "price", "status", "href", "ad_label")
+            if prev and not prev.get("conflict") and                     [prev["p"].get(k) for k in fields] != [p.get(k) for k in fields]:
+                prev["conflict"] = f"{prev['src']} и {path.name}"
+            global_products.setdefault(p["label"], {"p": p, "updated_ru": upd_ru, "src": path.name})
+
     # --- читаем статьи
     articles = []
     used_labels = set()
@@ -337,7 +370,7 @@ def main():
         products, picks = build_products(meta, aff, path.name)
         html = render_markdown(body, aff, used_labels, env, {
             "name": path.name, "products": products, "picks": picks,
-            "updated_ru": ru_date(updated)})
+            "global_products": global_products, "updated_ru": ru_date(updated)})
         articles.append({
             "title": meta["title"], "h1": h1_text, "description": meta["description"],
             "seo_title": meta.get("seo_title") or meta["title"],

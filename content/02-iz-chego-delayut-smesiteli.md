@@ -125,14 +125,7 @@ queries:
 
 Из нашей подборки [смесителей с краном для питьевой воды](/smesitel-s-pityevoj-vodoj/):
 
-| Модель | Материал корпуса | Цена* |
-|---|---|---|
-| [Atoll 1713](AFF:atoll-1713-gs) | латунь | ~6 600 ₽ |
-| [IDDIS Pure PURBLPFi05N](AFF:iddis-pure-purblpfi05n) | латунь, гарантия 10 лет | ~12 000 ₽ |
-| [Raglo R81.62.05](AFF:raglo-r816205) | нержавеющая сталь SUS304 | ~14 700 ₽ |
-| [IDDIS Rule RULSTLFi05](AFF:iddis-rule-rulstlfi05) | нержавеющая сталь, гарантия 10 лет | ~15 400 ₽ |
-
-*\*Цена на Яндекс Маркете на 07.10.2026, перед покупкой сверьте актуальную.*
+[[minitable:atoll-1713-gs,iddis-pure-purblpfi05n,raglo-r816205,iddis-rule-rulstlfi05]]
 
 ---
 

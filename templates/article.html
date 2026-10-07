@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
 <nav class="breadcrumbs narrow" aria-label="Хлебные крошки">
-    <a href="/">Главная</a> <span>›</span> <span>{{ article.h1 }}</span>
+    <a href="/">Главная</a> <span>›</span> {% if article.cat %}<a href="{{ article.cat.path }}">{{ article.cat.name }}</a> <span>›</span> {% endif %}<span>{{ article.h1 }}</span>
 </nav>
 <article>
     <header class="article-head narrow">

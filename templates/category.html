@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head %}
+    <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": site.base_url ~ "/"}, {"@type": "ListItem", "position": 2, "name": hub.name, "item": canonical}]}|tojson }}</script>
+{% endblock %}
+{% block content %}
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <a href="/">Главная</a> <span>›</span> <span>{{ hub.name }}</span>
+</nav>
+<section class="hero">
+    <h1>{{ hub.title }}</h1>
+    <p class="tagline">{{ hub.intro }}</p>
+</section>
+<section>
+    <div class="cards">
+{% for a in hub.articles %}
+        <a class="card" href="{{ a.path }}">
+            <h3>{{ a.h1 }}</h3>
+            <p>{{ a.description|nbsp }}</p>
+            <span class="meta">{% if a.products %}{{ a.products|length|count_word(('модель', 'модели', 'моделей')) }} &middot; {% endif %}Обновлено: <time datetime="{{ a.updated.isoformat() }}">{{ a.updated_ru|nbsp }}</time></span>
+        </a>
+{% endfor %}
+    </div>
+</section>
+{% endblock %}

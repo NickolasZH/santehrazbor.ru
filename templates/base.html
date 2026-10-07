@@ -14,6 +14,9 @@
     <meta property="og:locale" content="ru_RU">
     <meta property="og:site_name" content="{{ site.site_name }}">
     {% if site.yandex_verification %}<meta name="yandex-verification" content="{{ site.yandex_verification }}">{% endif %}
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="stylesheet" href="/style.css">
     {% block head %}{% endblock %}
 {% if site.metrika_id %}
@@ -53,7 +56,7 @@
             <a class="site-name" href="/">{{ site.site_name }}</a>
             <nav class="main-nav" aria-label="Основное меню">
 {% for item in site.nav %}
-                <a href="{{ item.url }}"{% if path == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+                <a href="{{ item.url }}"{% if nav_active == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
 {% endfor %}
             </nav>
         </div>

@@ -340,6 +340,9 @@ def main():
             "updated_ru": ru_date(updated)})
         articles.append({
             "title": meta["title"], "h1": h1_text, "description": meta["description"],
+            "seo_title": meta.get("seo_title") or meta["title"],
+            "seo_description": meta.get("seo_description") or meta["description"],
+            "category": meta.get("category"),
             "slug": meta["slug"], "published": published, "updated": updated,
             "published_ru": ru_date(published), "updated_ru": ru_date(updated),
             "body": html, "faq": faq, "path": f"/{meta['slug']}/",
@@ -348,9 +351,13 @@ def main():
     articles.sort(key=lambda a: a["updated"], reverse=True)
 
     # --- чистим docs/
-    if DOCS.exists():
-        shutil.rmtree(DOCS)
-    DOCS.mkdir()
+    # Чистим содержимое, а не саму папку: её может держать открытой оболочка (Windows)
+    DOCS.mkdir(exist_ok=True)
+    for child in DOCS.iterdir():
+        if child.is_dir():
+            shutil.rmtree(child)
+        else:
+            child.unlink()
 
     site = {**config, "year": date.today().year}
 
@@ -366,11 +373,35 @@ def main():
 
     pages = []  # (path, lastmod)
 
+    # --- разделы (хабы): только те, где есть хотя бы одна статья
+    categories = config.get("categories", {})
+    for a in articles:
+        if a["category"] and a["category"] not in categories:
+            fail(f"статья {a['slug']}: категория {a['category']} не описана в config.json")
+        a["cat"] = None
+        if a["category"]:
+            a["cat"] = {**categories[a["category"]], "slug": a["category"],
+                        "path": f"/{a['category']}/"}
+    hubs = []
+    for slug, cat in categories.items():
+        arts = [a for a in articles if a["category"] == slug]
+        if arts:
+            hubs.append({**cat, "slug": slug, "path": f"/{slug}/", "articles": arts,
+                         "updated": max(a["updated"] for a in arts)})
+    nav_urls = {i["url"] for i in config["nav"]}
+
+    def nav_active(path, article=None):
+        # Своё меню важнее: статья «Материалы» подсвечивает себя, а не раздел
+        if path in nav_urls:
+            return path
+        if article and article["cat"]:
+            return article["cat"]["path"]
+        return None
+
     write("index.html", render(
-        "index.html", "/", title=f"{config['site_name']} — {config['tagline']}",
-        description=config["tagline"] + ". Разбираем, что внутри: материалы, картриджи, "
-                    "подключение — и только потом выбираем модели.",
-        articles=articles))
+        "index.html", "/", title=config["home_title"],
+        description=config["home_description"], nav_active="/",
+        articles=articles, hubs=hubs))
     pages.append(("/", max(a["updated"] for a in articles) if articles else date.today()))
 
     for a in articles:
@@ -389,7 +420,10 @@ def main():
                 "@context": "https://schema.org", "@type": "BreadcrumbList",
                 "itemListElement": [
                     {"@type": "ListItem", "position": 1, "name": "Главная", "item": base + "/"},
-                    {"@type": "ListItem", "position": 2, "name": a["h1"], "item": base + a["path"]},
+                ] + ([{"@type": "ListItem", "position": 2, "name": a["cat"]["name"],
+                       "item": base + a["cat"]["path"]}] if a["cat"] else []) + [
+                    {"@type": "ListItem", "position": 3 if a["cat"] else 2, "name": a["h1"],
+                     "item": base + a["path"]},
                 ],
             },
         ]
@@ -414,13 +448,19 @@ def main():
             })
         jsonld_str = [json.dumps(j, ensure_ascii=False).replace("</", "<\\/") for j in jsonld]
         write(f"{a['slug']}/index.html", render(
-            "article.html", a["path"], title=a["title"], description=a["description"],
-            article=a, jsonld=jsonld_str, og_type="article",
+            "article.html", a["path"], title=a["seo_title"], description=a["seo_description"],
+            nav_active=nav_active(a["path"], a), article=a, jsonld=jsonld_str, og_type="article",
             related=[x for x in articles if x is not a]))
         pages.append((a["path"], a["updated"]))
 
+    for h in hubs:
+        write(f"{h['slug']}/index.html", render(
+            "category.html", h["path"], title=h["seo_title"], description=h["seo_description"],
+            nav_active=h["path"], hub=h))
+        pages.append((h["path"], h["updated"]))
+
     write("o-proekte/index.html", render(
-        "about.html", "/o-proekte/", title=f"О проекте — {config['site_name']}",
+        "about.html", "/o-proekte/", nav_active="/o-proekte/", title=f"О проекте — {config['site_name']}",
         description="Кто мы, как отбираем модели и почему на сайте есть партнёрские ссылки."))
     write("privacy/index.html", render(
         "privacy.html", "/privacy/", title=f"Политика конфиденциальности — {config['site_name']}",

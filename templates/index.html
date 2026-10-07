@@ -4,6 +4,16 @@
     <h1>Разбираем, что внутри сантехники — чтобы вы не переплачивали за бренд и не купили одноразовое</h1>
     <p class="tagline">Смотрим на материал корпуса, картридж и подключение, читаем отзывы покупателей — и только потом выбираем модели и даём ссылки на магазин.</p>
 </section>
+{% if hubs %}
+<section>
+    <h2>Разделы</h2>
+    <ul class="hub-links">
+{% for h in hubs %}
+        <li><a href="{{ h.path }}">{{ h.name }}</a> <span class="muted">— {{ h.articles|length|count_word(('статья', 'статьи', 'статей')) }}</span></li>
+{% endfor %}
+    </ul>
+</section>
+{% endif %}
 <section>
     <h2>Подборки</h2>
     <div class="cards">

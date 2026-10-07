@@ -6,8 +6,7 @@
         <article class="pick">
             {{ badge(p) }}
             <h3 class="pick-name"><a href="#{{ p.label }}">{{ p.name }}</a></h3>
-            <p class="pick-price">{{ p.price|rub }}</p>
-            <p class="pick-rating">{{ rating(p) }}</p>
+            <p class="pick-meta"><span class="pick-price">{{ p.price|rub }}</span> <span class="pick-rating">{{ rating(p) }}{% if p.bought %} <span class="dot">·</span> купили {{ p.bought|num }}{% endif %}</span></p>
             <p class="pick-feature">{{ p.feature }}</p>
             <div class="pick-cta">{{ cta(p, 'picks', 'Смотреть цену →') }}{{ ad_mark(p) }}</div>
         </article>

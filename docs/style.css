@@ -205,14 +205,31 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
     border-top: 4px solid var(--primary); border-radius: 12px; box-shadow: var(--shadow);
 }
 .pick .badge { margin-bottom: 4px; }
-.pick-name { margin: 0; font-size: 1.1rem; line-height: 1.3; }
+.pick-name { margin: 0 !important; font-size: 1.1rem; line-height: 1.3; }
 .pick-name a { color: var(--text); text-decoration: none; }
 .pick-name a:hover { color: var(--link); text-decoration: underline; }
-.pick-price { margin: 0; font-size: 1.45rem; font-weight: 800; white-space: nowrap; }
-.pick-rating, .pick-feature { margin: 0; font-size: 0.92rem; }
+.pick-meta { margin: 0 !important; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 12px; }
+.pick-price { font-size: 1.45rem; font-weight: 800; white-space: nowrap; }
+.pick-rating, .pick-feature { margin: 0 !important; font-size: 0.92rem; }
 .pick-feature { color: var(--muted); flex: 1; }
 .pick-cta { width: 100%; margin-top: 10px; }
 .pick-cta .btn { width: 100%; }
+@media (max-width: 639px) {
+    .picks-grid { gap: 8px; }
+    .pick { padding: 10px 12px; gap: 2px; border-top-width: 3px; }
+    .pick .badge { margin-bottom: 0; }
+    .pick-name { font-size: 1rem; }
+    .pick-feature { display: none; }
+    .pick-meta { gap: 0 10px; }
+    .pick-price { font-size: 1.25rem; }
+    .pick-rating { font-size: 0.85rem; }
+    .pick-cta { margin-top: 6px; }
+    .pick-cta .btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
+}
+
+.photo { margin: 1.4em 0; }
+.photo img { display: block; width: 100%; height: auto; border-radius: 8px; }
+.photo figcaption { margin-top: 6px; font-size: 0.82rem; line-height: 1.4; color: var(--muted); }
 
 /* ---------- оглавление ---------- */
 .toc {

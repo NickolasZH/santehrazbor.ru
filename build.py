@@ -8,9 +8,11 @@ import re
 import shutil
 import sys
 from datetime import date, datetime
+from html import escape as html_escape
 from pathlib import Path
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
+from PIL import Image
 import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -220,6 +222,12 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                 fail(f"{name}: шорткод [[{code}]] без поля products в front matter")
             if code == "picks" and not article_ctx["picks"]:
                 fail(f"{name}: шорткод [[picks]] без поля picks в front matter")
+        elif code.startswith("photo:"):
+            fname, sep, cap = code.split(":", 1)[1].partition("|")
+            if not sep or not cap.strip():
+                fail(f"{name}: шорткод [[photo:файл|подпись]] — нет подписи ({code[:40]})")
+            if not (STATIC / "img" / fname.strip()).is_file():
+                fail(f"{name}: фото static/img/{fname.strip()} не найдено")
         elif code.startswith("product:"):
             lab = code.split(":", 1)[1].strip()
             if lab not in by_label:
@@ -270,6 +278,15 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
     def render_block(code):
         ctx = {"products": products, "picks": article_ctx["picks"], "toc": toc_items,
                "updated_ru": article_ctx["updated_ru"]}
+        if code.startswith("photo:"):
+            fname, _, cap = code.split(":", 1)[1].partition("|")
+            fname, cap = fname.strip(), cap.strip()
+            with Image.open(STATIC / "img" / fname) as im:
+                w, h = im.size
+            alt = re.sub(r"\s*\(фото автора\)\.?\s*$", "", cap).rstrip(" .") 
+            return (f'<figure class="photo"><img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
+                    f'width="{w}" height="{h}" loading="lazy" decoding="async">'
+                    f'<figcaption>{html_escape(cap)}</figcaption></figure>')
         if code.startswith("product:"):
             lab = code.split(":", 1)[1].strip()
             used_labels.add(lab)

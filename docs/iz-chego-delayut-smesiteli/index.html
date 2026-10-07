@@ -35,6 +35,18 @@
             webvisor: false
         });
     </script>
+    <script>
+        // Цель Метрики: клик по партнёрской ссылке (rel="sponsored").
+        // data-product — метка товара, data-place — блок: picks | compare | card | text.
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || typeof ym !== "function") { return; }
+            ym(113527998, "reachGoal", "cta_click", {
+                product: a.getAttribute("data-product") || "",
+                place: a.getAttribute("data-place") || "text"
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -42,28 +54,69 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/113527998" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 
     <header class="site-header">
-        <div class="wrap">
+        <div class="wrap header-inner">
             <a class="site-name" href="/">Сантехразбор</a>
+            <nav class="main-nav" aria-label="Основное меню">
+
+                <a href="/smesitel-s-pityevoj-vodoj/">Смесители</a>
+
+                <a href="/gigienicheskij-dush-kakoj-vybrat/">Гигиенические души</a>
+
+                <a href="/iz-chego-delayut-smesiteli/" aria-current="page">Материалы</a>
+
+                <a href="/o-proekte/">О проекте</a>
+
+            </nav>
         </div>
     </header>
     <main class="wrap">
 
-<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<nav class="breadcrumbs narrow" aria-label="Хлебные крошки">
     <a href="/">Главная</a> <span>›</span> <span>Латунь, нержавейка, цинк, силумин: из чего делают смесители и как не купить «одноразовый»</span>
 </nav>
 <article>
-    <h1>Латунь, нержавейка, цинк, силумин: из чего делают смесители и как не купить «одноразовый»</h1>
-    <p class="dates">
-        Опубликовано: <time datetime="2026-10-07">7 октября 2026</time>
-        &middot; Обновлено: <time datetime="2026-10-07">7 октября 2026</time>
-    </p>
+    <header class="article-head narrow">
+        <h1>Латунь, нержавейка, цинк, силумин: из чего делают смесители и как не купить «одноразовый»</h1>
+        <p class="dates">
+            Обновлено: <time datetime="2026-10-07">7 октября 2026</time>
+
+            &middot; <a href="/o-proekte/">Как мы выбираем</a>
+        </p>
+        <p class="disclosure">Мы получаем вознаграждение за покупки по ссылкам — это не влияет на выбор моделей.</p>
+    </header>
     <div class="prose">
 <blockquote>
 <p><strong>Коротко.</strong> Корпус смесителя должен быть из <strong>латуни</strong> или <strong>нержавеющей стали</strong> — оба варианта служат 10 лет и больше. <strong>Цинковый сплав (ЦАМ) и силумин</strong> — это дешёвые смесители, которые часто трескаются и текут через 1–3 года. Определить материал можно по описанию, гарантии, весу и цвету металла на срезе резьбы. Если не хотите разбираться — <a href="/smesitel-s-pityevoj-vodoj/">вот проверенные модели под фильтр</a> из латуни и нержавейки.</p>
 </blockquote>
-<p>Внешне смесители за 1 500 и за 8 000 ₽ могут выглядеть одинаково: блестящий хром одинаково блестит. Разница — под покрытием. Именно от материала корпуса зависит, сколько лет смеситель простоит без протечек.</p>
+
+<nav class="toc" aria-label="Содержание">
+    <p class="block-title">Содержание</p>
+    <ol>
+
+        <li><a href="#sravnenie-materialov">Сравнение материалов</a></li>
+
+        <li><a href="#latun-proverennaya-klassika">Латунь — проверенная классика</a></li>
+
+        <li><a href="#nerzhaveyushchaya-stal-sovremennaya-alternativa">Нержавеющая сталь — современная альтернатива</a></li>
+
+        <li><a href="#tsinkovyy-splav-tsam-ekonomiya-na-starte">Цинковый сплав (ЦАМ) — экономия на старте</a></li>
+
+        <li><a href="#silumin-glavnyy-priznak-odnorazovogo-smesitelya">Силумин — главный признак «одноразового» смесителя</a></li>
+
+        <li><a href="#kak-opredelit-material-do-pokupki">Как определить материал до покупки</a></li>
+
+        <li><a href="#pokrytie-khrom-pvd-i-tsvetnye-smesiteli">Покрытие: хром, PVD и цветные смесители</a></li>
+
+        <li><a href="#chto-vybrat">Что выбрать</a></li>
+
+        <li><a href="#chastye-voprosy">Частые вопросы</a></li>
+
+    </ol>
+</nav>
+
+<p>Внешне смесители за 1 500 и за 8 000 ₽ могут выглядеть одинаково: блестящий хром одинаково блестит. Разница — под покрытием. Именно от материала корпуса зависит, сколько лет смеситель простоит без протечек.</p>
 <hr />
-<h2 id="_1">Сравнение материалов</h2>
+<h2 id="sravnenie-materialov">Сравнение материалов</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -113,7 +166,7 @@
 </tbody>
 </table></div>
 <hr />
-<h2 id="_2">Латунь — проверенная классика</h2>
+<h2 id="latun-proverennaya-klassika">Латунь — проверенная классика</h2>
 <p>Латунь — сплав меди и цинка. Это стандарт сантехники уже больше ста лет: она хорошо отливается и обрабатывается, держит резьбу и не боится горячей воды.</p>
 <p><strong>Плюсы</strong>
 - Прочная: корпус не лопнет от гидроудара или затяжки гайки.
@@ -123,7 +176,7 @@
 - <strong>Качество сплава.</strong> В сантехнической латуни есть небольшая доля свинца для лучшей обработки. Нормальные производители используют сплавы, соответствующие нормам для питьевой воды, и указывают это в сертификатах. У безымянных смесителей никто ничего не гарантирует.
 - <strong>Толщина стенок.</strong> Встречается «латунь» с тонкими стенками — смеситель лёгкий и звонкий. Хороший латунный корпус ощутимо тяжёлый.</p>
 <hr />
-<h2 id="_3">Нержавеющая сталь — современная альтернатива</h2>
+<h2 id="nerzhaveyushchaya-stal-sovremennaya-alternativa">Нержавеющая сталь — современная альтернатива</h2>
 <p>Нержавеющие смесители стали популярны вместе со стальными мойками: цвет совпадает, а матовая поверхность скрывает капли.</p>
 <p><strong>Плюсы</strong>
 - Не корродирует и не содержит свинца — не влияет на вкус и состав воды. Поэтому нержавейку часто выбирают для <a href="/smesitel-s-pityevoj-vodoj/">смесителей с питьевой водой</a>.
@@ -133,7 +186,7 @@
 - <strong>Магнит не поможет.</strong> Популярный совет «нержавейка не магнитится» ненадёжен: и 304, и 201 могут слабо магнититься после обработки. Ориентируйтесь на марку в документах.
 - <strong>Литой или из трубки.</strong> Литой корпус массивнее. Смесители, согнутые из тонкой трубки, дешевле, но могут деформироваться.</p>
 <hr />
-<h2 id="_4">Цинковый сплав (ЦАМ) — экономия на старте</h2>
+<h2 id="tsinkovyy-splav-tsam-ekonomiya-na-starte">Цинковый сплав (ЦАМ) — экономия на старте</h2>
 <p>ЦАМ — сплав цинка с алюминием и медью. Из него удобно отливать сложные формы, и он в несколько раз дешевле латуни.</p>
 <p><strong>Почему с ним проблемы</strong>
 - Хрупкий: при перетяжке гайки или гидроударе может треснуть.
@@ -141,20 +194,20 @@
 - Резьба слабая: повторный монтаж может её сорвать.</p>
 <p><strong>Важно:</strong> ручки и декоративные детали из цинкового сплава есть даже у хороших брендов — это нормально, они не контактируют с водой под давлением. Проблема — когда из ЦАМ сделан <strong>корпус</strong>.</p>
 <hr />
-<h2 id="_5">Силумин — главный признак «одноразового» смесителя</h2>
+<h2 id="silumin-glavnyy-priznak-odnorazovogo-smesitelya">Силумин — главный признак «одноразового» смесителя</h2>
 <p>Силумин — сплав алюминия с кремнием. Он лёгкий и дешёвый, но хрупкий и плохо переносит перепады давления и температуры. Смесители из силумина — это обычно самые дешёвые модели без бренда. Типичная судьба — трещина в корпусе или сорванная резьба через год-два.</p>
 <hr />
-<h2 id="_6">Как определить материал до покупки</h2>
+<h2 id="kak-opredelit-material-do-pokupki">Как определить материал до покупки</h2>
 <ol>
 <li><strong>Читайте характеристики.</strong> Ищите «материал корпуса: латунь» или «нержавеющая сталь AISI 304». Формулировки вроде «металл», «сплав», «высококачественный материал» без конкретики — плохой знак.</li>
 <li><strong>Смотрите на гарантию.</strong> Производители латунных и стальных смесителей дают 5–10 лет. Гарантия 1 год часто означает цинковый сплав. Пример: в одном из сравнений канала «Сантехника | Честный гид» смеситель ProHanss из цинкового сплава шёл с гарантией 1 год, а GROSS AQUA из латуни почти за ту же цену — 10 лет.</li>
 <li><strong>Вес.</strong> Силуминовый смеситель заметно легче латунного. С цинковым сплавом разница меньше, поэтому вес — подсказка, а не доказательство.</li>
 <li><strong>Цвет металла.</strong> Если видно металл без покрытия (внутри резьбы, на срезе гайки): латунь — <strong>жёлтая</strong>, цинковый сплав и силумин — <strong>серо-белые</strong>, нержавейка — <strong>серебристая</strong>.</li>
-<li><strong>Цена.</strong> Латунный кухонный смеситель от известного бренда редко стоит дешевле 2–3 тыс. ₽. Если смеситель «латунный» и стоит 900 ₽ — скорее всего, латунь там только в названии.</li>
+<li><strong>Цена.</strong> Латунный кухонный смеситель от известного бренда редко стоит дешевле 2–3 тыс. ₽. Если смеситель «латунный» и стоит 900 ₽ — скорее всего, латунь там только в названии.</li>
 <li><strong>Отзывы.</strong> Ищите в отзывах слова «лёгкий», «треснул», «потёк через год». Один такой отзыв — случайность, три — закономерность.</li>
 </ol>
 <hr />
-<h2 id="pvd">Покрытие: хром, PVD и цветные смесители</h2>
+<h2 id="pokrytie-khrom-pvd-i-tsvetnye-smesiteli">Покрытие: хром, PVD и цветные смесители</h2>
 <p>Материал корпуса — это основа, но снаружи его закрывает покрытие:</p>
 <ul>
 <li><strong>Гальванический хром</strong> (поверх никеля) — классика, долговечен при нормальном уходе. Не чистите абразивами и средствами с хлором.</li>
@@ -163,7 +216,7 @@
 <li><strong>Нержавейка без покрытия</strong> — ничего не облезет, царапины на матовой (сатиновой) поверхности почти не видны.</li>
 </ul>
 <hr />
-<h2 id="_7">Что выбрать</h2>
+<h2 id="chto-vybrat">Что выбрать</h2>
 <div class="table-wrap"><table>
 <thead>
 <tr>
@@ -190,7 +243,7 @@
 </tr>
 </tbody>
 </table></div>
-<h3 id="_8">Проверенные модели из латуни и нержавейки</h3>
+<h3 id="proverennye-modeli-iz-latuni-i-nerzhaveyki">Проверенные модели из латуни и нержавейки</h3>
 <p>Из нашей подборки <a href="/smesitel-s-pityevoj-vodoj/">смесителей с краном для питьевой воды</a>:</p>
 <div class="table-wrap"><table>
 <thead>
@@ -202,30 +255,30 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="https://market.yandex.ru/card/kran-kombinirovannyy-atoll-1713-gs-oruzheynaya-stal-smesitel-dlya-kukhni-s-podklyucheniyem-k-filtru-pityevoy-vody-povorotnyy/6195816422" rel="sponsored nofollow noopener" target="_blank">Atoll 1713</a></td>
+<td><a href="https://market.yandex.ru/card/kran-kombinirovannyy-atoll-1713-gs-oruzheynaya-stal-smesitel-dlya-kukhni-s-podklyucheniyem-k-filtru-pityevoy-vody-povorotnyy/6195816422" rel="sponsored nofollow noopener" target="_blank" data-product="atoll-1713-gs" data-place="text">Atoll 1713</a></td>
 <td>латунь</td>
-<td>~6 600 ₽</td>
+<td>~6 600 ₽</td>
 </tr>
 <tr>
-<td><a href="https://market.yandex.ru/card/smesitel-dlya-kukhni-s-filtrom-i-vydvizhnym-izlivom-iddis-pure-purblpfi05n-chernyy-matovyy/4567603619" rel="sponsored nofollow noopener" target="_blank">IDDIS Pure PURBLPFi05N</a></td>
+<td><a href="https://market.yandex.ru/card/smesitel-dlya-kukhni-s-filtrom-i-vydvizhnym-izlivom-iddis-pure-purblpfi05n-chernyy-matovyy/4567603619" rel="sponsored nofollow noopener" target="_blank" data-product="iddis-pure-purblpfi05n" data-place="text">IDDIS Pure PURBLPFi05N</a></td>
 <td>латунь, гарантия 10 лет</td>
-<td>~12 000 ₽</td>
+<td>~12 000 ₽</td>
 </tr>
 <tr>
-<td><a href="https://market.yandex.ru/card/smesitel-raglo-dlya-kukhni-s-podklyucheniyem-k-filtru-r816205/103775601559" rel="sponsored nofollow noopener" target="_blank">Raglo R81.62.05</a></td>
+<td><a href="https://market.yandex.ru/card/smesitel-raglo-dlya-kukhni-s-podklyucheniyem-k-filtru-r816205/103775601559" rel="sponsored nofollow noopener" target="_blank" data-product="raglo-r816205" data-place="text">Raglo R81.62.05</a></td>
 <td>нержавеющая сталь SUS304</td>
-<td>~14 700 ₽</td>
+<td>~14 700 ₽</td>
 </tr>
 <tr>
-<td><a href="https://market.yandex.ru/card/smesitel-dlya-kukhni-s-filtrom-stal-iddis-rule-rulstlfi05/103207827799" rel="sponsored nofollow noopener" target="_blank">IDDIS Rule RULSTLFi05</a></td>
+<td><a href="https://market.yandex.ru/card/smesitel-dlya-kukhni-s-filtrom-stal-iddis-rule-rulstlfi05/103207827799" rel="sponsored nofollow noopener" target="_blank" data-product="iddis-rule-rulstlfi05" data-place="text">IDDIS Rule RULSTLFi05</a></td>
 <td>нержавеющая сталь, гарантия 10 лет</td>
-<td>~18 300 ₽</td>
+<td>~18 300 ₽</td>
 </tr>
 </tbody>
 </table></div>
 <p><em>*Цена на Яндекс Маркете на 07.10.2026, перед покупкой сверьте актуальную.</em></p>
 <hr />
-<h2 id="_9">Частые вопросы</h2>
+<h2 id="chastye-voprosy">Частые вопросы</h2>
 <p><strong>Что лучше для смесителя — латунь или нержавейка?</strong>
 Оба материала надёжны. Нержавейка не содержит свинца и подходит к стальной мойке, латунь шире представлена и чаще дешевле. Главное — избегать цинкового сплава и силумина в корпусе.</p>
 <p><strong>Как отличить латунный смеситель от силуминового?</strong>
@@ -239,6 +292,35 @@
 <hr />
 <p><em>На странице есть партнёрские ссылки: если вы купите товар по ним, мы получим небольшое вознаграждение от магазина. Цена для вас не меняется.</em></p>
     </div>
+    <section class="narrow how-we-pick">
+        <h2>Как мы отбираем модели</h2>
+        <ol>
+            <li><strong>По характеристикам из карточек.</strong> Материал корпуса, картридж, комплектация и гарантия — то, что указано в карточке товара.</li>
+            <li><strong>По реальным отзывам.</strong> Читаем, что хвалят и на что жалуются покупатели, и учитываем число оценок.</li>
+            <li><strong>Без учёта размера вознаграждения.</strong> Партнёрские ссылки не влияют на то, какие модели попадают в подборку.</li>
+        </ol>
+        <p><a href="/o-proekte/">Подробнее о проекте</a></p>
+    </section>
+
+    <section class="wide related">
+        <h2>Читайте также</h2>
+        <div class="cards">
+
+            <a class="card" href="/smesitel-s-pityevoj-vodoj/">
+                <h3>Смеситель с краном для питьевой воды: как выбрать и 7 моделей с разбором «что внутри»</h3>
+                <p>Как выбрать смеситель для кухни с подключением к фильтру: материал, картридж, кран-букса, подключение. 7 проверенных моделей от 6 500 до 30 000 ₽ с плюсами и минусами по отзывам.</p>
+                <span class="meta">7 моделей &middot; Обновлено: 7 октября 2026</span>
+            </a>
+
+            <a class="card" href="/gigienicheskij-dush-kakoj-vybrat/">
+                <h3>Гигиенический душ: какой выбрать — открытый, встраиваемый или с термостатом</h3>
+                <p>Как выбрать гигиенический душ: типы (настенный, скрытого монтажа, с термостатом, приставка на унитаз), материал, картридж, лейка и защита от протечек. 8 моделей от 2 500 до 19 600 ₽ с плюсами и минусами по отзывам.</p>
+                <span class="meta">8 моделей &middot; Обновлено: 7 октября 2026</span>
+            </a>
+
+        </div>
+    </section>
+
 </article>
 
     </main>
@@ -248,7 +330,7 @@
                 <a href="/o-proekte/">О проекте</a>
                 <a href="/privacy/">Политика конфиденциальности</a>
             </nav>
-            <p>Сайт содержит партнёрские ссылки.</p>
+            <p>Сайт содержит партнёрские ссылки: мы получаем вознаграждение за покупки по ним, цена для вас не меняется.</p>
             <p>&copy; 2026 Сантехразбор</p>
         </div>
     </footer>

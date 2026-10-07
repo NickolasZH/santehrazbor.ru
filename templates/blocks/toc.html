@@ -1,0 +1,10 @@
+{% if toc %}
+<nav class="toc" aria-label="Содержание">
+    <p class="block-title">Содержание</p>
+    <ol>
+{% for id, title in toc %}
+        <li><a href="#{{ id }}">{{ title }}</a></li>
+{% endfor %}
+    </ol>
+</nav>
+{% endif %}

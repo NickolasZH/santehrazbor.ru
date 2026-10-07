@@ -1,0 +1,16 @@
+{% from "_macros.html" import cta, ad_mark, rating, badge %}
+<section class="wide picks" aria-label="Наш выбор">
+    <p class="block-title">Наш выбор</p>
+    <div class="picks-grid">
+{% for p in picks %}
+        <article class="pick">
+            {{ badge(p) }}
+            <h3 class="pick-name"><a href="#{{ p.label }}">{{ p.name }}</a></h3>
+            <p class="pick-price">{{ p.price|rub }}</p>
+            <p class="pick-rating">{{ rating(p) }}</p>
+            <p class="pick-feature">{{ p.feature }}</p>
+            <div class="pick-cta">{{ cta(p, 'picks', 'Смотреть цену →') }}{{ ad_mark(p) }}</div>
+        </article>
+{% endfor %}
+    </div>
+</section>

@@ -30,6 +30,18 @@
             webvisor: false
         });
     </script>
+    <script>
+        // Цель Метрики: клик по партнёрской ссылке (rel="sponsored").
+        // data-product — метка товара, data-place — блок: picks | compare | card | text.
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || typeof ym !== "function") { return; }
+            ym({{ site.metrika_id }}, "reachGoal", "cta_click", {
+                product: a.getAttribute("data-product") || "",
+                place: a.getAttribute("data-place") || "text"
+            });
+        });
+    </script>
 {% endif %}
 </head>
 <body>
@@ -37,8 +49,13 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/{{ site.metrika_id }}" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 {% endif %}
     <header class="site-header">
-        <div class="wrap">
+        <div class="wrap header-inner">
             <a class="site-name" href="/">{{ site.site_name }}</a>
+            <nav class="main-nav" aria-label="Основное меню">
+{% for item in site.nav %}
+                <a href="{{ item.url }}"{% if path == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+{% endfor %}
+            </nav>
         </div>
     </header>
     <main class="wrap">
@@ -50,7 +67,7 @@
                 <a href="/o-proekte/">О проекте</a>
                 <a href="/privacy/">Политика конфиденциальности</a>
             </nav>
-            <p>Сайт содержит партнёрские ссылки.</p>
+            <p>Сайт содержит партнёрские ссылки: мы получаем вознаграждение за покупки по ним, цена для вас не меняется.</p>
             <p>&copy; {{ site.year }} {{ site.site_name }}</p>
         </div>
     </footer>

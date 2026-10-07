@@ -3,5 +3,23 @@
   "base_url": "https://santehrazbor.ru",
   "tagline": "Честно о сантехнике: что внутри смесителей и душей",
   "metrika_id": "113527998",
-  "yandex_verification": ""
+  "yandex_verification": "",
+  "nav": [
+    {
+      "title": "Смесители",
+      "url": "/smesitel-s-pityevoj-vodoj/"
+    },
+    {
+      "title": "Гигиенические души",
+      "url": "/gigienicheskij-dush-kakoj-vybrat/"
+    },
+    {
+      "title": "Материалы",
+      "url": "/iz-chego-delayut-smesiteli/"
+    },
+    {
+      "title": "О проекте",
+      "url": "/o-proekte/"
+    }
+  ]
 }

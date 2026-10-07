@@ -1,0 +1,16 @@
+{#- Общие макросы блоков статьи. cta — партнёрская ссылка-кнопка (метка и место — для целей Метрики). -#}
+{% macro cta(p, place, text, cls="btn") -%}
+<a class="{{ cls }}" href="{{ p.href }}" rel="{{ p.rel }}" target="_blank" data-product="{{ p.label }}" data-place="{{ place }}">{{ text }}</a>
+{%- endmacro %}
+
+{% macro ad_mark(p) -%}
+{% if p.ad_label %}<span class="ad-mark">{{ p.ad_label }}</span>{% endif %}
+{%- endmacro %}
+
+{% macro rating(p, full=true) -%}
+{% if p.rating %}<span class="rating"><span class="star" aria-hidden="true">★</span> <strong>{{ p.rating }}</strong>{% if p.reviews %} <span class="muted">({{ p.reviews|count_word(('оценка', 'оценки', 'оценок')) }})</span>{% endif %}</span>{% else %}<span class="muted">Оценок пока нет</span>{% endif %}
+{%- endmacro %}
+
+{% macro badge(p) -%}
+{% if p.badge %}<span class="badge badge-{{ p.badge_class }}">{{ p.badge }}</span>{% endif %}
+{%- endmacro %}

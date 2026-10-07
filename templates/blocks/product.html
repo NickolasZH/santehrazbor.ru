@@ -1,0 +1,53 @@
+{% from "_macros.html" import cta, ad_mark, rating, badge %}
+<section class="wide product" id="{{ p.label }}">
+    <div class="product-main">
+{% if p.image %}
+        <img class="product-img" src="{{ p.image }}" alt="{{ p.name }}" loading="lazy" width="240" height="240">
+{% endif %}
+        <div class="product-body">
+            {{ badge(p) }}
+            <h3 class="product-title">{{ p.n }}. {{ p.name }}</h3>
+{% if p.subtitle %}
+            <p class="product-sub">{{ p.subtitle[0]|upper }}{{ p.subtitle[1:] }}</p>
+{% endif %}
+            <p class="product-price"><span class="price">{{ p.price|rub }}</span> <span class="muted">на Маркете, цена на {{ updated_ru|nbsp }}</span></p>
+            <p class="product-meta">{{ rating(p) }}{% if p.bought %} <span class="dot">·</span> купили {{ p.bought|num }}{% endif %}</p>
+            <ul class="chips">
+{% if p.type %}<li>{{ p.type }}</li>{% endif %}
+{% if p.material %}<li>{{ p.material }}</li>{% endif %}
+{% if p.feature %}<li>{{ p.feature }}</li>{% endif %}
+            </ul>
+        </div>
+    </div>
+{% if p.inside %}
+    <p><strong>Что внутри:</strong> {{ p.inside|md }}</p>
+{% endif %}
+{% if p.reviews_text %}
+    <p><strong>Что говорят покупатели:</strong> {{ p.reviews_text|md }}</p>
+{% endif %}
+    <div class="proscons">
+        <div class="pros">
+            <p class="pc-title">Плюсы</p>
+            <ul>
+{% for x in p.pros %}
+                <li>{{ x|md }}</li>
+{% endfor %}
+            </ul>
+        </div>
+        <div class="cons">
+            <p class="pc-title">Минусы</p>
+{% if p.cons_note %}
+            <p class="pc-note">{{ p.cons_note }}</p>
+{% endif %}
+            <ul>
+{% for x in p.cons %}
+                <li>{{ x|md }}</li>
+{% endfor %}
+            </ul>
+        </div>
+    </div>
+{% if p.who %}
+    <p><strong>Кому:</strong> {{ p.who|md }}</p>
+{% endif %}
+    <div class="product-cta">{{ cta(p, 'card', 'Смотреть цену на Маркете →', 'btn btn-block') }}{{ ad_mark(p) }}</div>
+</section>

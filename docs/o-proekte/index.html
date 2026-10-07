@@ -30,6 +30,18 @@
             webvisor: false
         });
     </script>
+    <script>
+        // Цель Метрики: клик по партнёрской ссылке (rel="sponsored").
+        // data-product — метка товара, data-place — блок: picks | compare | card | text.
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || typeof ym !== "function") { return; }
+            ym(113527998, "reachGoal", "cta_click", {
+                product: a.getAttribute("data-product") || "",
+                place: a.getAttribute("data-place") || "text"
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -37,8 +49,19 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/113527998" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 
     <header class="site-header">
-        <div class="wrap">
+        <div class="wrap header-inner">
             <a class="site-name" href="/">Сантехразбор</a>
+            <nav class="main-nav" aria-label="Основное меню">
+
+                <a href="/smesitel-s-pityevoj-vodoj/">Смесители</a>
+
+                <a href="/gigienicheskij-dush-kakoj-vybrat/">Гигиенические души</a>
+
+                <a href="/iz-chego-delayut-smesiteli/">Материалы</a>
+
+                <a href="/o-proekte/" aria-current="page">О проекте</a>
+
+            </nav>
         </div>
     </header>
     <main class="wrap">
@@ -62,7 +85,7 @@
                 <a href="/o-proekte/">О проекте</a>
                 <a href="/privacy/">Политика конфиденциальности</a>
             </nav>
-            <p>Сайт содержит партнёрские ссылки.</p>
+            <p>Сайт содержит партнёрские ссылки: мы получаем вознаграждение за покупки по ним, цена для вас не меняется.</p>
             <p>&copy; 2026 Сантехразбор</p>
         </div>
     </footer>

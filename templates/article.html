@@ -4,17 +4,46 @@
 {% endfor %}
 {% endblock %}
 {% block content %}
-<nav class="breadcrumbs" aria-label="Хлебные крошки">
+<nav class="breadcrumbs narrow" aria-label="Хлебные крошки">
     <a href="/">Главная</a> <span>›</span> <span>{{ article.h1 }}</span>
 </nav>
 <article>
-    <h1>{{ article.h1 }}</h1>
-    <p class="dates">
-        Опубликовано: <time datetime="{{ article.published.isoformat() }}">{{ article.published_ru }}</time>
-        &middot; Обновлено: <time datetime="{{ article.updated.isoformat() }}">{{ article.updated_ru }}</time>
-    </p>
+    <header class="article-head narrow">
+        <h1>{{ article.h1 }}</h1>
+        <p class="dates">
+            Обновлено: <time datetime="{{ article.updated.isoformat() }}">{{ article.updated_ru|nbsp }}</time>
+{% if article.products %}
+            &middot; {{ article.products|length|count_word(('модель', 'модели', 'моделей')) }} проверено
+{% endif %}
+            &middot; <a href="/o-proekte/">Как мы выбираем</a>
+        </p>
+        <p class="disclosure">Мы получаем вознаграждение за покупки по ссылкам — это не влияет на выбор моделей.</p>
+    </header>
     <div class="prose">
 {{ article.body|safe }}
     </div>
+    <section class="narrow how-we-pick">
+        <h2>Как мы отбираем модели</h2>
+        <ol>
+            <li><strong>По характеристикам из карточек.</strong> Материал корпуса, картридж, комплектация и гарантия — то, что указано в карточке товара.</li>
+            <li><strong>По реальным отзывам.</strong> Читаем, что хвалят и на что жалуются покупатели, и учитываем число оценок.</li>
+            <li><strong>Без учёта размера вознаграждения.</strong> Партнёрские ссылки не влияют на то, какие модели попадают в подборку.</li>
+        </ol>
+        <p><a href="/o-proekte/">Подробнее о проекте</a></p>
+    </section>
+{% if related %}
+    <section class="wide related">
+        <h2>Читайте также</h2>
+        <div class="cards">
+{% for r in related %}
+            <a class="card" href="{{ r.path }}">
+                <h3>{{ r.h1 }}</h3>
+                <p>{{ r.description|nbsp }}</p>
+                <span class="meta">{% if r.products %}{{ r.products|length|count_word(('модель', 'модели', 'моделей')) }} &middot; {% endif %}Обновлено: {{ r.updated_ru|nbsp }}</span>
+            </a>
+{% endfor %}
+        </div>
+    </section>
+{% endif %}
 </article>
 {% endblock %}

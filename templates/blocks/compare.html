@@ -1,4 +1,4 @@
-{% from "_macros.html" import cta, ad_mark, rating %}
+{% from "_macros.html" import offer, rating %}
 {% set has_type = products|selectattr('type')|list|length > 0 %}
 <div class="wide compare">
     <table class="compare-table">
@@ -15,14 +15,14 @@
         </thead>
         <tbody>
 {% for p in products %}
-            <tr>
+            <tr{% if p.status == 'unavailable' %} class="is-unavailable"{% endif %}>
                 <th scope="row" class="c-model"><a href="#{{ p.label }}">{{ p.name }}</a>{% if p.badge %} <span class="badge badge-{{ p.badge_class }}">{{ p.badge }}</span>{% endif %}</th>
                 <td data-label="{{ 'Тип / корпус' if has_type else 'Корпус' }}"><span class="v">{% if p.type %}{{ p.type }}{% if p.material %}<br><span class="muted">{{ p.material }}</span>{% endif %}{% else %}{{ p.material or '—' }}{% endif %}</span></td>
                 <td data-label="Особенность"><span class="v">{{ p.feature }}</span></td>
                 <td data-label="Рейтинг" class="nowrap"><span class="v">{% if p.rating %}<span class="star" aria-hidden="true">★</span> {{ p.rating }}{% if p.reviews %} <span class="muted">/ {{ p.reviews }}</span>{% endif %}{% else %}—{% endif %}</span></td>
                 <td data-label="Купили"><span class="v">{{ p.bought|num if p.bought else '—' }}</span></td>
-                <td data-label="Цена" class="nowrap c-price"><span class="v">{{ p.price|rub }}</span></td>
-                <td class="c-cta">{{ cta(p, 'compare', 'Цена →', 'btn btn-sm') }}{{ ad_mark(p) }}</td>
+                <td data-label="Цена" class="nowrap c-price"><span class="v">{{ '—' if p.status == 'unavailable' else p.price|rub }}</span></td>
+                <td class="c-cta">{{ offer(p, 'compare', 'Цена →', 'btn btn-sm') }}</td>
             </tr>
 {% endfor %}
         </tbody>

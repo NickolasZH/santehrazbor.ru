@@ -3,6 +3,11 @@
 <a class="{{ cls }}" href="{{ p.href }}" rel="{{ p.rel }}" target="_blank" data-product="{{ p.label }}" data-place="{{ place }}">{{ text }}</a>
 {%- endmacro %}
 
+{#- offer — кнопка «смотреть цену» или, если у товара status: unavailable, серая плашка без ссылки на Маркет. -#}
+{% macro offer(p, place, text, cls="btn") -%}
+{% if p.status == 'unavailable' %}<span class="unavailable-note">Сейчас нет в продаже</span>{% else %}{{ cta(p, place, text, cls) }}{{ ad_mark(p) }}{% endif %}
+{%- endmacro %}
+
 {% macro ad_mark(p) -%}
 {% if p.ad_label %}<span class="ad-mark">{{ p.ad_label }}</span>{% endif %}
 {%- endmacro %}

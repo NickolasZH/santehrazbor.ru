@@ -431,10 +431,12 @@ def main():
             jsonld.append({
                 "@context": "https://schema.org", "@type": "ItemList",
                 "name": f"Модели в статье: {a['h1']}",
+                # товары без наличия (status: unavailable) в разметку не попадают
                 "itemListElement": [
-                    {"@type": "ListItem", "position": p["n"], "name": p["name"],
+                    {"@type": "ListItem", "position": i, "name": p["name"],
                      "url": p["market_url"]}
-                    for p in a["products"]
+                    for i, p in enumerate(
+                        [p for p in a["products"] if p.get("status") != "unavailable"], 1)
                 ],
             })
         if a["faq"]:

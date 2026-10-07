@@ -359,3 +359,13 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 
 .hub-links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; font-size: 1.05rem; }
 .hub-links .muted { color: var(--muted); font-size: 0.9rem; }
+
+/* ---------- товар без наличия (status: unavailable в front matter) ---------- */
+.unavailable-note {
+    display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+    min-height: 44px; padding: 8px 14px; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+    color: var(--muted); background: var(--border); text-align: center; white-space: nowrap;
+}
+.product-cta .unavailable-note { min-height: 54px; font-size: 1.08rem; }
+.product.is-unavailable .product-main, .compare-table tr.is-unavailable td, .compare-table tr.is-unavailable th { opacity: 0.65; }
+.compare-table tr.is-unavailable .c-cta { opacity: 1; }

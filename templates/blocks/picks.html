@@ -1,15 +1,19 @@
-{% from "_macros.html" import cta, ad_mark, rating, badge %}
+{% from "_macros.html" import offer, rating, badge %}
+{#- товары без наличия (status: unavailable) в «Нашем выборе» не показываем — остаются доступные -#}
+{% set available_picks = picks|rejectattr('status', 'equalto', 'unavailable')|list %}
+{% if available_picks %}
 <section class="wide picks" aria-label="Наш выбор">
     <p class="block-title">Наш выбор</p>
     <div class="picks-grid">
-{% for p in picks %}
+{% for p in available_picks %}
         <article class="pick">
             {{ badge(p) }}
             <h3 class="pick-name"><a href="#{{ p.label }}">{{ p.name }}</a></h3>
             <p class="pick-meta"><span class="pick-price">{{ p.price|rub }}</span> <span class="pick-rating">{{ rating(p) }}{% if p.bought %} <span class="dot">·</span> купили {{ p.bought|num }}{% endif %}</span></p>
             <p class="pick-feature">{{ p.feature }}</p>
-            <div class="pick-cta">{{ cta(p, 'picks', 'Смотреть цену →') }}{{ ad_mark(p) }}</div>
+            <div class="pick-cta">{{ offer(p, 'picks', 'Смотреть цену →') }}</div>
         </article>
 {% endfor %}
     </div>
 </section>
+{% endif %}

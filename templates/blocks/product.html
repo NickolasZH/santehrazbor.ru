@@ -1,5 +1,5 @@
-{% from "_macros.html" import cta, ad_mark, rating, badge %}
-<section class="wide product" id="{{ p.label }}">
+{% from "_macros.html" import offer, rating, badge %}
+<section class="wide product{% if p.status == 'unavailable' %} is-unavailable{% endif %}" id="{{ p.label }}">
     <div class="product-main">
 {% if p.image %}
         <img class="product-img" src="{{ p.image }}" alt="{{ p.name }}" loading="lazy" width="240" height="240">
@@ -10,7 +10,9 @@
 {% if p.subtitle %}
             <p class="product-sub">{{ p.subtitle[0]|upper }}{{ p.subtitle[1:] }}</p>
 {% endif %}
-            <p class="product-price"><span class="price">{{ p.price|rub }}</span> <span class="muted">на Маркете, цена на {{ updated_ru|nbsp }}</span></p>
+            {% if p.status != 'unavailable' %}
+            <p class="product-price"><span class="price">{{ p.price|rub }}</span> <span class="muted">цена на Маркете (Москва) на {{ updated_ru|nbsp }}</span></p>
+{% endif %}
             <p class="product-meta">{{ rating(p) }}{% if p.bought %} <span class="dot">·</span> купили {{ p.bought|num }}{% endif %}</p>
             <ul class="chips">
 {% if p.type %}<li>{{ p.type }}</li>{% endif %}
@@ -49,5 +51,5 @@
 {% if p.who %}
     <p><strong>Кому:</strong> {{ p.who|md }}</p>
 {% endif %}
-    <div class="product-cta">{{ cta(p, 'card', 'Смотреть цену на Маркете →', 'btn btn-block') }}{{ ad_mark(p) }}</div>
+    <div class="product-cta">{{ offer(p, 'card', 'Смотреть цену на Маркете →', 'btn btn-block') }}</div>
 </section>

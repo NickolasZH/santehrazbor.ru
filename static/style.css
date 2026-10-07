@@ -165,6 +165,13 @@ th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-botto
 .table-wrap tbody tr:nth-child(even) { background: var(--zebra); }
 tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 
+/* мини-таблица статьи 02 (Модель / Корпус / Цена): на узких экранах без горизонтальной прокрутки */
+@media (max-width: 639px) {
+    .minitable th, .minitable td { padding: 8px 8px; }
+    .minitable td { overflow-wrap: anywhere; }
+    .minitable td.nowrap { overflow-wrap: normal; }
+}
+
 /* ---------- кнопки ---------- */
 .btn {
     display: inline-flex; align-items: center; justify-content: center; text-align: center;

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block head %}
+{% for j in jsonld %}    <script type="application/ld+json">{{ j|safe }}</script>
+{% endfor %}
+{% endblock %}
+{% block content %}
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <a href="/">Главная</a> <span>›</span> <span>{{ article.h1 }}</span>
+</nav>
+<article>
+    <h1>{{ article.h1 }}</h1>
+    <p class="dates">
+        Опубликовано: <time datetime="{{ article.published.isoformat() }}">{{ article.published_ru }}</time>
+        &middot; Обновлено: <time datetime="{{ article.updated.isoformat() }}">{{ article.updated_ru }}</time>
+    </p>
+    <div class="prose">
+{{ article.body|safe }}
+    </div>
+</article>
+{% endblock %}

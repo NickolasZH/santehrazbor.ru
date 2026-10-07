@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+    <h1>{{ site.site_name }}</h1>
+    <p class="tagline">{{ site.tagline }}</p>
+    <p>Мы разбираем, что внутри: из какого материала корпус, какой стоит картридж, как всё подключается. Модели выбираем по характеристикам и отзывам покупателей, а уже потом даём ссылки на магазин.</p>
+</section>
+<section>
+    <h2>Статьи</h2>
+    <div class="cards">
+{% for a in articles %}
+        <a class="card" href="{{ a.path }}">
+            <h3>{{ a.h1 }}</h3>
+            <p>{{ a.description }}</p>
+            <span class="meta">Обновлено: <time datetime="{{ a.updated.isoformat() }}">{{ a.updated_ru }}</time></span>
+        </a>
+{% endfor %}
+    </div>
+</section>
+{% endblock %}

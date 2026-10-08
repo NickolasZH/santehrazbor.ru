@@ -26,6 +26,24 @@ DOCS = ROOT / "docs"
 AFF_REL = "sponsored nofollow noopener"
 
 
+def ad_mark_inline_html(ad_label):
+    """Рекламная метка для ссылок внутри абзаца: только phrasing-content (<details> в <p> недопустим)."""
+    if not ad_label:
+        return ""
+    info = ad_label[len("Реклама. "):] if ad_label.startswith("Реклама. ") else ad_label
+    return ('<span class="ad-mark ad-mark-inline" tabindex="0" role="button">Реклама <span aria-hidden="true">ⓘ</span>'
+            f'<span class="ad-mark-info">: {html_escape(info)}</span></span>')
+
+
+def ad_mark_html(ad_label):
+    """Компактная рекламная метка: «Реклама ⓘ» видна всегда, сведения — в раскрывающемся <details>."""
+    if not ad_label:
+        return ""
+    info = ad_label[len("Реклама. "):] if ad_label.startswith("Реклама. ") else ad_label
+    return ('<details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary>'
+            f'<span class="ad-mark-info">{html_escape(info)}</span></details>')
+
+
 def fail(msg):
     sys.exit(f"ОШИБКА СБОРКИ: {msg}")
 
@@ -197,7 +215,8 @@ def build_products(meta, aff, ctx_name):
         products.append({
             **p, "label": label, "n": i,
             "href": build_aff_url(label, data), "rel": AFF_REL,
-            "ad_label": data.get("ad_label") or "", "market_url": data.get("url") or "",
+            "ad_label": data.get("ad_label") or "",
+            "ad_mark_html": ad_mark_html(data.get("ad_label")), "market_url": data.get("url") or "",
             "badge_class": badge_class(p.get("badge")),
         })
     picks = meta.get("picks") or []
@@ -273,7 +292,7 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
         a = (f'<a{cls_attr} href="{url.replace("&", "&amp;")}" rel="{AFF_REL}" '
              f'target="_blank" data-product="{label}" data-place="text">{text}</a>')
         if data.get("ad_label"):
-            a += f' <span class="ad-mark">{data["ad_label"]}</span>'
+            a += " " + ad_mark_inline_html(data["ad_label"])
         return a
 
     html = re.sub(r'<a ([^>]*?)href="AFFLINK([A-Za-z0-9_\-]+)ENDAFF"[^>]*>(.*?)</a>',

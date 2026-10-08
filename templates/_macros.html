@@ -9,7 +9,7 @@
 {%- endmacro %}
 
 {% macro ad_mark(p) -%}
-{% if p.ad_label %}<span class="ad-mark">{{ p.ad_label }}</span>{% endif %}
+{{ p.ad_mark_html|safe }}
 {%- endmacro %}
 
 {% macro rating(p, full=true) -%}

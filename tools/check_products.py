@@ -360,7 +360,7 @@ def latest_previous_snapshot(today):
     return json.loads(files[-1].read_text(encoding="utf-8"))
 
 
-def decide(entry, fm_prod, prev):
+def decide(entry, fm_prod, prev, price_is_sum=False):
     """Формирует решения по товару: что обновить автоматически, что требует решения."""
     auto, decide_ = {}, []
     r = entry["card"]
@@ -386,6 +386,11 @@ def decide(entry, fm_prod, prev):
         if r["available"] is not False:
             if r["price"] is None:
                 decide_.append("не удалось извлечь цену")
+            elif price_is_sum:
+                # в affiliate.json "price_is_sum": true — цена в статье равна сумме нескольких карточек
+                if fm_price and abs(r["price"] - fm_price) / fm_price > PRICE_APPLY_THRESHOLD:
+                    decide_.append("цена — сумма нескольких карточек, проверить вручную "
+                                   f"(на этой карточке {r['price']}, в статье {fm_price})")
             elif fm_price and abs(r["price"] - fm_price) / fm_price > PRICE_APPLY_THRESHOLD:
                 auto["price"] = r["price"]
             if r["rating"] is not None:
@@ -503,7 +508,7 @@ def main():
         if label not in usage:
             continue
         for art, fm_prod in usage[label]:
-            auto, dec = decide(e, fm_prod, prev_items)
+            auto, dec = decide(e, fm_prod, prev_items, (aff.get(label) or {}).get("price_is_sum", False))
             e.setdefault("decisions", []).extend(dec)
             if auto:
                 plan.setdefault(art["path"], {})[label] = auto

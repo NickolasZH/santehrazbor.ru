@@ -143,10 +143,6 @@ h3 { font-size: 1.15rem; line-height: 1.35; margin: 1.6em 0 0.5em; }
 .breadcrumbs { font-size: 0.85rem; color: var(--muted); }
 .breadcrumbs a { color: var(--muted); }
 .dates { color: var(--muted); font-size: 0.9rem; margin: 0 0 0.6em; }
-.disclosure {
-    margin: 0 auto 1.4em; font-size: 0.82rem; color: var(--muted);
-    padding-left: 10px; border-left: 3px solid var(--border);
-}
 
 blockquote {
     margin: 1.5em auto;

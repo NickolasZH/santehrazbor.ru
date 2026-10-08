@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://santehrazbor.ru/</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2026-10-08</lastmod>
+    </url>
+    <url>
+        <loc>https://santehrazbor.ru/vstraivaemyj-smesitel/</loc>
+        <lastmod>2026-10-08</lastmod>
     </url>
     <url>
         <loc>https://santehrazbor.ru/smesitel-s-pityevoj-vodoj/</loc>
@@ -38,7 +42,7 @@
     </url>
     <url>
         <loc>https://santehrazbor.ru/smesiteli/</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2026-10-08</lastmod>
     </url>
     <url>
         <loc>https://santehrazbor.ru/gigienicheskie-dushi/</loc>
@@ -50,10 +54,10 @@
     </url>
     <url>
         <loc>https://santehrazbor.ru/o-proekte/</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2026-10-08</lastmod>
     </url>
     <url>
         <loc>https://santehrazbor.ru/privacy/</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2026-10-08</lastmod>
     </url>
 </urlset>

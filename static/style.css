@@ -181,8 +181,14 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 .btn:focus-visible { outline: 3px solid var(--primary); outline-offset: 2px; }
 .btn-sm { min-height: 44px; padding: 8px 14px; font-size: 0.95rem; white-space: nowrap; }
 .btn-block { display: flex; width: 100%; min-height: 54px; font-size: 1.08rem; }
-.ad-mark { font-size: 0.7rem; color: var(--muted); margin-left: 6px; }
+.ad-mark { font-size: 0.7rem; color: var(--muted); margin-left: 6px; white-space: normal; overflow-wrap: anywhere; }
 .btn-block + .ad-mark, .pick-cta .ad-mark, .product-cta .ad-mark { display: block; margin: 4px 0 0; text-align: center; }
+/* в ячейках таблиц метка — под кнопкой/ссылкой, узкой колонкой с переносом по словам (иначе распирает таблицу) */
+.table-wrap td .ad-mark, .compare-table td .ad-mark {
+    display: block; max-width: 13em; margin: 4px 0 0;
+    font-size: 0.65rem; line-height: 1.3; white-space: normal; overflow-wrap: anywhere;
+}
+.compare-table td.c-cta .ad-mark { text-align: center; max-width: 11em; margin: 4px auto 0; }
 
 /* ---------- бейджи, рейтинг ---------- */
 .badge {
@@ -279,7 +285,7 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
     }
     .compare-table td.c-cta { display: block; border-top: 0; padding-top: 10px; }
     .compare-table td.c-cta .btn { width: 100%; min-height: 48px; }
-    .compare-table td.c-cta .ad-mark { display: block; text-align: center; margin: 4px 0 0; }
+    .compare-table td.c-cta .ad-mark { display: block; text-align: center; margin: 4px 0 0; max-width: none; }
     .compare-table .badge { display: inline-block; margin-left: 6px; }
 }
 

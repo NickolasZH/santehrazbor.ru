@@ -160,6 +160,11 @@ th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-botto
 .table-wrap th { background: var(--th-bg); color: var(--th-text); white-space: nowrap; }
 .table-wrap tbody tr:nth-child(even) { background: var(--zebra); }
 tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
+/* Узкие экраны: компактные ячейки и перенос длинных слов, чтобы простые таблицы не вылезали за контейнер */
+@media (max-width: 480px) {
+    .table-wrap th, .table-wrap td { padding: 8px 6px; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+    .table-wrap th { white-space: normal; }
+}
 
 /* мини-таблица статьи 02 (Модель / Корпус / Цена): на узких экранах без горизонтальной прокрутки */
 @media (max-width: 639px) {

@@ -2,26 +2,26 @@
 <rect width="400" height="580" fill="#fff"/>
 <text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Картридж: диаметр 35 и 40 мм</text>
 <text x="200" y="54" text-anchor="middle" font-weight="600">Чаще всего встречаются 35 и 40 мм</text>
-<!-- 35 -->
+<!-- 35: ширина корпуса 105 -->
 <g stroke="#2b2f33" stroke-width="2.5" fill="#fff">
 <rect x="88" y="115" width="26" height="35"/>
-<rect x="40" y="150" width="122" height="160" rx="6"/>
+<rect x="48" y="150" width="105" height="160" rx="6"/>
 <rect x="62" y="310" width="14" height="22"/>
-<rect x="126" y="310" width="14" height="22"/>
+<rect x="125" y="310" width="14" height="22"/>
 </g>
-<path d="M40 105 H162 M40 99 V111 M162 99 V111" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
-<text x="101" y="90" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">35 мм</text>
+<path d="M48 105 H153 M48 99 V111 M153 99 V111" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
+<text x="100" y="90" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">35 мм</text>
 <text x="82" y="138" text-anchor="end">шток</text>
-<text x="101" y="356" text-anchor="middle">ножки</text>
-<!-- 40 -->
+<text x="100" y="356" text-anchor="middle">ножки</text>
+<!-- 40: ширина корпуса 120 (35:40 = 105:120) -->
 <g stroke="#2b2f33" stroke-width="2.5" fill="#fff">
-<rect x="269" y="115" width="26" height="35"/>
-<rect x="212" y="150" width="140" height="160" rx="6"/>
-<rect x="236" y="310" width="14" height="22"/>
-<rect x="314" y="310" width="14" height="22"/>
+<rect x="272" y="115" width="26" height="35"/>
+<rect x="225" y="150" width="120" height="160" rx="6"/>
+<rect x="240" y="310" width="14" height="22"/>
+<rect x="316" y="310" width="14" height="22"/>
 </g>
-<path d="M212 105 H352 M212 99 V111 M352 99 V111" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
-<text x="282" y="90" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">40 мм</text>
+<path d="M225 105 H345 M225 99 V111 M345 99 V111" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
+<text x="285" y="90" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">40 мм</text>
 <!-- пояснения -->
 <text x="200" y="404" text-anchor="middle">Не взаимозаменяемы: в посадку</text>
 <text x="200" y="424" text-anchor="middle">под 40 мм картридж 35 мм не встанет</text>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" role="img" aria-label="Два раздельных канала в комбинированном смесителе: смешанная и фильтрованная вода" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="480" fill="#fff"/>
+<text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Два канала в смесителе «2 в 1»</text>
+<!-- подписи аэраторов -->
+<text x="110" y="68" text-anchor="middle" font-weight="600">Основной аэратор</text>
+<text x="300" y="68" text-anchor="middle" font-weight="600" fill="#2f6fb5">Аэратор питьевой</text>
+<!-- корпус смесителя -->
+<rect x="20" y="90" width="360" height="210" fill="#eef0f2" stroke="#9aa0a6"/>
+<!-- аэраторы -->
+<rect x="80" y="90" width="60" height="14" fill="#2b2f33"/>
+<rect x="270" y="90" width="60" height="14" fill="#2f6fb5"/>
+<!-- картридж: здесь горячая и холодная смешиваются -->
+<rect x="50" y="150" width="120" height="60" rx="5" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<text x="110" y="176" text-anchor="middle" font-weight="600">Картридж</text>
+<text x="110" y="196" text-anchor="middle">смешивает</text>
+<!-- смешанная вода к основному аэратору -->
+<path d="M110 150 V112" stroke="#2b2f33" stroke-width="5" fill="none"/>
+<path d="M102 116 L110 104 L118 116 Z" fill="#2b2f33"/>
+<!-- отдельный канал фильтрованной воды -->
+<path d="M300 420 V112" stroke="#2f6fb5" stroke-width="5" fill="none"/>
+<path d="M292 116 L300 104 L308 116 Z" fill="#2f6fb5"/>
+<!-- горячая и холодная подводки -->
+<path d="M70 420 V212" stroke="#c8463b" stroke-width="5" fill="none"/>
+<path d="M62 218 L70 208 L78 218 Z" fill="#c8463b"/>
+<path d="M150 420 V212" stroke="#3b7fc4" stroke-width="5" fill="none"/>
+<path d="M142 218 L150 208 L158 218 Z" fill="#3b7fc4"/>
+<!-- пометка: каналы не пересекаются -->
+<text x="235" y="190" text-anchor="middle" font-weight="600">Каналы не</text>
+<text x="235" y="210" text-anchor="middle" font-weight="600">пересекаются</text>
+<!-- подписи подводок -->
+<text x="70" y="446" text-anchor="middle" fill="#c8463b" font-weight="600">Горячая</text>
+<text x="150" y="446" text-anchor="middle" fill="#3b7fc4" font-weight="600">Холодная</text>
+<text x="300" y="446" text-anchor="middle" fill="#2f6fb5" font-weight="600">Фильтрованная</text>
+<text x="300" y="466" text-anchor="middle">из фильтра</text>
+</svg>

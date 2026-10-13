@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Вид сбоку: высота и вылет излива кухонного смесителя, мойка, кастрюля и навесной шкаф" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="500" fill="#fff"/>
+<text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Высота и вылет излива</text>
+<!-- стена и навесной шкаф -->
+<rect x="8" y="60" width="16" height="246" fill="#eef0f2" stroke="#9aa0a6"/>
+<rect x="24" y="60" width="226" height="40" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<text x="137" y="86" text-anchor="middle">Навесной шкаф</text>
+<!-- столешница и чаша мойки -->
+<rect x="24" y="290" width="201" height="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="345" y="290" width="51" height="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M225 290 V350 H345 V290" fill="none" stroke="#2b2f33" stroke-width="2.5"/>
+<!-- кастрюля под изливом -->
+<rect x="245" y="300" width="80" height="50" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M245 316 H235 M325 316 H335" stroke="#2b2f33" stroke-width="4" stroke-linecap="round"/>
+<!-- смеситель: корпус, излив, аэратор -->
+<rect x="153" y="250" width="24" height="40" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M165 250 V190 H285" stroke="#2b2f33" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<rect x="273" y="196" width="24" height="16" fill="#2f6fb5"/>
+<text x="304" y="186" fill="#2f6fb5" font-weight="600">аэратор</text>
+<!-- струя в центр чаши -->
+<path d="M285 214 V296" stroke="#3b7fc4" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
+<!-- вылет: от оси смесителя до аэратора -->
+<path d="M165 170 H285 M165 162 V178 M285 162 V178" stroke="#2f6fb5" stroke-width="2" fill="none"/>
+<text x="225" y="158" text-anchor="middle" font-weight="600" fill="#2f6fb5">вылет</text>
+<!-- ось смесителя -->
+<path d="M165 306 V322" stroke="#2b2f33" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+<text x="140" y="342" text-anchor="middle">ось смесителя</text>
+<!-- высота излива: от мойки до аэратора -->
+<path d="M297 212 H384 M380 212 V290 M372 212 H388 M372 290 H388" stroke="#2f6fb5" stroke-width="2" fill="none"/>
+<text x="372" y="236" text-anchor="end" font-weight="600" fill="#2f6fb5">высота</text>
+<text x="372" y="256" text-anchor="end" font-weight="600" fill="#2f6fb5">излива</text>
+<!-- расстояние до шкафа -->
+<path d="M60 100 V290 M52 100 H68 M52 290 H68" stroke="#2b2f33" stroke-width="2" fill="none"/>
+<text x="76" y="128">расстояние до шкафа</text>
+<text x="76" y="148" font-weight="600">измерьте</text>
+<!-- подписи -->
+<text x="200" y="395" text-anchor="middle" font-weight="600" fill="#2f6fb5">Высокий — от 250 мм:</text>
+<text x="200" y="415" text-anchor="middle">помещается кастрюля</text>
+<text x="200" y="448" text-anchor="middle" font-weight="600" fill="#2f6fb5">Низкий (126 мм) — под полку:</text>
+<text x="200" y="468" text-anchor="middle">высокую посуду наклонять</text>
+</svg>

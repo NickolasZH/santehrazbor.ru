@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" role="img" aria-label="Как термостатический картридж держит температуру воды и как работает кнопка-стопор 38 градусов" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="600" fill="#fff"/>
+<text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Как работает термостат</text>
+<!-- входы: горячая и холодная -->
+<text x="100" y="70" text-anchor="middle" font-weight="600" fill="#c8463b">Горячая</text>
+<text x="300" y="70" text-anchor="middle" font-weight="600" fill="#3b7fc4">Холодная</text>
+<path d="M100 82 V140" stroke="#c8463b" stroke-width="5" fill="none"/>
+<path d="M92 138 L100 150 L108 138 Z" fill="#c8463b"/>
+<path d="M300 82 V140" stroke="#3b7fc4" stroke-width="5" fill="none"/>
+<path d="M292 138 L300 150 L308 138 Z" fill="#3b7fc4"/>
+<!-- термостатический картридж -->
+<rect x="40" y="152" width="320" height="110" rx="6" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<text x="200" y="186" text-anchor="middle" font-weight="600">Термостатический</text>
+<text x="200" y="208" text-anchor="middle" font-weight="600">картридж</text>
+<text x="200" y="240" text-anchor="middle" fill="#2f6fb5">с термоэлементом</text>
+<!-- выход -->
+<path d="M200 262 V316" stroke="#2f6fb5" stroke-width="5" fill="none"/>
+<path d="M192 314 L200 326 L208 314 Z" fill="#2f6fb5"/>
+<text x="200" y="352" text-anchor="middle" font-weight="600">Вода нужной температуры</text>
+<!-- пример ситуации -->
+<path d="M20 376 H380" stroke="#9aa0a6" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="200" y="404" text-anchor="middle" font-weight="600" fill="#2f6fb5">Сосед включил воду</text>
+<text x="200" y="428" text-anchor="middle">давление холодной упало →</text>
+<text x="200" y="450" text-anchor="middle">картридж убавляет горячую →</text>
+<text x="200" y="472" text-anchor="middle" font-weight="600">температура на выходе та же</text>
+<!-- ручка температуры с кнопкой-стопором -->
+<path d="M20 494 H380" stroke="#9aa0a6" stroke-width="1.5" stroke-dasharray="6 4"/>
+<circle cx="80" cy="550" r="38" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="68" y="520" width="24" height="14" rx="3" fill="#2f6fb5"/>
+<text x="80" y="566" text-anchor="middle" font-weight="600">38 °C</text>
+<text x="140" y="536" font-weight="600">Ручка температуры</text>
+<text x="140" y="558">кнопка-стопор: без нажатия</text>
+<text x="140" y="580">горячее не выкрутить</text>
+</svg>

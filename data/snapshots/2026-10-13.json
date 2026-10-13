@@ -1,6 +1,6 @@
 {
   "date": "2026-10-13",
-  "time": "2026-10-13T13:39:09",
+  "time": "2026-10-13T14:39:53",
   "region": "Москва (по умолчанию)",
   "applied": true,
   "items": {
@@ -159,8 +159,8 @@
         "detail": "-> id 103639145584"
       },
       "decisions": [
-        "рейтинг упал с 4.6 до 4.4 (по статье)",
-        "рейтинг упал с 4.6 до 4.4 (по статье)"
+        "рейтинг упал с 4.6 до 4.4 (по прошлом снимке)",
+        "рейтинг упал с 4.6 до 4.4 (по прошлом снимке)"
       ]
     },
     "lemark-lm3071c": {
@@ -354,7 +354,7 @@
         "error": null,
         "title": "Смеситель Lemark Solo LM7165C с гигиеническим душем, встраиваемый",
         "available": true,
-        "price": 9150,
+        "price": 9149,
         "rating": 4.9,
         "reviews": 57,
         "bought": 184,
@@ -692,7 +692,7 @@
         "error": null,
         "title": "Душевая система BAUHEIM BAU-WF-1003 — стойка с тропическим душем, смесителем и ручной лейкой, вороненая сталь",
         "available": true,
-        "price": 10774,
+        "price": 10666,
         "rating": 4.8,
         "reviews": 32,
         "bought": 123,
@@ -740,15 +740,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/103209535395",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система для ванны Frap F24806 сатин, нержавеющая сталь",
+        "available": true,
+        "price": 14599,
+        "rating": 4.7,
+        "reviews": 49,
+        "bought": 102,
+        "source": "html"
       },
       "ref": {
         "ok": null,
@@ -759,24 +759,22 @@
         "ok": true,
         "detail": "-> id 103209535395"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "ampm-sunny-f0785c922": {
       "card_id": "102142846634",
       "card": {
         "url": "https://market.yandex.ru/card/x/102142846634",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система с тропическим душем AM.PM Sunny, черная матовая, поворотный излив",
+        "available": true,
+        "price": 21879,
+        "rating": 4.7,
+        "reviews": 64,
+        "bought": 206,
+        "source": "html"
       },
       "ref": {
         "ok": null,
@@ -787,9 +785,7 @@
         "ok": true,
         "detail": "-> id 102142846634"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "lemark-linara-lm0415c": {
       "card_id": "103209542772",
@@ -822,15 +818,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni--kukhonnyy-smesitel-rainsberg-s-gibkim-silikonovym-izlivom-siniy/103178911624",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни / Кухонный смеситель Rainsberg с гибким силиконовым изливом синий",
+        "available": true,
+        "price": 5951,
+        "rating": 4.7,
+        "reviews": 116,
+        "bought": 235,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -841,9 +837,7 @@
         "ok": true,
         "detail": "-> id 103178911624"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "lemark-expert-lm5082s": {
       "card_id": "102189441802",
@@ -906,7 +900,7 @@
         "error": null,
         "title": "Смеситель Lemark Solo LM7165BL с гигиеническим душем, встраиваемый",
         "available": true,
-        "price": 14341,
+        "price": 14387,
         "rating": 4.6,
         "reviews": 18,
         "bought": 45,
@@ -1110,15 +1104,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/103275992049",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Термостатический смеситель AM.PM X-Joy хром для ванны и душа встраиваемый, высокочувствительный термоэлемент",
+        "available": true,
+        "price": 22130,
+        "rating": 4.9,
+        "reviews": 29,
+        "bought": 105,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1129,24 +1123,22 @@
         "ok": true,
         "detail": "-> id 103275992049"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "esko-t3054": {
       "card_id": "103206712657",
       "card": {
         "url": "https://market.yandex.ru/card/x/103206712657",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель-термостат с изливом ESKO T3054 для душа и ванны хром",
+        "available": true,
+        "price": 9022,
+        "rating": 4.7,
+        "reviews": 56,
+        "bought": 127,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1157,9 +1149,7 @@
         "ok": true,
         "detail": "-> id 103206712657"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "zeta-br-840": {
       "card_id": "101883984202",
@@ -1192,15 +1182,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/102459687872",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель термостатический для ванны и душа с длинным изливом и лейкой",
+        "available": true,
+        "price": 6300,
+        "rating": 4.4,
+        "reviews": 162,
+        "bought": 405,
+        "source": "json-ld"
       },
       "ref": {
         "ok": true,
@@ -1211,9 +1201,7 @@
         "ok": true,
         "detail": "-> id 102459687872"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "damixa-gala-thermo": {
       "card_id": "103211600901",
@@ -1376,15 +1364,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/102284124942",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемая душевая система IDDIS Слайд (Slide) SLIBL02i67 с тропическим душем черный матовый",
+        "available": true,
+        "price": 17080,
+        "rating": 4.8,
+        "reviews": 22,
+        "bought": 54,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1395,24 +1383,22 @@
         "ok": true,
         "detail": "-> id 102284124942"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "timo-torne-sx-4319-03sm": {
       "card_id": "103211976151",
       "card": {
         "url": "https://market.yandex.ru/card/x/103211976151",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система Timo \"Torne\" SX-4319/03SM, встроенный монтаж, латунь, чёрный цвет",
+        "available": true,
+        "price": 21450,
+        "rating": 5.0,
+        "reviews": 5,
+        "bought": 8,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1423,9 +1409,7 @@
         "ok": true,
         "detail": "-> id 103211976151"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "avs-elegant-4v1": {
       "card_id": "5524532115",
@@ -1458,15 +1442,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/6114322013",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель однорычажный для душа GROHE Essence, круглая розетка, хром (24057001)",
+        "available": true,
+        "price": 14538,
         "rating": null,
         "reviews": null,
         "bought": null,
-        "source": null
+        "source": "html"
       },
       "ref": {
         "ok": null,
@@ -1478,7 +1462,7 @@
         "detail": "-> id 6114322013"
       },
       "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
+        "цена — сумма нескольких карточек, проверить вручную (на этой карточке 14538, в статье 24935)"
       ]
     },
     "gappo-g1206-9": {
@@ -1616,15 +1600,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/102190670651",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны с длинным изливом и керамическим дивертором IDDIS Рэй (Ray) RAYSBL2i10WA глянцевый хром",
+        "available": true,
+        "price": 10990,
+        "rating": 4.8,
+        "reviews": 24,
+        "bought": 45,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1635,9 +1619,7 @@
         "ok": true,
         "detail": "-> id 102190670651"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "cersanit-odra-63051": {
       "card_id": "6205339721",
@@ -1696,15 +1678,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/kartridzh-kaiser-f35-krasnyy-v-korobke-art35k-6230/102205723300",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Картридж KАISER art35K/6230, керамика, универсальный, красный",
+        "available": true,
+        "price": 388,
+        "rating": 4.9,
+        "reviews": 73,
+        "bought": 281,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1715,9 +1697,7 @@
         "ok": true,
         "detail": "-> id 102205723300"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "frap-f51-8": {
       "card_id": "102965867349",
@@ -1750,15 +1730,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/keramicheskiy-kartridzh-46374000/102203970760",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Керамический картридж 46374000",
+        "available": true,
+        "price": 4150,
+        "rating": 4.8,
+        "reviews": 92,
+        "bought": 356,
+        "source": "html"
       },
       "ref": {
         "ok": true,
@@ -1769,9 +1749,7 @@
         "ok": true,
         "detail": "-> id 102203970760"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "sedal-g51-35": {
       "card_id": "103050467353",
@@ -1908,15 +1886,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/103211987030",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Minima LM3805C для кухни поворотный излив, латунь, хром",
+        "available": true,
+        "price": 4838,
+        "rating": 4.9,
+        "reviews": 15,
+        "bought": 36,
+        "source": "html"
       },
       "ref": {
         "ok": null,
@@ -1927,9 +1905,7 @@
         "ok": true,
         "detail": "-> id 103211987030"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "iddis-alborg-k56001c": {
       "card_id": "103211815685",
@@ -2040,15 +2016,15 @@
       "card": {
         "url": "https://market.yandex.ru/card/x/103212239018",
         "http_status": 200,
-        "status": "parse_failed",
-        "error": "не удалось найти данные карточки в HTML",
-        "title": null,
-        "available": null,
-        "price": null,
-        "rating": null,
-        "reviews": null,
-        "bought": null,
-        "source": null
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни IDDIS Коптер (Copter) COPSBJ0i05 глянцевый хром",
+        "available": true,
+        "price": 9890,
+        "rating": 5.0,
+        "reviews": 27,
+        "bought": 68,
+        "source": "html"
       },
       "ref": {
         "ok": null,
@@ -2059,9 +2035,7 @@
         "ok": true,
         "detail": "-> id 103212239018"
       },
-      "decisions": [
-        "не удалось получить карточку: не удалось найти данные карточки в HTML"
-      ]
+      "decisions": []
     },
     "omoikiri-shinagawa-bn-bl": {
       "card_id": "103209924964",

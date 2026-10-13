@@ -3,6 +3,7 @@
 
 Запуск: python build.py
 """
+import hashlib
 import json
 import re
 import shutil
@@ -46,6 +47,16 @@ def ad_mark_html(ad_label):
 
 def fail(msg):
     sys.exit(f"ОШИБКА СБОРКИ: {msg}")
+
+
+_asset_hashes = {}
+
+
+def asset_hash(rel_path):
+    """Первые 8 символов md5 файла из static/ — метка версии против устаревшего кэша браузера."""
+    if rel_path not in _asset_hashes:
+        _asset_hashes[rel_path] = hashlib.md5((STATIC / rel_path).read_bytes()).hexdigest()[:8]
+    return _asset_hashes[rel_path]
 
 
 def load_json(name):
@@ -331,8 +342,9 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                 fail(f"схема {fname}: нет viewBox")
             w, h = (str(int(float(x))) for x in vb.groups())
             alt = re.sub(r"\s*\(схема santehrazbor\.ru\)\.?\s*$", "", cap).rstrip(" .")
-            return (f'<figure class="scheme"><a href="/img/{fname}" target="_blank" rel="noopener">'
-                    f'<img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
+            ver = asset_hash(f"img/{fname}")
+            return (f'<figure class="scheme"><a href="/img/{fname}?v={ver}" target="_blank" rel="noopener">'
+                    f'<img src="/img/{fname}?v={ver}" alt="{html_escape(alt, quote=True)}" '
                     f'width="{w}" height="{h}" loading="lazy" decoding="async"></a>'
                     f'<figcaption>{html_escape(cap)}</figcaption></figure>')
         if code.startswith("minitable:"):
@@ -370,6 +382,7 @@ def main():
 
     env = Environment(loader=FileSystemLoader(TEMPLATES),
                       autoescape=select_autoescape(["html"]))
+    env.globals["style_ver"] = asset_hash("style.css")
     env.filters.update(rub=rub, num=fmt_int, plural=plural, count_word=count_word,
                        md=md_inline, nbsp=lambda s: nbsp_text(str(s)))
 

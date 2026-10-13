@@ -218,6 +218,8 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 /* ---------- Наш выбор ---------- */
 .picks { margin-top: 1.8em; margin-bottom: 1.8em; }
 .picks-grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+/* 4 карточки: 2×2 вместо 3+1 */
+.picks-grid:has(> :nth-child(4):last-child) { grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); }
 .pick {
     display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
     padding: 16px; background: var(--card); border: 1px solid var(--border);

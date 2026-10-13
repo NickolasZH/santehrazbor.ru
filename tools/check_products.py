@@ -596,6 +596,16 @@ def main():
     report_path = REPORT_DIR / (f"{today}-partial.md" if (args.only or args.limit) else f"{today}.md")
     report_path.write_text("\n".join(md) + "\n", encoding="utf-8")
 
+    # дополнительные проверки (без сети, только отчёт); сбой в них не должен ломать основную проверку
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    for title, mod in (("текста", "check_text"), ("сайта", "check_site")):
+        try:
+            section, _n = __import__(mod).build_report()
+        except Exception as e:  # noqa: BLE001
+            section = f"## Проверка {title}\n\nошибка проверки {title}: {type(e).__name__}: {e}\n"
+        with open(report_path, "a", encoding="utf-8") as fh:
+            fh.write("\n" + section.rstrip("\n") + "\n")
+
     ok = sum(1 for e in entries if e["card"]["status"] == "ok")
     n_dec = sum(1 for e in entries if e.get("decisions"))
     n_upd = sum(len(v) for v in plan.values())

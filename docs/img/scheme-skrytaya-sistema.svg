@@ -8,29 +8,29 @@
 <path d="M232 125 H340 L326 142 H246 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
 <path d="M262 156 v14 M286 156 v14 M310 156 v14" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/>
 <!-- встроенная часть -->
-<rect x="24" y="300" width="266" height="170" rx="6" fill="#fff" stroke="#555" stroke-width="2.5" stroke-dasharray="8 5"/>
-<text x="157" y="332" text-anchor="middle" font-weight="600">Встроенная часть</text>
-<text x="157" y="354" text-anchor="middle">(монтажная коробка)</text>
-<text x="157" y="376" text-anchor="middle">замуровывают в стену</text>
+<rect x="24" y="300" width="238" height="180" rx="6" fill="#fff" stroke="#555" stroke-width="2.5" stroke-dasharray="8 5"/>
+<text x="143" y="332" text-anchor="middle" font-weight="600">Встроенная часть</text>
+<text x="143" y="354" text-anchor="middle">(монтажная коробка)</text>
+<text x="143" y="376" text-anchor="middle">замуровывают в стену</text>
 <!-- видимая панель -->
-<circle cx="225" cy="425" r="28" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
-<path d="M225 425 L245 413" stroke="#2b2f33" stroke-width="6" stroke-linecap="round"/>
-<text x="34" y="416" font-weight="600">Видимая панель</text>
-<text x="34" y="436">(рычаг,</text>
-<text x="34" y="456">переключатель)</text>
+<circle cx="224" cy="428" r="24" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
+<path d="M224 428 L240 418" stroke="#2b2f33" stroke-width="6" stroke-linecap="round"/>
+<text x="34" y="418" font-weight="600">Видимая панель</text>
+<text x="34" y="440">(рычаг,</text>
+<text x="34" y="462">переключатель)</text>
 <!-- подвод -->
-<path d="M80 470 V520" stroke="#2f6fb5" stroke-width="7"/>
-<path d="M240 470 V520" stroke="#c62828" stroke-width="7"/>
-<text x="80" y="548" text-anchor="middle" font-weight="600" fill="#2f6fb5">ХВС</text>
-<text x="240" y="548" text-anchor="middle" font-weight="600" fill="#c62828">ГВС</text>
+<path d="M70 480 V530" stroke="#2f6fb5" stroke-width="7"/>
+<path d="M215 480 V530" stroke="#c62828" stroke-width="7"/>
+<text x="70" y="558" text-anchor="middle" font-weight="600" fill="#2f6fb5">ХВС</text>
+<text x="215" y="558" text-anchor="middle" font-weight="600" fill="#c62828">ГВС</text>
 <!-- шланговое подключение и лейка -->
-<path d="M290 365 H350" stroke="#555" stroke-width="7"/>
+<path d="M262 365 H350" stroke="#555" stroke-width="7"/>
 <circle cx="350" cy="365" r="11" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
-<text x="392" y="322" text-anchor="end" font-weight="600">Шланговое</text>
-<text x="392" y="342" text-anchor="end" font-weight="600">подключение</text>
+<text x="384" y="318" text-anchor="end" font-weight="600">Шланговое</text>
+<text x="384" y="338" text-anchor="end" font-weight="600">подключение</text>
 <path d="M350 376 V560" fill="none" stroke="#555" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
 <rect x="328" y="560" width="44" height="14" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
 <path d="M338 574 L362 574 L372 612 L328 612 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
-<text x="392" y="648" text-anchor="end" font-weight="600">Ручная лейка</text>
-<text x="392" y="668" text-anchor="end">со шлангом</text>
+<text x="384" y="648" text-anchor="end" font-weight="600">Ручная лейка</text>
+<text x="384" y="668" text-anchor="end">со шлангом</text>
 </svg>

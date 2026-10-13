@@ -1,42 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 740" role="img" aria-label="Что решить до укладки плитки" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 718" role="img" aria-label="Что решить до укладки плитки" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
 <defs><pattern id="h" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="10" fill="#eef0f2"/><path d="M0 0 V10" stroke="#b5bac0" stroke-width="2"/></pattern></defs>
-<rect width="400" height="740" fill="#fff"/>
+<rect width="400" height="718" fill="#fff"/>
 <text x="200" y="32" text-anchor="middle" font-size="18" font-weight="600">Что решить до укладки плитки</text>
 <text x="200" y="54" text-anchor="middle">Разрез стены, вид сбоку</text>
 <!-- стена -->
-<rect x="20" y="100" width="180" height="140" fill="url(#h)" stroke="#555" stroke-width="2"/>
+<rect x="20" y="110" width="180" height="140" fill="url(#h)" stroke="#555" stroke-width="2"/>
 <!-- ниша и коробка -->
-<rect x="105" y="125" width="95" height="95" fill="#fff" stroke="#555" stroke-width="2" stroke-dasharray="7 4"/>
-<rect x="118" y="140" width="82" height="65" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="105" y="135" width="95" height="95" fill="#fff" stroke="#555" stroke-width="2" stroke-dasharray="7 4"/>
+<rect x="118" y="150" width="82" height="65" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
 <!-- трубы -->
-<path d="M135 205 V240" stroke="#2f6fb5" stroke-width="6"/>
-<path d="M170 205 V240" stroke="#c62828" stroke-width="6"/>
+<path d="M135 215 V250" stroke="#2f6fb5" stroke-width="6"/>
+<path d="M170 215 V250" stroke="#c62828" stroke-width="6"/>
 <!-- плитка и панель -->
-<rect x="200" y="100" width="16" height="140" fill="#dfe6ee" stroke="#555" stroke-width="2"/>
-<rect x="216" y="145" width="9" height="40" fill="#2b2f33"/>
-<!-- глубина -->
-<path d="M105 112 H200 M105 106 V118 M200 106 V118" stroke="#2b2f33" stroke-width="2" fill="none"/>
-<text x="152" y="90" text-anchor="middle" font-weight="600">1. Глубина ниши</text>
-<!-- выноски -->
-<path d="M225 165 H230" stroke="#555" stroke-width="1.5"/>
-<text x="234" y="152" font-weight="600">6. Лицевая панель</text>
-<text x="234" y="172">доступ к картриджу</text>
-<text x="234" y="192">через неё</text>
-<path d="M216 228 H230" stroke="#555" stroke-width="1.5"/>
-<text x="234" y="222" font-weight="600">8. Плитка с клеем</text>
-<text x="234" y="242">допуск по толщине</text>
-<text x="20" y="268" font-weight="600">2. Разводка труб:</text>
-<text x="20" y="288">сверху или снизу</text>
-<!-- чек-лист -->
+<rect x="200" y="110" width="16" height="140" fill="#dfe6ee" stroke="#555" stroke-width="2"/>
+<rect x="216" y="155" width="9" height="40" fill="#2b2f33"/>
+<!-- глубина ниши -->
+<path d="M105 122 H200 M105 116 V128 M200 116 V128" stroke="#2b2f33" stroke-width="2" fill="none"/>
+<!-- маркеры на рисунке: номера как в списке ниже (только пункты, видимые на рисунке) -->
+<path d="M152 100 V122" stroke="#555" stroke-width="1.5"/>
+<circle cx="152" cy="88" r="12" fill="#2b2f33"/><text x="152" y="93" text-anchor="middle" fill="#fff" font-weight="600">1</text>
+<text x="172" y="93">глубина</text>
+<path d="M152 254 V264" stroke="#555" stroke-width="1.5"/>
+<circle cx="152" cy="278" r="12" fill="#2b2f33"/><text x="152" y="283" text-anchor="middle" fill="#fff" font-weight="600">2</text>
+<text x="172" y="283">трубы</text>
+<path d="M225 175 H250" stroke="#555" stroke-width="1.5"/>
+<circle cx="262" cy="175" r="12" fill="#2b2f33"/><text x="262" y="180" text-anchor="middle" fill="#fff" font-weight="600">6</text>
+<text x="282" y="180">панель</text>
+<path d="M216 225 H250" stroke="#555" stroke-width="1.5"/>
+<circle cx="262" cy="225" r="12" fill="#2b2f33"/><text x="262" y="230" text-anchor="middle" fill="#fff" font-weight="600">8</text>
+<text x="282" y="230">плитка</text>
+<!-- чек-лист: у двухстрочных пунктов межстрочный интервал 22 -->
 <g font-size="16">
-<circle cx="32" cy="340" r="14" fill="#2b2f33"/><text x="32" y="346" text-anchor="middle" fill="#fff" font-weight="600">1</text><text x="58" y="346">Глубина стены или ниши</text>
-<circle cx="32" cy="384" r="14" fill="#2b2f33"/><text x="32" y="390" text-anchor="middle" fill="#fff" font-weight="600">2</text><text x="58" y="390">Разводка: сверху или снизу,</text><text x="58" y="410">жёсткая или гибкая</text>
-<circle cx="32" cy="452" r="14" fill="#2b2f33"/><text x="32" y="458" text-anchor="middle" fill="#fff" font-weight="600">3</text><text x="58" y="458">Высота верхнего душа</text>
-<circle cx="32" cy="496" r="14" fill="#2b2f33"/><text x="32" y="502" text-anchor="middle" fill="#fff" font-weight="600">4</text><text x="58" y="502">Сколько потребителей</text>
-<circle cx="32" cy="540" r="14" fill="#2b2f33"/><text x="32" y="546" text-anchor="middle" fill="#fff" font-weight="600">5</text><text x="58" y="546">Термостат или рычаг</text>
-<circle cx="32" cy="584" r="14" fill="#2b2f33"/><text x="32" y="590" text-anchor="middle" fill="#fff" font-weight="600">6</text><text x="58" y="590">Доступ к картриджу через</text><text x="58" y="610">лицевую панель</text>
-<circle cx="32" cy="652" r="14" fill="#2b2f33"/><text x="32" y="658" text-anchor="middle" fill="#fff" font-weight="600">7</text><text x="58" y="658">Опрессовка до закрытия плиткой</text>
-<circle cx="32" cy="696" r="14" fill="#2b2f33"/><text x="32" y="702" text-anchor="middle" fill="#fff" font-weight="600">8</text><text x="58" y="702">Допуск по толщине плитки</text>
+<circle cx="32" cy="332" r="14" fill="#2b2f33"/><text x="32" y="338" text-anchor="middle" fill="#fff" font-weight="600">1</text><text x="58" y="338">Глубина стены или ниши</text>
+<circle cx="32" cy="382" r="14" fill="#2b2f33"/><text x="32" y="388" text-anchor="middle" fill="#fff" font-weight="600">2</text><text x="58" y="377">Разводка: сверху или снизу,</text><text x="58" y="399">жёсткая или гибкая</text>
+<circle cx="32" cy="433" r="14" fill="#2b2f33"/><text x="32" y="439" text-anchor="middle" fill="#fff" font-weight="600">3</text><text x="58" y="439">Высота верхнего душа</text>
+<circle cx="32" cy="477" r="14" fill="#2b2f33"/><text x="32" y="483" text-anchor="middle" fill="#fff" font-weight="600">4</text><text x="58" y="483">Сколько потребителей</text>
+<circle cx="32" cy="521" r="14" fill="#2b2f33"/><text x="32" y="527" text-anchor="middle" fill="#fff" font-weight="600">5</text><text x="58" y="527">Термостат или рычаг</text>
+<circle cx="32" cy="572" r="14" fill="#2b2f33"/><text x="32" y="578" text-anchor="middle" fill="#fff" font-weight="600">6</text><text x="58" y="567">Доступ к картриджу через</text><text x="58" y="589">лицевую панель</text>
+<circle cx="32" cy="623" r="14" fill="#2b2f33"/><text x="32" y="629" text-anchor="middle" fill="#fff" font-weight="600">7</text><text x="58" y="629">Опрессовка до закрытия плиткой</text>
+<circle cx="32" cy="667" r="14" fill="#2b2f33"/><text x="32" y="673" text-anchor="middle" fill="#fff" font-weight="600">8</text><text x="58" y="673">Допуск по толщине плитки</text>
 </g>
-<text x="200" y="732" text-anchor="middle">Размеры — в инструкции модели</text>
+<text x="200" y="706" text-anchor="middle">Размеры — в инструкции модели</text>
 </svg>

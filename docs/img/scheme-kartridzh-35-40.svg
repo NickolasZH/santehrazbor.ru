@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 580" role="img" aria-label="Картриджи 35 и 40 мм" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
 <rect width="400" height="580" fill="#fff"/>
 <text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Картридж: диаметр 35 и 40 мм</text>
-<text x="200" y="54" text-anchor="middle" font-weight="600">Чаще всего встречаются 35 и 40 мм</text>
+<text x="200" y="54" text-anchor="middle">Вид сбоку, масштаб 35:40 соблюдён</text>
 <!-- 35: ширина корпуса 105 -->
 <g stroke="#2b2f33" stroke-width="2.5" fill="#fff">
 <rect x="88" y="115" width="26" height="35"/>
@@ -11,7 +11,8 @@
 </g>
 <path d="M48 105 H153 M48 99 V111 M153 99 V111" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
 <text x="100" y="90" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">35 мм</text>
-<text x="82" y="138" text-anchor="end">шток</text>
+<text x="22" y="140">шток</text>
+<path d="M66 135 H88" stroke="#555" stroke-width="1.5"/>
 <text x="100" y="356" text-anchor="middle">ножки</text>
 <!-- 40: ширина корпуса 120 (35:40 = 105:120) -->
 <g stroke="#2b2f33" stroke-width="2.5" fill="#fff">

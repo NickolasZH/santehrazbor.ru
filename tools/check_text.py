@@ -108,12 +108,18 @@ def price_mentions(line):
     return res
 
 
+def not_a_price(line, start):
+    """Число — не цена товара: разница («дороже на 3 400 ₽»), старая/зачёркнутая цена, скидка."""
+    pre = line[max(0, start - 60):start].lower()
+    return bool(re.search(r"(?:^|\s)на\s*[~≈]?$", pre) or re.search(r"стар|зачёркн|скидк|разниц", pre))
+
+
 def mismatches_in_line(line, names, ments, price_of):
     """Цены, привязанные к ближайшему слева имени товара и расходящиеся с его ценой.
     -> [(цитата, в_тексте, текущая, %, имя)]. price_of(p, v) — эталонная цена товара."""
     res = []
     for s, e, v, tail, upto in ments:
-        if v < MIN_PRICE or tail or upto:
+        if v < MIN_PRICE or tail or upto or not_a_price(line, s):
             continue
         left = [n for n in names if n[1] <= s and s - n[1] <= NAME_WINDOW]
         if not left:
@@ -146,16 +152,28 @@ def parse_date(m, today):
 
 
 def body_lines(art):
-    """-> (номер_строки, текст, последний_заголовок) для title/description и тела."""
-    heading = ""
+    """-> (номер_строки, текст, последний_заголовок, товар_или_None).
+    Для title/description, тела и строк внутри блока товара в products (товар — владелец блока)."""
+    heading, in_products, owner = "", False, None
+    by_label = {p["label"]: p for p in art["prods"]}
     for i, line in enumerate(art["lines"], 1):
         if i <= art["fm_lines"]:
+            if re.match(r"\S", line):
+                in_products = line.startswith("products:")
+                owner = None
+            elif in_products:
+                m = re.match(r"  (\S+):\s*$", line)
+                if m:
+                    owner = by_label.get(m.group(1).strip("'\""))
+                elif owner:
+                    yield i, line, "", owner
+                continue
             if any(line.startswith(k + ":") for k in FM_KEYS):
-                yield i, line, ""
+                yield i, line, "", None
             continue
         if re.match(r"#{2,3}\s", line):
             heading = line
-        yield i, line, heading
+        yield i, line, heading, None
 
 
 def analyze(arts, today):
@@ -166,8 +184,16 @@ def analyze(arts, today):
             continue
         lo, hi = min(p["price"] for p in prods), max(p["price"] for p in prods)
         fname = art["path"].name
-        for i, line, heading in body_lines(art):
+        for i, line, heading, owner in body_lines(art):
             where = f"{fname}:{i}"
+            if owner:
+                # строка внутри карточки товара (pros/cons/who…): все цены относятся к этому товару
+                for s_, e_, v, tail, upto in price_mentions(line):
+                    if v >= MIN_PRICE and not tail and not upto and not not_a_price(line, s_) \
+                            and "+" not in owner["name"] and pct(v, owner["price"]) > TOLERANCE * 100:
+                        price_rows.append((where, quote(line, s_, e_), v, owner["price"],
+                                           pct(v, owner["price"]), owner["name"]))
+                continue
             names = find_names(line, prods)
             for q, v, ref, d, nm in mismatches_in_line(line, names, price_mentions(line), lambda p, v: p["price"]):
                 price_rows.append((where, q, v, ref, d, nm))

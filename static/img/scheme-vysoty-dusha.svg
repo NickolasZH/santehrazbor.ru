@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" role="img" aria-label="Высота встраиваемого гигиенического душа" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="720" height="500" fill="#fff"/>
+<text x="360" y="36" text-anchor="middle" font-size="17" font-weight="600">Высота гигиенического душа</text>
+<!-- пол и стена -->
+<path d="M30 440 H690" stroke="#555" stroke-width="3"/>
+<text x="40" y="466">Пол</text>
+<rect x="600" y="70" width="90" height="370" fill="#eef0f2" stroke="#9aa0a6"/>
+<!-- диапазон -->
+<rect x="440" y="230" width="250" height="50" fill="#2f6fb5" opacity="0.15"/>
+<path d="M440 230 H690 M440 280 H690" stroke="#2f6fb5" stroke-width="1.5" stroke-dasharray="6 4"/>
+<!-- унитаз -->
+<rect x="190" y="250" width="110" height="80" rx="6" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M170 340 H340 C340 395 310 425 255 440 C200 425 170 395 170 340 Z" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<!-- человек сидя -->
+<circle cx="255" cy="120" r="24" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
+<path d="M255 144 V270 H335 V400" fill="none" stroke="#2b2f33" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M255 175 L330 215 L420 245" fill="none" stroke="#2b2f33" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- смеситель и лейка -->
+<rect x="590" y="235" width="22" height="40" rx="4" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M590 255 H540" stroke="#2b2f33" stroke-width="6" stroke-linecap="round"/>
+<text x="650" y="215" text-anchor="middle" font-weight="600">Смеситель</text>
+<text x="650" y="300" text-anchor="middle">и лейка</text>
+<!-- размер -->
+<path d="M420 440 V230 M410 440 H430 M410 230 H430 M410 280 H430" stroke="#2b2f33" stroke-width="2" fill="none"/>
+<text x="400" y="340" text-anchor="end" font-weight="600">примерно</text>
+<text x="400" y="360" text-anchor="end" font-weight="600">60–80 см</text>
+<text x="400" y="380" text-anchor="end">от пола</text>
+<text x="360" y="486" text-anchor="middle" font-size="14">Сядьте и отметьте, куда естественно тянется рука</text>
+</svg>

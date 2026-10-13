@@ -247,6 +247,12 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                 fail(f"{name}: шорткод [[photo:файл|подпись]] — нет подписи ({code[:40]})")
             if not (STATIC / "img" / fname.strip()).is_file():
                 fail(f"{name}: фото static/img/{fname.strip()} не найдено")
+        elif code.startswith("scheme:"):
+            fname, sep, cap = code.split(":", 1)[1].partition("|")
+            if not sep or not cap.strip():
+                fail(f"{name}: шорткод [[scheme:файл.svg|подпись]] — нет подписи ({code[:40]})")
+            if not (STATIC / "img" / fname.strip()).is_file():
+                fail(f"{name}: схема static/img/{fname.strip()} не найдена")
         elif code.startswith("minitable:"):
             labs = [x.strip() for x in code.split(":", 1)[1].split(",") if x.strip()]
             if not labs:
@@ -314,6 +320,18 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                 w, h = im.size
             alt = re.sub(r"\s*\(фото автора\)\.?\s*$", "", cap).rstrip(" .") 
             return (f'<figure class="photo"><img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
+                    f'width="{w}" height="{h}" loading="lazy" decoding="async">'
+                    f'<figcaption>{html_escape(cap)}</figcaption></figure>')
+        if code.startswith("scheme:"):
+            fname, _, cap = code.split(":", 1)[1].partition("|")
+            fname, cap = fname.strip(), cap.strip()
+            svg = (STATIC / "img" / fname).read_text(encoding="utf-8")
+            vb = re.search(r'viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)\s*"', svg)
+            if not vb:
+                fail(f"схема {fname}: нет viewBox")
+            w, h = (str(int(float(x))) for x in vb.groups())
+            alt = re.sub(r"\s*\(схема santehrazbor\.ru\)\.?\s*$", "", cap).rstrip(" .")
+            return (f'<figure class="scheme"><img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
                     f'width="{w}" height="{h}" loading="lazy" decoding="async">'
                     f'<figcaption>{html_escape(cap)}</figcaption></figure>')
         if code.startswith("minitable:"):

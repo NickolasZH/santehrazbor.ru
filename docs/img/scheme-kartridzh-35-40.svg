@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 540" role="img" aria-label="Картриджи 35 и 40 мм" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="720" height="540" fill="#fff"/>
+<text x="360" y="36" text-anchor="middle" font-size="17" font-weight="600">Картридж: диаметр 35 и 40 мм</text>
+<!-- 35 -->
+<g stroke="#2b2f33" stroke-width="2.5" fill="#fff">
+<rect x="165" y="145" width="30" height="40"/>
+<rect x="110" y="185" width="140" height="190" rx="6"/>
+<rect x="135" y="375" width="14" height="24"/>
+<rect x="211" y="375" width="14" height="24"/>
+</g>
+<path d="M110 150 H250 M110 143 V157 M250 143 V157" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
+<text x="180" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">35 мм</text>
+<text x="100" y="168" text-anchor="end">шток</text>
+<text x="100" y="392" text-anchor="end">ножки</text>
+<!-- 40 -->
+<g stroke="#2b2f33" stroke-width="2.5" fill="#fff">
+<rect x="470" y="145" width="30" height="40"/>
+<rect x="405" y="185" width="160" height="190" rx="6"/>
+<rect x="430" y="375" width="14" height="24"/>
+<rect x="526" y="375" width="14" height="24"/>
+</g>
+<path d="M405 150 H565 M405 143 V157 M565 143 V157" stroke="#2f6fb5" stroke-width="2.5" fill="none"/>
+<text x="485" y="130" text-anchor="middle" font-size="20" font-weight="700" fill="#2f6fb5">40 мм</text>
+<!-- пояснения -->
+<text x="360" y="66" text-anchor="middle" font-weight="600">Чаще всего встречаются 35 и 40 мм</text>
+<text x="360" y="440" text-anchor="middle">Не взаимозаменяемы: в посадку под 40 мм</text>
+<text x="360" y="460" text-anchor="middle">картридж 35 мм не встанет</text>
+<text x="360" y="495" text-anchor="middle" font-weight="600">Перед покупкой измерьте старый картридж</text>
+<text x="360" y="517" text-anchor="middle" font-size="14">диаметр, высоту, ножки, форму дна; разница в 1 мм по высоте — не подойдёт</text>
+</svg>

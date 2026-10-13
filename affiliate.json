@@ -435,13 +435,12 @@
     "ref_link_no_erid": "https://market.yandex.ru/cc/BFqcGy"
   },
   "cersanit-odra-63051": {
-    "url": "https://market.yandex.ru/card/x/103205787610",
-    "aff_url": "https://market.yandex.ru/cc/BG9ZaN?erid=5jtCeReNx12oak2rUzLvjXi",
-    "erid": "5jtCeReNx12oak2rUzLvjXi",
-    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rUzLvjXi",
+    "url": "https://market.yandex.ru/card/x/6205339721",
+    "aff_url": "https://market.yandex.ru/cc/BHq6vt?erid=5jtCeReNx12oak2rVZDTpB7",
+    "erid": "5jtCeReNx12oak2rVZDTpB7",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rVZDTpB7",
     "reward_rub_2026_10_07": 452,
-    "ref_link_no_erid": "https://market.yandex.ru/cc/BFqdXE",
-    "reward_rub_2026_10_13": 0
+    "reward_rub_2026_10_13": 1393
   },
   "grohe-bauloop-23602001": {
     "url": "https://market.yandex.ru/card/x/103210397075",
@@ -541,5 +540,20 @@
     "erid": "5jtCeReNx12oak2rVZDTowp",
     "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rVZDTowp",
     "reward_rub_2026_10_13": 1043
+  },
+  "grohe-essence-24057001": {
+    "url": "https://market.yandex.ru/card/x/6114322013",
+    "price_is_sum": true,
+    "aff_url": "https://market.yandex.ru/cc/BHq7SQ?erid=5jtCeReNx12oak2rVZDU8yF",
+    "erid": "5jtCeReNx12oak2rVZDU8yF",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rVZDU8yF",
+    "reward_rub_2026_10_13": 1162
+  },
+  "grohe-rapido-smartbox-35600000": {
+    "url": "https://market.yandex.ru/card/x/102321006800",
+    "aff_url": "https://market.yandex.ru/cc/BHq7yB?erid=5jtCeReNx12oak2rVZDU8yK",
+    "erid": "5jtCeReNx12oak2rVZDU8yK",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rVZDU8yK",
+    "reward_rub_2026_10_13": 2074
   }
 }

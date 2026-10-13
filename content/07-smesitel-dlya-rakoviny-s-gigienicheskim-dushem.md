@@ -200,7 +200,7 @@ products:
 
 Тогда смеситель для раковины не подойдёт — не хватит шланга. Варианты: открытый настенный душ-смеситель (подробно — в статье [«Гигиенический душ: какой выбрать»](/gigienicheskij-dush-kakoj-vybrat/)) или встраиваемый, если ремонт ещё впереди ([«Встраиваемый гигиенический душ»](/vstraivaemyj-gigienicheskij-dush/)). Две модели оттуда:
 
-[[minitable:cersanit-vero-64106,iddis-axes-004sbs0i08]]
+[[minitable:iddis-ray-raysb00i08,iddis-axes-004sbs0i08]]
 
 ---
 

@@ -69,7 +69,8 @@
     "erid": "5jtCeReNx12oak2rUzLvQMT",
     "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rUzLvQMT",
     "ref_link_no_erid": "https://market.yandex.ru/cc/BFZszG",
-    "reward_rub_2026_10_12": 0
+    "reward_rub_2026_10_12": 0,
+    "reward_rub_2026_10_13": 0
   },
   "iddis-axes-004sbs0i08": {
     "url": "https://market.yandex.ru/card/vstraivayemyy-smesitel-s-gigiyenicheskim-dushem-iddis-axes-004sbs0i08-khrom/102203494453",
@@ -523,5 +524,12 @@
     "aff_url": "https://market.yandex.ru/cc/BHmuv5?erid=5jtCeReNx12oak2rVZAXrRc",
     "erid": "5jtCeReNx12oak2rVZAXrRc",
     "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rVZAXrRc"
+  },
+  "iddis-ray-raysb00i08": {
+    "url": "https://market.yandex.ru/card/smesitel-s-gigiyenicheskim-dushem-glyantsevyy-khrom-ray-iddis-raysb00i08/103812659581",
+    "aff_url": "https://market.yandex.ru/cc/BHpxxu?erid=5jtCeReNx12oak2rVZDTowp",
+    "erid": "5jtCeReNx12oak2rVZDTowp",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rVZDTowp",
+    "reward_rub_2026_10_13": 1043
   }
 }

@@ -572,6 +572,25 @@ def main():
     if args.apply:
         md += ["", "Изменены файлы: " + (", ".join(applied) if applied else "нет") +
                f". Бэкапы: `data/backups/`."]
+    # --- награда 0: Маркет отдаёт referralReward только залогиненному, поэтому берём записанное в affiliate.json
+    reward_lines = []
+    for e in entries:
+        label = e["label"]
+        if label not in usage:
+            continue
+        arts_txt = ", ".join(a["path"].name for a, _ in usage[label])
+        rkeys = sorted(k for k in (aff.get(label) or {}) if re.fullmatch(r"reward_rub_\d{4}_\d{2}_\d{2}", k))
+        if not rkeys:
+            line = f"- `{label}` ({arts_txt}): награда не записана"
+        elif aff[label][rkeys[-1]] == 0:
+            d = rkeys[-1][len("reward_rub_"):].replace("_", "-")
+            line = f"- `{label}` ({arts_txt}): награды нет с {d} — заменить модель на аналог с наградой"
+        else:
+            continue
+        reward_lines.append(line)
+        decide_lines.append(line)
+    md += ["", "## Награда 0 (по affiliate.json)", ""]
+    md += reward_lines or ["Нет."]
     md += ["", "## Требует решения", ""]
     md += decide_lines or ["Ничего."]
     report_path = REPORT_DIR / (f"{today}-partial.md" if (args.only or args.limit) else f"{today}.md")

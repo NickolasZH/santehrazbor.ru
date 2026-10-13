@@ -117,7 +117,7 @@ article > h1 { margin-left: auto; margin-right: auto; }
 }
 .main-nav a:hover { color: var(--primary); }
 .main-nav a[aria-current="page"] { color: var(--primary); border-bottom-color: var(--primary); }
-@media (min-width: 760px) {
+@media (min-width: 840px) {
     .header-inner { flex-direction: row; align-items: center; justify-content: space-between; padding-top: 0; padding-bottom: 0; }
     .site-name { padding: 12px 0; }
     .main-nav { margin: 0; padding: 0; overflow: visible; }

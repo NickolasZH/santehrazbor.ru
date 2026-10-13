@@ -1,41 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" role="img" aria-label="Вид сбоку: высота и вылет излива кухонного смесителя, мойка, кастрюля и навесной шкаф" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
-<rect width="400" height="500" fill="#fff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 530" role="img" aria-label="Вид сбоку: высокий излив-гусак, вылет до центра чаши мойки, кастрюля в чаше и навесной шкаф" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="530" fill="#fff"/>
 <text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Высота и вылет излива</text>
 <!-- стена и навесной шкаф -->
-<rect x="8" y="60" width="16" height="246" fill="#eef0f2" stroke="#9aa0a6"/>
-<rect x="24" y="60" width="226" height="40" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
-<text x="137" y="86" text-anchor="middle">Навесной шкаф</text>
-<!-- столешница и чаша мойки -->
-<rect x="24" y="290" width="201" height="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
-<rect x="345" y="290" width="51" height="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
-<path d="M225 290 V350 H345 V290" fill="none" stroke="#2b2f33" stroke-width="2.5"/>
-<!-- кастрюля под изливом -->
-<rect x="245" y="300" width="80" height="50" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
-<path d="M245 316 H235 M325 316 H335" stroke="#2b2f33" stroke-width="4" stroke-linecap="round"/>
-<!-- смеситель: корпус, излив, аэратор -->
-<rect x="153" y="250" width="24" height="40" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
-<path d="M165 250 V190 H285" stroke="#2b2f33" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-<rect x="273" y="196" width="24" height="16" fill="#2f6fb5"/>
-<text x="304" y="186" fill="#2f6fb5" font-weight="600">аэратор</text>
-<!-- струя в центр чаши -->
-<path d="M285 214 V296" stroke="#3b7fc4" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
-<!-- вылет: от оси смесителя до аэратора -->
-<path d="M165 170 H285 M165 162 V178 M285 162 V178" stroke="#2f6fb5" stroke-width="2" fill="none"/>
-<text x="225" y="158" text-anchor="middle" font-weight="600" fill="#2f6fb5">вылет</text>
+<rect x="8" y="44" width="16" height="272" fill="#eef0f2" stroke="#9aa0a6"/>
+<rect x="24" y="44" width="356" height="40" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<text x="150" y="70" text-anchor="middle">Навесной шкаф</text>
+<!-- столешница с врезанной мойкой: чаша заметной глубины -->
+<rect x="24" y="300" width="191" height="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="345" y="300" width="51" height="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M215 300 V390 H345 V300" fill="none" stroke="#2b2f33" stroke-width="2.5"/>
+<!-- кастрюля на дне чаши, под аэратором -->
+<rect x="240" y="330" width="80" height="60" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M240 348 H230 M320 348 H330" stroke="#2b2f33" stroke-width="4" stroke-linecap="round"/>
+<!-- смеситель у заднего края: основание и высокий изогнутый излив -->
+<rect x="58" y="262" width="24" height="38" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M70 262 V176 Q70 144 102 144 H248 Q280 144 280 176 V190" stroke="#2b2f33" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<rect x="268" y="190" width="24" height="16" fill="#2f6fb5"/>
+<text x="300" y="201" fill="#2f6fb5" font-weight="600">аэратор</text>
+<!-- струя точно в центр чаши -->
+<path d="M280 210 V326" stroke="#3b7fc4" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
 <!-- ось смесителя -->
-<path d="M165 306 V322" stroke="#2b2f33" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
-<text x="140" y="342" text-anchor="middle">ось смесителя</text>
-<!-- высота излива: от мойки до аэратора -->
-<path d="M297 212 H384 M380 212 V290 M372 212 H388 M372 290 H388" stroke="#2f6fb5" stroke-width="2" fill="none"/>
-<text x="372" y="236" text-anchor="end" font-weight="600" fill="#2f6fb5">высота</text>
-<text x="372" y="256" text-anchor="end" font-weight="600" fill="#2f6fb5">излива</text>
+<path d="M70 116 V346" stroke="#2f6fb5" stroke-width="2" stroke-dasharray="5 4" fill="none"/>
+<text x="30" y="368">ось смесителя</text>
+<!-- вылет: от оси до аэратора -->
+<path d="M70 165 H280 M70 157 V173 M280 157 V173" stroke="#2f6fb5" stroke-width="2" fill="none"/>
+<text x="175" y="188" text-anchor="middle" font-weight="600" fill="#2f6fb5">вылет</text>
+<!-- высота излива: от столешницы до аэратора -->
+<path d="M225 206 H268 M225 206 V300 M217 206 H233 M217 300 H233" stroke="#2f6fb5" stroke-width="2" fill="none"/>
+<text x="209" y="250" text-anchor="end" font-weight="600" fill="#2f6fb5">высота</text>
+<text x="209" y="270" text-anchor="end" font-weight="600" fill="#2f6fb5">излива</text>
 <!-- расстояние до шкафа -->
-<path d="M60 100 V290 M52 100 H68 M52 290 H68" stroke="#2b2f33" stroke-width="2" fill="none"/>
-<text x="76" y="128">расстояние до шкафа</text>
-<text x="76" y="148" font-weight="600">измерьте</text>
+<path d="M372 84 V300 M364 84 H380 M364 300 H380" stroke="#2b2f33" stroke-width="2" fill="none"/>
+<text x="360" y="108" text-anchor="end">до шкафа —</text>
+<text x="360" y="128" text-anchor="end" font-weight="600">измерьте</text>
 <!-- подписи -->
-<text x="200" y="395" text-anchor="middle" font-weight="600" fill="#2f6fb5">Высокий — от 250 мм:</text>
-<text x="200" y="415" text-anchor="middle">помещается кастрюля</text>
-<text x="200" y="448" text-anchor="middle" font-weight="600" fill="#2f6fb5">Низкий (126 мм) — под полку:</text>
-<text x="200" y="468" text-anchor="middle">высокую посуду наклонять</text>
+<text x="200" y="435" text-anchor="middle" font-weight="600" fill="#2f6fb5">Высокий — от 250 мм:</text>
+<text x="200" y="455" text-anchor="middle">помещается кастрюля</text>
+<text x="200" y="488" text-anchor="middle" font-weight="600" fill="#2f6fb5">Низкий (126 мм) — под полку:</text>
+<text x="200" y="508" text-anchor="middle">высокую посуду наклонять</text>
 </svg>

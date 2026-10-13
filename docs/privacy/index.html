@@ -47,6 +47,22 @@
         });
     </script>
 
+
+    <script data-goatcounter="https://santehrazbor.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>
+        // Событие GoatCounter: клик по партнёрской ссылке (rel="sponsored"), аналог цели cta_click в Метрике.
+        // Путь события — cta-<товар>, заголовок — блок (picks | compare | card | text).
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || !window.goatcounter || !window.goatcounter.count) { return; }
+            window.goatcounter.count({
+                path: "cta-" + (a.getAttribute("data-product") || "text"),
+                title: a.getAttribute("data-place") || "text",
+                event: true
+            });
+        });
+    </script>
+
 </head>
 <body>
 
@@ -81,6 +97,8 @@
         <p>На сайте включён Вебвизор Яндекс Метрики: обезличенно записываются действия на странице (прокрутка, клики, движение мыши). Это помогает понять, удобно ли читать статьи и где улучшить сайт. Содержимое полей ввода не записывается — форм для ввода персональных данных на сайте нет.</p>
         <p>Данные обрабатывает ООО «Яндекс» по своей политике. Отключить сбор можно, запретив cookie в браузере или включив блокировщик.</p>
         <p>Вы можете отключить cookie в настройках браузера — сайт продолжит работать.</p>
+        <h2>GoatCounter</h2>
+        <p>Для подсчёта посещений сайт также использует сервис GoatCounter (goatcounter.com). Он не использует cookie и не хранит IP-адреса в открытом виде. Собираются адрес страницы, источник перехода, размер экрана, браузер и страна посетителя.</p>
         <p>Партнёрские ссылки ведут на сторонние сайты (например, Яндекс Маркет). За обработку данных на этих сайтах отвечают их владельцы, у них действуют собственные политики конфиденциальности.</p>
         <p>Дата редакции: 08.10.2026.</p>
     </div>

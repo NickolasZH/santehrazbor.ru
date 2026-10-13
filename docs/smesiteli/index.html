@@ -49,6 +49,22 @@
         });
     </script>
 
+
+    <script data-goatcounter="https://santehrazbor.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>
+        // Событие GoatCounter: клик по партнёрской ссылке (rel="sponsored"), аналог цели cta_click в Метрике.
+        // Путь события — cta-<товар>, заголовок — блок (picks | compare | card | text).
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || !window.goatcounter || !window.goatcounter.count) { return; }
+            window.goatcounter.count({
+                path: "cta-" + (a.getAttribute("data-product") || "text"),
+                title: a.getAttribute("data-place") || "text",
+                event: true
+            });
+        });
+    </script>
+
 </head>
 <body>
 

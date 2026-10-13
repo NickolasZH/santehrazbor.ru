@@ -331,8 +331,9 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                 fail(f"схема {fname}: нет viewBox")
             w, h = (str(int(float(x))) for x in vb.groups())
             alt = re.sub(r"\s*\(схема santehrazbor\.ru\)\.?\s*$", "", cap).rstrip(" .")
-            return (f'<figure class="scheme"><img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
-                    f'width="{w}" height="{h}" loading="lazy" decoding="async">'
+            return (f'<figure class="scheme"><a href="/img/{fname}" target="_blank" rel="noopener">'
+                    f'<img src="/img/{fname}" alt="{html_escape(alt, quote=True)}" '
+                    f'width="{w}" height="{h}" loading="lazy" decoding="async"></a>'
                     f'<figcaption>{html_escape(cap)}</figcaption></figure>')
         if code.startswith("minitable:"):
             # товары берём из глобального индекса: дата цены — дата обновления статьи-источника

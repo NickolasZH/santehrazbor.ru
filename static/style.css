@@ -251,7 +251,7 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 .photo { margin: 1.4em 0; }
 .photo img { display: block; width: 100%; height: auto; border-radius: 8px; }
 .photo figcaption { margin-top: 6px; font-size: 0.82rem; line-height: 1.4; color: var(--muted); }
-.scheme { margin: 1.4em 0; }
+.scheme { margin: 1.4em auto; max-width: 520px; }
 .scheme img { display: block; width: 100%; height: auto; border-radius: 8px; background: #fff; }
 .scheme figcaption { margin-top: 6px; font-size: 0.82rem; line-height: 1.4; color: var(--muted); }
 

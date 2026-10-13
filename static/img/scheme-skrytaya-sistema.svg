@@ -1,36 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 600" role="img" aria-label="Устройство скрытой душевой системы" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
-<rect width="720" height="600" fill="#fff"/>
-<rect x="20" y="20" width="680" height="560" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
-<text x="360" y="52" text-anchor="middle" font-size="17" font-weight="600">Скрытая система: вид на стену</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 716" role="img" aria-label="Устройство скрытой душевой системы" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="716" fill="#fff"/>
+<rect x="8" y="44" width="384" height="656" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Скрытая система: вид на стену</text>
 <!-- верхний душ -->
-<path d="M360 250 V140 H520" fill="none" stroke="#555" stroke-width="7" stroke-linejoin="round"/>
-<path d="M505 140 H600 L585 158 H520 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
-<path d="M530 172 v14 M552 172 v14 M574 172 v14" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/>
-<text x="360" y="108" font-weight="600">Верхний душ («тропический»)</text>
+<text x="200" y="80" text-anchor="middle" font-weight="600">Верхний душ («тропический»)</text>
+<path d="M120 300 V125 H250" fill="none" stroke="#555" stroke-width="7" stroke-linejoin="round"/>
+<path d="M232 125 H340 L326 142 H246 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
+<path d="M262 156 v14 M286 156 v14 M310 156 v14" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/>
 <!-- встроенная часть -->
-<rect x="250" y="250" width="220" height="150" rx="6" fill="#fff" stroke="#555" stroke-width="2.5" stroke-dasharray="8 5"/>
-<text x="360" y="276" text-anchor="middle" font-weight="600">Встроенная часть</text>
-<text x="360" y="296" text-anchor="middle">(монтажная коробка)</text>
-<text x="360" y="316" text-anchor="middle">замуровывают в стену</text>
-<!-- подвод -->
-<path d="M300 400 V535" stroke="#2f6fb5" stroke-width="7"/>
-<path d="M420 400 V535" stroke="#c62828" stroke-width="7"/>
-<text x="300" y="562" text-anchor="middle" font-weight="600" fill="#2f6fb5">ХВС</text>
-<text x="420" y="562" text-anchor="middle" font-weight="600" fill="#c62828">ГВС</text>
+<rect x="24" y="300" width="266" height="170" rx="6" fill="#fff" stroke="#555" stroke-width="2.5" stroke-dasharray="8 5"/>
+<text x="157" y="332" text-anchor="middle" font-weight="600">Встроенная часть</text>
+<text x="157" y="354" text-anchor="middle">(монтажная коробка)</text>
+<text x="157" y="376" text-anchor="middle">замуровывают в стену</text>
 <!-- видимая панель -->
-<circle cx="360" cy="360" r="32" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
-<path d="M360 360 L384 346" stroke="#2b2f33" stroke-width="6" stroke-linecap="round"/>
-<path d="M205 360 H326" stroke="#555" stroke-width="1.5"/>
-<text x="40" y="352" font-weight="600">Видимая панель</text>
-<text x="40" y="372">(рычаг, переключатель)</text>
+<circle cx="225" cy="425" r="28" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
+<path d="M225 425 L245 413" stroke="#2b2f33" stroke-width="6" stroke-linecap="round"/>
+<text x="34" y="416" font-weight="600">Видимая панель</text>
+<text x="34" y="436">(рычаг,</text>
+<text x="34" y="456">переключатель)</text>
+<!-- подвод -->
+<path d="M80 470 V520" stroke="#2f6fb5" stroke-width="7"/>
+<path d="M240 470 V520" stroke="#c62828" stroke-width="7"/>
+<text x="80" y="548" text-anchor="middle" font-weight="600" fill="#2f6fb5">ХВС</text>
+<text x="240" y="548" text-anchor="middle" font-weight="600" fill="#c62828">ГВС</text>
 <!-- шланговое подключение и лейка -->
-<path d="M470 360 H560" stroke="#555" stroke-width="7"/>
-<circle cx="560" cy="360" r="11" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
-<text x="590" y="326" text-anchor="middle" font-weight="600">Шланговое</text>
-<text x="590" y="344" text-anchor="middle" font-weight="600">подключение</text>
-<path d="M560 371 C560 420 640 410 620 462" fill="none" stroke="#555" stroke-width="3" stroke-dasharray="2 5" stroke-linecap="round"/>
-<rect x="598" y="462" width="44" height="14" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
-<path d="M608 476 L632 476 L640 506 L600 506 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
-<text x="610" y="540" text-anchor="middle" font-weight="600">Ручная лейка</text>
-<text x="610" y="558" text-anchor="middle">со шлангом</text>
+<path d="M290 365 H350" stroke="#555" stroke-width="7"/>
+<circle cx="350" cy="365" r="11" fill="#fff" stroke="#2b2f33" stroke-width="3"/>
+<text x="392" y="322" text-anchor="end" font-weight="600">Шланговое</text>
+<text x="392" y="342" text-anchor="end" font-weight="600">подключение</text>
+<path d="M350 376 V560" fill="none" stroke="#555" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round"/>
+<rect x="328" y="560" width="44" height="14" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
+<path d="M338 574 L362 574 L372 612 L328 612 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
+<text x="392" y="648" text-anchor="end" font-weight="600">Ручная лейка</text>
+<text x="392" y="668" text-anchor="end">со шлангом</text>
 </svg>

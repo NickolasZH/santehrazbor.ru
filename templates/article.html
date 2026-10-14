@@ -12,6 +12,7 @@
         <h1>{{ article.h1 }}</h1>
         <p class="dates">
             Обновлено: <time datetime="{{ article.updated.isoformat() }}">{{ article.updated_ru|nbsp }}</time>
+            &middot; Автор: <a href="/o-proekte/">Николай</a>
 {% if article.products %}
             &middot; {{ article.products|length|count_word(('модель', 'модели', 'моделей')) }} проверено
 {% endif %}

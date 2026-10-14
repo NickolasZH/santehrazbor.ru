@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Калькулятор водонагревателя: какой объём нужен на 1–6 человек, сколько греется</title>
+    <meta name="description" content="Рассчитайте, какой объём водонагревателя нужен: по числу людей, времени душа, ванне и температуре. Сколько литров на 3 человек, время нагрева, ток ТЭНа, формулы и источники.">
+    <link rel="canonical" href="https://santehrazbor.ru/kalkulyator-vodonagrevatelya/">
+    
+    <meta property="og:title" content="Калькулятор водонагревателя: какой объём нужен на 1–6 человек, сколько греется">
+    <meta property="og:description" content="Рассчитайте, какой объём водонагревателя нужен: по числу людей, времени душа, ванне и температуре. Сколько литров на 3 человек, время нагрева, ток ТЭНа, формулы и источники.">
+    <meta property="og:url" content="https://santehrazbor.ru/kalkulyator-vodonagrevatelya/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Сантехразбор">
+    
+    <meta name="google-site-verification" content="LVVLmEzXiVYnq9pJ8iJn6eLFc8GG1piWRH543_21nVU">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="stylesheet" href="/style.css?v=0a7263d5">
+    
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Калькулятор объёма водонагревателя", "description": "Рассчитайте, какой объём водонагревателя нужен: по числу людей, времени душа, ванне и температуре. Сколько литров на 3 человек, время нагрева, ток ТЭНа, формулы и источники.", "url": "https://santehrazbor.ru/kalkulyator-vodonagrevatelya/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "dateModified": "2026-10-14", "author": {"@type": "Person", "name": "Николай", "url": "https://santehrazbor.ru/o-proekte/"}}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://santehrazbor.ru/"}, {"@type": "ListItem", "position": 2, "name": "Калькуляторы", "item": "https://santehrazbor.ru/kalkulyatory/"}, {"@type": "ListItem", "position": 3, "name": "Калькулятор объёма водонагревателя", "item": "https://santehrazbor.ru/kalkulyator-vodonagrevatelya/"}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Водонагреватель на 80 литров на сколько человек?", "acceptedAnswer": {"@type": "Answer", "text": "По расчёту, на двоих: два человека по 8 минут душа подряд расходуют 115 л смеси, из бака для этого нужно около 65 л (горячей воды 73 л минус догрев 8 л), ближайший стандартный объём — 80 л. Трём подряд 80 л не хватит: им нужен бак на 100 л. Если люди принимают душ в разное время и бак догревается, 80 л хватает и на семью побольше."}}, {"@type": "Question", "name": "Водонагреватель на 50 литров на сколько человек?", "acceptedAnswer": {"@type": "Answer", "text": "На одного человека с душем 8 минут: по расчёту нужно около 32 л, а в ряду 30 л мало. Двоим 50 л хватит, только если душ короткий, до 5 минут (около 41 л)."}}, {"@type": "Question", "name": "Водонагреватель на 3 человек: сколько литров?", "acceptedAnswer": {"@type": "Answer", "text": "При душе 8 минут на каждого, 7,2 л/мин, баке 60 °C и ТЭНе 2 кВт нужно около 97 л, значит, берут 100 л. Если не учитывать догрев во время мытья, получается 110 л и бак на 120 л. Если один из троих моется отдельно, считайте двоих подряд и берите 80 л."}}, {"@type": "Question", "name": "Хватит ли 30 литров на двоих?", "acceptedAnswer": {"@type": "Answer", "text": "На двоих подряд не хватит: по расчёту нужно около 65 л. Бак на 30 л подходит для одного человека с коротким душем (до 5 минут, около 20 л), для мытья посуды или как резерв на время отключения горячей воды."}}, {"@type": "Question", "name": "Учитывает ли калькулятор, что ТЭН греет во время мытья?", "acceptedAnswer": {"@type": "Answer", "text": "Да, по умолчанию. За 24 минуты пика ТЭН 2 кВт догревает около 12,5 л воды температуры бака, и эти литры вычитаются из нужного объёма. За час такой ТЭН нагревает около 31 л с 5 до 60 °C. Если снять галочку, расчёт будет как для бака, который не греет вообще, и объём получится больше. Потери на перемешивание в баке не учитываются, поэтому объём округляется вверх до стандартного."}}, {"@type": "Question", "name": "Сколько греется водонагреватель на 80 литров?", "acceptedAnswer": {"@type": "Answer", "text": "Около 2 ч 34 мин при 2 кВт и около 3 ч 25 мин при 1,5 кВт, если нагреть воду с 5 до 60 °C. Остывшая за день вода догревается быстрее."}}, {"@type": "Question", "name": "Какая мощность ТЭНа лучше?", "acceptedAnswer": {"@type": "Answer", "text": "Для бытовых баков чаще всего берут 2 кВт: это около 8,7 А, у розетки с заземлением на 16 А запас есть. Более мощный ТЭН, 2,5–3 кВт, греет быстрее и больше догревает за время мытья, но ток растёт до 11–13 А, и лучше сделать отдельную линию."}}, {"@type": "Question", "name": "Почему калькулятор считает меньше, чем расход воды?", "acceptedAnswer": {"@type": "Answer", "text": "Потому что в кране горячую воду разбавляют холодной, а часть горячей успевает догреть ТЭН. Бак даёт только остаток."}}, {"@type": "Question", "name": "Насколько точен результат?", "acceptedAnswer": {"@type": "Answer", "text": "Это оценка по формуле смешения и нормам СП. Условия расчёта видны в разделе «Как считали», расход душа можно заменить своим."}}]}</script>
+
+
+
+    <script>
+        (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(113527998, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    </script>
+    <script>
+        // Цель Метрики: клик по партнёрской ссылке (rel="sponsored").
+        // data-product — метка товара, data-place — блок: picks | compare | card | text.
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || typeof ym !== "function") { return; }
+            ym(113527998, "reachGoal", "cta_click", {
+                product: a.getAttribute("data-product") || "",
+                place: a.getAttribute("data-place") || "text"
+            });
+        });
+    </script>
+
+
+    <script data-goatcounter="https://santehrazbor.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    <script>
+        // Событие GoatCounter: клик по партнёрской ссылке (rel="sponsored"), аналог цели cta_click в Метрике.
+        // Путь события — cta-<товар>, заголовок — блок (picks | compare | card | text).
+        document.addEventListener("click", function (e) {
+            var a = e.target.closest && e.target.closest('a[rel~="sponsored"]');
+            if (!a || !window.goatcounter || !window.goatcounter.count) { return; }
+            window.goatcounter.count({
+                path: "cta-" + (a.getAttribute("data-product") || "text"),
+                title: a.getAttribute("data-place") || "text",
+                event: true
+            });
+        });
+    </script>
+
+</head>
+<body>
+
+    <noscript><div><img src="https://mc.yandex.ru/watch/113527998" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+
+    <header class="site-header">
+        <div class="wrap header-inner">
+            <a class="site-name" href="/">Сантехразбор</a>
+            <nav class="main-nav" aria-label="Основное меню">
+
+                <a href="/smesiteli/">Смесители</a>
+
+                <a href="/gigienicheskie-dushi/">Гигиенические души</a>
+
+                <a href="/dushevye-sistemy/">Душевые системы</a>
+
+                <a href="/iz-chego-delayut-smesiteli/">Материалы</a>
+
+                <a href="/o-proekte/">О проекте</a>
+
+            </nav>
+        </div>
+    </header>
+    <main class="wrap">
+
+<nav class="breadcrumbs narrow" aria-label="Хлебные крошки">
+    <a href="/">Главная</a> <span>›</span> <a href="/kalkulyatory/">Калькуляторы</a> <span>›</span> <span>Калькулятор объёма водонагревателя</span>
+</nav>
+<article>
+    <header class="article-head narrow">
+        <h1>Калькулятор объёма водонагревателя</h1>
+        <p class="dates">
+            Обновлено: <time datetime="2026-10-14">14 октября 2026</time>
+            &middot; Автор: <a href="/o-proekte/">Николай</a>
+        </p>
+
+        <p class="calc-lead">Укажите, сколько человек моются подряд и сколько минут, — сразу появится нужный объём бака, время нагрева и ток. Значения по умолчанию — вечерний час пик в семье из трёх человек.</p>
+
+    </header>
+    <div class="wide calc-box">
+
+<div id="calc-wrap" class="calc" hidden>
+    <form id="calc-form" class="calc-form" autocomplete="off" novalidate>
+        <fieldset class="calc-group">
+            <legend>Душ в час пик</legend>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-people">Сколько человек моются подряд</label>
+                    <input id="c-people" type="text" inputmode="numeric" value="3" aria-describedby="e-people">
+                    <span class="calc-hint">В «час пик», например вечером. От 1 до 10</span>
+                    <span class="calc-err" id="e-people" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-minutes">Минут на один душ</label>
+                    <input id="c-minutes" type="text" inputmode="decimal" value="8" aria-describedby="e-minutes">
+                    <span class="calc-hint">От 1 до 60 минут</span>
+                    <span class="calc-err" id="e-minutes" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-flow">Расход душа, л/мин</label>
+                    <input id="c-flow" type="text" inputmode="decimal" value="7,2" aria-describedby="e-flow">
+                    <span class="calc-hint">По СП 30.13330.2020 для душевой кабины со смесителем 0,12 л/с. Свой можно замерить ведром и секундомером</span>
+                    <span class="calc-err" id="e-flow" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-pause">Перерыв между душами, мин</label>
+                    <input id="c-pause" type="text" inputmode="numeric" value="0" aria-describedby="e-pause">
+                    <span class="calc-hint">Пока один выходит, а другой заходит. От 0 до 60. ТЭН в это время греет</span>
+                    <span class="calc-err" id="e-pause" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Ванна и посуда в тот же вечер</legend>
+            <div class="calc-radios">
+                <label for="c-bath"><input id="c-bath" type="checkbox"> Набираете ванну в тот же вечер</label>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field" id="c-bathL-row" hidden>
+                    <label for="c-bathL">Объём набора ванны, л</label>
+                    <input id="c-bathL" type="text" inputmode="decimal" value="150" aria-describedby="e-bathL">
+                    <span class="calc-hint">Смотрите объём в характеристиках ванны: воды до перелива меньше полного объёма</span>
+                    <span class="calc-err" id="e-bathL" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-dish">Минут мытья посуды под краном</label>
+                    <input id="c-dish" type="text" inputmode="decimal" value="0" aria-describedby="e-dish">
+                    <span class="calc-hint">Расход мойки 7,2 л/мин (СП: мойка со смесителем 0,12 л/с)</span>
+                    <span class="calc-err" id="e-dish" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Температуры и мощность</legend>
+            <div class="calc-radios">
+                <label for="c-reheat"><input id="c-reheat" type="checkbox" checked> Учитывать догрев во время мытья</label>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-tMix">Температура смешанной воды, °C</label>
+                    <input id="c-tMix" type="text" inputmode="decimal" value="40" aria-describedby="e-tMix">
+                    <span class="calc-hint">Комфортный душ — 38–42 °C. От 35 до 45</span>
+                    <span class="calc-err" id="e-tMix" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-tHot">Температура нагрева в баке, °C</label>
+                    <input id="c-tHot" type="text" inputmode="decimal" value="60" aria-describedby="e-tHot">
+                    <span class="calc-hint">60 °C и выше рекомендуют против бактерий; выше — больше теплопотерь. От 50 до 75</span>
+                    <span class="calc-err" id="e-tHot" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-tCold">Температура холодной воды, °C</label>
+                    <input id="c-tCold" type="text" inputmode="decimal" value="5" aria-describedby="e-tCold">
+                    <span class="calc-hint">Зимой из водопровода 5–10 °C; 5 °C — расчётное значение СНиП при отсутствии данных</span>
+                    <span class="calc-err" id="e-tCold" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-power">Мощность ТЭНа</label>
+                    <select id="c-power" aria-describedby="e-power">
+                        <option value="1.5">1,5 кВт</option>
+                        <option value="2" selected>2 кВт</option>
+                        <option value="2.5">2,5 кВт</option>
+                        <option value="3">3 кВт</option>
+                    </select>
+                    <span class="calc-hint">Влияет на догрев, время нагрева и ток</span>
+                    <span class="calc-err" id="e-power" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <section id="c-result-box" class="calc-result" aria-labelledby="c-result-title">
+        <h2 id="c-result-title">Какой объём нужен</h2>
+        <div id="c-result" aria-live="polite"></div>
+        <details class="calc-howbox">
+            <summary>Как считали</summary>
+            <div id="c-how"></div>
+        </details>
+        <p class="calc-copy">
+            <button type="button" id="c-copy" disabled>Скопировать результат</button>
+            <span id="c-copy-status" role="status"></span>
+        </p>
+        <p class="calc-hint">Адрес страницы запоминает введённые значения: ссылкой можно поделиться.</p>
+        <p class="calc-hint calc-shop-link"><a href="#c-shop">Подобрать водонагреватель ↓</a></p>
+    </section>
+
+    <div id="c-bar" class="calc-bar" hidden>
+        <span id="c-bar-text" class="calc-bar-text"></span>
+        <a id="c-bar-more" href="#c-result-box">Подробнее</a>
+    </div>
+</div>
+
+
+
+
+
+    <section id="c-shop" class="calc-shop" aria-labelledby="c-shop-title">
+        <h2 id="c-shop-title">Водонагреватели под ваш расчёт</h2>
+        <p class="calc-hint">Модели подобраны по характеристикам в карточках и отзывам покупателей. Здесь показана группа рекомендуемого объёма; без JavaScript видны все группы.</p>
+
+        <div class="calc-shop-group" data-vol="30">
+            <h3>Бак на 30 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+
+
+                <article class="calc-shop-card" id="c-shop-haier-es30v-d1">
+                    <h4 class="calc-shop-title">Haier ES30V-D1 30 л, 2 кВт</h4>
+                    <p class="calc-shop-name">Круглый, эмалированный бак, магниевый анод, 2 кВт</p>
+                    <p class="product-price"><span class="price">~11 826 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(325 отзывов по линейке)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Гарантия на бак 8 лет, на ТЭН 4 года (поля карточки)</li>
+                        <li class="pro">Электронное управление с LED-дисплеем, УЗО и обратный клапан в описании</li>
+                        <li class="pro">Тип ТЭНа в карточке не указан</li>
+                        <li class="con">Хватает на один душ или посуду; для семьи отзывы описывают «надо ждать пару часов, пока нагреется»</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJH3hx?erid=5jtCeReNx12oak2ryY1q1bb" rel="sponsored nofollow noopener" target="_blank" data-product="haier-es30v-d1" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1q1bb</span></details></div>
+                </article>
+
+
+                <article class="calc-shop-card" id="c-shop-thermex-fora-30">
+                    <h4 class="calc-shop-title">Thermex Fora 30 плоский, 2 кВт</h4>
+                    <p class="calc-shop-name">Плоский, 2 кВт</p>
+                    <p class="product-price"><span class="price">~14 030 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(34 отзыва)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Гарантия на внутренний бак 7 лет, на изделие 12 месяцев</li>
+                        <li class="pro">Компактный плоский корпус</li>
+                        <li class="pro">Материал бака и тип ТЭНа в карточке не указаны</li>
+                        <li class="con">Дюбели в комплекте крупные для плитки, нет чертежа для монтажа; по отзыву 30 л хватает на один душ</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJH6Us?erid=5jtCeReNx12oak2ryY1q1pn" rel="sponsored nofollow noopener" target="_blank" data-product="thermex-fora-30" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1q1pn</span></details></div>
+                </article>
+
+
+                <article class="calc-shop-card" id="c-shop-electrolux-gladius-30">
+                    <h4 class="calc-shop-title">Electrolux EWH 30 Gladius Inverter Grafit</h4>
+                    <p class="calc-shop-name">Плоский, сухой ТЭН, магниевый анод увеличенного размера, 2 кВт</p>
+                    <p class="product-price"><span class="price">~19 455 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(91 отзыв по линейке)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Сухой ТЭН не контактирует с водой — меньше накипи на самом нагревателе</li>
+                        <li class="pro">Гарантия на бак 7 лет, на устройство 2 года</li>
+                        <li class="pro">Бак из эмалированной стали</li>
+                        <li class="con">Дороже других 30 л в подборке; в отзывах — помятая упаковка и треснувший регулятор</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJH8Lp?erid=5jtCeReNx12oak2ryY1q243" rel="sponsored nofollow noopener" target="_blank" data-product="electrolux-gladius-30" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1q243</span></details></div>
+                </article>
+            </div>
+        </div>
+
+        <div class="calc-shop-group" data-vol="50">
+            <h3>Бак на 50 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+
+
+                <article class="calc-shop-card" id="c-shop-thermex-fora-50">
+                    <h4 class="calc-shop-title">Thermex Fora 50 плоский, нержавеющий бак</h4>
+                    <p class="calc-shop-name">Плоский, нержавеющий бак, 2 кВт</p>
+                    <p class="product-price"><span class="price">~12 909 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.7</strong> <span class="muted">(63 отзыва)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Нержавеющая сталь</li>
+                        <li class="pro">Плоский корпус, ставится вертикально или горизонтально</li>
+                        <li class="pro">Гарантия на изделие 1 год</li>
+                        <li class="con">Гарантия на бак в карточке не указана; в комплекте только предохранительный клапан и крепление</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJH9iM?erid=5jtCeReNx12oak2ryY1q2Ct" rel="sponsored nofollow noopener" target="_blank" data-product="thermex-fora-50" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1q2Ct</span></details></div>
+                </article>
+
+
+                <article class="calc-shop-card" id="c-shop-electrolux-formax-50">
+                    <h4 class="calc-shop-title">Electrolux EWH 50 Formax, сухой ТЭН</h4>
+                    <p class="calc-shop-name">Прямоугольный, сухой ТЭН (X-HEAT), магниевый анод, 2 кВт</p>
+                    <p class="product-price"><span class="price">~19 990 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.9</strong> <span class="muted">(17 отзывов)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Гарантия на бак 7 лет, на устройство 2 года</li>
+                        <li class="pro">Два нагревательных элемента</li>
+                        <li class="pro">Бак из эмалированной стали</li>
+                        <li class="con">Тяжёлый (около 30 кг по отзыву), нужна надёжная фиксация; текстовых отзывов всего 17, долгой эксплуатации в них нет</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJHB6Z?erid=5jtCeReNx12oak2ryY1qM19" rel="sponsored nofollow noopener" target="_blank" data-product="electrolux-formax-50" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1qM19</span></details></div>
+                </article>
+            </div>
+        </div>
+
+        <div class="calc-shop-group" data-vol="80">
+            <h3>Бак на 80 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+
+
+                <article class="calc-shop-card" id="c-shop-haier-es80v-fd4">
+                    <h4 class="calc-shop-title">Haier ES80V-FD4 INOX 80 л</h4>
+                    <p class="calc-shop-name">Плоский, нержавеющий бак, магниевый анод, 2 кВт</p>
+                    <p class="product-price"><span class="price">~19 996 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(273 отзыва по линейке)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Гарантия на бак 7 лет, на устройство 2 года</li>
+                        <li class="pro">Нержавеющий бак, ТЭН не сухой (по карточке)</li>
+                        <li class="pro">Режимы 1,3 и 2 кВт</li>
+                        <li class="con">Тяжёлый, в комплекте 2 анкера, шнур 1 м; один покупатель написал, что подплавил розетку — для 2 кВт нужна надёжная розетка</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJHCJk?erid=5jtCeReNx12oak2ryY1qM9y" rel="sponsored nofollow noopener" target="_blank" data-product="haier-es80v-fd4" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1qM9y</span></details></div>
+                </article>
+
+
+                <article class="calc-shop-card" id="c-shop-electrolux-gladius-80">
+                    <h4 class="calc-shop-title">Electrolux EWH 80 Gladius Inverter Grafit</h4>
+                    <p class="calc-shop-name">Плоский, сухой ТЭН, магниевый анод увеличенного размера, 2 кВт</p>
+                    <p class="product-price"><span class="price">~25 769 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(91 отзыв по линейке)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Сухой ТЭН, бак из эмалированной стали</li>
+                        <li class="pro">Гарантия на устройство 2 года</li>
+                        <li class="pro">28,7 кг, габариты 555 × 355 × 925 мм</li>
+                        <li class="con">Дороже других 80 л в подборке; гарантия на бак 5 лет против 7 у Haier FD4</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJHDJx?erid=5jtCeReNx12oak2ryY1qMJk" rel="sponsored nofollow noopener" target="_blank" data-product="electrolux-gladius-80" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1qMJk</span></details></div>
+                </article>
+            </div>
+        </div>
+
+        <div class="calc-shop-group" data-vol="100">
+            <h3>Бак на 100 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+
+
+                <article class="calc-shop-card" id="c-shop-haier-es100v-c3">
+                    <h4 class="calc-shop-title">Haier ES100V-C3 100 л, 1,75 кВт</h4>
+                    <p class="calc-shop-name">Круглый, эмалированный бак, магниевый анод, 1,75 кВт</p>
+                    <p class="product-price"><span class="price">~12 547 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(325 отзывов по линейке)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Гарантия на бак 8 лет, на ТЭН 4 года (поля карточки)</li>
+                        <li class="pro">Размеры 390 × 380 × 1160 мм</li>
+                        <li class="pro">Мощность 1,75 кВт — нагрев чуть дольше, чем при 2 кВт</li>
+                        <li class="con">Круглый и высокий (116 см): не влезает в низкую нишу; 30 кг без воды, нужен надёжный крепёж</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJHEJv?erid=5jtCeReNx12oak2ryY1qMcK" rel="sponsored nofollow noopener" target="_blank" data-product="haier-es100v-c3" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1qMcK</span></details></div>
+                </article>
+
+
+                <article class="calc-shop-card" id="c-shop-haier-es100v-fd4">
+                    <h4 class="calc-shop-title">Haier ES100V-FD4 INOX 100 л</h4>
+                    <p class="calc-shop-name">Плоский, нержавеющий бак, 2 кВт</p>
+                    <p class="product-price"><span class="price">~23 996 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.8</strong> <span class="muted">(273 отзыва по линейке)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Нержавеющий бак, плоский корпус 500 × 290 × 1160 мм</li>
+                        <li class="pro">Мощность 2 кВт</li>
+                        <li class="pro">Гарантийные поля для 100 л в карточке не заполнены</li>
+                        <li class="con">Почти вдвое дороже эмалевого Haier C3; гарантию на бак уточняйте у продавца (у версии на 80 л она 7 лет)</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJHFSF?erid=5jtCeReNx12oak2ryY1qMgm" rel="sponsored nofollow noopener" target="_blank" data-product="haier-es100v-fd4" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1qMgm</span></details></div>
+                </article>
+
+
+                <article class="calc-shop-card" id="c-shop-edisson-er-100-v">
+                    <h4 class="calc-shop-title">Edisson ER 100 V 100 л, 1,5 кВт</h4>
+                    <p class="calc-shop-name">Круглый, эмаль (Glasslined), 1,5 кВт</p>
+                    <p class="product-price"><span class="price">~8 292 ₽</span> <span class="muted">на 14 октября 2026</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>4.9</strong> <span class="muted">(20 отзывов)</span></span></p>
+                    <ul class="calc-shop-pc">
+                        <li class="pro">Недорогой вариант на 100 л</li>
+                        <li class="pro">В карточке нет гарантии, анода, типа ТЭНа и времени нагрева — не указано в карточке</li>
+                        <li class="pro">Мощность 1,5 кВт — самый долгий нагрев из подобранных</li>
+                        <li class="con">На проводе не было УЗО, шнур тонкий — в отзывах его меняли; нет индикатора температуры</li>
+                    </ul>
+                    <div class="product-cta"><a class="btn btn-block" href="https://market.yandex.ru/cc/BJHGWw?erid=5jtCeReNx12oak2ryY1qgV6" rel="sponsored nofollow noopener" target="_blank" data-product="edisson-er-100-v" data-place="calc">Смотреть цену на Маркете →</a><details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary><span class="ad-mark-info">ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryY1qgV6</span></details></div>
+                </article>
+            </div>
+        </div>
+    </section>
+        <noscript>
+            <p>Для калькулятора нужен JavaScript. Без него — готовые значения.</p>
+<h2>Какой объём бака нужен по числу людей</h2>
+<p>Душ 8 минут на человека, 7,2 л/мин, смесь 40 °C, бак 60 °C, холодная вода 5 °C, ТЭН 2 кВт, перерыв между душами 0, догрев за время мытья учтён. «Нужно» — из бака, л.</p>
+<div class="table-wrap"><table><thead><tr><th>Человек подряд</th><th>Нужно из бака, л</th><th>Бак без ванны, л</th><th>Нужно с ванной 150 л, л</th><th>Бак с ванной, л</th></tr></thead><tbody>
+<tr><td>1</td><td>32</td><td>50</td><td>123</td><td>150</td></tr>
+<tr><td>2</td><td>65</td><td>80</td><td>155</td><td>200</td></tr>
+<tr><td>3</td><td>97</td><td>100</td><td>188</td><td>200</td></tr>
+<tr><td>4</td><td>130</td><td>150</td><td>220</td><td>больше 200</td></tr>
+<tr><td>5</td><td>162</td><td>200</td><td>253</td><td>больше 200</td></tr>
+<tr><td>6</td><td>195</td><td>200</td><td>285</td><td>больше 200</td></tr>
+</tbody></table></div>
+<h2>Сколько греется бак от 5 до 60 °C</h2>
+<p>Без учёта теплопотерь, по формуле 1,163 × V × ΔT / P; по паспорту обычно чуть дольше.</p>
+<div class="table-wrap"><table><thead><tr><th>Объём, л</th><th>1,5 кВт</th><th>2 кВт</th><th>2,5 кВт</th></tr></thead><tbody>
+<tr><td>30</td><td>1 ч 17 мин</td><td>58 мин</td><td>46 мин</td></tr>
+<tr><td>50</td><td>2 ч 8 мин</td><td>1 ч 36 мин</td><td>1 ч 17 мин</td></tr>
+<tr><td>80</td><td>3 ч 25 мин</td><td>2 ч 34 мин</td><td>2 ч 3 мин</td></tr>
+<tr><td>100</td><td>4 ч 16 мин</td><td>3 ч 12 мин</td><td>2 ч 34 мин</td></tr>
+</tbody></table></div>
+        </noscript>
+    </div>
+    <div class="prose">
+<h2 id="kak-polzovatsya">Как пользоваться</h2>
+<ol>
+<li>Укажите, сколько человек моются подряд в «час пик», например вечером. Не всех жильцов, а тех, кто идёт в душ один за другим, пока бак не успел нагреться заново.</li>
+<li>Поставьте минуты на один душ и расход душа. По умолчанию 7,2 л/мин: так в <a href="https://base.garant.ru/400383625/b89690251be5277812a78962f6302560/">СП 30.13330.2020</a> принят расход душа со смесителем. Свой расход можно замерить ведром и секундомером.</li>
+<li>Если между душами есть пауза, укажите её в минутах: пока один выходит, а другой заходит, ТЭН продолжает греть. Если в тот же вечер набираете ванну, отметьте галочку и укажите объём набора. Берите его из характеристик ванны, воды до перелива меньше полного объёма. Мытьё посуды под горячим краном тоже можно добавить минутами.
+   Галочка «Учитывать догрев во время мытья» стоит по умолчанию: без неё калькулятор считает бак, который не греется вовсе.</li>
+<li>Проверьте температуры: смешанной воды (40 °C), нагрева бака (60 °C) и холодной воды (5 °C). Зимой из водопровода часто идёт 5–10 °C.</li>
+<li>Выберите мощность ТЭНа, чтобы увидеть время нагрева и ток. Результат пересчитывается при каждом изменении, а адрес страницы запоминает ввод: ссылкой можно поделиться.</li>
+</ol>
+<h2 id="kak-my-schitaem">Как мы считаем</h2>
+<p>В кране вы смешиваете горячую воду с холодной, поэтому бак нужен меньше, чем общий расход воды. А пока вы моетесь, ТЭН продолжает греть, и это тоже уменьшает нужный бак. Расчёт идёт в четыре шага.</p>
+<p><strong>1. Сколько тёплой воды вам нужно.</strong></p>
+<p><code>V смеси = люди × минуты × расход душа + объём ванны + минуты посуды × 7,2</code></p>
+<p><strong>2. Сколько в ней горячей воды из бака.</strong></p>
+<p><code>V гор = V смеси × (T смеси − T холодной) ÷ (T бака − T холодной)</code></p>
+<p>Так работает смешение: чем горячее вода в баке, тем меньшую её долю нужно подмешивать к холодной. При 40 °C на выходе, 60 °C в баке и 5 °C холодной воды доля горячей воды в смеси равна 35 ÷ 55, то есть около 64 %. Три человека по 8 минут при 7,2 л/мин расходуют 172,8 л смеси, горячей воды в ней 172,8 × 35 ÷ 55 ≈ 110 л.</p>
+<p><strong>3. Сколько успевает догреть ТЭН.</strong> Длительность пика:</p>
+<p><code>T = люди × минуты + (люди − 1) × перерыв + минуты посуды + объём ванны ÷ 15</code></p>
+<p>Ванну считаем по расходу 15 л/мин (смеситель ванны 0,25 л/с по СП 30.13330.2020, табл. А.1). За это время ТЭН нагревает</p>
+<p><code>V дог = P × T ÷ 60 ÷ (1,163 × (T бака − T холодной))</code></p>
+<p>литров воды температуры бака. В примере пик 24 минуты, и ТЭН 2 кВт догревает 2000 × 24 ÷ 60 ÷ (1,163 × 55) ≈ 12,5 л. Из бака нужно 110 − 12,5 ≈ 97 л. Без галочки догрева калькулятор считает по первому шагу, то есть 110 л.</p>
+<p><strong>4. Ближайший стандартный объём вверх.</strong> Бытовые накопители выпускают на 30, 50, 80, 100, 120, 150 и 200 л. Для 97 л это бак на 100 л. Округляем вверх, потому что потери на перемешивание в баке мы не учитываем: холодная вода при входе немного смешивается с горячей, и полезный объём получается чуть меньше номинального. Если расчёт даёт больше 200 л, это больше, чем держит бытовой бак: разнесите ванну и души по времени, поставьте два бака или рассмотрите газовую колонку. Если из бака нужно меньше 15 л, хватит малого бака или проточного нагревателя под мойку, но в ряду накопителей минимум 30 л.</p>
+<p><strong>Откуда цифры.</strong></p>
+<ul>
+<li><strong>Расход душа и мойки 0,12 л/с (7,2 л/мин), ванны 0,25 л/с (15 л/мин).</strong> <a href="https://base.garant.ru/400383625/b89690251be5277812a78962f6302560/">СП 30.13330.2020</a>, приложение А, таблица А.1: расход воды прибором со смесителем, душевая кабина, мойка и ванна.</li>
+<li><strong>70 л горячей воды на жителя в сутки.</strong> Там же, таблица А.2, для квартиры с ванной от 1500 мм и душем. Это суточная норма, а не объём бака: бак догревается между пиками, и вмещать сутки ему не нужно. Калькулятор показывает её справочно: на семью из N человек ≈ 70 × N л в сутки.</li>
+<li><strong>Холодная вода 5 °C.</strong> Расчётное значение СНиП при отсутствии данных; зимой из водопровода обычно 5–10 °C.</li>
+<li><strong>Время нагрева.</strong> Чтобы нагреть 1 л воды на 1 градус, нужно 1,163 Вт·ч. Отсюда <code>t = 1,163 × V × (T бака − T холодной) ÷ P</code>, где P — мощность ТЭНа в ваттах. Это время без теплопотерь: по паспорту обычно чуть дольше.</li>
+<li><strong>Ток.</strong> <code>I = P ÷ 230 В</code>, при 2 кВт около 8,7 А. Нужна исправная розетка с заземлением на 16 А; при 2,5–3 кВт лучше отдельная линия.</li>
+</ul>
+<p>Это оценка. Реальный расход зависит от привычек, вода в баке немного остывает, пока ждёт очереди, а ТЭН не греет мгновенно. Потери на перемешивание в баке мы не считаем, отсюда округление вверх.</p>
+<h2 id="pochemu-ne-po-30-l-na-cheloveka">Почему не «по 30 л на человека»</h2>
+<p>Правило «по 30 л на человека» не учитывает ни температуру в баке, ни время душа, ни ванну. Один и тот же человек в душе 5 минут и в душе 12 минут расходует вдвое разное количество воды. Вот расчёт для душа 8 минут, 7,2 л/мин, смеси 40 °C, бака 60 °C, холодной воды 5 °C, ТЭНа 2 кВт, без перерывов между душами и с учётом догрева:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Человек подряд</th>
+<th>Нужно из бака, л</th>
+<th>Бак без ванны, л</th>
+<th>Нужно с ванной 150 л, л</th>
+<th>Бак с ванной, л</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>32</td>
+<td>50</td>
+<td>123</td>
+<td>150</td>
+</tr>
+<tr>
+<td>2</td>
+<td>65</td>
+<td>80</td>
+<td>155</td>
+<td>200</td>
+</tr>
+<tr>
+<td>3</td>
+<td>97</td>
+<td>100</td>
+<td>188</td>
+<td>200</td>
+</tr>
+<tr>
+<td>4</td>
+<td>130</td>
+<td>150</td>
+<td>220</td>
+<td>больше 200</td>
+</tr>
+<tr>
+<td>5</td>
+<td>162</td>
+<td>200</td>
+<td>253</td>
+<td>больше 200</td>
+</tr>
+<tr>
+<td>6</td>
+<td>195</td>
+<td>200</td>
+<td>285</td>
+<td>больше 200</td>
+</tr>
+</tbody>
+</table></div>
+<p>Видно, что при трёх человек подряд нужно около 97 л, то есть по 32 л на человека, а при ванне в тот же вечер три человека упираются в 200 л. Без догрева те же три человека дали бы 110 л, то есть бак на 120 л. Если ванну набирают реже, а душ принимают в разное время, бак успевает греться между пользователями, и реальный объём может быть меньше. Для этого и считают «час пик», а не всю семью.</p>
+<p>Если вы выбираете смеситель или душевую систему к нагревателю, посмотрите <a href="/dushevaya-sistema-s-termostatom/">душевую систему с термостатом</a>, <a href="/smesitel-dlya-vanny-s-dushem/">смеситель для ванны с душем</a> и <a href="/termostaticheskij-smesitel/">термостатический смеситель</a>: термостат поддерживает 38–40 °C на выходе, и горячая вода из бака не уходит зря.</p>
+<h2 id="skolko-greetsya-bak">Сколько греется бак</h2>
+<p>Время нагрева от 5 до 60 °C, без теплопотерь:</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Объём, л</th>
+<th>1,5 кВт</th>
+<th>2 кВт</th>
+<th>2,5 кВт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>30</td>
+<td>1 ч 17 мин</td>
+<td>58 мин</td>
+<td>46 мин</td>
+</tr>
+<tr>
+<td>50</td>
+<td>2 ч 8 мин</td>
+<td>1 ч 36 мин</td>
+<td>1 ч 17 мин</td>
+</tr>
+<tr>
+<td>80</td>
+<td>3 ч 25 мин</td>
+<td>2 ч 34 мин</td>
+<td>2 ч 3 мин</td>
+</tr>
+<tr>
+<td>100</td>
+<td>4 ч 16 мин</td>
+<td>3 ч 12 мин</td>
+<td>2 ч 34 мин</td>
+</tr>
+</tbody>
+</table></div>
+<p>Мощность растёт, время падает почти пропорционально: бак на 80 л при 2 кВт греется около 2 ч 34 мин, при 1,5 кВт — около 3 ч 25 мин. Если бак поставили на ночь, это не страшно. Если он должен догреваться днём между двумя душами, большой объём при слабом ТЭНе получится медленным. Тогда проще взять бак чуть меньше или мощнее, но только с учётом проводки.</p>
+<h2 id="ploskiy-ili-kruglyy-emal-ili-nerzhaveyka-sukhoy-ili-mokryy-ten">Плоский или круглый, эмаль или нержавейка, сухой или мокрый ТЭН</h2>
+<ul>
+<li><strong>Плоский или круглый.</strong> Круглый бак чаще дешевле, но выше и глубже при том же объёме: Haier ES100V-C3 на 100 л имеет высоту 116 см и диаметр около 39 см. Плоский занимает меньше места по глубине и легче вписывается в нишу, но в подборке ниже плоские обычно дороже круглых.</li>
+<li><strong>Эмаль или нержавейка.</strong> Нержавеющий бак не покрыт эмалью, которая со временем может повредиться, а эмалированный обычно дешевле. Гарантия на бак зависит от модели, а не от материала: у эмалированного Haier ES100V-C3 она 8 лет, у нержавеющего Haier ES80V-FD4 — 7. В карточках этих баков указан магниевый анод, его нужно менять; в отзывах упоминают срок 1–2 года.</li>
+<li><strong>Сухой или мокрый ТЭН.</strong> Мокрый ТЭН стоит прямо в воде, и накипь оседает на нём. Сухой ТЭН заключён в колбу и с водой не соприкасается, поэтому меньше обрастает накипью, но такие баки дороже: у Electrolux Gladius и Formax он сухой. Если вода жёсткая, этот выбор окупается.</li>
+</ul>
+<h2 id="chastye-voprosy">Частые вопросы</h2>
+<p><strong>Водонагреватель на 80 литров на сколько человек?</strong>
+По расчёту, на двоих: два человека по 8 минут душа подряд расходуют 115 л смеси, из бака для этого нужно около 65 л (горячей воды 73 л минус догрев 8 л), ближайший стандартный объём — 80 л. Трём подряд 80 л не хватит: им нужен бак на 100 л. Если люди принимают душ в разное время и бак догревается, 80 л хватает и на семью побольше.</p>
+<p><strong>Водонагреватель на 50 литров на сколько человек?</strong>
+На одного человека с душем 8 минут: по расчёту нужно около 32 л, а в ряду 30 л мало. Двоим 50 л хватит, только если душ короткий, до 5 минут (около 41 л).</p>
+<p><strong>Водонагреватель на 3 человек: сколько литров?</strong>
+При душе 8 минут на каждого, 7,2 л/мин, баке 60 °C и ТЭНе 2 кВт нужно около 97 л, значит, берут 100 л. Если не учитывать догрев во время мытья, получается 110 л и бак на 120 л. Если один из троих моется отдельно, считайте двоих подряд и берите 80 л.</p>
+<p><strong>Хватит ли 30 литров на двоих?</strong>
+На двоих подряд не хватит: по расчёту нужно около 65 л. Бак на 30 л подходит для одного человека с коротким душем (до 5 минут, около 20 л), для мытья посуды или как резерв на время отключения горячей воды.</p>
+<p><strong>Учитывает ли калькулятор, что ТЭН греет во время мытья?</strong>
+Да, по умолчанию. За 24 минуты пика ТЭН 2 кВт догревает около 12,5 л воды температуры бака, и эти литры вычитаются из нужного объёма. За час такой ТЭН нагревает около 31 л с 5 до 60 °C. Если снять галочку, расчёт будет как для бака, который не греет вообще, и объём получится больше. Потери на перемешивание в баке не учитываются, поэтому объём округляется вверх до стандартного.</p>
+<p><strong>Сколько греется водонагреватель на 80 литров?</strong>
+Около 2 ч 34 мин при 2 кВт и около 3 ч 25 мин при 1,5 кВт, если нагреть воду с 5 до 60 °C. Остывшая за день вода догревается быстрее.</p>
+<p><strong>Какая мощность ТЭНа лучше?</strong>
+Для бытовых баков чаще всего берут 2 кВт: это около 8,7 А, у розетки с заземлением на 16 А запас есть. Более мощный ТЭН, 2,5–3 кВт, греет быстрее и больше догревает за время мытья, но ток растёт до 11–13 А, и лучше сделать отдельную линию.</p>
+<p><strong>Почему калькулятор считает меньше, чем расход воды?</strong>
+Потому что в кране горячую воду разбавляют холодной, а часть горячей успевает догреть ТЭН. Бак даёт только остаток.</p>
+<p><strong>Насколько точен результат?</strong>
+Это оценка по формуле смешения и нормам СП. Условия расчёта видны в разделе «Как считали», расход душа можно заменить своим.</p>
+    </div>
+</article>
+<script src="/js/calc-vodonagrevatel.js?v=8f2a35a1" defer></script>
+
+    </main>
+    <footer class="site-footer">
+        <div class="wrap">
+            <nav>
+                <a href="/o-proekte/">О проекте</a>
+                <a href="/privacy/">Политика конфиденциальности</a>
+            </nav>
+            <p>&copy; 2026 Сантехразбор</p>
+        </div>
+    </footer>
+</body>
+</html>

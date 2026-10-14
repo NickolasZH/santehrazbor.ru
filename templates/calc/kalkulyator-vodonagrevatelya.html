@@ -1,0 +1,175 @@
+{# Форма калькулятора водонагревателя. Логика — static/js/calc-vodonagrevatel.js; идентификаторы c-* / e-* используются там. #}
+<div id="calc-wrap" class="calc" hidden>
+    <form id="calc-form" class="calc-form" autocomplete="off" novalidate>
+        <fieldset class="calc-group">
+            <legend>Душ в час пик</legend>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-people">Сколько человек моются подряд</label>
+                    <input id="c-people" type="text" inputmode="numeric" value="3" aria-describedby="e-people">
+                    <span class="calc-hint">В «час пик», например вечером. От 1 до 10</span>
+                    <span class="calc-err" id="e-people" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-minutes">Минут на один душ</label>
+                    <input id="c-minutes" type="text" inputmode="decimal" value="8" aria-describedby="e-minutes">
+                    <span class="calc-hint">От 1 до 60 минут</span>
+                    <span class="calc-err" id="e-minutes" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-flow">Расход душа, л/мин</label>
+                    <input id="c-flow" type="text" inputmode="decimal" value="7,2" aria-describedby="e-flow">
+                    <span class="calc-hint">По СП 30.13330.2020 для душевой кабины со смесителем 0,12 л/с. Свой можно замерить ведром и секундомером</span>
+                    <span class="calc-err" id="e-flow" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-pause">Перерыв между душами, мин</label>
+                    <input id="c-pause" type="text" inputmode="numeric" value="0" aria-describedby="e-pause">
+                    <span class="calc-hint">Пока один выходит, а другой заходит. От 0 до 60. ТЭН в это время греет</span>
+                    <span class="calc-err" id="e-pause" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Ванна и посуда в тот же вечер</legend>
+            <div class="calc-radios">
+                <label for="c-bath"><input id="c-bath" type="checkbox"> Набираете ванну в тот же вечер</label>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field" id="c-bathL-row" hidden>
+                    <label for="c-bathL">Объём набора ванны, л</label>
+                    <input id="c-bathL" type="text" inputmode="decimal" value="150" aria-describedby="e-bathL">
+                    <span class="calc-hint">Смотрите объём в характеристиках ванны: воды до перелива меньше полного объёма</span>
+                    <span class="calc-err" id="e-bathL" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-dish">Минут мытья посуды под краном</label>
+                    <input id="c-dish" type="text" inputmode="decimal" value="0" aria-describedby="e-dish">
+                    <span class="calc-hint">Расход мойки 7,2 л/мин (СП: мойка со смесителем 0,12 л/с)</span>
+                    <span class="calc-err" id="e-dish" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Температуры и мощность</legend>
+            <div class="calc-radios">
+                <label for="c-reheat"><input id="c-reheat" type="checkbox" checked> Учитывать догрев во время мытья</label>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-tMix">Температура смешанной воды, °C</label>
+                    <input id="c-tMix" type="text" inputmode="decimal" value="40" aria-describedby="e-tMix">
+                    <span class="calc-hint">Комфортный душ — 38–42 °C. От 35 до 45</span>
+                    <span class="calc-err" id="e-tMix" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-tHot">Температура нагрева в баке, °C</label>
+                    <input id="c-tHot" type="text" inputmode="decimal" value="60" aria-describedby="e-tHot">
+                    <span class="calc-hint">60 °C и выше рекомендуют против бактерий; выше — больше теплопотерь. От 50 до 75</span>
+                    <span class="calc-err" id="e-tHot" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-tCold">Температура холодной воды, °C</label>
+                    <input id="c-tCold" type="text" inputmode="decimal" value="5" aria-describedby="e-tCold">
+                    <span class="calc-hint">Зимой из водопровода 5–10 °C; 5 °C — расчётное значение СНиП при отсутствии данных</span>
+                    <span class="calc-err" id="e-tCold" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-power">Мощность ТЭНа</label>
+                    <select id="c-power" aria-describedby="e-power">
+                        <option value="1.5">1,5 кВт</option>
+                        <option value="2" selected>2 кВт</option>
+                        <option value="2.5">2,5 кВт</option>
+                        <option value="3">3 кВт</option>
+                    </select>
+                    <span class="calc-hint">Влияет на догрев, время нагрева и ток</span>
+                    <span class="calc-err" id="e-power" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <section id="c-result-box" class="calc-result" aria-labelledby="c-result-title">
+        <h2 id="c-result-title">Какой объём нужен</h2>
+        <div id="c-result" aria-live="polite"></div>
+        <details class="calc-howbox">
+            <summary>Как считали</summary>
+            <div id="c-how"></div>
+        </details>
+        <p class="calc-copy">
+            <button type="button" id="c-copy" disabled>Скопировать результат</button>
+            <span id="c-copy-status" role="status"></span>
+        </p>
+        <p class="calc-hint">Адрес страницы запоминает введённые значения: ссылкой можно поделиться.</p>
+        <p class="calc-hint calc-shop-link"><a href="#c-shop">Подобрать водонагреватель ↓</a></p>
+    </section>
+
+    <div id="c-bar" class="calc-bar" hidden>
+        <span id="c-bar-text" class="calc-bar-text"></span>
+        <a id="c-bar-more" href="#c-result-box">Подробнее</a>
+    </div>
+</div>
+
+{# Блок товаров вне #calc-wrap: без JS виден целиком, JS оставляет группу рекомендуемого объёма #}
+{% from "_macros.html" import offer %}
+{% set prods = article.products %}
+{% macro card(key, reviews_suffix, name_line, pros, con) %}
+{% set p = prods[key] %}
+                <article class="calc-shop-card" id="c-shop-{{ key }}">
+                    <h4 class="calc-shop-title">{{ p.name }}</h4>
+                    <p class="calc-shop-name">{{ name_line }}</p>
+                    <p class="product-price"><span class="price">{{ p.price|rub }}</span> <span class="muted">на {{ article.updated_ru|nbsp }}</span></p>
+                    <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>{{ p.rating }}</strong> <span class="muted">({{ p.reviews|count_word(('отзыв', 'отзыва', 'отзывов')) }}{{ reviews_suffix }})</span></span></p>
+                    <ul class="calc-shop-pc">
+{%- for t in pros %}
+                        <li class="pro">{{ t }}</li>
+{%- endfor %}
+                        <li class="con">{{ con }}</li>
+                    </ul>
+                    <div class="product-cta">{{ offer(p, 'calc', 'Смотреть цену на Маркете →', 'btn btn-block') }}</div>
+                </article>
+{%- endmacro %}
+    <section id="c-shop" class="calc-shop" aria-labelledby="c-shop-title">
+        <h2 id="c-shop-title">Водонагреватели под ваш расчёт</h2>
+        <p class="calc-hint">Модели подобраны по характеристикам в карточках и отзывам покупателей. Здесь показана группа рекомендуемого объёма; без JavaScript видны все группы.</p>
+
+        <div class="calc-shop-group" data-vol="30">
+            <h3>Бак на 30 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+{{ card('haier-es30v-d1', ' по линейке', 'Круглый, эмалированный бак, магниевый анод, 2 кВт', ['Гарантия на бак 8 лет, на ТЭН 4 года (поля карточки)', 'Электронное управление с LED-дисплеем, УЗО и обратный клапан в описании', 'Тип ТЭНа в карточке не указан'], 'Хватает на один душ или посуду; для семьи отзывы описывают «надо ждать пару часов, пока нагреется»') }}
+{{ card('thermex-fora-30', '', 'Плоский, 2 кВт', ['Гарантия на внутренний бак 7 лет, на изделие 12 месяцев', 'Компактный плоский корпус', 'Материал бака и тип ТЭНа в карточке не указаны'], 'Дюбели в комплекте крупные для плитки, нет чертежа для монтажа; по отзыву 30 л хватает на один душ') }}
+{{ card('electrolux-gladius-30', ' по линейке', 'Плоский, сухой ТЭН, магниевый анод увеличенного размера, 2 кВт', ['Сухой ТЭН не контактирует с водой — меньше накипи на самом нагревателе', 'Гарантия на бак 7 лет, на устройство 2 года', 'Бак из эмалированной стали'], 'Дороже других 30 л в подборке; в отзывах — помятая упаковка и треснувший регулятор') }}
+            </div>
+        </div>
+
+        <div class="calc-shop-group" data-vol="50">
+            <h3>Бак на 50 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+{{ card('thermex-fora-50', '', 'Плоский, нержавеющий бак, 2 кВт', ['Нержавеющая сталь', 'Плоский корпус, ставится вертикально или горизонтально', 'Гарантия на изделие 1 год'], 'Гарантия на бак в карточке не указана; в комплекте только предохранительный клапан и крепление') }}
+{{ card('electrolux-formax-50', '', 'Прямоугольный, сухой ТЭН (X-HEAT), магниевый анод, 2 кВт', ['Гарантия на бак 7 лет, на устройство 2 года', 'Два нагревательных элемента', 'Бак из эмалированной стали'], 'Тяжёлый (около 30 кг по отзыву), нужна надёжная фиксация; текстовых отзывов всего 17, долгой эксплуатации в них нет') }}
+            </div>
+        </div>
+
+        <div class="calc-shop-group" data-vol="80">
+            <h3>Бак на 80 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+{{ card('haier-es80v-fd4', ' по линейке', 'Плоский, нержавеющий бак, магниевый анод, 2 кВт', ['Гарантия на бак 7 лет, на устройство 2 года', 'Нержавеющий бак, ТЭН не сухой (по карточке)', 'Режимы 1,3 и 2 кВт'], 'Тяжёлый, в комплекте 2 анкера, шнур 1 м; один покупатель написал, что подплавил розетку — для 2 кВт нужна надёжная розетка') }}
+{{ card('electrolux-gladius-80', ' по линейке', 'Плоский, сухой ТЭН, магниевый анод увеличенного размера, 2 кВт', ['Сухой ТЭН, бак из эмалированной стали', 'Гарантия на устройство 2 года', '28,7 кг, габариты 555 × 355 × 925 мм'], 'Дороже других 80 л в подборке; гарантия на бак 5 лет против 7 у Haier FD4') }}
+            </div>
+        </div>
+
+        <div class="calc-shop-group" data-vol="100">
+            <h3>Бак на 100 л</h3>
+            <p class="calc-shop-calc calc-shop-note" hidden></p>
+            <div class="calc-shop-grid">
+{{ card('haier-es100v-c3', ' по линейке', 'Круглый, эмалированный бак, магниевый анод, 1,75 кВт', ['Гарантия на бак 8 лет, на ТЭН 4 года (поля карточки)', 'Размеры 390 × 380 × 1160 мм', 'Мощность 1,75 кВт — нагрев чуть дольше, чем при 2 кВт'], 'Круглый и высокий (116 см): не влезает в низкую нишу; 30 кг без воды, нужен надёжный крепёж') }}
+{{ card('haier-es100v-fd4', ' по линейке', 'Плоский, нержавеющий бак, 2 кВт', ['Нержавеющий бак, плоский корпус 500 × 290 × 1160 мм', 'Мощность 2 кВт', 'Гарантийные поля для 100 л в карточке не заполнены'], 'Почти вдвое дороже эмалевого Haier C3; гарантию на бак уточняйте у продавца (у версии на 80 л она 7 лет)') }}
+{{ card('edisson-er-100-v', '', 'Круглый, эмаль (Glasslined), 1,5 кВт', ['Недорогой вариант на 100 л', 'В карточке нет гарантии, анода, типа ТЭНа и времени нагрева — не указано в карточке', 'Мощность 1,5 кВт — самый долгий нагрев из подобранных'], 'На проводе не было УЗО, шнур тонкий — в отзывах его меняли; нет индикатора температуры') }}
+            </div>
+        </div>
+    </section>

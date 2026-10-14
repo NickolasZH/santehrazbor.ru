@@ -21,6 +21,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 sys.path.insert(0, str(Path(__file__).parent / "tools"))
 import calc_plitka_ref as plitka  # Python-эталон формул калькулятора плитки
 import calc_zatirka_ref as zatirka  # Python-эталон формул калькулятора затирки
+import calc_vodonagrevatel_ref as vodonagrevatel  # Python-эталон формул калькулятора водонагревателя
 
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
@@ -413,8 +414,30 @@ def zatirka_noscript_html():
     return "\n".join(out)
 
 
+def vodonagrevatel_noscript_html():
+    """Таблицы готовых значений для страницы калькулятора водонагревателя без JS (формулы — из calc_vodonagrevatel_ref)."""
+    vn = vodonagrevatel
+    out = ["<h2>Какой объём бака нужен по числу людей</h2>",
+           "<p>Душ 8 минут на человека, 7,2 л/мин, смесь 40 °C, бак 60 °C, холодная вода 5 °C, ТЭН 2 кВт, перерыв между душами 0, догрев за время мытья учтён. «Нужно» — из бака, л.</p>",
+           '<div class="table-wrap"><table><thead><tr><th>Человек подряд</th><th>Нужно из бака, л</th><th>Бак без ванны, л</th>'
+           "<th>Нужно с ванной 150 л, л</th><th>Бак с ванной, л</th></tr></thead><tbody>"]
+    for n, need_a, rec_a, need_b, rec_b in vn.people_table():
+        out.append(f"<tr><td>{n}</td><td>{vn.fmt(need_a)}</td><td>{rec_a if rec_a else 'больше 200'}</td>"
+                   f"<td>{vn.fmt(need_b)}</td><td>{rec_b if rec_b else 'больше 200'}</td></tr>")
+    out.append("</tbody></table></div>")
+    out += ["<h2>Сколько греется бак от 5 до 60 °C</h2>",
+            "<p>Без учёта теплопотерь, по формуле 1,163 × V × ΔT / P; по паспорту обычно чуть дольше.</p>",
+            '<div class="table-wrap"><table><thead><tr><th>Объём, л</th>'
+            + "".join(f"<th>{vn.fmt(p, 1)} кВт</th>" for p in vn.TABLE_HEAT_POWERS) + "</tr></thead><tbody>"]
+    for v, mins in vn.heat_table():
+        out.append(f"<tr><td>{v}</td>" + "".join(f"<td>{vn.fmt_hm(m)}</td>" for m in mins) + "</tr>")
+    out.append("</tbody></table></div>")
+    return "\n".join(out)
+
+
 # калькулятор (slug) -> функция, строящая таблицы для <noscript>
-NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html, "kalkulyator-zatirki": zatirka_noscript_html}
+NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html, "kalkulyator-zatirki": zatirka_noscript_html,
+                     "kalkulyator-vodonagrevatelya": vodonagrevatel_noscript_html}
 
 
 def main():

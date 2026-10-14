@@ -411,6 +411,10 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 .calc-shop-card > .product-cta:last-child, .calc-shop-card > .calc-shop-pack:last-child { margin-top: auto; }
 .calc-shop-card > .calc-shop-calc + .product-cta { margin-top: auto; }
 .calc-shop-link { margin: 6px 0 0; }
+.calc-shop-title { margin: 0 0 6px; font-size: 1.02rem; line-height: 1.35; }
+.calc-shop-group { margin-top: 16px; }
+.calc-shop-group h3 { margin: 0 0 6px; font-size: 1.1rem; }
+.calc-shop-group[hidden] { display: none; }
 .calc-lead { margin: 0.4em 0 0; font-size: 1.05rem; }
 .calc-box { margin-top: 1rem; margin-bottom: 1.5rem; }
 .calc-group { border: 1px solid var(--border); border-radius: 10px; background: var(--card); margin: 0 0 14px; padding: 12px 14px 14px; min-width: 0; }

@@ -33,6 +33,8 @@ DATE_RE = re.compile(
     rf"(?:на|состоянию на){SP}(?P<d>\d{{1,2}})"
     rf"(?:\.(?P<m>\d{{2}})(?:\.(?P<y>\d{{4}}))?|{SP}(?P<mn>{'|'.join(MONTHS)})(?:{SP}(?P<y2>\d{{4}}))?)",
     re.I)
+FROM_RE = re.compile(
+    rf"от{SP}(?P<a>{NUM}){SP}?(?:₽|руб\w*)?(?:{SP}до{SP}(?P<b>{NUM}))?{SP}?(?:₽|руб\w*)", re.I)
 FM_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
 
 
@@ -74,7 +76,7 @@ def load_articles():
                 prods.append({"label": label, "name": str(p["name"]), "price": int(p["price"]),
                               "status": p.get("status")})
         arts.append({"path": path, "lines": text.split("\n"), "fm_lines": m.group(0).count("\n"),
-                     "prods": prods})
+                     "prods": prods, "meta": meta})
     return arts
 
 
@@ -264,6 +266,29 @@ def analyze_dzen(arts):
     return rows
 
 
+def analyze_fm_ranges(arts):
+    """«от N ₽» / «от N до M ₽» в title/description/seo_*: N сверяем с минимальной ценой, M — с максимальной."""
+    rows = []
+    for art in arts:
+        prods = art["prods"]
+        if not prods:
+            continue
+        lo, hi = min(p["price"] for p in prods), max(p["price"] for p in prods)
+        for key in FM_KEYS:
+            val = str((art["meta"] or {}).get(key) or "")
+            for m in FROM_RE.finditer(val):
+                a = to_int(m.group("a"))
+                b = to_int(m.group("b")) if m.group("b") else None
+                d = pct(a, lo)
+                if b is not None:
+                    d = max(d, pct(b, hi))
+                if d > TOLERANCE * 100:
+                    rows.append((f"{art['path'].name}:{key}", quote(val, m.start(), m.end()),
+                                 f"{a}–{b}" if b is not None else str(a),
+                                 f"{lo}–{hi}" if b is not None else str(lo), d))
+    return rows
+
+
 def table(header, rows):
     out = ["| " + " | ".join(header) + " |", "|" + "|".join("---" for _ in header) + "|"]
     for r in rows:
@@ -277,7 +302,8 @@ def build_report(today=None):
     arts = load_articles()
     price_rows, range_rows, thr_rows, date_rows = analyze(arts, today)
     dz = analyze_dzen(arts)
-    n = len(price_rows) + len(range_rows) + len(thr_rows) + len(date_rows) + len(dz)
+    fm_rows = analyze_fm_ranges(arts)
+    n = len(price_rows) + len(range_rows) + len(thr_rows) + len(date_rows) + len(dz) + len(fm_rows)
     pc = lambda d: f"{d:.0f} %"
     md = ["## Проверка текста: цены в статьях и Дзене", "",
           f"Допуск {int(TOLERANCE * 100)} %, устаревшая дата — старше {STALE_DAYS} дн. "
@@ -297,7 +323,11 @@ def build_report(today=None):
     if date_rows:
         md += ["### Устаревшие даты цен", ""]
         md += table(["Статья:строка", "Цитата", "Дата", "Дней назад"], date_rows) + [""]
-    if not (price_rows or range_rows or thr_rows or date_rows):
+    if fm_rows:
+        md += ["### Цена «от N ₽» в title/description не совпадает с товарами статьи", ""]
+        md += table(["Статья:поле", "Цитата", "В тексте", "Товары статьи", "Расхождение"],
+                    [(w, q, a, b, pc(d)) for w, q, a, b, d in fm_rows]) + [""]
+    if not (price_rows or range_rows or thr_rows or date_rows or fm_rows):
         md += ["В статьях расхождений нет.", ""]
     md += ["### Что поправить в Дзене", ""]
     if dz:

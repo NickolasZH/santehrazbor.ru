@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://santehrazbor.ru/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-10-14</lastmod>
+    </url>
+    <url>
+        <loc>https://santehrazbor.ru/vstraivaemaya-dushevaya-sistema/</loc>
+        <lastmod>2026-10-14</lastmod>
     </url>
     <url>
         <loc>https://santehrazbor.ru/smesitel-s-pityevoj-vodoj/</loc>
@@ -22,10 +26,6 @@
     </url>
     <url>
         <loc>https://santehrazbor.ru/kak-vybrat-smesitel-dlya-kuhni/</loc>
-        <lastmod>2026-10-13</lastmod>
-    </url>
-    <url>
-        <loc>https://santehrazbor.ru/vstraivaemaya-dushevaya-sistema/</loc>
         <lastmod>2026-10-13</lastmod>
     </url>
     <url>
@@ -61,6 +61,10 @@
         <lastmod>2026-10-14</lastmod>
     </url>
     <url>
+        <loc>https://santehrazbor.ru/kalkulyator-zatirki/</loc>
+        <lastmod>2026-10-14</lastmod>
+    </url>
+    <url>
         <loc>https://santehrazbor.ru/kalkulyatory/</loc>
         <lastmod>2026-10-14</lastmod>
     </url>
@@ -74,7 +78,7 @@
     </url>
     <url>
         <loc>https://santehrazbor.ru/dushevye-sistemy/</loc>
-        <lastmod>2026-10-13</lastmod>
+        <lastmod>2026-10-14</lastmod>
     </url>
     <url>
         <loc>https://santehrazbor.ru/o-proekte/</loc>

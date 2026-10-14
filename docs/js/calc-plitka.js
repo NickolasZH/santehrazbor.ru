@@ -527,6 +527,20 @@
         }
     }
 
+    // ссылка на калькулятор затирки: площадь, плитка, толщина, шов и затирка подставятся в его поля
+    function syncGroutLink(inp, r) {
+        var link = $('c-to-grout');
+        if (!link) { return; }
+        var q = [];
+        if (r.ok) { q.push('s=' + encodeURIComponent(fmt(r.area))); }
+        [['a', 'a'], ['b', 'b'], ['thick', 't'], ['joint', 'j'], ['groutKey', 'g']].forEach(function (pr) {
+            var v = String(inp[pr[0]]).replace(/\s/g, '');
+            if (v !== '') { q.push(pr[1] + '=' + encodeURIComponent(v)); }
+        });
+        if (inp.groutKey === 'custom' && String(inp.rho).replace(/\s/g, '') !== '') { q.push('rho=' + encodeURIComponent(String(inp.rho).replace(/\s/g, ''))); }
+        link.setAttribute('href', '/kalkulyator-zatirki/?' + q.join('&'));
+    }
+
     function update(fromUser) {
         syncVisibility();
         var inp = read();
@@ -534,6 +548,7 @@
         var r = calc(inp);
         render(r, inp);
         saveUrl(inp);
+        syncGroutLink(inp, r);
         if (fromUser && r.ok) { countEvent(); }
     }
 

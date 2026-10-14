@@ -20,6 +20,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 sys.path.insert(0, str(Path(__file__).parent / "tools"))
 import calc_plitka_ref as plitka  # Python-эталон формул калькулятора плитки
+import calc_zatirka_ref as zatirka  # Python-эталон формул калькулятора затирки
 
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
@@ -396,8 +397,24 @@ def plitka_noscript_html():
     return "\n".join(g)
 
 
+def zatirka_noscript_html():
+    """Таблицы готовых значений для страницы калькулятора затирки без JS (формулы — из calc_zatirka_ref)."""
+    out = []
+    for title, rho_txt, rho in (("цементной затирки (плотность 1,1 кг/дм³, как у Ceresit CE 33 Plus)", "1,1", 1.1),
+                                ("эпоксидной затирки (плотность 1,55 кг/дм³, как у Litokol Starlike EVO)", "1,55", 1.55)):
+        out += [f"<h2>Расход {title}, кг/м²</h2>",
+                "<p>Запас не включён. Толщина плитки — типовая для размера; столбцы — ширина шва.</p>",
+                '<div class="table-wrap"><table><thead><tr><th>Плитка, см</th><th>Толщина, мм</th>'
+                + "".join(f"<th>Шов {zatirka.fmt(j, 1)} мм</th>" for j in zatirka.TABLE_JOINTS)
+                + "</tr></thead><tbody>"]
+        for label, t, vals in zatirka.table_rows(rho):
+            out.append(f"<tr><td>{label}</td><td>{t}</td>" + "".join(f"<td>{zatirka.fmt(v, 2)}</td>" for v in vals) + "</tr>")
+        out.append("</tbody></table></div>")
+    return "\n".join(out)
+
+
 # калькулятор (slug) -> функция, строящая таблицы для <noscript>
-NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html}
+NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html, "kalkulyator-zatirki": zatirka_noscript_html}
 
 
 def main():

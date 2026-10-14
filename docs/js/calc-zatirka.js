@@ -183,7 +183,7 @@
         $('c-b-row').hidden = $('c-preset').value !== 'custom';
         $('c-rho-row').hidden = $('c-grout').value !== 'custom';
     }
-    // ссылка на калькулятор плитки: те же размер плитки, толщина, шов и затирка
+    // ссылка на калькулятор плитки: те же размер плитки, толщина, шов и затирка (ключи затирок совпадают)
     function syncLinks(inp) {
         var link = $('c-to-plitka');
         if (!link) { return; }
@@ -192,7 +192,6 @@
             var v = String(inp[pr[0]]).replace(/\s/g, '');
             if (pr[0] === 'rho' && inp.groutKey !== 'custom') { return; }
             // в калькуляторе плитки нет Litochrom Luxury EVO: передаём как «другую» с его плотностью
-            if (pr[0] === 'groutKey' && v === 'lle') { q.push('rho=' + encodeURIComponent(fmt(GROUTS.lle.rho, 2))); v = 'custom'; }
             if (v !== '') { q.push(pr[1] + '=' + encodeURIComponent(v)); }
         });
         // дверь по умолчанию, как в калькуляторе плитки

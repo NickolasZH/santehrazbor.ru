@@ -9,7 +9,7 @@ import math
 LAYOUT_RESERVE = {"straight": 10, "diagonal": 15, "herringbone": 20}
 
 # Затирка: плотность, кг/дм3. CE 33 Plus — ТДС Henkel; Mapei и Litokol — восстановлены из таблиц производителей
-GROUT_RHO = {"ce33": 1.1, "mapei": 1.5, "epoxy": 1.55}
+GROUT_RHO = {"ce33": 1.1, "mapei": 1.5, "lle": 1.9, "epoxy": 1.55}
 GROUT_RESERVE = 1.1  # запас затирки 10 %
 
 # Клей Ceresit CM 11 Plus: (предел большей стороны плитки, см, зуб шпателя, мм, расход кг/м2)

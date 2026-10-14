@@ -12,6 +12,7 @@
         ce33: { name: 'Ceresit CE 33 Plus', rho: 1.1, packs: [2, 5] },
         ce40: { name: 'Ceresit CE 40', rho: 1.1, packs: [2, 5] },
         mapei: { name: 'Mapei Keracolor FF', rho: 1.5, packs: [2, 5] },
+        lle: { name: 'Litokol Litochrom Luxury EVO', rho: 1.9, packs: [2] },
         epoxy: { name: 'Litokol Starlike EVO (эпоксидная)', rho: 1.55, packs: [1, 2.5, 5] },
         custom: { name: 'другая затирка', rho: null, packs: [2, 5] }
     };
@@ -423,7 +424,7 @@
     function renderShop(r) {
         var c = $('c-shop-cem-calc'), e = $('c-shop-epoxy-calc');
         if (!c || !e) { return; }
-        var kgC = r.ok ? shopKg(r, GROUTS.ce33.rho) : NaN;
+        var kgC = r.ok ? shopKg(r, GROUTS.lle.rho) : NaN;
         var kgE = r.ok ? shopKg(r, GROUTS.epoxy.rho) : NaN;
         if (!isFinite(kgC) || !isFinite(kgE) || kgC <= 0) {
             c.hidden = true; e.hidden = true; return;

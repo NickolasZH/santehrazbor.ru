@@ -258,6 +258,7 @@
         var q = [];
         Object.keys(KEYS).forEach(function (k) {
             var v = String(inp[k]).replace(/\s/g, '');
+            if (k === 'rho' && inp.groutKey !== 'custom') { return; }
             if (v !== '') { q.push(KEYS[k] + '=' + encodeURIComponent(v)); }
         });
         q.push('o=' + encodeURIComponent(inp.openings.map(function (o) {
@@ -429,11 +430,11 @@
         if (!isFinite(kgC) || !isFinite(kgE) || kgC <= 0) {
             c.hidden = true; e.hidden = true; return;
         }
-        c.textContent = 'По вашему расчёту: ' + ceilEps(kgC / 2) + ' уп. по 2 кг (нужно ≈ ' + fmt(kgC, 1) + ' кг).';
+        c.textContent = 'По вашему расчёту: ' + ceilEps(kgC / 2) + ' уп. по 2 кг (нужно ≈ ' + fmt(kgC, 2) + ' кг).';
         var combo = epoxyCombo(kgE), parts = [];
         if (combo.n > 0) { parts.push(combo.n + ' × 2,5 кг'); }
         if (combo.m > 0) { parts.push(combo.m + ' × 1 кг'); }
-        e.textContent = 'По вашему расчёту: ' + parts.join(' + ') + ' (нужно ≈ ' + fmt(kgE, 1) + ' кг).';
+        e.textContent = 'По вашему расчёту: ' + parts.join(' + ') + ' (нужно ≈ ' + fmt(kgE, 2) + ' кг).';
         c.hidden = false; e.hidden = false;
     }
 

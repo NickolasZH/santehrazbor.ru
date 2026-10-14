@@ -155,6 +155,7 @@
         var q = [];
         Object.keys(KEYS).forEach(function (k) {
             var v = String(inp[k]).replace(/\s/g, '');
+            if (k === 'rho' && inp.groutKey !== 'custom') { return; }
             if (v !== '') { q.push(KEYS[k] + '=' + encodeURIComponent(v)); }
         });
         try { history.replaceState(null, '', '?' + q.join('&')); } catch (e) { /* file:// и т. п. */ }
@@ -242,8 +243,8 @@
         var kgE = r.ok ? shopKg(r, GROUTS.epoxy.rho) : NaN;
         if (!isFinite(kgC) || !isFinite(kgE) || kgC <= 0) { c.hidden = true; e.hidden = true; return; }
         var nC = ceilEps(kgC / 2);
-        c.textContent = 'По вашему расчёту: ' + nC + ' ' + packWord(nC) + ' по 2 кг (нужно ≈ ' + fmt(kgC, 1) + ' кг при плотности 1,9).';
-        e.textContent = 'По вашему расчёту: ' + comboText(bestCombo(kgE, [2.5, 1])) + ' (нужно ≈ ' + fmt(kgE, 1) + ' кг при плотности 1,55).';
+        c.textContent = 'По вашему расчёту: ' + nC + ' ' + packWord(nC) + ' по 2 кг (нужно ≈ ' + fmt(kgC, 2) + ' кг при плотности 1,9).';
+        e.textContent = 'По вашему расчёту: ' + comboText(bestCombo(kgE, [2.5, 1])) + ' (нужно ≈ ' + fmt(kgE, 2) + ' кг при плотности 1,55).';
         c.hidden = false; e.hidden = false;
     }
 

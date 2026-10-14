@@ -149,7 +149,25 @@
         };
     }
 
+    /* Подбор фасовок для блока товаров: кг затирки с плотностью rho (расчёт перенормирован по ρ). */
+    function shopKg(r, rho) {
+        return r.area * (r.groutPerM2 / r.rho) * rho * GROUT_RESERVE;
+    }
+    // Эпоксидка: фасовки 2,5 и 1 кг — минимальный излишек, при равенстве больше крупных упаковок (они дешевле за кг).
+    function epoxyCombo(kg) {
+        var best = null;
+        for (var n = 0; n <= ceilEps(kg / 2.5); n++) {
+            var m = Math.max(0, ceilEps(kg - 2.5 * n));
+            var total = 2.5 * n + m;
+            if (!best || total < best.total - 1e-9 || (Math.abs(total - best.total) < 1e-9 && n > best.n)) {
+                best = { n: n, m: m, total: total };
+            }
+        }
+        return best;
+    }
+
     var api = {
+        shopKg: shopKg, epoxyCombo: epoxyCombo,
         calc: calc, toNum: toNum, toothFor: toothFor, glueRate: glueRate, groutPerM2: groutPerM2,
         GROUTS: GROUTS, LAYOUT_RESERVE: LAYOUT_RESERVE, GLUE_TABLE: GLUE_TABLE, GLUE_BAG_KG: GLUE_BAG_KG,
         GROUT_RESERVE: GROUT_RESERVE
@@ -402,8 +420,25 @@
         bar.hidden = false;
     }
     var MODE_NAMES = { floor: 'пол', walls: 'стены', both: 'пол и стены' };
+    function renderShop(r) {
+        var c = $('c-shop-cem-calc'), e = $('c-shop-epoxy-calc');
+        if (!c || !e) { return; }
+        var kgC = r.ok ? shopKg(r, GROUTS.ce33.rho) : NaN;
+        var kgE = r.ok ? shopKg(r, GROUTS.epoxy.rho) : NaN;
+        if (!isFinite(kgC) || !isFinite(kgE) || kgC <= 0) {
+            c.hidden = true; e.hidden = true; return;
+        }
+        c.textContent = 'По вашему расчёту: ' + ceilEps(kgC / 2) + ' уп. по 2 кг (нужно ≈ ' + fmt(kgC, 1) + ' кг).';
+        var combo = epoxyCombo(kgE), parts = [];
+        if (combo.n > 0) { parts.push(combo.n + ' × 2,5 кг'); }
+        if (combo.m > 0) { parts.push(combo.m + ' × 1 кг'); }
+        e.textContent = 'По вашему расчёту: ' + parts.join(' + ') + ' (нужно ≈ ' + fmt(kgE, 1) + ' кг).';
+        c.hidden = false; e.hidden = false;
+    }
+
     function render(r, inp) {
         var res = $('c-result'), bar = $('c-bar');
+        renderShop(r);
         if (!r.ok) {
             setErrors(r.errors);
             res.innerHTML = '<p class="calc-wait">Исправьте отмеченные поля — результат появится сразу.</p>';

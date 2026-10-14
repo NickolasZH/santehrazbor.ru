@@ -64,7 +64,7 @@ def quote(line, start, end):
 
 def load_articles():
     arts = []
-    for path in sorted(CONTENT.glob("*.md")):
+    for path in sorted(CONTENT.glob("*.md")) + sorted((CONTENT / "calc").glob("*.md")):
         text = path.read_text(encoding="utf-8")
         m = FM_RE.match(text)
         if not m:

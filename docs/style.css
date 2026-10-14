@@ -394,6 +394,23 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 .compare-table tr.is-unavailable .c-cta { opacity: 1; }
 
 /* ---------- калькуляторы (префикс calc-) ---------- */
+.calc-shop { margin: 0 0 14px; scroll-margin-top: 12px; }
+.calc-shop h2 { margin: 0 0 4px; font-size: 1.2rem; }
+.calc-shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 10px; }
+.calc-shop-card { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 10px; background: var(--card); padding: 12px 14px 14px; min-width: 0; }
+.calc-shop-card h3 { margin: 0 0 6px; font-size: 1.02rem; line-height: 1.35; }
+.calc-shop-name { margin: 0 0 6px; color: var(--muted); font-size: 0.9rem; }
+.calc-shop-card .product-price, .calc-shop-card .product-meta { margin: 4px 0; }
+.calc-shop-pc { list-style: none; margin: 8px 0; padding: 0; font-size: 0.92rem; }
+.calc-shop-pc li { position: relative; padding-left: 1.4em; margin-bottom: 0.35em; overflow-wrap: anywhere; }
+.calc-shop-pc li::before { position: absolute; left: 0; font-weight: 700; }
+.calc-shop-pc .pro::before { content: "+"; color: var(--pro); }
+.calc-shop-pc .con::before { content: "−"; color: var(--con); }
+.calc-shop-calc { margin: 6px 0 8px; padding: 8px 10px; background: var(--surface); border-radius: 8px; font-size: 0.95rem; }
+.calc-shop-pack { margin-top: 8px; }
+.calc-shop-card > .product-cta:last-child, .calc-shop-card > .calc-shop-pack:last-child { margin-top: auto; }
+.calc-shop-card > .calc-shop-calc + .product-cta { margin-top: auto; }
+.calc-shop-link { margin: 6px 0 0; }
 .calc-lead { margin: 0.4em 0 0; font-size: 1.05rem; }
 .calc-box { margin-top: 1rem; margin-bottom: 1.5rem; }
 .calc-group { border: 1px solid var(--border); border-radius: 10px; background: var(--card); margin: 0 0 14px; padding: 12px 14px 14px; min-width: 0; }
@@ -405,7 +422,7 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 /* subgrid: подпись, поле и подсказка делят строки сетки, поэтому поля ввода стоят на одной линии, даже если подпись соседа переносится */
 .calc-field { display: grid; grid-template-rows: subgrid; grid-row: span 4; align-content: start; min-width: 0; margin-bottom: 10px; }
 .calc-field > label { align-self: end; }
-.calc-field[hidden], .calc-group[hidden], .calc-bar[hidden] { display: none; }
+.calc-field[hidden], .calc-group[hidden], .calc-grid[hidden], .calc-bar[hidden], .calc-shop-calc[hidden] { display: none; }
 .calc-field label, .calc-open label { font-size: 0.9rem; color: var(--muted); margin-bottom: 3px; }
 .calc input[type="text"], .calc select {
     font: inherit; font-size: 16px; /* 16px — чтобы iOS не увеличивал страницу при фокусе */
@@ -468,6 +485,10 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 /* широкий экран: форма слева, итог справа и всегда на виду */
 @media (min-width: 900px) {
     .calc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 0 24px; align-items: start; }
+    /* форма и блок товаров — в левой колонке, итоги на всю высоту справа: sticky работает и над блоком товаров */
+    .calc-form { grid-column: 1; grid-row: 1; }
+    .calc-shop { grid-column: 1; grid-row: 2; }
+    .calc-result { grid-column: 2; grid-row: 1 / span 2; }
     .calc-result { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; }
     .calc .calc-bar { display: none !important; }
 }

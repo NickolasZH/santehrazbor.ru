@@ -171,6 +171,53 @@
             <span id="c-copy-status" role="status"></span>
         </p>
         <p class="calc-hint">Адрес страницы запоминает введённые значения: ссылкой можно поделиться.</p>
+        <p class="calc-hint calc-shop-link"><a href="#c-shop">Подобрать затирку ↓</a></p>
+    </section>
+
+{% from "_macros.html" import offer %}
+{% set prods = article.products %}
+{% set cem = prods['litokol-litochrom-evo-lle115'] %}
+{% set ep1 = prods['litokol-starlike-evo-1kg'] %}
+{% set ep25 = prods['litokol-starlike-evo-2-5kg'] %}
+    <section id="c-shop" class="calc-shop" aria-labelledby="c-shop-title">
+        <h2 id="c-shop-title">Затирка под ваш расчёт</h2>
+        <p class="calc-hint">Две затирки, которые я бы взял в ванную. Количество считается по вашим размерам выше.</p>
+        <div class="calc-shop-grid">
+            <article class="calc-shop-card" id="c-shop-cem">
+                <h3>Для стен и пола в сухой зоне — цементно-полимерная Litokol Litochrom EVO</h3>
+                <p class="calc-shop-name">{{ cem.name }}</p>
+                <p class="product-price"><span class="price">{{ cem.price|rub }}</span> <span class="muted">на {{ article.updated_ru|nbsp }}</span></p>
+                <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>{{ cem.rating }}</strong> <span class="muted">({{ cem.reviews|count_word(('отзыв', 'отзыва', 'отзывов')) }})</span></span></p>
+                <ul class="calc-shop-pc">
+                    <li class="pro">Цвет совпадает с заявленным, пластичная, хорошо заглаживается губкой</li>
+                    <li class="pro">Хорошо отмывается, если не тянуть с отмывом</li>
+                    <li class="pro">Упаковка в ведре, у покупателей — свежая дата изготовления</li>
+                    <li class="con">Нужен навык и скорость: быстро сохнет, воды уходит больше, чем сказано на упаковке</li>
+                </ul>
+                <p class="calc-shop-calc" id="c-shop-cem-calc" hidden></p>
+                <div class="product-cta">{{ offer(cem, 'calc', 'Смотреть цену на Маркете →', 'btn btn-block') }}</div>
+            </article>
+            <article class="calc-shop-card" id="c-shop-epoxy">
+                <h3>Для пола в душевой и фартука кухни — эпоксидная Litokol Starlike EVO</h3>
+                <p class="calc-shop-name">Двухкомпонентная, швы 1–15&nbsp;мм, 35&nbsp;цветов по описанию. Цвет выбирается на странице товара</p>
+                <p class="product-meta"><span class="rating"><span class="star" aria-hidden="true">★</span> <strong>{{ ep1.rating }}</strong> <span class="muted">({{ ep1.reviews|count_word(('отзыв', 'отзыва', 'отзывов')) }} по линейке)</span></span></p>
+                <ul class="calc-shop-pc">
+                    <li class="pro">Швы прочные, ровные и водостойкие, цвет не менялся через 3 года</li>
+                    <li class="pro">Удобная в работе, у части покупателей замывается без липкого следа</li>
+                    <li class="con">Отмывать остатки сложно, нужна сноровка: на матовой плитке остаётся блестящий след</li>
+                    <li class="con">Дорого, пропорции лучше отвешивать на весах</li>
+                </ul>
+                <p class="calc-shop-calc" id="c-shop-epoxy-calc" hidden></p>
+                <div class="calc-shop-pack">
+                    <p class="product-price"><span class="price">1&nbsp;кг — {{ ep1.price|rub }}</span> <span class="muted">на {{ article.updated_ru|nbsp }}</span></p>
+                    <div class="product-cta">{{ offer(ep1, 'calc', 'Starlike EVO 1 кг на Маркете →', 'btn btn-block') }}</div>
+                </div>
+                <div class="calc-shop-pack">
+                    <p class="product-price"><span class="price">2,5&nbsp;кг — {{ ep25.price|rub }}</span> <span class="muted">на {{ article.updated_ru|nbsp }}</span></p>
+                    <div class="product-cta">{{ offer(ep25, 'calc', 'Starlike EVO 2,5 кг на Маркете →', 'btn btn-block') }}</div>
+                </div>
+            </article>
+        </div>
     </section>
 
     <div id="c-bar" class="calc-bar" hidden>

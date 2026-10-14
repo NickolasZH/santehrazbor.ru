@@ -477,6 +477,10 @@ def main():
         h1 = re.match(r"\s*#\s+(.+?)\s*\n", body)
         if h1:
             body = body[h1.end():]
+        # товары блока «Затирка под ваш расчёт»: products в front matter, как у статей
+        calc_prods, _ = build_products(meta, aff, f"calc/{path.name}")
+        for cp in calc_prods:
+            used_labels.add(cp["label"])
         html = render_markdown(body, aff, used_labels, env, {
             "name": path.name, "products": [], "picks": [],
             "global_products": global_products, "updated_ru": ru_date(updated)})
@@ -487,6 +491,7 @@ def main():
             "seo_title": meta.get("seo_title") or meta["title"],
             "seo_description": meta.get("seo_description") or meta["description"],
             "slug": meta["slug"], "script": meta["script"],
+            "products": {cp["label"]: cp for cp in calc_prods},
             "published": published, "updated": updated, "updated_ru": ru_date(updated),
             "body": html, "faq": parse_faq(body), "path": f"/{meta['slug']}/",
             "noscript": builder() if builder else "",

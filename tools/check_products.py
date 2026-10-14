@@ -280,7 +280,7 @@ def check_ref_link(link, expected_id):
 def read_articles():
     """-> список {path, text, fm_span, meta} для статей с products."""
     arts = []
-    for path in sorted(CONTENT.glob("*.md")):
+    for path in sorted(CONTENT.glob("*.md")) + sorted((CONTENT / "calc").glob("*.md")):
         text = path.read_text(encoding="utf-8")
         m = FRONT_RE.match(text)
         if not m:

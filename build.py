@@ -567,6 +567,26 @@ def main():
           '<?xml version="1.0" encoding="UTF-8"?>\n'
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "\n</urlset>\n")
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {base}/sitemap.xml\n")
+    # llms.txt (llmstxt.org): краткая карта сайта для языковых моделей; в sitemap не входит
+    llms = [
+        f"# {config['site_name']}",
+        "",
+        f"> {config['home_description']}",
+        "",
+        "Сайт о выборе сантехники: смесители, гигиенические души, душевые системы. В статьях разбираем, "
+        "что внутри: материал корпуса, картридж, гарантия, реальные отзывы покупателей. "
+        "Ссылки на Яндекс Маркет партнёрские (помечены как реклама). "
+        "Модели мы лично не тестируем: отбираем их по характеристикам из карточек и отзывам.",
+        "",
+        "## Разделы",
+        "",
+    ]
+    llms += [f"- [{h['name']}]({base}{h['path']}): {h['seo_description']}" for h in hubs]
+    llms += ["", "## Статьи", ""]
+    llms += [f"- [{a['title']}]({base}{a['path']}): {a['description']}" for a in articles]
+    llms += ["", "## О проекте", "",
+             f"- [О проекте]({base}/o-proekte/): кто мы, как отбираем модели и почему на сайте есть партнёрские ссылки."]
+    write("llms.txt", "\n".join(llms) + "\n")
     write("CNAME", "santehrazbor.ru\n")
     write(".nojekyll", "")
     shutil.copytree(STATIC, DOCS, dirs_exist_ok=True)

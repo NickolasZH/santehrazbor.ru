@@ -94,3 +94,13 @@ python tools/check_products.py --no-links         # не проверять па
   (так реализовано в build.py: erid в query + метка «Реклама ⓘ»).
 - `--live`: GET `https://santehrazbor.ru/<путь>` для страниц из sitemap, ждёт 200 (нужна сеть; в
   `check_products.py` не включается).
+
+## indexnow.py — уведомление поисковиков о новых и изменённых страницах
+
+Запуск из `site/` после деплоя: `PYTHONIOENCODING=utf-8 python tools/indexnow.py`.
+- Читает `docs/sitemap.xml` (loc + lastmod), ключ — `indexnow_key` из `config.json`; файл ключа
+  `static/<key>.txt` попадает в корень сайта при сборке и должен быть доступен по https до первой отправки.
+- По умолчанию шлёт только URL, у которых lastmod новый или изменился относительно
+  `data/indexnow_last.json`; `--all` — все URL; `--dry-run` — только список, без сети и записи состояния.
+- POST на `yandex.com/indexnow` и `api.indexnow.org`, печатает код ответа каждого. Состояние обновляется,
+  если хотя бы один ответ 200/202. Ошибка сети — сообщение и код выхода 1.

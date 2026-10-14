@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head %}
+    <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": site.base_url ~ "/"}, {"@type": "ListItem", "position": 2, "name": "Калькуляторы", "item": canonical}]}|tojson }}</script>
+{% endblock %}
+{% block content %}
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <a href="/">Главная</a> <span>›</span> <span>Калькуляторы</span>
+</nav>
+<section class="hero">
+    <h1>Калькуляторы для ремонта ванной</h1>
+    <p class="tagline">Считают сразу, пока вводите размеры. Под каждым — формулы, источники и оговорки: это оценка, а не гарантия до последней плитки.</p>
+</section>
+<section>
+    <div class="cards">
+{% for c in calcs %}
+        <a class="card" href="{{ c.path }}">
+            <h3>{{ c.h1 }}</h3>
+            <p>{{ c.description|nbsp }}</p>
+            <span class="meta">Обновлено: <time datetime="{{ c.updated.isoformat() }}">{{ c.updated_ru|nbsp }}</time></span>
+        </a>
+{% endfor %}
+    </div>
+</section>
+{% endblock %}

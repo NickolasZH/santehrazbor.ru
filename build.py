@@ -18,6 +18,9 @@ import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+sys.path.insert(0, str(Path(__file__).parent / "tools"))
+import calc_plitka_ref as plitka  # Python-эталон формул калькулятора плитки
+
 ROOT = Path(__file__).parent
 CONTENT = ROOT / "content"
 TEMPLATES = ROOT / "templates"
@@ -375,6 +378,28 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
     return nbsp_text(html)
 
 
+def plitka_noscript_html():
+    """Таблицы готовых значений для страницы калькулятора плитки без JS (формулы — из calc_plitka_ref)."""
+    g = ['<h2>Расход затирки Ceresit CE 33 Plus, кг/м²</h2>',
+         '<p>Плотность 1,1 кг/дм³, запас не включён. Столбцы — толщина плитки.</p>',
+         '<div class="table-wrap"><table><thead><tr><th>Плитка, см</th><th>Шов, мм</th>'
+         '<th>8 мм</th><th>9 мм</th><th>10 мм</th></tr></thead><tbody>']
+    for fmt_name, j, vals in plitka.grout_table_rows():
+        g.append(f"<tr><td>{fmt_name}</td><td>{j}</td>" + "".join(f"<td>{plitka.fmt(v, 2)}</td>" for v in vals) + "</tr>")
+    g.append("</tbody></table></div>")
+    g += ['<h2>Расход плиточного клея Ceresit CM 11 Plus</h2>',
+          '<div class="table-wrap"><table><thead><tr><th>Большая сторона плитки</th><th>Зуб шпателя, мм</th>'
+          '<th>Расход, кг/м²</th><th>На 10 м², кг</th></tr></thead><tbody>']
+    for lab, tooth, rate, per10 in plitka.glue_table_rows():
+        g.append(f"<tr><td>{lab}</td><td>{tooth}</td><td>{plitka.fmt(rate, 1)}</td><td>{plitka.fmt(per10, 0)}</td></tr>")
+    g.append("</tbody></table></div>")
+    return "\n".join(g)
+
+
+# калькулятор (slug) -> функция, строящая таблицы для <noscript>
+NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html}
+
+
 def main():
     config = load_json("config.json")
     aff = load_json("affiliate.json")
@@ -434,6 +459,39 @@ def main():
         })
     articles.sort(key=lambda a: a["updated"], reverse=True)
 
+    # --- калькуляторы: content/calc/NN-slug.md (type: calculator); тело — те же шорткоды, что у статей
+    calcs = []
+    for path in sorted((CONTENT / "calc").glob("*.md")):
+        meta, body = split_front_matter(path.read_text(encoding="utf-8"), path)
+        for key in ("title", "description", "slug", "script", "type"):
+            if key not in meta:
+                fail(f"calc/{path.name}: в front matter нет поля {key}")
+        if meta["type"] != "calculator":
+            fail(f"calc/{path.name}: type должен быть calculator")
+        if not (STATIC / "js" / meta["script"]).is_file():
+            fail(f"calc/{path.name}: скрипт static/js/{meta['script']} не найден")
+        if not (TEMPLATES / "calc" / f"{meta['slug']}.html").is_file():
+            fail(f"calc/{path.name}: нет шаблона формы templates/calc/{meta['slug']}.html")
+        published = to_date(meta.get("published", meta.get("date")))
+        updated = to_date(meta.get("updated", published))
+        h1 = re.match(r"\s*#\s+(.+?)\s*\n", body)
+        if h1:
+            body = body[h1.end():]
+        html = render_markdown(body, aff, used_labels, env, {
+            "name": path.name, "products": [], "picks": [],
+            "global_products": global_products, "updated_ru": ru_date(updated)})
+        builder = NOSCRIPT_BUILDERS.get(meta["slug"])
+        calcs.append({
+            "title": meta["title"], "h1": meta.get("h1") or (h1.group(1) if h1 else meta["title"]),
+            "description": meta["description"], "lead": meta.get("lead", ""),
+            "seo_title": meta.get("seo_title") or meta["title"],
+            "seo_description": meta.get("seo_description") or meta["description"],
+            "slug": meta["slug"], "script": meta["script"],
+            "published": published, "updated": updated, "updated_ru": ru_date(updated),
+            "body": html, "faq": parse_faq(body), "path": f"/{meta['slug']}/",
+            "noscript": builder() if builder else "",
+        })
+
     # --- чистим docs/
     # Чистим содержимое, а не саму папку: её может держать открытой оболочка (Windows)
     DOCS.mkdir(exist_ok=True)
@@ -485,7 +543,7 @@ def main():
     write("index.html", render(
         "index.html", "/", title=config["home_title"],
         description=config["home_description"], nav_active="/",
-        articles=articles, hubs=hubs))
+        articles=articles, hubs=hubs, calcs=calcs))
     pages.append(("/", max(a["updated"] for a in articles) if articles else date.today()))
 
     for a in articles:
@@ -539,6 +597,47 @@ def main():
             related=[x for x in articles if x is not a]))
         pages.append((a["path"], a["updated"]))
 
+    for c in calcs:
+        jsonld = [
+            {
+                "@context": "https://schema.org", "@type": "WebApplication",
+                "name": c["h1"], "description": c["description"], "url": base + c["path"],
+                "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any",
+                "browserRequirements": "Requires JavaScript", "inLanguage": "ru",
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
+                "dateModified": c["updated"].isoformat(),
+                "author": {"@type": "Person", "name": "Николай", "url": base + "/o-proekte/"},
+            },
+            {
+                "@context": "https://schema.org", "@type": "BreadcrumbList",
+                "itemListElement": [
+                    {"@type": "ListItem", "position": 1, "name": "Главная", "item": base + "/"},
+                    {"@type": "ListItem", "position": 2, "name": "Калькуляторы", "item": base + "/kalkulyatory/"},
+                    {"@type": "ListItem", "position": 3, "name": c["h1"], "item": base + c["path"]},
+                ],
+            },
+        ]
+        if c["faq"]:
+            jsonld.append({
+                "@context": "https://schema.org", "@type": "FAQPage",
+                "mainEntity": [
+                    {"@type": "Question", "name": f["q"],
+                     "acceptedAnswer": {"@type": "Answer", "text": f["a"]}}
+                    for f in c["faq"]
+                ],
+            })
+        jsonld_str = [json.dumps(j, ensure_ascii=False).replace("</", "<\\/") for j in jsonld]
+        write(f"{c['slug']}/index.html", render(
+            "calculator.html", c["path"], title=c["seo_title"], description=c["seo_description"],
+            nav_active=None, article=c, jsonld=jsonld_str, script_ver=asset_hash(f"js/{c['script']}")))
+        pages.append((c["path"], c["updated"]))
+    if calcs:
+        write("kalkulyatory/index.html", render(
+            "calc_hub.html", "/kalkulyatory/", title="Калькуляторы для ремонта ванной — Сантехразбор",
+            description="Онлайн-калькуляторы: сколько нужно плитки, клея и затирки. Считают сразу при вводе, формулы и источники показаны.",
+            calcs=calcs))
+        pages.append(("/kalkulyatory/", max(c["updated"] for c in calcs)))
+
     for h in hubs:
         write(f"{h['slug']}/index.html", render(
             "category.html", h["path"], title=h["seo_title"], description=h["seo_description"],
@@ -575,9 +674,7 @@ def main():
         "",
         "Сайт о выборе сантехники: смесители, гигиенические души, душевые системы. В статьях разбираем, "
         "что внутри: материал корпуса, картридж, гарантия, реальные отзывы покупателей. "
-        "Ссылки на Яндекс Маркет партнёрские (помечены как реклама). "
-        "Автор — Николай. Модели для подборок отбираем по характеристикам из карточек и отзывам покупателей. "
-        "В подборки попадают товары с партнёрской программой Маркета, среди них выбор делается по характеристикам и отзывам.",
+        "Автор — Николай. Модели для подборок отбираем по характеристикам из карточек и отзывам покупателей.",
         "",
         "## Разделы",
         "",
@@ -585,15 +682,18 @@ def main():
     llms += [f"- [{h['name']}]({base}{h['path']}): {h['seo_description']}" for h in hubs]
     llms += ["", "## Статьи", ""]
     llms += [f"- [{a['title']}]({base}{a['path']}): {a['description']}" for a in articles]
+    if calcs:
+        llms += ["", "## Калькуляторы", ""]
+        llms += [f"- [{c['h1']}]({base}{c['path']}): {c['description']}" for c in calcs]
     llms += ["", "## О проекте", "",
-             f"- [О проекте]({base}/o-proekte/): кто мы, как отбираем модели и почему на сайте есть партнёрские ссылки."]
+             f"- [О проекте]({base}/o-proekte/): кто мы и как отбираем модели."]
     write("llms.txt", "\n".join(llms) + "\n")
     write("CNAME", "santehrazbor.ru\n")
     write(".nojekyll", "")
     shutil.copytree(STATIC, DOCS, dirs_exist_ok=True)
 
     unused = set(aff) - used_labels
-    print(f"Готово: {len(articles)} статей, {len(pages) + 1} страниц, "
+    print(f"Готово: {len(articles)} статей, {len(calcs)} калькуляторов, {len(pages) + 1} страниц, "
           f"использовано меток: {len(used_labels)}")
     if unused:
         print("Неиспользованные метки:", ", ".join(sorted(unused)))

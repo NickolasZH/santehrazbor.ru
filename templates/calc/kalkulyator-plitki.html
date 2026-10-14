@@ -1,0 +1,162 @@
+{# Форма калькулятора плитки. Логика — static/js/calc-plitka.js; идентификаторы c-* / e-* используются там. #}
+<div id="calc-wrap" class="calc" hidden>
+    <form id="calc-form" class="calc-form" autocomplete="off" novalidate>
+        <fieldset class="calc-group">
+            <legend>Что облицовываем</legend>
+            <div class="calc-radios">
+                <label><input type="radio" name="mode" value="floor"> Пол</label>
+                <label><input type="radio" name="mode" value="walls"> Стены</label>
+                <label><input type="radio" name="mode" value="both" checked> Пол и стены (ванная)</label>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-len">Длина помещения, м</label>
+                    <input id="c-len" type="text" inputmode="decimal" value="1,7" aria-describedby="e-len">
+                    <span class="calc-err" id="e-len" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-wid">Ширина помещения, м</label>
+                    <input id="c-wid" type="text" inputmode="decimal" value="1,5" aria-describedby="e-wid">
+                    <span class="calc-err" id="e-wid" role="alert"></span>
+                </div>
+                <div class="calc-field" id="c-hgt-row">
+                    <label for="c-hgt">Высота облицовки стен, м</label>
+                    <input id="c-hgt" type="text" inputmode="decimal" value="2,5" aria-describedby="e-hgt">
+                    <span class="calc-err" id="e-hgt" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group" id="c-open-block">
+            <legend>Вычесть проёмы из стен</legend>
+            <p class="calc-hint">Дверь, окно, ванна или экран. Размеры можно поменять в строке.</p>
+            <div id="c-openings"></div>
+            <span class="calc-err" id="e-openings" role="alert"></span>
+            <div class="calc-add">
+                <button type="button" id="c-add-door">+ Дверь</button>
+                <button type="button" id="c-add-window">+ Окно</button>
+                <button type="button" id="c-add-bath">+ Ванна или экран</button>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Плитка</legend>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-preset">Размер</label>
+                    <select id="c-preset">
+                        <option value="20x30">20×30 см</option>
+                        <option value="25x40" selected>25×40 см</option>
+                        <option value="30x60">30×60 см</option>
+                        <option value="60x60">60×60 см</option>
+                        <option value="60x120">60×120 см</option>
+                        <option value="custom">Свой размер</option>
+                    </select>
+                </div>
+                <div class="calc-field">
+                    <label for="c-a">Сторона A, см</label>
+                    <input id="c-a" type="text" inputmode="decimal" value="25" aria-describedby="e-a">
+                    <span class="calc-err" id="e-a" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-b">Сторона B, см</label>
+                    <input id="c-b" type="text" inputmode="decimal" value="40" aria-describedby="e-b">
+                    <span class="calc-err" id="e-b" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-thick">Толщина, мм</label>
+                    <input id="c-thick" type="text" inputmode="decimal" value="8" aria-describedby="e-thick">
+                    <span class="calc-hint">Для 60×60 и больше обычно 9–10 мм</span>
+                    <span class="calc-err" id="e-thick" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-joint">Шов, мм</label>
+                    <input id="c-joint" type="text" inputmode="decimal" value="2" aria-describedby="e-joint">
+                    <span class="calc-err" id="e-joint" role="alert"></span>
+                </div>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-boxkind">Упаковка (по желанию)</label>
+                    <select id="c-boxkind">
+                        <option value="none" selected>Не считать коробки</option>
+                        <option value="m2">Указать м² в коробке</option>
+                        <option value="pcs">Указать шт в коробке</option>
+                    </select>
+                </div>
+                <div class="calc-field" id="c-boxval-row" hidden>
+                    <label for="c-boxval" id="c-boxval-label">Площадь плитки в коробке, м²</label>
+                    <input id="c-boxval" type="text" inputmode="decimal" value="" aria-describedby="e-boxval">
+                    <span class="calc-err" id="e-boxval" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Раскладка и запас</legend>
+            <div class="calc-radios">
+                <label><input type="radio" name="layout" value="straight" checked> Прямая (обычно берут 10&nbsp;%)</label>
+                <label><input type="radio" name="layout" value="diagonal"> Диагональ (обычно 15&nbsp;%)</label>
+                <label><input type="radio" name="layout" value="herringbone"> Ёлочка или крупный формат (обычно 20&nbsp;%)</label>
+            </div>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-reserve">Запас плитки, %</label>
+                    <input id="c-reserve" type="text" inputmode="decimal" value="10" aria-describedby="e-reserve">
+                    <span class="calc-err" id="e-reserve" role="alert"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset class="calc-group">
+            <legend>Затирка и клей</legend>
+            <div class="calc-grid">
+                <div class="calc-field">
+                    <label for="c-grout">Затирка</label>
+                    <select id="c-grout">
+                        <option value="ce33" selected>Ceresit CE 33 Plus (ρ 1,1)</option>
+                        <option value="ce40">Ceresit CE 40 (ρ 1,1)</option>
+                        <option value="mapei">Mapei Keracolor FF (ρ 1,5)</option>
+                        <option value="epoxy">Эпоксидная Litokol Starlike EVO (ρ 1,55)</option>
+                        <option value="custom">Своя плотность</option>
+                    </select>
+                </div>
+                <div class="calc-field" id="c-rho-row" hidden>
+                    <label for="c-rho">Плотность затирки, кг/дм³</label>
+                    <input id="c-rho" type="text" inputmode="decimal" value="1,5" aria-describedby="e-rho">
+                    <span class="calc-err" id="e-rho" role="alert"></span>
+                </div>
+                <div class="calc-field">
+                    <label for="c-tooth">Зуб шпателя для клея</label>
+                    <select id="c-tooth">
+                        <option value="" selected>Подобрать по размеру плитки</option>
+                        <option value="4">4 мм</option>
+                        <option value="6">6 мм</option>
+                        <option value="8">8 мм</option>
+                        <option value="10">10 мм</option>
+                        <option value="12">12 мм</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <section id="c-result-box" class="calc-result" aria-labelledby="c-result-title">
+        <h2 id="c-result-title">Что купить</h2>
+        <div id="c-result" aria-live="polite"></div>
+        <details class="calc-howbox">
+            <summary>Как считали</summary>
+            <div id="c-how"></div>
+        </details>
+        <p class="calc-copy">
+            <button type="button" id="c-copy" disabled>Скопировать результат</button>
+            <span id="c-copy-status" role="status"></span>
+        </p>
+        <p class="calc-hint">Адрес страницы запоминает введённые значения: ссылкой можно поделиться.</p>
+    </section>
+
+    <div id="c-bar" class="calc-bar" hidden>
+        <span id="c-bar-text"></span>
+        <a href="#c-result-box">Подробнее</a>
+    </div>
+</div>

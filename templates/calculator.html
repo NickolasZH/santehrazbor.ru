@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block head %}
+{% for j in jsonld %}    <script type="application/ld+json">{{ j|safe }}</script>
+{% endfor %}
+{% endblock %}
+{% block content %}
+<nav class="breadcrumbs narrow" aria-label="Хлебные крошки">
+    <a href="/">Главная</a> <span>›</span> <a href="/kalkulyatory/">Калькуляторы</a> <span>›</span> <span>{{ article.h1 }}</span>
+</nav>
+<article>
+    <header class="article-head narrow">
+        <h1>{{ article.h1 }}</h1>
+        <p class="dates">
+            Обновлено: <time datetime="{{ article.updated.isoformat() }}">{{ article.updated_ru|nbsp }}</time>
+            &middot; Автор: <a href="/o-proekte/">Николай</a>
+        </p>
+{% if article.lead %}
+        <p class="calc-lead">{{ article.lead|nbsp }}</p>
+{% endif %}
+    </header>
+    <div class="wide calc-box">
+{% include "calc/" ~ article.slug ~ ".html" %}
+        <noscript>
+            <p>Для калькулятора нужен JavaScript. Без него — готовые значения.</p>
+{{ article.noscript|safe }}
+        </noscript>
+    </div>
+    <div class="prose">
+{{ article.body|safe }}
+    </div>
+</article>
+<script src="/js/{{ article.script }}?v={{ script_ver }}" defer></script>
+{% endblock %}

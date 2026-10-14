@@ -13,7 +13,7 @@
         ce40: { name: 'Ceresit CE 40', rho: 1.1, packs: [2, 5] },
         mapei: { name: 'Mapei Keracolor FF', rho: 1.5, packs: [2, 5] },
         epoxy: { name: 'Litokol Starlike EVO (эпоксидная)', rho: 1.55, packs: [1, 2.5, 5] },
-        custom: { name: 'своя затирка', rho: null, packs: [2, 5] }
+        custom: { name: 'другая затирка', rho: null, packs: [2, 5] }
     };
     var GROUT_RESERVE = 1.1;
     // Клей Ceresit CM 11 Plus: предел большей стороны (см), зуб (мм), расход (кг/м2)
@@ -47,7 +47,7 @@
     }
 
     /* Полный расчёт. inp: mode ('floor'|'walls'|'both'), len, wid, hgt (м), openings [{w,h}] (м),
-       a, b (см), thick, joint (мм), boxKind ('none'|'m2'|'pcs'), boxVal, reserve (%),
+       tub ('1' = под ванной не кладём), tubLen, tubWid (м; только пол), a, b (см), thick, joint (мм), boxKind ('none'|'m2'|'pcs'), boxVal, reserve (%),
        groutKey, rho (для custom), tooth (мм или 0/пусто = авто).
        Значения — строки или числа. Возвращает {ok, errors:{поле: текст}, ...результаты}. */
     function calc(inp) {
@@ -92,10 +92,24 @@
                 } else { openingsArea += ow * oh; }
             }
         }
-        var floorArea = 0, wallArea = 0, perimeter = 0;
+        // ванна/поддон на полу: площадь под ней вычитается из пола
+        var tubOn = useFloor && (inp.tub === true || inp.tub === 1 || inp.tub === '1');
+        var tubLen = NaN, tubWid = NaN, tubArea = 0;
+        if (tubOn) {
+            tubLen = need('tubLen', 'длину ванны', 0.1, 10, 'м');
+            tubWid = need('tubWid', 'ширину ванны', 0.1, 10, 'м');
+        }
+        var floorArea = 0, floorGross = 0, wallArea = 0, perimeter = 0;
         if (!err.len && !err.wid) {
-            if (useFloor) { floorArea = len * wid; }
+            if (useFloor) { floorGross = len * wid; floorArea = floorGross; }
             perimeter = 2 * (len + wid);
+            if (tubOn && !err.tubLen && !err.tubWid) {
+                tubArea = tubLen * tubWid;
+                if (tubArea >= floorGross) {
+                    err.tub = 'Ванна (' + tubArea.toFixed(2).replace('.', ',') + ' м²) не меньше площади пола (' +
+                        floorGross.toFixed(2).replace('.', ',') + ' м²): плитки на полу не остаётся. Уменьшите размеры ванны или уберите галочку.';
+                } else { floorArea = floorGross - tubArea; }
+            }
         }
         if (useWalls && !err.len && !err.wid && !err.hgt) {
             wallArea = perimeter * hgt;
@@ -126,12 +140,12 @@
 
         return {
             ok: true, errors: {}, mode: mode, perimeter: perimeter,
-            floorArea: floorArea, wallArea: wallArea, openingsArea: openingsArea, area: area,
+            floorArea: floorArea, floorGross: floorGross, tubOn: tubOn, tubLen: tubLen, tubWid: tubWid, tubArea: tubArea, wallArea: wallArea, openingsArea: openingsArea, area: area,
             tileM2: tileM2, reserve: reserve, pcsNoReserve: ceilEps(area / tileM2), pcs: pcs, boxes: boxes,
             boxKind: boxKind, boxVal: boxVal,
             groutKey: groutKey, rho: rho, groutPerM2: perM2, groutKg: groutKg, groutPacks: packs,
             tooth: tooth, autoTooth: autoTooth, glueRate: rate, glueKg: glueKg,
-            glueBags: ceilEps(glueKg / GLUE_BAG_KG), bothSidesHint: maxSide > 30
+            glueBags: ceilEps(glueKg / GLUE_BAG_KG), bigTileHint: maxSide > 30 && TEETH.indexOf(toNum(inp.tooth)) < 0
         };
     }
 
@@ -210,6 +224,7 @@
     function read() {
         return {
             mode: radio('mode'), len: $('c-len').value, wid: $('c-wid').value, hgt: $('c-hgt').value,
+            tub: $('c-tub').checked ? '1' : '', tubLen: $('c-tublen').value, tubWid: $('c-tubwid').value,
             openings: readOpenings(), a: $('c-a').value, b: $('c-b').value,
             thick: $('c-thick').value, joint: $('c-joint').value,
             boxKind: $('c-boxkind').value, boxVal: $('c-boxval').value,
@@ -219,7 +234,7 @@
     }
 
     /* --- состояние в URL --- */
-    var KEYS = { mode: 'm', len: 'l', wid: 'w', hgt: 'h', a: 'a', b: 'b', thick: 't', joint: 'j', boxKind: 'bk', boxVal: 'bv', layout: 'ly', reserve: 'r', groutKey: 'g', rho: 'rho', tooth: 'z' };
+    var KEYS = { mode: 'm', len: 'l', wid: 'w', hgt: 'h', tub: 'tb', tubLen: 'tl', tubWid: 'tw', a: 'a', b: 'b', thick: 't', joint: 'j', boxKind: 'bk', boxVal: 'bv', layout: 'ly', reserve: 'r', groutKey: 'g', rho: 'rho', tooth: 'z' };
     function saveUrl(inp) {
         var q = [];
         Object.keys(KEYS).forEach(function (k) {
@@ -241,9 +256,10 @@
         if (p.m) { setRadio('mode', p.m); }
         if (p.ly) { setRadio('layout', p.ly); }
         [['l', 'c-len'], ['w', 'c-wid'], ['h', 'c-hgt'], ['a', 'c-a'], ['b', 'c-b'], ['t', 'c-thick'], ['j', 'c-joint'],
-         ['bk', 'c-boxkind'], ['bv', 'c-boxval'], ['r', 'c-reserve'], ['g', 'c-grout'], ['rho', 'c-rho'], ['z', 'c-tooth']].forEach(function (pr) {
+         ['tl', 'c-tublen'], ['tw', 'c-tubwid'], ['bk', 'c-boxkind'], ['bv', 'c-boxval'], ['r', 'c-reserve'], ['g', 'c-grout'], ['rho', 'c-rho'], ['z', 'c-tooth']].forEach(function (pr) {
             if (p[pr[0]] != null) { $(pr[1]).value = p[pr[0]]; }
         });
+        $('c-tub').checked = p.tb === '1';
         if (p.o != null) {
             openList.innerHTML = '';
             if (p.o !== '-') {
@@ -265,6 +281,11 @@
     }
     function syncVisibility() {
         var mode = radio('mode');
+        var custom = $('c-preset').value === 'custom';
+        $('c-a-row').hidden = !custom;
+        $('c-b-row').hidden = !custom;
+        $('c-tub-block').hidden = mode === 'walls';
+        $('c-tub-fields').hidden = !$('c-tub').checked;
         $('c-hgt-row').hidden = mode === 'floor';
         $('c-open-block').hidden = mode === 'floor';
         $('c-boxval-row').hidden = $('c-boxkind').value === 'none';
@@ -272,10 +293,67 @@
         $('c-rho-row').hidden = $('c-grout').value !== 'custom';
     }
 
+    /* --- подсказки: сантиметры вместо метров и наоборот --- */
+    // поля в метрах: значение > 10 и <= 1000 похоже на сантиметры
+    var M_FIELDS = ['c-len', 'c-wid', 'c-hgt', 'c-tublen', 'c-tubwid'];
+    // размеры плитки в см: значение <= 2 похоже на метры
+    var CM_FIELDS = ['c-a', 'c-b'];
+    function hintBox(input) {
+        var box = input.parentNode.querySelector('.calc-fix');
+        if (!box) {
+            box = document.createElement('span');
+            box.className = 'calc-fix';
+            input.parentNode.insertBefore(box, input.nextSibling);
+        }
+        return box;
+    }
+    function setHint(input, v, kind) {
+        var box = hintBox(input);
+        var hidden = !!input.closest('[hidden]');
+        if (hidden || isNaN(v)) { box.innerHTML = ''; return; }
+        if (kind === 'm' && v > 10 && v <= 1000) {
+            box.innerHTML = '<span>Похоже, это сантиметры: ' + fmt(v) + ' см = ' + fmt(v / 100, 3) + ' м</span> ' +
+                '<button type="button" class="calc-fixbtn" data-fix="' + input.id + '" data-to="' + fmt(v / 100, 3) + '">Исправить</button>';
+        } else if (kind === 'cm' && v > 0 && v <= 2) {
+            box.innerHTML = '<span>' + fmt(v) + ' м = ' + fmt(v * 100) + ' см?</span> ' +
+                '<button type="button" class="calc-fixbtn" data-fix="' + input.id + '" data-to="' + fmt(v * 100) + '">Исправить</button>';
+        } else { box.innerHTML = ''; }
+    }
+    function renderHints() {
+        M_FIELDS.forEach(function (id) { setHint($(id), toNum($(id).value), 'm'); });
+        CM_FIELDS.forEach(function (id) { setHint($(id), toNum($(id).value), 'cm'); });
+        // проёмы: одна подсказка на строку, по первому подозрительному полю
+        Array.prototype.forEach.call(openList.children, function (row) {
+            var box = row.querySelector('.calc-fix');
+            if (!box) {
+                box = document.createElement('span');
+                box.className = 'calc-fix';
+                row.appendChild(box);
+            }
+            box.innerHTML = '';
+            Array.prototype.some.call(row.querySelectorAll('input'), function (inp) {
+                var v = toNum(inp.value);
+                if (v > 10 && v <= 1000) {
+                    box.innerHTML = '<span>Похоже, это сантиметры: ' + fmt(v) + ' см = ' + fmt(v / 100, 3) + ' м</span> ' +
+                        '<button type="button" class="calc-fixbtn" data-fix="' + inp.id + '" data-to="' + fmt(v / 100, 3) + '">Исправить</button>';
+                    return true;
+                }
+                return false;
+            });
+        });
+    }
+    form.addEventListener('click', function (e) {
+        var id = e.target.getAttribute && e.target.getAttribute('data-fix');
+        if (!id) { return; }
+        $(id).value = e.target.getAttribute('data-to');
+        update(true);
+        $(id).focus();
+    });
+
     /* --- вывод --- */
     function setErrors(errors) {
         var map = { len: 'len', wid: 'wid', hgt: 'hgt', a: 'a', b: 'b', thick: 'thick', joint: 'joint',
-                    boxVal: 'boxval', reserve: 'reserve', rho: 'rho' };
+                    boxVal: 'boxval', reserve: 'reserve', rho: 'rho', tubLen: 'tublen', tubWid: 'tubwid' };
         Object.keys(map).forEach(function (k) {
             var input = $('c-' + map[k]), box = $('e-' + map[k]);
             var msg = errors[k] || '';
@@ -284,6 +362,8 @@
             if (errors[k]) { input.setAttribute('aria-invalid', 'true'); } else { input.removeAttribute('aria-invalid'); }
         });
         $('e-openings').textContent = errors.openings || '';
+        $('e-tub').textContent = errors.tub || '';
+        if (errors.tub) { $('c-tublen').setAttribute('aria-invalid', 'true'); $('c-tubwid').setAttribute('aria-invalid', 'true'); }
         Array.prototype.forEach.call(openList.children, function (row, i) {
             var bad = !!errors['open' + i];
             row.querySelector('.calc-err').textContent = bad ? errors['open' + i] : '';
@@ -295,6 +375,32 @@
     function packsText(packs) {
         return packs.map(function (p) { return p.count + ' уп. по ' + fmt(p.size, 1) + ' кг'; }).join(' или ');
     }
+    // поле для ссылки из плашки: ключ ошибки -> [id поля, название]
+    var FIELD_NAMES = {
+        len: ['c-len', 'длина помещения'], wid: ['c-wid', 'ширина помещения'], hgt: ['c-hgt', 'высота облицовки'],
+        tubLen: ['c-tublen', 'длина ванны'], tubWid: ['c-tubwid', 'ширина ванны'], tub: ['c-tublen', 'размеры ванны'],
+        a: ['c-a', 'сторона A'], b: ['c-b', 'сторона B'], thick: ['c-thick', 'толщина плитки'], joint: ['c-joint', 'шов'],
+        boxVal: ['c-boxval', 'число в коробке'], reserve: ['c-reserve', 'запас'], rho: ['c-rho', 'плотность затирки'],
+        openings: ['c-openings', 'проёмы']
+    };
+    var ERR_ORDER = ['len', 'wid', 'hgt', 'tubLen', 'tubWid', 'tub', 'openings', 'a', 'b', 'thick', 'joint', 'boxVal', 'reserve', 'rho'];
+    function showErrorBar(errors) {
+        var bar = $('c-bar'), id = null, name = '';
+        ERR_ORDER.some(function (k) {
+            if (errors[k]) { id = FIELD_NAMES[k][0]; name = FIELD_NAMES[k][1]; return true; }
+            return false;
+        });
+        if (!id) {
+            Array.prototype.some.call(openList.children, function (row, i) {
+                if (errors['open' + i]) { id = row.querySelector('input').id; name = 'размеры проёма'; return true; }
+                return false;
+            });
+        }
+        if (!id) { bar.hidden = true; return; }
+        $('c-bar-text').innerHTML = 'Исправьте поле: <a href="#' + id + '" data-focus="' + id + '">' + esc(name) + '</a>';
+        $('c-bar-more').hidden = true;
+        bar.hidden = false;
+    }
     var MODE_NAMES = { floor: 'пол', walls: 'стены', both: 'пол и стены' };
     function render(r, inp) {
         var res = $('c-result'), bar = $('c-bar');
@@ -302,7 +408,7 @@
             setErrors(r.errors);
             res.innerHTML = '<p class="calc-wait">Исправьте отмеченные поля — результат появится сразу.</p>';
             $('c-how').innerHTML = '';
-            bar.hidden = true;
+            showErrorBar(r.errors);
             lastText = '';
             $('c-copy').disabled = true;
             return;
@@ -318,8 +424,8 @@
             '<div><dt>Затирка ' + esc(gl.name) + '</dt><dd><strong>' + fmt(r.groutKg) + ' кг</strong><span class="calc-sub">' + packsText(r.groutPacks) + '</span></dd></div>' +
             '<div><dt>Клей (зуб ' + r.tooth + ' мм)</dt><dd><strong>' + fmt(r.glueKg, 1) + ' кг</strong><span class="calc-sub">' + r.glueBags + ' ' + bagWord + ' по 25 кг</span></dd></div>' +
             '</dl>';
-        if (r.bothSidesHint) {
-            html += '<p class="calc-note">Большая сторона плитки больше 30 см: клей наносят и на основание, и на плитку, расход при этом больше табличного. Возьмите клея с запасом или уточните норму в инструкции на мешке.</p>';
+        if (r.bigTileHint) {
+            html += '<p class="calc-note">По таблице Ceresit CM 11 Plus для плитки больше 30 см — гребёнка 12 мм. Для настенной плитки 25×40 многие мастера берут 10 мм — выберите в списке «Зуб шпателя», расход пересчитается.</p>';
         }
         if (r.tooth !== r.autoTooth) {
             html += '<p class="calc-note">Зуб выбран вручную; по размеру плитки подходил бы ' + r.autoTooth + ' мм.</p>';
@@ -327,7 +433,9 @@
         res.innerHTML = html;
         $('c-how').innerHTML = howText(r, inp);
         bar.hidden = false;
-        $('c-bar-text').textContent = 'Плитка: ' + r.pcs + ' шт' + (r.boxes != null ? ', ' + r.boxes + ' кор.' : '');
+        $('c-bar-text').textContent = r.pcs + ' шт' + (r.boxes != null ? ' · ' + r.boxes + ' кор.' : '') +
+            ' · затирка ' + fmt(r.groutKg, 1) + ' кг · клей ' + r.glueBags + ' меш.';
+        $('c-bar-more').hidden = false;
         lastText = copyText(r);
         $('c-copy').disabled = false;
     }
@@ -335,7 +443,13 @@
         var a = toNum(inp.a), b = toNum(inp.b), j = toNum(inp.joint), t = toNum(inp.thick);
         var h = '<ol class="calc-how"><li><strong>Площадь.</strong> ';
         var parts = [];
-        if (r.mode !== 'walls') { parts.push('пол ' + fmt(toNum(inp.len)) + '×' + fmt(toNum(inp.wid)) + ' = ' + fmt(r.floorArea) + ' м²'); }
+        if (r.mode !== 'walls') {
+            var floorTxt = 'пол ' + fmt(toNum(inp.len)) + '×' + fmt(toNum(inp.wid)) + ' = ' + fmt(r.floorGross) + ' м²';
+            if (r.tubOn) {
+                floorTxt += ', под ванной ' + fmt(r.tubLen) + '×' + fmt(r.tubWid) + ' = −' + fmt(r.tubArea) + ' м², пол с вычетом ' + fmt(r.floorArea) + ' м²';
+            }
+            parts.push(floorTxt);
+        }
         if (r.mode !== 'floor') {
             parts.push('стены: периметр 2×(' + fmt(toNum(inp.len)) + '+' + fmt(toNum(inp.wid)) + ') = ' + fmt(r.perimeter) +
                 ' м, умножить на высоту ' + fmt(toNum(inp.hgt)) + ' м = ' + fmt(r.wallArea) + ' м²');
@@ -361,7 +475,7 @@
     function copyText(r) {
         var g = GROUTS[r.groutKey];
         return ['Расчёт плитки (' + MODE_NAMES[r.mode] + '), santehrazbor.ru',
-            'Площадь: ' + fmt(r.area) + ' м²',
+            'Площадь: ' + fmt(r.area) + ' м²' + (r.tubOn ? ' (без пола под ванной ' + fmt(r.tubLen) + '×' + fmt(r.tubWid) + ' м: −' + fmt(r.tubArea) + ' м²)' : ''),
             'Плитка: ' + r.pcs + ' шт (запас ' + fmt(r.reserve, 1) + ' %)' + (r.boxes != null ? ', коробок: ' + r.boxes : ''),
             'Затирка ' + g.name + ': ' + fmt(r.groutKg) + ' кг (' + packsText(r.groutPacks) + ')',
             'Клей, зуб ' + r.tooth + ' мм: ' + fmt(r.glueKg, 1) + ' кг (' + r.glueBags + ' меш. по 25 кг)',
@@ -381,6 +495,7 @@
     function update(fromUser) {
         syncVisibility();
         var inp = read();
+        renderHints();
         var r = calc(inp);
         render(r, inp);
         saveUrl(inp);
@@ -395,13 +510,7 @@
             if (!thickTouched) { $('c-thick').value = p[2]; }
         }
     });
-    ['c-a', 'c-b'].forEach(function (id) {
-        $(id).addEventListener('input', function () {
-            syncPreset();
-            var p = PRESETS[$('c-preset').value];
-            if (!thickTouched && p) { $('c-thick').value = p[2]; }
-        });
-    });
+    // A/B правятся только при «Свой размер», поэтому список от них не зависит (иначе поля пропали бы при вводе 25 и 40)
     $('c-thick').addEventListener('input', function () { thickTouched = true; });
     // смена раскладки подставляет «обычный» запас; число в поле можно поменять
     form.addEventListener('change', function (e) {
@@ -409,6 +518,14 @@
     });
     form.addEventListener('input', function () { update(true); });
     form.addEventListener('change', function () { update(true); });
+    // плашка: ссылка на поле с ошибкой — прокрутить и поставить фокус
+    $('c-bar').addEventListener('click', function (e) {
+        var id = e.target.getAttribute && e.target.getAttribute('data-focus');
+        if (!id) { return; }
+        e.preventDefault();
+        var el = $(id);
+        if (el) { el.scrollIntoView({ block: 'center' }); el.focus(); }
+    });
     form.addEventListener('submit', function (e) { e.preventDefault(); });
 
     $('c-copy').addEventListener('click', function () {

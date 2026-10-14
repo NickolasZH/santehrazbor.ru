@@ -41,6 +41,16 @@ def grout_per_m2(a_mm, b_mm, joint_mm, thick_mm, rho):
     return (a_mm + b_mm) / (a_mm * b_mm) * joint_mm * thick_mm * rho
 
 
+def floor_area(len_m, wid_m, tub_len_m=None, tub_wid_m=None):
+    """Площадь пола, м2; под ванной/поддоном плитку не кладут (вычитается). Не бывает <= 0."""
+    area = len_m * wid_m
+    if tub_len_m and tub_wid_m:
+        area -= tub_len_m * tub_wid_m
+    if area <= 0:
+        raise ValueError("площадь пола после вычета ванны <= 0")
+    return area
+
+
 def tiles(area_m2, a_cm, b_cm, reserve_pct, box_m2=None, box_pcs=None):
     """-> (штук, коробок или None). Площадь плитки a*b без шва."""
     pcs = ceil_eps(area_m2 * (1 + reserve_pct / 100) / (a_cm / 100 * b_cm / 100))

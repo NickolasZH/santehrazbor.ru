@@ -25,6 +25,22 @@
                     <span class="calc-err" id="e-hgt" role="alert"></span>
                 </div>
             </div>
+            <div class="calc-tub" id="c-tub-block">
+                <label class="calc-check"><input type="checkbox" id="c-tub"> Под ванной/поддоном плитку не кладём</label>
+                <div class="calc-grid" id="c-tub-fields" hidden>
+                    <div class="calc-field">
+                        <label for="c-tublen">Длина ванны, м</label>
+                        <input id="c-tublen" type="text" inputmode="decimal" value="1,7" aria-describedby="e-tublen">
+                        <span class="calc-err" id="e-tublen" role="alert"></span>
+                    </div>
+                    <div class="calc-field">
+                        <label for="c-tubwid">Ширина ванны, м</label>
+                        <input id="c-tubwid" type="text" inputmode="decimal" value="0,7" aria-describedby="e-tubwid">
+                        <span class="calc-err" id="e-tubwid" role="alert"></span>
+                    </div>
+                </div>
+                <span class="calc-err" id="e-tub" role="alert"></span>
+            </div>
         </fieldset>
 
         <fieldset class="calc-group" id="c-open-block">
@@ -53,12 +69,12 @@
                         <option value="custom">Свой размер</option>
                     </select>
                 </div>
-                <div class="calc-field">
+                <div class="calc-field" id="c-a-row" hidden>
                     <label for="c-a">Сторона A, см</label>
                     <input id="c-a" type="text" inputmode="decimal" value="25" aria-describedby="e-a">
                     <span class="calc-err" id="e-a" role="alert"></span>
                 </div>
-                <div class="calc-field">
+                <div class="calc-field" id="c-b-row" hidden>
                     <label for="c-b">Сторона B, см</label>
                     <input id="c-b" type="text" inputmode="decimal" value="40" aria-describedby="e-b">
                     <span class="calc-err" id="e-b" role="alert"></span>
@@ -83,6 +99,7 @@
                         <option value="m2">Указать м² в коробке</option>
                         <option value="pcs">Указать шт в коробке</option>
                     </select>
+                    <span class="calc-hint">Площадь или число плиток в коробке — на этикетке и в карточке товара</span>
                 </div>
                 <div class="calc-field" id="c-boxval-row" hidden>
                     <label for="c-boxval" id="c-boxval-label">Площадь плитки в коробке, м²</label>
@@ -114,11 +131,11 @@
                 <div class="calc-field">
                     <label for="c-grout">Затирка</label>
                     <select id="c-grout">
-                        <option value="ce33" selected>Ceresit CE 33 Plus (ρ 1,1)</option>
-                        <option value="ce40">Ceresit CE 40 (ρ 1,1)</option>
-                        <option value="mapei">Mapei Keracolor FF (ρ 1,5)</option>
-                        <option value="epoxy">Эпоксидная Litokol Starlike EVO (ρ 1,55)</option>
-                        <option value="custom">Своя плотность</option>
+                        <option value="ce33" selected>Ceresit CE 33 Plus — цементная</option>
+                        <option value="ce40">Ceresit CE 40 — цементная</option>
+                        <option value="mapei">Mapei Keracolor FF — цементная</option>
+                        <option value="epoxy">Litokol Starlike EVO — эпоксидная</option>
+                        <option value="custom">Другая (указать плотность)</option>
                     </select>
                 </div>
                 <div class="calc-field" id="c-rho-row" hidden>
@@ -156,7 +173,7 @@
     </section>
 
     <div id="c-bar" class="calc-bar" hidden>
-        <span id="c-bar-text"></span>
-        <a href="#c-result-box">Подробнее</a>
+        <span id="c-bar-text" class="calc-bar-text"></span>
+        <a id="c-bar-more" href="#c-result-box">Подробнее</a>
     </div>
 </div>

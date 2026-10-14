@@ -22,7 +22,7 @@
     
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Калькулятор плитки, клея и затирки", "description": "Рассчитайте, сколько плитки, плиточного клея и затирки нужно для пола и стен ванной. Формулы и источники показаны, результат пересчитывается сразу.", "url": "https://santehrazbor.ru/kalkulyator-plitki/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "dateModified": "2026-10-14", "author": {"@type": "Person", "name": "Николай", "url": "https://santehrazbor.ru/o-proekte/"}}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://santehrazbor.ru/"}, {"@type": "ListItem", "position": 2, "name": "Калькуляторы", "item": "https://santehrazbor.ru/kalkulyatory/"}, {"@type": "ListItem", "position": 3, "name": "Калькулятор плитки, клея и затирки", "item": "https://santehrazbor.ru/kalkulyator-plitki/"}]}</script>
-    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Сколько запаса плитки брать для ванной?", "acceptedAnswer": {"@type": "Answer", "text": "Обычно берут около 10 % при прямой укладке, 15 % при диагональной и 15–20 % для ёлочки или крупного формата. Это ориентир из практики, а не норма производителя. Калькулятор подставляет эти числа, но поле запаса можно изменить."}}, {"@type": "Question", "name": "Нужно ли вычитать дверь и ванну?", "acceptedAnswer": {"@type": "Answer", "text": "Да, если облицовываете стены. Дверь и окно не плитят, а ванна или экран закрывают часть стены. Добавьте их кнопками «+ Дверь», «+ Окно», «+ Ванна или экран» и поправьте размеры. Для расчёта одного пола проёмы не нужны."}}, {"@type": "Question", "name": "Почему расход затирки зависит от толщины плитки?", "acceptedAnswer": {"@type": "Answer", "text": "Шов — это канавка глубиной в толщину плитки. Чем плитка толще и шире шов, тем больше объём, который нужно заполнить. Поэтому в формуле стоят и ширина шва, и толщина плитки."}}, {"@type": "Question", "name": "Почему клея для крупной плитки уходит больше?", "acceptedAnswer": {"@type": "Answer", "text": "Для плитки больше 30 см по большей стороне зуб шпателя крупнее, а расход по таблице Ceresit CM 11 Plus — 4,8 кг/м². Кроме того, для крупного формата клей наносят и на плитку, поэтому реальный расход ещё выше. Калькулятор показывает подсказку об этом."}}, {"@type": "Question", "name": "Насколько точен результат?", "acceptedAnswer": {"@type": "Answer", "text": "Это оценка. На расход влияют неровность основания, инструмент, укладчик и сама плитка. Для затирки мы закладываем 10 % запаса, для плитки — выбранный вами. Перед покупкой сверьте цифры с упаковкой выбранных материалов."}}]}</script>
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Сколько запаса плитки брать для ванной?", "acceptedAnswer": {"@type": "Answer", "text": "Обычно берут около 10 % при прямой укладке, 15 % при диагональной и 15–20 % для ёлочки или крупного формата. Это ориентир из практики, а не норма производителя. Калькулятор подставляет эти числа, но поле запаса можно изменить."}}, {"@type": "Question", "name": "Нужно ли вычитать дверь и ванну?", "acceptedAnswer": {"@type": "Answer", "text": "Да, если облицовываете стены. Дверь и окно не плитят, а ванна или экран закрывают часть стены. Добавьте их кнопками «+ Дверь», «+ Окно», «+ Ванна или экран» и поправьте размеры. Для расчёта одного пола проёмы не нужны."}}, {"@type": "Question", "name": "Почему расход затирки зависит от толщины плитки?", "acceptedAnswer": {"@type": "Answer", "text": "Шов — это канавка глубиной в толщину плитки. Чем плитка толще и шире шов, тем больше объём, который нужно заполнить. Поэтому в формуле стоят и ширина шва, и толщина плитки."}}, {"@type": "Question", "name": "Почему клея для крупной плитки уходит больше?", "acceptedAnswer": {"@type": "Answer", "text": "Для плитки больше 30 см по большей стороне зуб шпателя крупнее, а расход по таблице Ceresit CM 11 Plus — 4,8 кг/м². Для настенной плитки 25×40 многие мастера берут зуб 10 мм: его можно выбрать в списке «Зуб шпателя», и расход пересчитается. Калькулятор напоминает об этом, когда зуб подобран автоматически."}}, {"@type": "Question", "name": "Насколько точен результат?", "acceptedAnswer": {"@type": "Answer", "text": "Это оценка. На расход влияют неровность основания, инструмент, укладчик и сама плитка. Для затирки мы закладываем 10 % запаса, для плитки — выбранный вами. Перед покупкой сверьте цифры с упаковкой выбранных материалов."}}]}</script>
 
 
 
@@ -135,6 +135,22 @@
                     <span class="calc-err" id="e-hgt" role="alert"></span>
                 </div>
             </div>
+            <div class="calc-tub" id="c-tub-block">
+                <label class="calc-check"><input type="checkbox" id="c-tub"> Под ванной/поддоном плитку не кладём</label>
+                <div class="calc-grid" id="c-tub-fields" hidden>
+                    <div class="calc-field">
+                        <label for="c-tublen">Длина ванны, м</label>
+                        <input id="c-tublen" type="text" inputmode="decimal" value="1,7" aria-describedby="e-tublen">
+                        <span class="calc-err" id="e-tublen" role="alert"></span>
+                    </div>
+                    <div class="calc-field">
+                        <label for="c-tubwid">Ширина ванны, м</label>
+                        <input id="c-tubwid" type="text" inputmode="decimal" value="0,7" aria-describedby="e-tubwid">
+                        <span class="calc-err" id="e-tubwid" role="alert"></span>
+                    </div>
+                </div>
+                <span class="calc-err" id="e-tub" role="alert"></span>
+            </div>
         </fieldset>
 
         <fieldset class="calc-group" id="c-open-block">
@@ -163,12 +179,12 @@
                         <option value="custom">Свой размер</option>
                     </select>
                 </div>
-                <div class="calc-field">
+                <div class="calc-field" id="c-a-row" hidden>
                     <label for="c-a">Сторона A, см</label>
                     <input id="c-a" type="text" inputmode="decimal" value="25" aria-describedby="e-a">
                     <span class="calc-err" id="e-a" role="alert"></span>
                 </div>
-                <div class="calc-field">
+                <div class="calc-field" id="c-b-row" hidden>
                     <label for="c-b">Сторона B, см</label>
                     <input id="c-b" type="text" inputmode="decimal" value="40" aria-describedby="e-b">
                     <span class="calc-err" id="e-b" role="alert"></span>
@@ -193,6 +209,7 @@
                         <option value="m2">Указать м² в коробке</option>
                         <option value="pcs">Указать шт в коробке</option>
                     </select>
+                    <span class="calc-hint">Площадь или число плиток в коробке — на этикетке и в карточке товара</span>
                 </div>
                 <div class="calc-field" id="c-boxval-row" hidden>
                     <label for="c-boxval" id="c-boxval-label">Площадь плитки в коробке, м²</label>
@@ -224,11 +241,11 @@
                 <div class="calc-field">
                     <label for="c-grout">Затирка</label>
                     <select id="c-grout">
-                        <option value="ce33" selected>Ceresit CE 33 Plus (ρ 1,1)</option>
-                        <option value="ce40">Ceresit CE 40 (ρ 1,1)</option>
-                        <option value="mapei">Mapei Keracolor FF (ρ 1,5)</option>
-                        <option value="epoxy">Эпоксидная Litokol Starlike EVO (ρ 1,55)</option>
-                        <option value="custom">Своя плотность</option>
+                        <option value="ce33" selected>Ceresit CE 33 Plus — цементная</option>
+                        <option value="ce40">Ceresit CE 40 — цементная</option>
+                        <option value="mapei">Mapei Keracolor FF — цементная</option>
+                        <option value="epoxy">Litokol Starlike EVO — эпоксидная</option>
+                        <option value="custom">Другая (указать плотность)</option>
                     </select>
                 </div>
                 <div class="calc-field" id="c-rho-row" hidden>
@@ -266,8 +283,8 @@
     </section>
 
     <div id="c-bar" class="calc-bar" hidden>
-        <span id="c-bar-text"></span>
-        <a href="#c-result-box">Подробнее</a>
+        <span id="c-bar-text" class="calc-bar-text"></span>
+        <a id="c-bar-more" href="#c-result-box">Подробнее</a>
     </div>
 </div>
         <noscript>
@@ -312,7 +329,7 @@
 <p><strong>Затирка.</strong> Расход на квадратный метр считается по формуле:</p>
 <p><code>(A + B) ÷ (A × B) × J × T × ρ</code></p>
 <p>где A и B — стороны плитки в миллиметрах, J — ширина шва в миллиметрах, T — толщина плитки в миллиметрах, ρ — плотность затирки в кг/дм³. Дальше расход умножается на площадь и на 1,1, то есть мы закладываем 10 % запаса.</p>
-<p>Плотность цементной затирки Ceresit CE 33 Plus (около 1100 кг/м³) взята из <a href="https://datasheets.tdx.henkel.com/CERESIT-CE-33-PLUS-ru_BY.pdf">технического описания Henkel</a>. Таблица в том же документе совпадает с формулой: для плитки 300×600 мм при шве 3 мм получается 0,15 кг/м², для 600×600 мм при шве 3 мм — 0,10 кг/м². Для Ceresit CE 40 мы используем ту же плотность, хотя таблица в его описании формулой не воспроизводится, поэтому для него результат ориентировочный. Плотности Mapei Keracolor FF (около 1,5) и эпоксидной Litokol Starlike EVO (около 1,55) восстановлены из таблиц расхода самих производителей. Если у вашей затирки плотность другая, выберите «Своя плотность».</p>
+<p>Плотность цементной затирки Ceresit CE 33 Plus (около 1100 кг/м³) взята из <a href="https://datasheets.tdx.henkel.com/CERESIT-CE-33-PLUS-ru_BY.pdf">технического описания Henkel</a>. Таблица в том же документе совпадает с формулой: для плитки 300×600 мм при шве 3 мм получается 0,15 кг/м², для 600×600 мм при шве 3 мм — 0,10 кг/м². Для Ceresit CE 40 мы используем ту же плотность, хотя таблица в его описании формулой не воспроизводится, поэтому для него результат ориентировочный. Плотности Mapei Keracolor FF (около 1,5) и эпоксидной Litokol Starlike EVO (около 1,55) восстановлены из таблиц расхода самих производителей. Если у вашей затирки плотность другая, выберите «Другая (указать плотность)».</p>
 <p><strong>Клей.</strong> Расход и зуб шпателя взяты из <a href="https://datasheets.tdx.henkel.com/CERESIT-CM-11-PLUS-en_GL.pdf">технического описания Ceresit CM 11 Plus</a>. Зависимость от большей стороны плитки такая:</p>
 <div class="table-wrap"><table>
 <thead>
@@ -370,12 +387,12 @@
 <p><strong>Почему расход затирки зависит от толщины плитки?</strong>
 Шов — это канавка глубиной в толщину плитки. Чем плитка толще и шире шов, тем больше объём, который нужно заполнить. Поэтому в формуле стоят и ширина шва, и толщина плитки.</p>
 <p><strong>Почему клея для крупной плитки уходит больше?</strong>
-Для плитки больше 30 см по большей стороне зуб шпателя крупнее, а расход по таблице Ceresit CM 11 Plus — 4,8 кг/м². Кроме того, для крупного формата клей наносят и на плитку, поэтому реальный расход ещё выше. Калькулятор показывает подсказку об этом.</p>
+Для плитки больше 30 см по большей стороне зуб шпателя крупнее, а расход по таблице Ceresit CM 11 Plus — 4,8 кг/м². Для настенной плитки 25×40 многие мастера берут зуб 10 мм: его можно выбрать в списке «Зуб шпателя», и расход пересчитается. Калькулятор напоминает об этом, когда зуб подобран автоматически.</p>
 <p><strong>Насколько точен результат?</strong>
 Это оценка. На расход влияют неровность основания, инструмент, укладчик и сама плитка. Для затирки мы закладываем 10 % запаса, для плитки — выбранный вами. Перед покупкой сверьте цифры с упаковкой выбранных материалов.</p>
     </div>
 </article>
-<script src="/js/calc-plitka.js?v=a79a94a9" defer></script>
+<script src="/js/calc-plitka.js?v=111d0a67" defer></script>
 
     </main>
     <footer class="site-footer">

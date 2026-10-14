@@ -64,7 +64,7 @@
         var useWalls = mode === 'walls' || mode === 'both';
         var len = need('len', 'длину', 0.1, 100, 'м');
         var wid = need('wid', 'ширину', 0.1, 100, 'м');
-        var hgt = useWalls ? need('hgt', 'высоту облицовки', 0.1, 10, 'м') : 0;
+        var hgt = useWalls ? need('hgt', 'высоту стен', 0.1, 10, 'м') : 0;
         var a = need('a', 'сторону плитки', 1, 300, 'см');
         var b = need('b', 'сторону плитки', 1, 300, 'см');
         var thick = need('thick', 'толщину плитки', 3, 30, 'мм');
@@ -377,7 +377,7 @@
     }
     // поле для ссылки из плашки: ключ ошибки -> [id поля, название]
     var FIELD_NAMES = {
-        len: ['c-len', 'длина помещения'], wid: ['c-wid', 'ширина помещения'], hgt: ['c-hgt', 'высота облицовки'],
+        len: ['c-len', 'длина помещения'], wid: ['c-wid', 'ширина помещения'], hgt: ['c-hgt', 'высота стен'],
         tubLen: ['c-tublen', 'длина ванны'], tubWid: ['c-tubwid', 'ширина ванны'], tub: ['c-tublen', 'размеры ванны'],
         a: ['c-a', 'сторона A'], b: ['c-b', 'сторона B'], thick: ['c-thick', 'толщина плитки'], joint: ['c-joint', 'шов'],
         boxVal: ['c-boxval', 'число в коробке'], reserve: ['c-reserve', 'запас'], rho: ['c-rho', 'плотность затирки'],

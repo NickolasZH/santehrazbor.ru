@@ -401,8 +401,10 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 .calc-radios { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
 .calc-radios label { display: flex; align-items: center; gap: 8px; min-height: 44px; }
 .calc-radios input { width: 20px; height: 20px; flex: none; }
-.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 14px; margin-bottom: 6px; }
-.calc-field { display: flex; flex-direction: column; min-width: 0; }
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0 14px; margin-bottom: 6px; }
+/* subgrid: подпись, поле и подсказка делят строки сетки, поэтому поля ввода стоят на одной линии, даже если подпись соседа переносится */
+.calc-field { display: grid; grid-template-rows: subgrid; grid-row: span 4; align-content: start; min-width: 0; margin-bottom: 10px; }
+.calc-field > label { align-self: end; }
 .calc-field[hidden], .calc-group[hidden], .calc-bar[hidden] { display: none; }
 .calc-field label, .calc-open label { font-size: 0.9rem; color: var(--muted); margin-bottom: 3px; }
 .calc input[type="text"], .calc select {

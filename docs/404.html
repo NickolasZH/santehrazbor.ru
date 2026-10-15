@@ -18,7 +18,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="stylesheet" href="/style.css?v=87d7acf2">
+    <link rel="stylesheet" href="/style.css?v=2dbd3a16">
     
 
     <script>
@@ -70,7 +70,12 @@
 
     <header class="site-header">
         <div class="wrap header-inner">
-            <a class="site-name" href="/">Сантехразбор</a>
+            <div class="header-top">
+                <a class="site-name" href="/">Сантехразбор</a>
+                <a class="search-link" href="/poisk/" aria-label="Поиск по сайту">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+                </a>
+            </div>
             <nav class="main-nav" aria-label="Основное меню">
 
                 <a href="/smesiteli/">Смесители</a>
@@ -84,6 +89,9 @@
                 <a href="/o-proekte/">О проекте</a>
 
             </nav>
+            <form class="header-search" action="/poisk/" method="get" role="search">
+                <input type="search" name="q" placeholder="Поиск по сайту" aria-label="Поиск по сайту" autocomplete="off">
+            </form>
         </div>
     </header>
     <main class="wrap">

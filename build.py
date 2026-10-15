@@ -440,6 +440,34 @@ NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html, "kalkulyator-za
                      "kalkulyator-vodonagrevatelya": vodonagrevatel_noscript_html}
 
 
+def md_plain_text(body_md):
+    """Markdown-тело -> чистый текст для поискового индекса: без шорткодов, ссылок, разметки и таблиц-разделителей."""
+    t = SHORTCODE_RE.sub(" ", body_md)
+    t = re.sub(r"!\[[^\]]*\]\([^)]*\)", " ", t)           # картинки
+    t = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", t)        # ссылки -> текст
+    t = re.sub(r"^\s*\|?[\s:|-]{3,}\|?\s*$", " ", t, flags=re.M)  # разделитель таблицы
+    t = re.sub(r"<[^>]+>", " ", t)
+    t = re.sub(r"^\s*(#{1,6}|>|[-*+]|\d+\.)\s+", "", t, flags=re.M)
+    t = re.sub(r"[*_`|]+", " ", t)
+    # вычищаем эмодзи и пиктограммы (U+2600–27BF, U+1F000+, U+FE0F, приватная зона)
+    t = re.sub("[☀-➿🀀-🿿️-]", "", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    # пробелы, оставшиеся от снятых тегов, перед знаками препинания и после «(»
+    t = re.sub(r"\s+([,.:;)!?])", r"\1", t)
+    return re.sub(r"\(\s+", "(", t)
+
+
+def md_headings(body_md):
+    """Заголовки h2/h3 markdown-тела (текстом)."""
+    out = []
+    for m in re.finditer(r"^#{2,3}\s+(.+?)\s*$", SHORTCODE_RE.sub("", body_md), re.M):
+        out.append(re.sub(r"[*_`]+", "", re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", m.group(1))).strip())
+    return out
+
+
+SEARCH_TEXT_LIMIT = 3000  # символов текста на запись: индекс остаётся компактным
+
+
 def main():
     config = load_json("config.json")
     aff = load_json("affiliate.json")
@@ -494,7 +522,7 @@ def main():
             "category": meta.get("category"),
             "slug": meta["slug"], "published": published, "updated": updated,
             "published_ru": ru_date(published), "updated_ru": ru_date(updated),
-            "body": html, "faq": faq, "path": f"/{meta['slug']}/",
+            "body": html, "body_md": body, "faq": faq, "path": f"/{meta['slug']}/",
             "products": products, "picks": picks,
         })
     articles.sort(key=lambda a: a["updated"], reverse=True)
@@ -533,7 +561,7 @@ def main():
             "slug": meta["slug"], "script": meta["script"],
             "products": {cp["label"]: cp for cp in calc_prods},
             "published": published, "updated": updated, "updated_ru": ru_date(updated),
-            "body": html, "faq": parse_faq(body), "path": f"/{meta['slug']}/",
+            "body": html, "body_md": body, "faq": parse_faq(body), "path": f"/{meta['slug']}/",
             "noscript": builder() if builder else "",
         })
 
@@ -698,6 +726,35 @@ def main():
     today = date.today()
     pages.append(("/o-proekte/", today))
     pages.append(("/privacy/", today))
+
+    # --- поиск: страница /poisk/ (noindex, вне sitemap) и клиентский индекс
+    search_index = []
+    for a in articles:
+        search_index.append({
+            "url": a["path"], "title": a["h1"], "description": md_plain_text(a["description"]),
+            "section": a["cat"]["name"] if a["cat"] else "Статья",
+            "headings": md_headings(a["body_md"]),
+            "products": [p["name"] for p in a["products"]],
+            "text": md_plain_text(a["body_md"])[:SEARCH_TEXT_LIMIT]})
+    for c in calcs:
+        search_index.append({
+            "url": c["path"], "title": c["h1"], "description": md_plain_text(c["description"]),
+            "section": "Калькулятор", "headings": md_headings(c["body_md"]),
+            "products": [p["name"] for p in c["products"].values()],
+            "text": md_plain_text(c["body_md"])[:SEARCH_TEXT_LIMIT]})
+    for h in hubs:
+        search_index.append({
+            "url": h["path"], "title": h["name"], "description": h["seo_description"],
+            "section": "Раздел", "headings": [], "products": [],
+            "text": " ".join(x["title"] for x in h["articles"])})
+    search_json = json.dumps(search_index, ensure_ascii=False, separators=(",", ":"))
+    write("search-index.json", search_json)
+    write("poisk/index.html", render(
+        "search.html", "/poisk/", title=f"Поиск по сайту — {config['site_name']}",
+        description="Поиск по статьям и калькуляторам сайта.", nav_active=None, noindex="follow", hubs=hubs,
+        articles=articles, calcs=calcs, search_ver=asset_hash("js/search.js"),
+        index_ver=hashlib.md5(search_json.encode("utf-8")).hexdigest()[:8]))
+    print(f"Поисковый индекс: {len(search_index)} записей, {len(search_json.encode('utf-8')) // 1024} КБ")
 
     write("404.html", render(
         "404.html", "/404.html", title=f"Страница не найдена — {config['site_name']}",

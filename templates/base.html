@@ -6,7 +6,7 @@
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
     <link rel="canonical" href="{{ canonical }}">
-    {% if noindex %}<meta name="robots" content="noindex">{% endif %}
+    {% if noindex %}<meta name="robots" content="{{ 'noindex, follow' if noindex == 'follow' else 'noindex' }}">{% endif %}
     <meta property="og:title" content="{{ title }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:url" content="{{ canonical }}">
@@ -70,12 +70,20 @@
 {% endif %}
     <header class="site-header">
         <div class="wrap header-inner">
-            <a class="site-name" href="/">{{ site.site_name }}</a>
+            <div class="header-top">
+                <a class="site-name" href="/">{{ site.site_name }}</a>
+                <a class="search-link" href="/poisk/" aria-label="Поиск по сайту">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+                </a>
+            </div>
             <nav class="main-nav" aria-label="Основное меню">
 {% for item in site.nav %}
                 <a href="{{ item.url }}"{% if nav_active == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
 {% endfor %}
             </nav>
+            <form class="header-search" action="/poisk/" method="get" role="search">
+                <input type="search" name="q" placeholder="Поиск по сайту" aria-label="Поиск по сайту" autocomplete="off">
+            </form>
         </div>
     </header>
     <main class="wrap">

@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block head %}
+    <script type="application/ld+json">{{ {"@context": "https://schema.org", "@type": "WebSite", "name": site.site_name, "url": site.base_url ~ "/", "inLanguage": "ru", "potentialAction": {"@type": "SearchAction", "target": {"@type": "EntryPoint", "urlTemplate": site.base_url ~ "/poisk/?q={search_term_string}"}, "query-input": "required name=search_term_string"}}|tojson }}</script>
+{% endblock %}
 {% block content %}
 <section class="hero">
     <h1>Разбираем, что внутри сантехники — чтобы вы не переплачивали за бренд и не купили одноразовое</h1>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+    <h1>Поиск по сайту</h1>
+</section>
+<div id="search-app" data-index="/search-index.json?v={{ index_ver }}">
+    <form class="search-form" action="/poisk/" method="get" role="search">
+        <input type="search" id="search-input" name="q" placeholder="Например: термостатический смеситель" aria-label="Запрос" autocomplete="off">
+        <button type="submit">Найти</button>
+    </form>
+    <p class="search-note" id="search-status" aria-live="polite"></p>
+    <ol class="search-results" id="search-results"></ol>
+    <div id="search-hints">
+        <h2>Популярные темы</h2>
+        <ul class="hub-links">
+{% for a in articles[:8] %}
+            <li><a href="{{ a.path }}">{{ a.h1 }}</a></li>
+{% endfor %}
+        </ul>
+    </div>
+    <div id="search-empty" hidden>
+        <p><strong>Ничего не нашлось.</strong> Попробуйте другое слово или загляните в разделы:</p>
+        <ul class="hub-links">
+{% for h in hubs %}
+            <li><a href="{{ h.path }}">{{ h.name }}</a></li>
+{% endfor %}
+{% if calcs %}
+            <li><a href="/kalkulyatory/">Калькуляторы</a></li>
+{% endif %}
+        </ul>
+    </div>
+</div>
+<noscript>
+    <h2>Все статьи</h2>
+    <ul>
+{% for a in articles %}
+        <li><a href="{{ a.path }}">{{ a.h1 }}</a></li>
+{% endfor %}
+{% for c in calcs %}
+        <li><a href="{{ c.path }}">{{ c.h1 }}</a></li>
+{% endfor %}
+    </ul>
+</noscript>
+<script src="/js/search.js?v={{ search_ver }}" defer></script>
+{% endblock %}

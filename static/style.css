@@ -104,6 +104,15 @@ article > h1 { margin-left: auto; margin-right: auto; }
 /* ---------- шапка ---------- */
 .site-header { border-bottom: 1px solid var(--border); background: var(--surface); }
 .header-inner { display: flex; flex-direction: column; gap: 2px; padding-top: 10px; padding-bottom: 2px; }
+.header-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.search-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -10px; color: var(--text); }
+.search-link:hover { color: var(--primary); }
+.header-search { display: none; }
+.header-search input {
+    width: 110px; min-height: 36px; padding: 4px 10px; font: inherit; font-size: 0.9rem;
+    color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+}
+.header-search input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
 .site-name { font-weight: 800; font-size: 1.3rem; color: var(--primary); text-decoration: none; letter-spacing: -0.01em; }
 .main-nav {
     display: flex; gap: 4px; overflow-x: auto; white-space: nowrap;
@@ -118,9 +127,12 @@ article > h1 { margin-left: auto; margin-right: auto; }
 .main-nav a:hover { color: var(--primary); }
 .main-nav a[aria-current="page"] { color: var(--primary); border-bottom-color: var(--primary); }
 @media (min-width: 840px) {
-    .header-inner { flex-direction: row; align-items: center; justify-content: space-between; padding-top: 0; padding-bottom: 0; }
+    .header-inner { flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding-top: 0; padding-bottom: 0; }
     .site-name { padding: 12px 0; }
-    .main-nav { margin: 0; padding: 0; overflow: visible; }
+    .header-top { justify-content: flex-start; gap: 20px; }
+    .search-link { display: none; }
+    .header-search { display: block; }
+    .main-nav { margin: 0 0 0 auto; padding: 0; overflow: visible; }
 }
 
 /* ---------- подвал ---------- */
@@ -506,3 +518,24 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
     .calc-result { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; }
     .calc .calc-bar { display: none !important; }
 }
+
+/* ---------- поиск ---------- */
+.search-form { display: flex; gap: 8px; margin: 0 0 1.2rem; }
+.search-form input {
+    flex: 1; min-width: 0; min-height: 48px; padding: 8px 12px; font: inherit; font-size: 1.05rem;
+    color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+}
+.search-form input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.search-form button {
+    flex: none; min-height: 48px; padding: 0 16px; font: inherit; font-weight: 600; cursor: pointer;
+    color: var(--cta-text); background: var(--primary-dark); border: 0; border-radius: 8px;
+}
+.search-note { color: var(--muted); font-size: 0.9rem; margin: 0 0 1rem; }
+.search-results { list-style: none; padding: 0; margin: 0; }
+.search-results li { padding: 0.9rem 0; border-top: 1px solid var(--border); }
+.search-results li:first-child { border-top: 0; }
+.search-results a { font-weight: 700; font-size: 1.1rem; overflow-wrap: anywhere; }
+.search-results .search-section { display: block; color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+.search-results p { margin: 0.3rem 0 0; font-size: 0.95rem; overflow-wrap: anywhere; }
+.search-results mark { background: #fde68a; color: inherit; border-radius: 2px; padding: 0 1px; }
+@media (prefers-color-scheme: dark) { .search-results mark { background: #7a5b00; color: #fff; } }

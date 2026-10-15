@@ -32,6 +32,21 @@ CASES = {
         "mode": "walls", "len": "2", "wid": "1,5", "hgt": "2,4", "openings": [{"w": "0,8", "h": "2"}],
         "a": "60", "b": "120", "thick": "10", "joint": "3", "boxKind": "m2", "boxVal": "1,44",
         "reserve": "20", "groutKey": "epoxy", "rho": "", "tooth": "10"},
+    "bath_3walls": {  # ванная 1,7×1,5: 3 стены (1,7 + 1,5 + 1,7) × 2,5, дверь 0,7×2,0
+        "mode": "both", "wallMode": "sel", "len": "1,7", "wid": "1.5", "hgt": "",
+        "walls": [{"l": "1,7", "h": "2,5"}, {"l": "1,5", "h": "2,5"}, {"l": "1,7", "h": "2,5"}],
+        "openings": [{"w": "0,7", "h": "2"}],
+        "a": "25", "b": "40", "thick": "8", "joint": "2", "boxKind": "none", "boxVal": "",
+        "reserve": "10", "groutKey": "ce33", "rho": "", "tooth": ""},
+    "apron_2walls": {  # фартук: 2,4×0,6 + 0,6×0,6, только стены
+        "mode": "walls", "wallMode": "sel", "len": "", "wid": "", "hgt": "",
+        "walls": [{"l": "2,4", "h": "0,6"}, {"l": "0,6", "h": "0,6"}], "openings": [],
+        "a": "30", "b": "60", "thick": "9", "joint": "2", "boxKind": "none", "boxVal": "",
+        "reserve": "10", "groutKey": "ce33", "rho": "", "tooth": ""},
+    "bath_perimeter_explicit": {  # явный wallMode=all — как bath_default
+        "mode": "both", "wallMode": "all", "len": "1,7", "wid": "1.5", "hgt": "2,5", "openings": [{"w": "0,7", "h": "2"}],
+        "a": "25", "b": "40", "thick": "8", "joint": "2", "boxKind": "none", "boxVal": "",
+        "reserve": "10", "groutKey": "ce33", "rho": "", "tooth": ""},
 }
 KEYS = ["area", "pcs", "boxes", "groutPerM2", "groutKg", "tooth", "glueRate", "glueKg", "glueBags"]
 
@@ -43,7 +58,10 @@ def py_calc(c):
     floor = num(c["len"]) * num(c["wid"]) if mode in ("floor", "both") else 0
     walls = opening = 0
     if mode in ("walls", "both"):
-        walls = 2 * (num(c["len"]) + num(c["wid"])) * num(c["hgt"])
+        if c.get("wallMode") == "sel":
+            walls = ref.walls_area([(num(w["l"]), num(w["h"])) for w in c["walls"]])
+        else:
+            walls = ref.walls_area(None, num(c["len"]), num(c["wid"]), num(c["hgt"]))
         opening = sum(num(o["w"]) * num(o["h"]) for o in c["openings"])
     area = floor + walls - opening
     a, b = num(c["a"]), num(c["b"])
@@ -100,6 +118,20 @@ class RefFormulas(unittest.TestCase):
         self.assertEqual(r["tooth"], 12)  # большая сторона 40 см > 30
 
 
+class SelectedWalls(unittest.TestCase):
+    def test_three_walls_bathroom(self):
+        r = py_calc(CASES["bath_3walls"])
+        # пол 2,55 + (1,7+1,5+1,7)*2,5 = 12,25 - дверь 1,4 = 13,4
+        self.assertAlmostEqual(r["area"], 13.4, places=6)
+
+    def test_apron(self):
+        r = py_calc(CASES["apron_2walls"])
+        self.assertAlmostEqual(r["area"], 2.4 * 0.6 + 0.36, places=6)  # 1,8
+
+    def test_perimeter_unchanged(self):
+        self.assertAlmostEqual(py_calc(CASES["bath_perimeter_explicit"])["area"], 17.15, places=6)
+
+
 @unittest.skipUnless(NODE, "node не найден — JS-часть не проверяется")
 class JsMatchesRef(unittest.TestCase):
     def test_cases(self):
@@ -132,6 +164,21 @@ class JsMatchesRef(unittest.TestCase):
         self.assertEqual(got[2], [False, ["wid"]])
         self.assertEqual(got[3][0], False)
         self.assertIn("openings", got[3][1])
+
+    def test_walls_validation(self):
+        base = CASES["bath_3walls"]
+        bad_row = dict(base, walls=[{"l": "1,7", "h": "2,5"}, {"l": "abc", "h": "2,5"}])
+        empty = dict(base, walls=[])
+        big_open = dict(base, openings=[{"w": "5", "h": "5"}])
+        script = (
+            "const c=require(%s);const cs=%s;"
+            "console.log(JSON.stringify(cs.map(x=>{const r=c.calc(x);return [r.ok,Object.keys(r.errors)];})));"
+            % (json.dumps(str(JS)), json.dumps([bad_row, empty, big_open])))
+        res = subprocess.run([NODE, "-e", script], capture_output=True, text=True, encoding="utf-8", check=True)
+        got = json.loads(res.stdout)
+        self.assertEqual(got[0], [False, ["wall1"]])
+        self.assertEqual(got[1], [False, ["walls"]])
+        self.assertEqual(got[2], [False, ["openings"]])
 
 
 if __name__ == "__main__":

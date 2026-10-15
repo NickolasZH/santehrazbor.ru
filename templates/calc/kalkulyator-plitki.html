@@ -26,6 +26,23 @@
                     <span class="calc-err" id="e-hgt" role="alert"></span>
                 </div>
             </div>
+            <div class="calc-wallmode" id="c-wallmode-block">
+                <div class="calc-radios">
+                    <label><input type="radio" name="wallmode" value="all" checked> Все стены по периметру</label>
+                    <label><input type="radio" name="wallmode" value="sel"> Выбрать стены (3 стены, фартук)</label>
+                </div>
+            </div>
+            <div id="c-walls-block" hidden>
+                <p class="calc-hint">У каждой стены своя длина и высота: четвёртую стену можно убрать, у фартука высота около 0,6 м.</p>
+                <div id="c-walls"></div>
+                <span class="calc-err" id="e-walls" role="alert"></span>
+                <div class="calc-add">
+                    <button type="button" id="c-add-wall">+ Стена</button>
+                    <button type="button" id="c-walls-4">4 стены</button>
+                    <button type="button" id="c-walls-3">3 стены</button>
+                    <button type="button" id="c-walls-apron">Фартук 0,6 м</button>
+                </div>
+            </div>
             <div class="calc-tub" id="c-tub-block">
                 <label class="calc-check"><input type="checkbox" id="c-tub"> Под ванной/поддоном плитку не кладём</label>
                 <div class="calc-grid" id="c-tub-fields" hidden>

@@ -48,6 +48,7 @@
     }
 
     /* Полный расчёт. inp: mode ('floor'|'walls'|'both'), len, wid, hgt (м), openings [{w,h}] (м),
+       wallMode ('all' = по периметру, по умолчанию; 'sel' = выбранные стены), walls [{l,h}] (м; только при wallMode 'sel', высота hgt тогда не нужна),
        tub ('1' = под ванной не кладём), tubLen, tubWid (м; только пол), a, b (см), thick, joint (мм), boxKind ('none'|'m2'|'pcs'), boxVal, reserve (%),
        groutKey, rho (для custom), tooth (мм или 0/пусто = авто).
        Значения — строки или числа. Возвращает {ok, errors:{поле: текст}, ...результаты}. */
@@ -63,9 +64,11 @@
         var mode = inp.mode || 'both';
         var useFloor = mode === 'floor' || mode === 'both';
         var useWalls = mode === 'walls' || mode === 'both';
-        var len = need('len', 'длину', 0.1, 100, 'м');
-        var wid = need('wid', 'ширину', 0.1, 100, 'м');
-        var hgt = useWalls ? need('hgt', 'высоту стен', 0.1, 10, 'м') : 0;
+        // «выбранные стены»: площадь — сумма длина×высота по строкам; длина/ширина помещения нужны только для пола
+        var wallsSel = useWalls && inp.wallMode === 'sel';
+        var len = (useFloor || !wallsSel) ? need('len', 'длину', 0.1, 100, 'м') : NaN;
+        var wid = (useFloor || !wallsSel) ? need('wid', 'ширину', 0.1, 100, 'м') : NaN;
+        var hgt = (useWalls && !wallsSel) ? need('hgt', 'высоту стен', 0.1, 10, 'м') : 0;
         var a = need('a', 'сторону плитки', 1, 300, 'см');
         var b = need('b', 'сторону плитки', 1, 300, 'см');
         var thick = need('thick', 'толщину плитки', 3, 30, 'мм');
@@ -100,6 +103,19 @@
             tubLen = need('tubLen', 'длину ванны', 0.1, 10, 'м');
             tubWid = need('tubWid', 'ширину ванны', 0.1, 10, 'м');
         }
+        // выбранные стены: у каждой длина и высота
+        var wallList = [], wallsArea = 0, wallsBad = false;
+        if (wallsSel) {
+            var ws = inp.walls || [];
+            if (!ws.length) { err.walls = 'Добавьте хотя бы одну стену.'; wallsBad = true; }
+            for (var k = 0; k < ws.length; k++) {
+                var wl = toNum(ws[k].l), wh = toNum(ws[k].h);
+                if (isNaN(wl) || isNaN(wh) || wl < 0.1 || wl > 100 || wh < 0.1 || wh > 10) {
+                    err['wall' + k] = 'Длина и высота стены — числа больше нуля (от 0,1 до 100 и до 10 м).';
+                    wallsBad = true;
+                } else { wallList.push({ l: wl, h: wh }); wallsArea += wl * wh; }
+            }
+        }
         var floorArea = 0, floorGross = 0, wallArea = 0, perimeter = 0;
         if (!err.len && !err.wid) {
             if (useFloor) { floorGross = len * wid; floorArea = floorGross; }
@@ -112,8 +128,8 @@
                 } else { floorArea = floorGross - tubArea; }
             }
         }
-        if (useWalls && !err.len && !err.wid && !err.hgt) {
-            wallArea = perimeter * hgt;
+        if (useWalls && (wallsSel ? !wallsBad : (!err.len && !err.wid && !err.hgt))) {
+            wallArea = wallsSel ? wallsArea : perimeter * hgt;
             var openBad = Object.keys(err).some(function (k) { return k.indexOf('open') === 0; });
             if (!openBad && openingsArea >= wallArea) {
                 err.openings = 'Проёмы (' + openingsArea.toFixed(2).replace('.', ',') + ' м²) не меньше площади стен (' +
@@ -140,7 +156,7 @@
         var glueKg = area * rate;
 
         return {
-            ok: true, errors: {}, mode: mode, perimeter: perimeter,
+            ok: true, errors: {}, mode: mode, perimeter: perimeter, wallsSel: wallsSel, wallList: wallList,
             floorArea: floorArea, floorGross: floorGross, tubOn: tubOn, tubLen: tubLen, tubWid: tubWid, tubArea: tubArea, wallArea: wallArea, openingsArea: openingsArea, area: area,
             tileM2: tileM2, reserve: reserve, pcsNoReserve: ceilEps(area / tileM2), pcs: pcs, boxes: boxes,
             boxKind: boxKind, boxVal: boxVal,
@@ -188,7 +204,7 @@
     // типовые размеры проёмов: название, ширина, высота (м) — можно править в строке
     var OPEN_KINDS = { door: ['Дверь', 0.8, 2.0], window: ['Окно', 1.2, 1.2], bath: ['Ванна или экран', 1.7, 0.6] };
     var thickTouched = false;
-    var lastCount = 0, openSeq = 0, lastText = '';
+    var lastCount = 0, openSeq = 0, wallSeq = 0, lastText = '';
 
     function fmt(x, d) {
         var s = x.toFixed(d == null ? 2 : d);
@@ -239,10 +255,72 @@
         }
     });
 
+    /* --- отдельные стены --- */
+    var wallList = $('c-walls');
+    function addWall(l, h) {
+        var id = 'wl' + (wallSeq++);
+        var row = document.createElement('div');
+        row.className = 'calc-wall';
+        row.innerHTML =
+            '<span class="calc-wall-name"></span>' +
+            '<label for="' + id + 'l">Длина, м</label><input id="' + id + 'l" type="text" inputmode="decimal" autocomplete="off" value="' + esc(l) + '">' +
+            '<label for="' + id + 'h">Высота, м</label><input id="' + id + 'h" type="text" inputmode="decimal" autocomplete="off" value="' + esc(h) + '">' +
+            '<button type="button" class="calc-remove" aria-label="Удалить стену">Удалить</button>' +
+            '<span class="calc-err" role="alert"></span>';
+        wallList.appendChild(row);
+        renumberWalls();
+    }
+    function renumberWalls() {
+        Array.prototype.forEach.call(wallList.children, function (row, i) {
+            row.querySelector('.calc-wall-name').textContent = 'Стена ' + (i + 1);
+            row.querySelector('.calc-remove').setAttribute('aria-label', 'Удалить стену ' + (i + 1));
+        });
+    }
+    function readWalls() {
+        return Array.prototype.map.call(wallList.children, function (row) {
+            var ins = row.querySelectorAll('input');
+            return { l: ins[0].value, h: ins[1].value };
+        });
+    }
+    // стены помещения: длина, ширина, длина, ширина и высота из полей выше (если там не число — пустые поля)
+    function prefillWalls(count) {
+        wallList.innerHTML = '';
+        var len = toNum($('c-len').value), wid = toNum($('c-wid').value), hgt = toNum($('c-hgt').value);
+        var sides = [len, wid, len, wid];
+        for (var i = 0; i < count; i++) {
+            addWall(isNaN(sides[i]) ? '' : fmt(sides[i], 3), isNaN(hgt) ? '' : fmt(hgt, 3));
+        }
+    }
+    $('c-add-wall').addEventListener('click', function () {
+        var last = wallList.lastElementChild;
+        addWall('', last ? last.querySelectorAll('input')[1].value : $('c-hgt').value);
+        update(true);
+        wallList.lastElementChild.querySelector('input').focus();
+    });
+    $('c-walls-4').addEventListener('click', function () { prefillWalls(4); update(true); });
+    $('c-walls-3').addEventListener('click', function () { prefillWalls(3); update(true); });
+    $('c-walls-apron').addEventListener('click', function () {
+        wallList.innerHTML = '';
+        var len = toNum($('c-len').value);
+        addWall(isNaN(len) ? '2,4' : fmt(len, 3), '0,6');
+        update(true);
+    });
+    wallList.addEventListener('click', function (e) {
+        if (e.target.classList.contains('calc-remove')) {
+            wallList.removeChild(e.target.parentNode);
+            renumberWalls();
+            update(true);
+        }
+    });
+    // при переключении на «Выбрать стены» подставляем 4 стены помещения
+    form.addEventListener('change', function (e) {
+        if (e.target.name === 'wallmode' && e.target.value === 'sel' && !wallList.children.length) { prefillWalls(4); }
+    });
+
     /* --- чтение формы --- */
     function read() {
         return {
-            mode: radio('mode'), len: $('c-len').value, wid: $('c-wid').value, hgt: $('c-hgt').value,
+            mode: radio('mode'), wallMode: radio('wallmode') === 'sel' ? 'sel' : 'all', walls: readWalls(), len: $('c-len').value, wid: $('c-wid').value, hgt: $('c-hgt').value,
             tub: $('c-tub').checked ? '1' : '', tubLen: $('c-tublen').value, tubWid: $('c-tubwid').value,
             openings: readOpenings(), a: $('c-a').value, b: $('c-b').value,
             thick: $('c-thick').value, joint: $('c-joint').value,
@@ -262,8 +340,15 @@
             if (v !== '') { q.push(KEYS[k] + '=' + encodeURIComponent(v)); }
         });
         q.push('o=' + encodeURIComponent(inp.openings.map(function (o) {
-            return o.kind + ':' + String(o.w).replace(/\s/g, '') + 'x' + String(o.h).replace(/\s/g, '');
+            return o.kind + ':' + String(o.w).replace(/\s/g, '').replace(',', '.') + 'x' + String(o.h).replace(/\s/g, '').replace(',', '.');
         }).join(',') || '-'));
+        // стены по отдельности: wm=s, ws=длинаxвысота,... (десятичная точка, т.к. запятая — разделитель; без wm — по периметру, как в старых ссылках)
+        if (inp.wallMode === 'sel') {
+            q.push('wm=s');
+            q.push('ws=' + encodeURIComponent(inp.walls.map(function (w) {
+                return String(w.l).replace(/\s/g, '').replace(',', '.') + 'x' + String(w.h).replace(/\s/g, '').replace(',', '.');
+            }).join(',') || '-'));
+        }
         try { history.replaceState(null, '', '?' + q.join('&')); } catch (e) { /* file:// и т. п. */ }
     }
     function loadUrl() {
@@ -289,6 +374,16 @@
                 });
             }
         }
+        if (p.wm === 's') {
+            setRadio('wallmode', 'sel');
+            wallList.innerHTML = '';
+            if (p.ws && p.ws !== '-') {
+                p.ws.split(',').slice(0, 12).forEach(function (s) {
+                    var m = /^([^x]*)x(.*)$/.exec(s);
+                    if (m) { addWall(m[1], m[2]); }
+                });
+            }
+        }
         thickTouched = true;
         syncPreset();
         return true;
@@ -306,7 +401,10 @@
         $('c-b-row').hidden = !custom;
         $('c-tub-block').hidden = mode === 'walls';
         $('c-tub-fields').hidden = !$('c-tub').checked;
-        $('c-hgt-row').hidden = mode === 'floor';
+        var wallsSel = radio('wallmode') === 'sel';
+        $('c-wallmode-block').hidden = mode === 'floor';
+        $('c-walls-block').hidden = mode === 'floor' || !wallsSel;
+        $('c-hgt-row').hidden = mode === 'floor' || wallsSel;
         $('c-open-block').hidden = mode === 'floor';
         $('c-boxval-row').hidden = $('c-boxkind').value === 'none';
         $('c-boxval-label').textContent = $('c-boxkind').value === 'pcs' ? 'Штук в коробке' : 'Площадь плитки в коробке, м²';
@@ -382,6 +480,14 @@
             if (errors[k]) { input.setAttribute('aria-invalid', 'true'); } else { input.removeAttribute('aria-invalid'); }
         });
         $('e-openings').textContent = errors.openings || '';
+        $('e-walls').textContent = errors.walls || '';
+        Array.prototype.forEach.call(wallList.children, function (row, i) {
+            var bad = !!errors['wall' + i];
+            row.querySelector('.calc-err').textContent = bad ? errors['wall' + i] : '';
+            Array.prototype.forEach.call(row.querySelectorAll('input'), function (el) {
+                if (bad) { el.setAttribute('aria-invalid', 'true'); } else { el.removeAttribute('aria-invalid'); }
+            });
+        });
         $('e-tub').textContent = errors.tub || '';
         if (errors.tub) { $('c-tublen').setAttribute('aria-invalid', 'true'); $('c-tubwid').setAttribute('aria-invalid', 'true'); }
         Array.prototype.forEach.call(openList.children, function (row, i) {
@@ -401,9 +507,9 @@
         tubLen: ['c-tublen', 'длина ванны'], tubWid: ['c-tubwid', 'ширина ванны'], tub: ['c-tublen', 'размеры ванны'],
         a: ['c-a', 'сторона A'], b: ['c-b', 'сторона B'], thick: ['c-thick', 'толщина плитки'], joint: ['c-joint', 'шов'],
         boxVal: ['c-boxval', 'число в коробке'], reserve: ['c-reserve', 'запас'], rho: ['c-rho', 'плотность затирки'],
-        openings: ['c-openings', 'проёмы']
+        openings: ['c-openings', 'проёмы'], walls: ['c-add-wall', 'стены']
     };
-    var ERR_ORDER = ['len', 'wid', 'hgt', 'tubLen', 'tubWid', 'tub', 'openings', 'a', 'b', 'thick', 'joint', 'boxVal', 'reserve', 'rho'];
+    var ERR_ORDER = ['len', 'wid', 'hgt', 'tubLen', 'tubWid', 'tub', 'walls', 'openings', 'a', 'b', 'thick', 'joint', 'boxVal', 'reserve', 'rho'];
     function showErrorBar(errors) {
         var bar = $('c-bar'), id = null, name = '';
         ERR_ORDER.some(function (k) {
@@ -413,6 +519,12 @@
         if (!id) {
             Array.prototype.some.call(openList.children, function (row, i) {
                 if (errors['open' + i]) { id = row.querySelector('input').id; name = 'размеры проёма'; return true; }
+                return false;
+            });
+        }
+        if (!id) {
+            Array.prototype.some.call(wallList.children, function (row, i) {
+                if (errors['wall' + i]) { id = row.querySelector('input').id; name = 'размеры стены ' + (i + 1); return true; }
                 return false;
             });
         }
@@ -488,8 +600,12 @@
             parts.push(floorTxt);
         }
         if (r.mode !== 'floor') {
-            parts.push('стены: периметр 2×(' + fmt(toNum(inp.len)) + '+' + fmt(toNum(inp.wid)) + ') = ' + fmt(r.perimeter) +
-                ' м, умножить на высоту ' + fmt(toNum(inp.hgt)) + ' м = ' + fmt(r.wallArea) + ' м²');
+            if (r.wallsSel) {
+                parts.push('стены: ' + r.wallList.map(function (w) { return fmt(w.l) + '×' + fmt(w.h); }).join(' + ') + ' = ' + fmt(r.wallArea) + ' м²');
+            } else {
+                parts.push('стены: периметр 2×(' + fmt(toNum(inp.len)) + '+' + fmt(toNum(inp.wid)) + ') = ' + fmt(r.perimeter) +
+                    ' м, умножить на высоту ' + fmt(toNum(inp.hgt)) + ' м = ' + fmt(r.wallArea) + ' м²');
+            }
             parts.push('проёмы: −' + fmt(r.openingsArea) + ' м²');
         }
         h += parts.join('; ') + '. Итого ' + fmt(r.area) + ' м².</li>';

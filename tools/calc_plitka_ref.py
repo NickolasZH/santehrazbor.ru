@@ -51,6 +51,13 @@ def floor_area(len_m, wid_m, tub_len_m=None, tub_wid_m=None):
     return area
 
 
+def walls_area(walls, perimeter_len_m=None, perimeter_wid_m=None, height_m=None):
+    """Площадь стен, м2. walls — список (длина, высота) выбранных стен, м; иначе по периметру 2*(длина+ширина)*высота."""
+    if walls is not None:
+        return sum(l * h for l, h in walls)
+    return 2 * (perimeter_len_m + perimeter_wid_m) * height_m
+
+
 def tiles(area_m2, a_cm, b_cm, reserve_pct, box_m2=None, box_pcs=None):
     """-> (штук, коробок или None). Площадь плитки a*b без шва."""
     pcs = ceil_eps(area_m2 * (1 + reserve_pct / 100) / (a_cm / 100 * b_cm / 100))

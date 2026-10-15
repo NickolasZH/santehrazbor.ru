@@ -18,7 +18,7 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="stylesheet" href="/style.css?v=0a7263d5">
+    <link rel="stylesheet" href="/style.css?v=87d7acf2">
     
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Калькулятор плитки, клея и затирки", "description": "Рассчитайте, сколько плитки, плиточного клея и затирки нужно для пола и стен ванной. Формулы и источники показаны, результат пересчитывается сразу.", "url": "https://santehrazbor.ru/kalkulyator-plitki/", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "inLanguage": "ru", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"}, "dateModified": "2026-10-14", "author": {"@type": "Person", "name": "Николай", "url": "https://santehrazbor.ru/o-proekte/"}}</script>
     <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "https://santehrazbor.ru/"}, {"@type": "ListItem", "position": 2, "name": "Калькуляторы", "item": "https://santehrazbor.ru/kalkulyatory/"}, {"@type": "ListItem", "position": 3, "name": "Калькулятор плитки, клея и затирки", "item": "https://santehrazbor.ru/kalkulyator-plitki/"}]}</script>
@@ -134,6 +134,23 @@
                     <input id="c-hgt" type="text" inputmode="decimal" value="2,5" aria-describedby="e-hgt">
                     <span class="calc-hint">до какой высоты кладём плитку</span>
                     <span class="calc-err" id="e-hgt" role="alert"></span>
+                </div>
+            </div>
+            <div class="calc-wallmode" id="c-wallmode-block">
+                <div class="calc-radios">
+                    <label><input type="radio" name="wallmode" value="all" checked> Все стены по периметру</label>
+                    <label><input type="radio" name="wallmode" value="sel"> Выбрать стены (3 стены, фартук)</label>
+                </div>
+            </div>
+            <div id="c-walls-block" hidden>
+                <p class="calc-hint">У каждой стены своя длина и высота: четвёртую стену можно убрать, у фартука высота около 0,6 м.</p>
+                <div id="c-walls"></div>
+                <span class="calc-err" id="e-walls" role="alert"></span>
+                <div class="calc-add">
+                    <button type="button" id="c-add-wall">+ Стена</button>
+                    <button type="button" id="c-walls-4">4 стены</button>
+                    <button type="button" id="c-walls-3">3 стены</button>
+                    <button type="button" id="c-walls-apron">Фартук 0,6 м</button>
                 </div>
             </div>
             <div class="calc-tub" id="c-tub-block">
@@ -366,7 +383,7 @@
     <div class="prose">
 <h2 id="kak-polzovatsya">Как пользоваться</h2>
 <ol>
-<li>Выберите, что облицовываете: пол, стены или и то и другое. Укажите длину и ширину помещения, для стен — ещё высоту облицовки.</li>
+<li>Выберите, что облицовываете: пол, стены или и то и другое. Укажите длину и ширину помещения, для стен — ещё высоту облицовки. Если плитка идёт не на все стены (три стены ванной, кухонный фартук), выберите «Выбрать стены» и задайте длину и высоту каждой.</li>
 <li>Добавьте проёмы, которые не плитят: дверь, окно, ванну или экран. Размеры в строке можно поменять.</li>
 <li>Выберите размер плитки (или введите свой), проверьте толщину и ширину шва. Если знаете, сколько плитки в коробке, укажите это — калькулятор переведёт штуки в коробки.</li>
 <li>Выберите раскладку: от неё зависит запас на подрезку. Число запаса можно поменять вручную.</li>
@@ -374,7 +391,7 @@
 </ol>
 <p>Результат пересчитывается при каждом изменении. Адрес страницы запоминает введённые значения, так что ссылкой можно поделиться, а кнопка «Скопировать результат» отправит итоги в буфер обмена.</p>
 <h2 id="kak-my-schitaem">Как мы считаем</h2>
-<p><strong>Площадь.</strong> Пол — длина на ширину. Стены — периметр помещения (две суммы длины и ширины), умноженный на высоту облицовки. Из площади стен вычитаются проёмы. Проёмы вычитаются только из стен, поэтому при выборе «Пол» этот блок скрыт.</p>
+<p><strong>Площадь.</strong> Пол — длина на ширину. Стены — периметр помещения (две суммы длины и ширины), умноженный на высоту облицовки. В режиме «Выбрать стены» площадь — сумма «длина × высота» по каждой выбранной стене. Из площади стен вычитаются проёмы. Проёмы вычитаются только из стен, поэтому при выборе «Пол» этот блок скрыт.</p>
 <p><strong>Плитка.</strong> Количество штук — площадь с запасом, делённая на площадь одной плитки: <code>площадь × (1 + запас) ÷ (A × B)</code>, округление вверх. Ширину шва в этом расчёте не учитываем: на размер заказа она влияет мало, а запас её перекрывает.</p>
 <p><strong>Затирка.</strong> Расход на квадратный метр считается по формуле:</p>
 <p><code>(A + B) ÷ (A × B) × J × T × ρ</code></p>
@@ -442,7 +459,7 @@
 Это оценка. На расход влияют неровность основания, инструмент, укладчик и сама плитка. Для затирки мы закладываем 10 % запаса, для плитки — выбранный вами. Перед покупкой сверьте цифры с упаковкой выбранных материалов.</p>
     </div>
 </article>
-<script src="/js/calc-plitka.js?v=fdbe723f" defer></script>
+<script src="/js/calc-plitka.js?v=94f3c107" defer></script>
 
     </main>
     <footer class="site-footer">

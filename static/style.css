@@ -113,7 +113,8 @@ article > h1 { margin-left: auto; margin-right: auto; }
     color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
 }
 .header-search input:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
-.site-name { font-weight: 800; font-size: 1.3rem; color: var(--primary); text-decoration: none; letter-spacing: -0.01em; }
+.site-name { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; font-size: 1.3rem; color: var(--primary); text-decoration: none; letter-spacing: -0.01em; white-space: nowrap; }
+.site-logo { width: 26px; height: 26px; flex: none; }
 .main-nav {
     display: flex; gap: 4px; overflow-x: auto; white-space: nowrap;
     -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 0 -16px; padding: 0 12px;
@@ -121,20 +122,28 @@ article > h1 { margin-left: auto; margin-right: auto; }
 .main-nav::-webkit-scrollbar { display: none; }
 .main-nav a {
     flex: none; display: inline-flex; align-items: center; min-height: 44px; padding: 0 10px;
-    color: var(--text); text-decoration: none; font-size: 0.95rem; font-weight: 500;
+    color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 400;
     border-bottom: 3px solid transparent;
 }
-.main-nav a:hover { color: var(--primary); }
-.main-nav a[aria-current="page"] { color: var(--primary); border-bottom-color: var(--primary); }
+.main-nav a:hover { color: var(--text); border-bottom-color: var(--primary); }
+.main-nav a[aria-current="page"] { color: var(--primary); border-bottom-color: var(--primary); font-weight: 500; }
 @media (min-width: 840px) {
     .header-inner { flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding-top: 0; padding-bottom: 0; }
-    .site-name { padding: 12px 0; }
-    .header-top { justify-content: flex-start; gap: 20px; }
-    .main-nav { margin: 0 0 0 auto; padding: 0; overflow: visible; }
+    /* шапка шире колонки текста (960px), иначе между логотипом и меню нет свободного места */
+    .header-inner { max-width: 1180px; }
+    .site-name { padding: 12px 0; font-size: 1.45rem; }
+    .site-logo { width: 28px; height: 28px; }
+    .header-top { flex: none; justify-content: flex-start; gap: 20px; }
+    .main-nav { margin: 0 16px 0 auto; padding: 0; overflow: visible; }
+    .main-nav a { font-size: 0.95rem; }
 }
 /* 840-1039px: места для поля нет, остаётся иконка поиска (компактно, чтобы шапка не вылезала) */
 @media (min-width: 840px) and (max-width: 1039px) {
+    .header-inner { gap: 6px; }
     .header-top { gap: 6px; }
+    .site-name { font-size: 1.3rem; gap: 6px; }
+    .site-logo { width: 26px; height: 26px; }
+    .main-nav { margin-right: 0; }
     .search-link { width: 36px; margin-right: 0; }
     .main-nav a { padding: 0 8px; }
 }

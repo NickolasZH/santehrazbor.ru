@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 580" role="img" aria-label="Из чего состоит душевая система: смеситель или термостат с ручками температуры и напора, штанга, верхний душ, держатель ручной лейки и шланг" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="580" fill="#fff"/>
+<text x="200" y="28" text-anchor="middle" font-size="18" font-weight="600">Из чего состоит душевая система</text>
+<rect x="8" y="44" width="384" height="520" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<text x="250" y="76" text-anchor="middle" font-weight="600">Верхний душ</text>
+<path d="M170 380 V96 H232" fill="none" stroke="#555" stroke-width="7" stroke-linejoin="round"/>
+<path d="M214 94 H300 L286 112 H228 Z" fill="#fff" stroke="#2b2f33" stroke-width="2"/>
+<path d="M236 124 v12 M257 124 v12 M278 124 v12" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/>
+<path d="M104 150 H164" stroke="#555" stroke-width="1.5" fill="none"/><text x="16" y="136" font-weight="600">Штанга</text><text x="16" y="154">(стойка)</text>
+<path d="M173 208 H198" stroke="#555" stroke-width="5"/>
+<rect x="198" y="198" width="22" height="20" rx="4" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="201" y="168" width="12" height="76" rx="5" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M178 168 H236 L228 150 H186 Z" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M236 158 H256" stroke="#555" stroke-width="1.5" fill="none"/><text x="262" y="156" font-weight="600">Ручная</text><text x="262" y="174" font-weight="600">лейка</text>
+<path d="M222 208 H256" stroke="#555" stroke-width="1.5" fill="none"/><text x="262" y="216" font-weight="600">Держатель</text><text x="262" y="236">лейки</text>
+<rect x="104" y="380" width="150" height="62" rx="10" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<circle cx="140" cy="411" r="17" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M140 411 L148 403" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/>
+<circle cx="204" cy="411" r="17" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M204 394 V428 M187 411 H221" stroke="#2b2f33" stroke-width="2"/>
+<path d="M234 442 C234 498 320 498 322 410 C324 320 207 300 207 244" stroke="#555" stroke-width="4" fill="none"/>
+<text x="332" y="360" font-weight="600">Шланг</text>
+<path d="M140 428 V486 H116" stroke="#555" stroke-width="1.5" fill="none"/>
+<text x="16" y="484" font-weight="600">Температура</text>
+<text x="16" y="504">со шкалой</text>
+<text x="16" y="522">в градусах</text>
+<path d="M204 428 V528 H220" stroke="#555" stroke-width="1.5" fill="none"/>
+<text x="226" y="524" font-weight="600">Напор</text>
+<text x="226" y="544">и переключение душей</text>
+</svg>

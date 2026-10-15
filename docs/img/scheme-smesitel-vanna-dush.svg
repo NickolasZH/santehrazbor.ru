@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" role="img" aria-label="Смеситель для ванны с душем: стена с двумя выводами труб с межосевым расстоянием 150 мм, два S-образных эксцентрика с отражателями, корпус с рычагом, излив, переключатель, шланг и лейка" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="480" fill="#fff"/>
+<text x="200" y="28" text-anchor="middle" font-size="18" font-weight="600">Смеситель для ванны с душем</text>
+<rect x="10" y="40" width="380" height="136" fill="#eef0f2" stroke="#9aa0a6"/>
+<text x="16" y="62" fill="#555">Стена</text>
+<path d="M123 58 V112 M277 58 V112" stroke="#9aa0a6" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M123 66 H277 M123 66 l8 -4 v8 z M277 66 l-8 -4 v8 z" stroke="#2b2f33" stroke-width="1.5" fill="#2b2f33"/>
+<text x="200" y="58" text-anchor="middle" font-weight="600">150 мм</text>
+<circle cx="123" cy="122" r="9" fill="#fff" stroke="#c8463b" stroke-width="3"/>
+<circle cx="277" cy="122" r="9" fill="#fff" stroke="#3b7fc4" stroke-width="3"/>
+<text x="123" y="158" text-anchor="middle" font-weight="600" fill="#c8463b">ГВС</text>
+<text x="277" y="158" text-anchor="middle" font-weight="600" fill="#3b7fc4">ХВС</text>
+<path d="M123 122 H132 C142 122 142 136 152 136" fill="none" stroke="#2b2f33" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M123 122 H132 C142 122 142 136 152 136" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M277 122 H268 C258 122 258 136 248 136" fill="none" stroke="#2b2f33" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M277 122 H268 C258 122 258 136 248 136" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+
+<rect x="112" y="108" width="9" height="28" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="279" y="108" width="9" height="28" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="150" y="116" width="100" height="40" rx="10" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M205 116 L216 86" stroke="#2b2f33" stroke-width="7" stroke-linecap="round"/>
+<circle cx="217" cy="84" r="7" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<circle cx="172" cy="136" r="9" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M172 136 L177 131" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/>
+<path d="M205 156 V214" stroke="#2b2f33" stroke-width="16" stroke-linecap="round"/>
+<path d="M205 156 V214" stroke="#fff" stroke-width="11" stroke-linecap="round"/>
+<path d="M205 226 v16 M198 226 v12 M212 226 v12" stroke="#2f6fb5" stroke-width="2" stroke-linecap="round"/>
+<path d="M236 156 C236 220 330 200 330 270" stroke="#555" stroke-width="4" fill="none"/>
+<path d="M319 268 H341 L345 308 H315 Z" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M322 316 v10 M330 316 v10 M338 316 v10" stroke="#2f6fb5" stroke-width="2.5" stroke-linecap="round"/>
+<text x="229" y="92" font-weight="600">Рычаг</text>
+<text x="388" y="132" text-anchor="end" font-weight="600">Отражатели</text>
+<path d="M290 128 H299" stroke="#555" stroke-width="1.5" fill="none"/>
+<text x="352" y="228" font-weight="600">Шланг</text>
+<text x="352" y="296" font-weight="600">Лейка</text>
+<path d="M146 142 V300 H124" stroke="#555" stroke-width="1.5" fill="none"/>
+<text x="16" y="294" font-weight="600">Эксцентрики</text>
+<text x="16" y="314">S-образные,</text>
+<text x="16" y="334">подстраивают</text>
+<text x="16" y="354">расстояние</text>
+<path d="M172 146 V396 H150" stroke="#555" stroke-width="1.5" fill="none"/>
+<text x="16" y="390" font-weight="600">Переключатель</text>
+<text x="16" y="410">ванна / душ</text>
+<path d="M205 224 V450 H100" stroke="#555" stroke-width="1.5" fill="none"/>
+<text x="16" y="456" font-weight="600">Излив</text>
+</svg>

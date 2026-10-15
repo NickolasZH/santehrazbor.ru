@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 552" role="img" aria-label="Пять способов установки гигиенического душа: настенный, встраиваемый, с термостатом, приставка под сиденье, на смеситель раковины" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="552" fill="#fff"/>
+<text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Какие бывают гигиенические души</text>
+<rect x="10" y="52" width="380" height="88" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<g transform="translate(20 58)"><rect width="82" height="76" rx="6" fill="#fff"/><rect x="14" y="0" width="14" height="76" fill="#eef0f2" stroke="#9aa0a6"/><rect x="28" y="16" width="22" height="22" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/><path d="M50 27 H62 V56" fill="none" stroke="#555" stroke-width="4"/><rect x="56" y="56" width="12" height="18" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/></g>
+<text x="116" y="86" font-weight="600">Настенный (открытый)</text>
+<text x="116" y="108">смеситель висит на стене,</text>
+<text x="116" y="128">от него шланг к лейке</text>
+<rect x="10" y="152" width="380" height="88" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<g transform="translate(20 158)"><rect width="82" height="76" rx="6" fill="#fff"/><rect x="14" y="0" width="14" height="76" fill="#eef0f2" stroke="#9aa0a6"/><rect x="16" y="14" width="10" height="26" fill="#fff" stroke="#555" stroke-width="2" stroke-dasharray="4 3"/><rect x="28" y="22" width="8" height="10" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/><path d="M36 27 H62 V56" fill="none" stroke="#555" stroke-width="4"/><rect x="56" y="56" width="12" height="18" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/></g>
+<text x="116" y="186" font-weight="600">Встраиваемый</text>
+<text x="116" y="208">смеситель в стене, снаружи</text>
+<text x="116" y="228">только рычаг и лейка</text>
+<rect x="10" y="252" width="380" height="88" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<g transform="translate(20 258)"><rect width="82" height="76" rx="6" fill="#fff"/><rect x="14" y="0" width="14" height="76" fill="#eef0f2" stroke="#9aa0a6"/><rect x="16" y="10" width="10" height="34" fill="#fff" stroke="#555" stroke-width="2" stroke-dasharray="4 3"/><circle cx="40" cy="27" r="11" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/><path d="M40 27 L46 22" stroke="#2f6fb5" stroke-width="3" stroke-linecap="round"/><path d="M51 27 H68 V56" fill="none" stroke="#555" stroke-width="4"/><rect x="62" y="56" width="12" height="18" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/></g>
+<text x="116" y="286" font-weight="600">С термостатом</text>
+<text x="116" y="308">встраиваемый, температура</text>
+<text x="116" y="328">задаётся один раз</text>
+<rect x="10" y="352" width="380" height="88" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<g transform="translate(20 358)"><rect width="82" height="76" rx="6" fill="#fff"/><ellipse cx="38" cy="44" rx="28" ry="16" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/><ellipse cx="38" cy="44" rx="14" ry="7" fill="#fff" stroke="#9aa0a6"/><rect x="64" y="34" width="14" height="14" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/><path d="M71 48 V70" stroke="#555" stroke-width="4"/></g>
+<text x="116" y="386" font-weight="600">Приставка под сиденье</text>
+<text x="116" y="408">смеситель крепится</text>
+<text x="116" y="428">на болты сиденья</text>
+<rect x="10" y="452" width="380" height="88" rx="8" fill="#eef0f2" stroke="#9aa0a6"/>
+<g transform="translate(20 458)"><rect width="82" height="76" rx="6" fill="#fff"/><path d="M8 40 H72 V50 Q72 66 56 66 H24 Q8 66 8 50 Z" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5"/><path d="M26 40 V22 Q26 14 34 14 H42" fill="none" stroke="#2b2f33" stroke-width="4"/><path d="M58 40 V28 H66 V8" fill="none" stroke="#555" stroke-width="3"/></g>
+<text x="116" y="486" font-weight="600">На смеситель раковины</text>
+<text x="116" y="508">лейка подключается к</text>
+<text x="116" y="528">смесителю у раковины</text>
+</svg>

@@ -91,6 +91,19 @@ def split_front_matter(text, path):
     return yaml.safe_load(m.group(1)), m.group(2)
 
 
+def cover_size(fname):
+    """Ширина и высота обложки карточки: viewBox для svg, реальный размер для растра."""
+    path = STATIC / "img" / fname
+    if path.suffix.lower() == ".svg":
+        vb = re.search(r'viewBox="\s*[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)[\s,]+([\d.]+)\s*"',
+                       path.read_text(encoding="utf-8"))
+        if not vb:
+            fail(f"обложка {fname}: нет viewBox")
+        return tuple(int(float(x)) for x in vb.groups())
+    with Image.open(path) as im:
+        return im.size
+
+
 def to_date(v):
     if isinstance(v, datetime):
         return v.date()
@@ -511,6 +524,13 @@ def main():
         if h1:
             body = body[h1.end():]
         faq = parse_faq(body)
+        cover = meta.get("cover")
+        if cover:
+            if not (STATIC / "img" / cover).is_file():
+                fail(f"{path.name}: cover static/img/{cover} не найден")
+            if not meta.get("cover_alt"):
+                fail(f"{path.name}: у cover нет cover_alt")
+            cover_w, cover_h = cover_size(cover)
         products, picks = build_products(meta, aff, path.name)
         html = render_markdown(body, aff, used_labels, env, {
             "name": path.name, "products": products, "picks": picks,
@@ -520,6 +540,8 @@ def main():
             "seo_title": meta.get("seo_title") or meta["title"],
             "seo_description": meta.get("seo_description") or meta["description"],
             "category": meta.get("category"),
+            "cover": cover, "cover_alt": meta.get("cover_alt"),
+            "cover_w": cover_w if cover else None, "cover_h": cover_h if cover else None,
             "slug": meta["slug"], "published": published, "updated": updated,
             "published_ru": ru_date(published), "updated_ru": ru_date(updated),
             "body": html, "body_md": body, "faq": faq, "path": f"/{meta['slug']}/",

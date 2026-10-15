@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 470" role="img" aria-label="Смеситель для раковины с гигиеническим душем: лейка с кнопкой в держателе, шланг должен дотянуться до унитаза" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="470" fill="#fff"/>
+<text x="200" y="28" text-anchor="middle" font-size="18" font-weight="600">Раковина с гигиеническим душем</text>
+<path d="M8 420 H392" stroke="#555" stroke-width="3"/>
+<rect x="20" y="250" width="172" height="170" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<text x="106" y="372" text-anchor="middle" font-weight="600">Раковина на тумбе</text>
+<path d="M14 236 H34 L52 274 H102 L120 236 H204 V250 H14 Z" fill="#eef0f2" stroke="#2b2f33" stroke-width="2.5" stroke-linejoin="round"/>
+<rect x="132" y="214" width="12" height="22" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M138 214 C138 188 100 186 98 206 V214" fill="none" stroke="#2b2f33" stroke-width="7" stroke-linecap="round"/>
+<path d="M140 214 L148 188" stroke="#2b2f33" stroke-width="6" stroke-linecap="round"/>
+<text x="16" y="150" font-weight="600">Смеситель</text>
+<path d="M94 156 L118 192" stroke="#555" stroke-width="1.5" fill="none"/>
+<path d="M144 224 H178" stroke="#555" stroke-width="5"/>
+<rect x="178" y="214" width="16" height="16" rx="3" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="180" y="190" width="12" height="46" rx="5" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M170 190 H202 L198 172 H174 Z" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<circle cx="186" cy="204" r="3" fill="#2f6fb5"/>
+<text x="212" y="168" font-weight="600">Лейка с кнопкой</text>
+<text x="212" y="188">в держателе</text>
+<path d="M186 236 V300 H140 V250" fill="none" stroke="#555" stroke-width="4" stroke-dasharray="6 4"/>
+<rect x="334" y="150" width="58" height="146" rx="6" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<rect x="244" y="288" width="110" height="16" rx="7" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<path d="M268 304 H330 L324 420 H274 Z" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
+<text x="300" y="448" text-anchor="middle" font-weight="600">Унитаз</text>
+<path d="M198 212 L254 270" stroke="#2f6fb5" stroke-width="2.5" stroke-dasharray="7 5" fill="none"/>
+<path d="M262 280 L248 274 L257 265 Z" fill="#2f6fb5"/>
+<text x="212" y="100" font-weight="600" fill="#2f6fb5">Шланг должен</text>
+<text x="212" y="120" font-weight="600" fill="#2f6fb5">дотянуться до унитаза</text>
+</svg>

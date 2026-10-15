@@ -13,10 +13,16 @@
 <section>
     <div class="cards">
 {% for a in hub.articles %}
-        <a class="card" href="{{ a.path }}">
+        <a class="card{% if a.cover %} card-cover{% endif %}" href="{{ a.path }}">
+{% if a.cover %}
+            <span class="card-img card-img-{{ 'svg' if a.cover.endswith('.svg') else 'photo' }}"><img src="/img/{{ a.cover }}" alt="{{ a.cover_alt }}" width="{{ a.cover_w }}" height="{{ a.cover_h }}" loading="lazy" decoding="async"></span>
+{% endif %}
+            <span class="card-body">
             <h3>{{ a.h1 }}</h3>
             <p>{{ a.description|nbsp }}</p>
             <span class="meta">{% if a.products %}{{ a.products|length|count_word(('модель', 'модели', 'моделей')) }} &middot; {% endif %}Обновлено: <time datetime="{{ a.updated.isoformat() }}">{{ a.updated_ru|nbsp }}</time></span>
+            <span class="card-more">Подробнее &rarr;</span>
+            </span>
         </a>
 {% endfor %}
     </div>

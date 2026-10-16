@@ -112,6 +112,11 @@ def to_date(v):
     return date.fromisoformat(str(v))
 
 
+def iso_dt(v):
+    # Для JSON-LD: полная дата-время с часовым поясом Москвы (время фиксированное)
+    return f"{to_date(v).isoformat()}T09:00:00+03:00"
+
+
 RU_MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля",
              "августа", "сентября", "октября", "ноября", "декабря"]
 
@@ -657,8 +662,8 @@ def main():
             {
                 "@context": "https://schema.org", "@type": "Article",
                 "headline": a["h1"], "description": a["description"],
-                "datePublished": a["published"].isoformat(),
-                "dateModified": a["updated"].isoformat(),
+                "datePublished": iso_dt(a["published"]),
+                "dateModified": iso_dt(a["updated"]),
                 "inLanguage": "ru",
                 "mainEntityOfPage": base + a["path"],
                 "author": {"@type": "Person", "name": "Николай", "url": base + "/o-proekte/"},
@@ -714,7 +719,7 @@ def main():
                 "browserRequirements": "Requires JavaScript", "inLanguage": "ru",
                 "image": og_image_url(c["path"]),
                 "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
-                "dateModified": c["updated"].isoformat(),
+                "dateModified": iso_dt(c["updated"]),
                 "author": {"@type": "Person", "name": "Николай", "url": base + "/o-proekte/"},
             },
             {

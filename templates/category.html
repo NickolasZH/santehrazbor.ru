@@ -27,4 +27,14 @@
 {% endfor %}
     </div>
 </section>
+{% if hub.calc_links %}
+<section class="hub-calcs">
+    <h2>Калькуляторы</h2>
+    <ul>
+{% for l in hub.calc_links %}
+        <li><a href="{{ l.url }}">{{ l.text }}</a> — {{ l.note }}</li>
+{% endfor %}
+    </ul>
+</section>
+{% endif %}
 {% endblock %}

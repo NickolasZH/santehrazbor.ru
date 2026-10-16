@@ -145,7 +145,9 @@ article > h1 { margin-left: auto; margin-right: auto; }
     .site-logo { width: 26px; height: 26px; }
     .main-nav { margin-right: 0; }
     .search-link { width: 36px; margin-right: 0; }
-    .main-nav a { padding: 0 8px; }
+    /* 6 пунктов меню: компактнее и с переносом, чтобы шапка не давала горизонтальную прокрутку */
+    .main-nav { flex: 1; min-width: 0; flex-wrap: wrap; justify-content: flex-end; gap: 0 2px; }
+    .main-nav a { padding: 0 6px; font-size: 0.88rem; min-height: 40px; }
 }
 @media (min-width: 1040px) {
     .search-link { display: none; }

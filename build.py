@@ -606,7 +606,18 @@ def main():
     def render(template, path, **ctx):
         ctx.setdefault("canonical", base + path)
         ctx.setdefault("og_type", "website")
+        # og-картинка: static/img/og/<slug>.png, иначе общая default.png
+        og_name = path.strip("/")
+        if not og_name or not (STATIC / "img" / "og" / f"{og_name}.png").exists():
+            og_name = "default"
+        ctx.setdefault("og_image", f"{base}/img/og/{og_name}.png")
         return env.get_template(template).render(site=site, path=path, **ctx)
+
+    def og_image_url(path):
+        name = path.strip("/")
+        if not (STATIC / "img" / "og" / f"{name}.png").exists():
+            name = "default"
+        return f"{base}/img/og/{name}.png"
 
     pages = []  # (path, lastmod)
 
@@ -651,7 +662,9 @@ def main():
                 "inLanguage": "ru",
                 "mainEntityOfPage": base + a["path"],
                 "author": {"@type": "Person", "name": "Николай", "url": base + "/o-proekte/"},
-                "publisher": {"@type": "Organization", "name": config["site_name"]},
+                "image": og_image_url(a["path"]),
+                "publisher": {"@type": "Organization", "name": config["site_name"],
+                              "logo": {"@type": "ImageObject", "url": base + "/apple-touch-icon.png"}},
             },
             {
                 "@context": "https://schema.org", "@type": "BreadcrumbList",
@@ -699,6 +712,7 @@ def main():
                 "name": c["h1"], "description": c["description"], "url": base + c["path"],
                 "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any",
                 "browserRequirements": "Requires JavaScript", "inLanguage": "ru",
+                "image": og_image_url(c["path"]),
                 "offers": {"@type": "Offer", "price": "0", "priceCurrency": "RUB"},
                 "dateModified": c["updated"].isoformat(),
                 "author": {"@type": "Person", "name": "Николай", "url": base + "/o-proekte/"},
@@ -724,13 +738,13 @@ def main():
         jsonld_str = [json.dumps(j, ensure_ascii=False).replace("</", "<\\/") for j in jsonld]
         write(f"{c['slug']}/index.html", render(
             "calculator.html", c["path"], title=c["seo_title"], description=c["seo_description"],
-            nav_active=None, article=c, jsonld=jsonld_str, script_ver=asset_hash(f"js/{c['script']}")))
+            nav_active="/kalkulyatory/", article=c, jsonld=jsonld_str, script_ver=asset_hash(f"js/{c['script']}")))
         pages.append((c["path"], c["updated"]))
     if calcs:
         write("kalkulyatory/index.html", render(
             "calc_hub.html", "/kalkulyatory/", title="Калькуляторы для ремонта ванной — Сантехразбор",
             description="Онлайн-калькуляторы: сколько нужно плитки, клея и затирки. Считают сразу при вводе, формулы и источники показаны.",
-            calcs=calcs))
+            nav_active="/kalkulyatory/", calcs=calcs))
         pages.append(("/kalkulyatory/", max(c["updated"] for c in calcs)))
 
     for h in hubs:
@@ -740,11 +754,11 @@ def main():
         pages.append((h["path"], h["updated"]))
 
     write("o-proekte/index.html", render(
-        "about.html", "/o-proekte/", nav_active="/o-proekte/", title=f"О проекте — {config['site_name']}",
+        "about.html", "/o-proekte/", nav_active="/o-proekte/", title="О проекте: кто пишет и как отбираем модели — Сантехразбор",
         description="Кто мы, как отбираем модели и почему на сайте есть партнёрские ссылки."))
     write("privacy/index.html", render(
         "privacy.html", "/privacy/", title=f"Политика конфиденциальности — {config['site_name']}",
-        description="Какие данные собирает сайт: Яндекс Метрика и cookie для статистики."))
+        description="Какие данные собирает сайт: Яндекс Метрика, GoatCounter и cookie для статистики."))
     today = date.today()
     pages.append(("/o-proekte/", today))
     pages.append(("/privacy/", today))

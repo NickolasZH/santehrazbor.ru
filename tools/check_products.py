@@ -369,6 +369,59 @@ def set_updated(fm, today):
     return re.sub(r"^(date:.*)$", r"\1\nupdated: " + today, fm, count=1, flags=re.M)
 
 
+def set_prices_checked(fm, today):
+    """Поле prices_checked (дата последней успешной сверки цен статьи); текст берёт из него {{prices_date}}."""
+    if re.search(r"^prices_checked:.*$", fm, re.M):
+        return re.sub(r"^prices_checked:.*$", f"prices_checked: {today}", fm, count=1, flags=re.M)
+    for key in ("updated", "date"):
+        if re.search(rf"^{key}:.*$", fm, re.M):
+            return re.sub(rf"^({key}:.*)$", lambda m: m.group(1) + "\nprices_checked: " + today,
+                          fm, count=1, flags=re.M)
+    return fm + "\nprices_checked: " + today
+
+
+def fully_checked(arts, entries):
+    """Пути статей, у которых ВСЕ товары успешно загружены в этом прогоне (карточка status == ok).
+    Частичный прогон (--only/--limit) или ошибка загрузки хотя бы одного товара — статья не попадает."""
+    ok = {e["label"]: e["card"].get("status") == "ok" for e in entries}
+    return {art["path"] for art in arts
+            if all(ok.get(label) for label in art["meta"]["products"])}
+
+
+def notable_changes(rows, aff):
+    """Товары, у которых в этом прогоне заметно изменились цена (> PRICE_APPLY_THRESHOLD, т.е. 10 %),
+    рейтинг (>= RATING_DROP) или число оценок (> 20 % и >= 5 шт).
+    rows — как в main(): (статья, метка, данные в статье, карточка, пред. цена, auto, решения).
+    -> [{label, name, what}] — по одному на метку."""
+    by_label = {}
+    for fname, label, fp, c, pp, auto, dec in rows:
+        if c.get("status") != "ok" or c.get("available") is False:
+            continue
+        what = []
+        old_p, new_p = fp.get("price"), c.get("price")
+        if "price" in auto and old_p and new_p:
+            what.append(f"цена {old_p} -> {new_p} ₽ ({(new_p - old_p) / old_p * 100:+.0f} %)")
+        old_r, new_r = fp.get("rating"), c.get("rating")
+        if old_r is not None and new_r is not None and abs(float(new_r) - float(old_r)) >= RATING_DROP - 1e-9:
+            what.append(f"рейтинг {old_r} -> {fmt_rating(new_r)}")
+        old_n, new_n = fp.get("reviews"), c.get("reviews")
+        if isinstance(old_n, int) and isinstance(new_n, int) and abs(new_n - old_n) >= 5                 and abs(new_n - old_n) / max(old_n, 1) > 0.2:
+            what.append(f"оценок {old_n} -> {new_n}")
+        if what:
+            by_label.setdefault(label, {"label": label, "name": fp.get("name") or label, "what": []})
+            for w in what:
+                if w not in by_label[label]["what"]:
+                    by_label[label]["what"].append(w)
+    return [{"label": v["label"], "name": v["name"], "what": "; ".join(v["what"])} for v in by_label.values()]
+
+
+def reread_lines(rows, aff):
+    """Раздел отчёта «Перечитать после изменения цен» (список строк markdown)."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import check_text
+    return check_text.reread_section(notable_changes(rows, aff))
+
+
 # ---------------------------------------------------------------- основной процесс
 
 def latest_previous_snapshot(today):
@@ -461,24 +514,29 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
     return auto, decide_
 
 
-def apply_changes(arts, plan, today):
-    """plan: {путь_статьи: {label: changes}} -> правит файлы, делает бэкапы."""
+def apply_changes(arts, plan, today, checked=()):
+    """plan: {путь_статьи: {label: changes}} -> правит файлы, делает бэкапы.
+    checked — пути статей, полностью проверенных в этом прогоне: им ставится prices_checked = today
+    (`updated` при этом меняется только если изменились сами данные товаров)."""
     BACKUP_DIR.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
     done = []
     for art in arts:
         ch = plan.get(art["path"])
-        if not ch:
+        if not ch and art["path"] not in checked:
             continue
         text = art["text"]
         m = FRONT_RE.match(text)
         fm = m.group(1)
         new_fm = fm
-        for label, changes in ch.items():
+        for label, changes in (ch or {}).items():
             new_fm = edit_block(new_fm, label, changes)
+        if new_fm != fm:
+            new_fm = set_updated(new_fm, today)
+        if art["path"] in checked:
+            new_fm = set_prices_checked(new_fm, today)
         if new_fm == fm:
             continue
-        new_fm = set_updated(new_fm, today)
         new_text = text[:m.start(1)] + new_fm + text[m.end(1):]
         shutil_backup = BACKUP_DIR / f"{art['path'].stem}.{stamp}.md"
         shutil_backup.write_text(text, encoding="utf-8", newline="")
@@ -570,6 +628,9 @@ def main():
         print("\n".join(auto_lines) or "  нет изменений")
         print("\nТребует решения:")
         print("\n".join(decide_lines) or "  ничего")
+        print("\n" + "\n".join(reread_lines(rows, aff)))
+        done_arts = sorted(p.name for p in fully_checked(arts, entries))
+        print("prices_checked было бы записано: " + (", ".join(done_arts) or "нет"))
         return 0
 
     # --- снимок
@@ -589,8 +650,9 @@ def main():
 
     # --- применение
     applied = []
-    if args.apply and plan:
-        applied = apply_changes(arts, plan, today)
+    checked = fully_checked(arts, entries)
+    if args.apply:
+        applied = apply_changes(arts, plan, today, checked)
 
     # --- отчёт
     def cell(v, suffix=""):
@@ -643,6 +705,11 @@ def main():
     md += reward_lines or ["Нет."]
     md += ["", "## Требует решения", ""]
     md += decide_lines or ["Ничего."]
+    md += [""]
+    try:
+        md += reread_lines(rows, aff)
+    except Exception as e:  # noqa: BLE001
+        md += ["## Перечитать после изменения цен", "", f"ошибка: {type(e).__name__}: {e}", ""]
     report_path = REPORT_DIR / (f"{today}-partial.md" if (args.only or args.limit) else f"{today}.md")
     report_path.write_text("\n".join(md) + "\n", encoding="utf-8")
 

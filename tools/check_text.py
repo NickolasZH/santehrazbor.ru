@@ -83,7 +83,9 @@ def load_articles():
             if p.get("name") and isinstance(p.get("price"), (int, float)):
                 prods.append({"label": label, "name": str(p["name"]), "price": int(p["price"]),
                               "status": p.get("status"), "rating": p.get("rating"),
-                              "reviews": p.get("reviews"), "bought": p.get("bought")})
+                              "reviews": p.get("reviews"), "bought": p.get("bought"),
+                              "warranty": p.get("warranty"), "material": p.get("material"),
+                              "pros": p.get("pros"), "cons": p.get("cons")})
         arts.append({"path": path, "lines": text.split("\n"), "fm_lines": m.group(0).count("\n"),
                      "prods": prods, "meta": meta})
     return arts
@@ -310,7 +312,30 @@ def analyze(arts, today):
                     if d and (today - d).days > STALE_DAYS:
                         date_rows.append((where, quote(line, m.start(), m.end()), d.isoformat(),
                                           (today - d).days))
+    date_rows += analyze_prices_checked(arts, today)
     return price_rows, range_rows, thr_rows, date_rows
+
+
+def analyze_prices_checked(arts, today):
+    """Поле prices_checked во front matter: нет или старше STALE_DAYS — находка.
+    Текст берёт дату цен из него ({{prices_date}}), поэтому устаревшее поле = устаревшие цены на сайте."""
+    rows = []
+    for art in arts:
+        if not art["prods"]:
+            continue
+        where = f"{art['path'].name}:prices_checked"
+        raw = art["meta"].get("prices_checked")
+        if not raw:
+            rows.append((where, "поле prices_checked не задано", "—", "—"))
+            continue
+        try:
+            d = raw if isinstance(raw, date) else date.fromisoformat(str(raw))
+        except ValueError:
+            rows.append((where, f"prices_checked: {raw}", "не дата", "—"))
+            continue
+        if (today - d).days > STALE_DAYS:
+            rows.append((where, f"prices_checked: {d.isoformat()}", d.isoformat(), (today - d).days))
+    return rows
 
 
 def pick_subject(line, pos, names, owner):
@@ -448,6 +473,95 @@ def analyze_fm_ranges(arts):
     return rows
 
 
+def _norm_items(items):
+    return {norm(str(x)) for x in (items or [])}
+
+
+def analyze_cross_article(arts):
+    """Один id товара в нескольких статьях: данные должны совпадать.
+    -> (строки расхождений полей, строки предупреждений по pros/cons).
+    Строка: (товар, поле, статья_A, значение_A, статья_B, значение_B)."""
+    by_label = {}
+    for art in arts:
+        for p in art["prods"]:
+            by_label.setdefault(p["label"], []).append((art["path"].name, p))
+    rows, warns = [], []
+    for label, lst in by_label.items():
+        if len(lst) < 2:
+            continue
+        fa, pa = lst[0]
+        for fb, pb in lst[1:]:
+            def add(field, va, vb):
+                rows.append((label, field, fa, va, fb, vb))
+            if pct(pa["price"], pb["price"]) > 3:
+                add("price", pa["price"], pb["price"])
+            ra, rb = pa.get("rating"), pb.get("rating")
+            if ra is not None and rb is not None and abs(float(ra) - float(rb)) > 1e-9:
+                add("rating", ra, rb)
+            for k in ("reviews", "bought"):
+                va, vb = pa.get(k), pb.get(k)
+                if isinstance(va, (int, float)) and isinstance(vb, (int, float)):
+                    if abs(va - vb) > 2 and (k == "reviews" or pct(va, vb) > 5):
+                        add(k, va, vb)
+            for k in ("warranty", "material"):
+                va, vb = pa.get(k), pb.get(k)
+                if va and vb and norm(str(va)) != norm(str(vb)):
+                    add(k, va, vb)
+            for k in ("pros", "cons"):
+                sa, sb = _norm_items(pa.get(k)), _norm_items(pb.get(k))
+                diff = sa ^ sb
+                # наборы почти совпадают (общих ≥ 2), но отличаются одним-двумя пунктами
+                if diff and len(sa & sb) >= 2 and len(diff) <= 2:
+                    warns.append((label, k, fa, "; ".join(sorted(sa - sb)) or "—",
+                                  fb, "; ".join(sorted(sb - sa)) or "—"))
+    return rows, warns
+
+
+REREAD_WORDS = re.compile(r"цен|дорог|дешев|₽|руб|оценк|рейтинг|покуп", re.I)
+
+
+def product_lines(arts, label):
+    """Все строки всех статей, где упомянут товар: [(статья:строка, текст)].
+    Привязка: id в шорткоде ([[product:id]], [[minitable:...]]), имя товара (find_names),
+    строки внутри его карточки во front matter — только про цену/оценки."""
+    out = []
+    code_re = re.compile(r"\[\[(?:product|minitable):(?:[^\]]*[:,])?" + re.escape(label) + r"(?![\w-])[^\]]*\]\]")
+    for art in arts:
+        mine = [p for p in art["prods"] if p["label"] == label]
+        if not mine:
+            continue
+        fname = art["path"].name
+        for i, line, heading, owner in body_lines(art):
+            if owner is not None:
+                if owner["label"] == label and REREAD_WORDS.search(line):
+                    out.append((f"{fname}:{i}", line.strip()))
+            elif i > art["fm_lines"] and (code_re.search(line) or find_names(line, mine)):
+                out.append((f"{fname}:{i}", line.strip()))
+    return out
+
+
+def reread_rows(arts, changes):
+    """changes: [{label, name, what}] -> строки (товар, что изменилось, статья:строка, текст ≤140)."""
+    rows = []
+    for ch in changes:
+        for where, text in product_lines(arts, ch["label"]):
+            rows.append((ch["name"], ch["what"], where, text[:140] + ("…" if len(text) > 140 else "")))
+    return rows
+
+
+def reread_section(changes):
+    """Раздел отчёта «Перечитать после изменения цен» (markdown-строки). Вызывает check_products."""
+    md = ["## Перечитать после изменения цен", ""]
+    if not changes:
+        return md + ["Цены (> 10 %), рейтинги и число оценок заметно не менялись.", ""]
+    rows = reread_rows(load_articles(), changes)
+    if not rows:
+        return md + ["Изменения есть, но упоминаний товаров в текстах не найдено.", ""]
+    md += ["Товары, у которых в этом прогоне цена изменилась > 10 % или заметно изменились рейтинг/оценки. "
+           "Строки, где они упомянуты (по id в шорткоде и по имени):", ""]
+    return md + table(["Товар", "Что изменилось", "Статья:строка", "Строка"], rows) + [""]
+
+
 def table(header, rows):
     out = ["| " + " | ".join(header) + " |", "|" + "|".join("---" for _ in header) + "|"]
     for r in rows:
@@ -463,7 +577,8 @@ def build_report(today=None):
     dz = analyze_dzen(arts)
     fm_rows = analyze_fm_ranges(arts)
     stat_rows, cmp_rows = analyze_stats(arts)
-    n = len(stat_rows) + len(cmp_rows) + len(price_rows) + len(range_rows) + len(thr_rows) + len(date_rows) + len(dz) + len(fm_rows)
+    cross_rows, cross_warns = analyze_cross_article(arts)
+    n = len(cross_rows) + len(cross_warns) + len(stat_rows) + len(cmp_rows) + len(price_rows) + len(range_rows) + len(thr_rows) + len(date_rows) + len(dz) + len(fm_rows)
     pc = lambda d: f"{d:.0f} %"
     md = ["## Проверка текста: цены в статьях и Дзене", "",
           f"Допуск {int(TOLERANCE * 100)} %, устаревшая дата — старше {STALE_DAYS} дн. "
@@ -493,7 +608,13 @@ def build_report(today=None):
     if cmp_rows:
         md += ["### Сравнительные утверждения (предупреждение, возможны ложные срабатывания)", ""]
         md += table(["Статья:строка", "Цитата", "Товар из текста", "На самом деле", "Товар"], cmp_rows) + [""]
-    if not (stat_rows or cmp_rows or price_rows or range_rows or thr_rows or date_rows or fm_rows):
+    if cross_rows:
+        md += ["### Товар в нескольких статьях: данные расходятся", ""]
+        md += table(["Товар", "Поле", "Статья A", "Значение A", "Статья B", "Значение B"], cross_rows) + [""]
+    if cross_warns:
+        md += ["### Товар в нескольких статьях: pros/cons почти совпадают, но отличаются (предупреждение)", ""]
+        md += table(["Товар", "Список", "Статья A", "Только в A", "Статья B", "Только в B"], cross_warns) + [""]
+    if not (cross_rows or cross_warns or stat_rows or cmp_rows or price_rows or range_rows or thr_rows or date_rows or fm_rows):
         md += ["В статьях расхождений нет.", ""]
     md += ["### Что поправить в Дзене", ""]
     if dz:

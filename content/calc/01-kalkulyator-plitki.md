@@ -9,6 +9,7 @@ type: calculator
 script: calc-plitka.js
 published: '2026-10-14'
 updated: 2026-10-19
+prices_checked: 2026-10-19
 products:
   litokol-litochrom-evo-lle115:
     name: Litokol Litochrom Luxury EVO LLE.115 2 кг

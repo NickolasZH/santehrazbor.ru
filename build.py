@@ -261,6 +261,18 @@ def build_products(meta, aff, ctx_name):
     return products, [by_label[lab] for lab in picks]
 
 
+def apply_prices_date(body, meta, name):
+    """Подставляет {{prices_date}} («19.10.2026») и {{prices_date_text}} («19 октября 2026»)
+    из поля prices_checked front matter. Нет поля — сборка падает с понятной ошибкой."""
+    if "{{prices_date" not in body:
+        return body
+    if not meta.get("prices_checked"):
+        fail(f"{name}: в тексте плейсхолдер {{{{prices_date}}}}, а в front matter нет поля prices_checked (YYYY-MM-DD)")
+    d = to_date(meta["prices_checked"])
+    return (body.replace("{{prices_date_text}}", ru_date(d))
+                .replace("{{prices_date}}", d.strftime("%d.%m.%Y")))
+
+
 def render_markdown(body_md, aff, used_labels, env, article_ctx):
     """markdown -> HTML со шорткодами [[picks]], [[compare]], [[product:метка]], [[minitable:метки]], [[toc]]."""
     name = article_ctx["name"]
@@ -518,6 +530,7 @@ def main():
     used_labels = set()
     for path in sorted(CONTENT.glob("*.md")):
         meta, body = split_front_matter(path.read_text(encoding="utf-8"), path)
+        body = apply_prices_date(body, meta, path.name)
         for key in ("title", "description", "slug", "date"):
             if key not in meta:
                 fail(f"{path.name}: в front matter нет поля {key}")
@@ -558,6 +571,7 @@ def main():
     calcs = []
     for path in sorted((CONTENT / "calc").glob("*.md")):
         meta, body = split_front_matter(path.read_text(encoding="utf-8"), path)
+        body = apply_prices_date(body, meta, path.name)
         for key in ("title", "description", "slug", "script", "type"):
             if key not in meta:
                 fail(f"calc/{path.name}: в front matter нет поля {key}")

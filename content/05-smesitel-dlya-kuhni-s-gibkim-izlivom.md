@@ -5,7 +5,7 @@ slug: smesitel-dlya-kuhni-s-gibkim-izlivom
 cover: kitchen-flexible-spout.jpg
 cover_alt: 'Кухонный смеситель с гибким изливом'
 category: smesiteli
-seo_title: 'Смеситель для кухни с гибким изливом: какой выбрать — 6 моделей'
+seo_title: 'Смеситель для кухни с гибким изливом: отзывы, плюсы и минусы'
 seo_description: 'Гибкий излив на кухне: на что смотреть в карточке, почему светлый силикон желтеет и что такое картридж Cold Start. 6 моделей от 6 300 ₽ с разбором отзывов.'
 date: '2026-10-07'
 updated: 2026-10-19

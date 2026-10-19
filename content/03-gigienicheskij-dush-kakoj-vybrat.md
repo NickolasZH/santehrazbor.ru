@@ -214,7 +214,7 @@ products:
 
 [[scheme:scheme-tipy-gigienicheskogo-dusha.svg|Пять способов установки гигиенического душа: от открытого настенного до лейки на смесителе раковины (схема santehrazbor.ru).]]
 
-Подробнее про этот вариант и 4 модели — в статье [«Смеситель для раковины с гигиеническим душем»](/smesitel-dlya-rakoviny-s-gigienicheskim-dushem/).
+Подробнее про этот вариант и 3 модели — в статье [«Смеситель для раковины с гигиеническим душем»](/smesitel-dlya-rakoviny-s-gigienicheskim-dushem/).
 
 ---
 

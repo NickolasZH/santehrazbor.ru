@@ -442,6 +442,13 @@
     "reward_rub_2026_10_07": 452,
     "reward_rub_2026_10_13": 1393
   },
+  "damixa-apollo": {
+    "url": "https://market.yandex.ru/card/x/103626471002",
+    "aff_url": "https://market.yandex.ru/cc/BLcoVE?erid=5jtCeReNx12oak2rzSN6fVC",
+    "erid": "5jtCeReNx12oak2rzSN6fVC",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rzSN6fVC",
+    "reward_rub_2026_10_19": 2975
+  },
   "grohe-bauloop-23602001": {
     "url": "https://market.yandex.ru/card/x/103210397075",
     "aff_url": "https://market.yandex.ru/cc/BG9Zfo?erid=5jtCeReNx12oak2rUzLvjXk",
@@ -669,11 +676,12 @@
     "reward_rub_2026_10_13": 3861
   },
   "voda-vessel-3v1": {
-    "url": "https://market.yandex.ru/card/x/103452684700",
-    "aff_url": "https://market.yandex.ru/cc/BHtyBn?erid=5jtCeReNx12oak2ryRKNv4o",
-    "erid": "5jtCeReNx12oak2ryRKNv4o",
-    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2ryRKNv4o",
-    "reward_rub_2026_10_13": 912
+    "url": "https://market.yandex.ru/card/x/103452695156",
+    "aff_url": "https://market.yandex.ru/cc/BLcnTp?erid=5jtCeReNx12oak2rzSN6fQp",
+    "erid": "5jtCeReNx12oak2rzSN6fQp",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2rzSN6fQp",
+    "reward_rub_2026_10_13": 912,
+    "reward_rub_2026_10_19": 657
   },
   "avs-beauty-n811-703-1": {
     "url": "https://market.yandex.ru/card/x/6074373343",

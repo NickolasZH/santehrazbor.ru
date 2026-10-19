@@ -84,7 +84,7 @@ products:
     name: Lemark Comfort LM3071C
     subtitle: гибкий излив + кран для питьевой воды
     badge: С фильтром
-    price: 9037
+    price: 16850
     material: латунь
     feature: гибкий излив, картридж Sedal 35 мм, раздельные рычаги
     rating: 4.9

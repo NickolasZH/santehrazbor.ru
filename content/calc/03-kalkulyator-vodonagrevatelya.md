@@ -32,7 +32,7 @@ products:
     bought: 674
   thermex-fora-50:
     name: Thermex Fora 50 плоский, нержавеющий бак
-    price: 17026
+    price: 19523
     feature: 50 л, плоский, нержавеющий бак, 2 кВт
     rating: 4.7
     reviews: 63

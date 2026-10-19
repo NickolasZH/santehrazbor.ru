@@ -1,0 +1,2546 @@
+{
+  "date": "2026-10-19",
+  "time": "2026-10-19T21:57:43",
+  "region": "Москва (по умолчанию)",
+  "applied": true,
+  "items": {
+    "atoll-1713-gs": {
+      "card_id": "6195816422",
+      "card": {
+        "url": "https://market.yandex.ru/card/kran-kombinirovannyy-atoll-1713-gs-oruzheynaya-stal-smesitel-dlya-kukhni-s-podklyucheniyem-k-filtru-pityevoy-vody-povorotnyy/6195816422",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни atoll 1713-GS (оружейная сталь), с подключением к фильтру питьевой воды, поворотный",
+        "available": true,
+        "price": 6295,
+        "rating": 5.0,
+        "reviews": 14,
+        "bought": 44,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 6195816422",
+        "url": "https://market.yandex.ru/cc/BFZGUr"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 6195816422"
+      },
+      "decisions": []
+    },
+    "koggo-pityevaya-black": {
+      "card_id": "102546576275",
+      "card": {
+        "url": "https://market.yandex.ru/card/cmesitel-dlya-kukhonnoy-moyki-pod-filtr-s-kranom-dlya-pityevoy-vody-povorotnyy-izliv-chernyy/102546576275",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Cмеситель для кухонной мойки под фильтр с краном для питьевой воды (поворотный излив), черный",
+        "available": true,
+        "price": 3823,
+        "rating": 4.8,
+        "reviews": 427,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102546576275"
+      },
+      "decisions": []
+    },
+    "oute-t603s": {
+      "card_id": "102953351577",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni-moyki-s-gibkim-izlivom-i-filtrom-khrom-nerzhaveyka-t603s/102953351577",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни (мойки) с гибким изливом и фильтром, нержавейка T603S.",
+        "available": true,
+        "price": 6614,
+        "rating": 4.9,
+        "reviews": 175,
+        "bought": 843,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102953351577"
+      },
+      "decisions": []
+    },
+    "pragma-melpul-mel7": {
+      "card_id": "103663714422",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni-s-kanalom-dlya-filtrovannoy-vody-pragma-melpul-matovyy-khrom-mel7-m1jf026/103663714422",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни с каналом для фильтрованной воды Pragma Melpul, матовый хром, MEL7. M1JF.026",
+        "available": true,
+        "price": 6230,
+        "rating": 4.6,
+        "reviews": 47,
+        "bought": 314,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103663714422"
+      },
+      "decisions": []
+    },
+    "atoll-2215-gs": {
+      "card_id": "6195826500",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni-s-podklyucheniyem-k-filtru-pityevoy-vody-kran-kombinirovannyy-atoll-2215-gs-khrom-povorotnyy/6195826500",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни atoll 2215-GS, оружейная сталь, с подключением к фильтру питьевой воды, поворотный",
+        "available": true,
+        "price": 6907,
+        "rating": 5.0,
+        "reviews": 14,
+        "bought": 44,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 6195826500"
+      },
+      "decisions": []
+    },
+    "gross-aqua-3188611ssb": {
+      "card_id": "103639145584",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni-s-podklyucheniyem-k-filtru-vody-i-vydvizhnym-gibkim-izlivom-gross-aqua-neosteel-nerzhaveyushchaya-stal-matovaya-stal-chernyy-3188611ssb/103639145584",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни с подключением к фильтру воды и выдвижным гибким изливом GROSS AQUA Сталь (Neosteel), нержавеющая сталь, матовая сталь, черный, 3188611SSB",
+        "available": true,
+        "price": 11719,
+        "rating": 4.4,
+        "reviews": 36,
+        "bought": 36,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103639145584",
+        "url": "https://market.yandex.ru/cc/BFZdp3"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103639145584"
+      },
+      "decisions": []
+    },
+    "lemark-lm3071c": {
+      "card_id": "103211987044",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-lemark-comfort-lm3071c-gray-dlya-kukhni-s-podklyucheniyem-k-filtru-s-pityevoy-vodoy/103211987044",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Comfort LM3071C-Gray для кухни с подключением к фильтру с питьевой водой",
+        "available": true,
+        "price": 9037,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211987044",
+        "url": "https://market.yandex.ru/cc/BFZfpF"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211987044"
+      },
+      "decisions": [
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 4.9)",
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 4.9)"
+      ]
+    },
+    "raglo-r816205": {
+      "card_id": "103775601559",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-raglo-dlya-kukhni-s-podklyucheniyem-k-filtru-r816205/103775601559",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Raglo R81.62.05 для кухни, с подключением к фильтру, съёмный гибкий излив, с магнитным фиксатором, сатин",
+        "available": true,
+        "price": 17775,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103775601559",
+        "url": "https://market.yandex.ru/cc/BFZg5W"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103775601559"
+      },
+      "decisions": [
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 5.0)",
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 5.0)"
+      ]
+    },
+    "iddis-rule-rulstlfi05": {
+      "card_id": "103207827799",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni-s-filtrom-stal-iddis-rule-rulstlfi05/103207827799",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни с каналом для фильтрованной воды IDDIS Рул (Rule) RULSTLFi05 нержавеющая сталь",
+        "available": true,
+        "price": 15268,
+        "rating": 4.7,
+        "reviews": 76,
+        "bought": 214,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103207827799",
+        "url": "https://market.yandex.ru/cc/BFZgUe"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103207827799"
+      },
+      "decisions": []
+    },
+    "omoikiri-sinto-2-plus": {
+      "card_id": "103596965752",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni-omoikiri-sinto-2-plus-bn-wh-s-podklyucheniyem-filtra-i-gibkim-izlivom-2-v-1--nerzhaveyushchaya-stal--belyy-shlang/103596965752",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни OMOIKIRI Sinto 2 Plus-BN-WH с подключением фильтра и гибким изливом 2 в 1 / нержавеющая сталь / белый шланг",
+        "available": true,
+        "price": 29888,
+        "rating": 4.9,
+        "reviews": 45,
+        "bought": 126,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103596965752",
+        "url": "https://market.yandex.ru/cc/BFZEA8"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103596965752"
+      },
+      "decisions": []
+    },
+    "wisent-w5221": {
+      "card_id": "103241729641",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-wisent-w5221-khrom/103241729641",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель WISENT W5221, Смеситель под сиденье унитаза (биде-приставка) с гигиеническим душем",
+        "available": true,
+        "price": 2375,
+        "rating": 4.7,
+        "reviews": 22,
+        "bought": 60,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103241729641",
+        "url": "https://market.yandex.ru/cc/BFZsnY"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103241729641"
+      },
+      "decisions": []
+    },
+    "iddis-ray-raysb00i08": {
+      "card_id": "103812659581",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-s-gigiyenicheskim-dushem-glyantsevyy-khrom-ray-iddis-raysb00i08/103812659581",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Гигиенический душ IDDIS Рэй (Ray) RAYSB00i08 с крючком для полотенца глянцевый хром",
+        "available": true,
+        "price": 9690,
+        "rating": 5.0,
+        "reviews": 16,
+        "bought": 38,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103812659581"
+      },
+      "decisions": []
+    },
+    "iddis-axes-004sbs0i08": {
+      "card_id": "102203494453",
+      "card": {
+        "url": "https://market.yandex.ru/card/vstraivayemyy-smesitel-s-gigiyenicheskim-dushem-iddis-axes-004sbs0i08-khrom/102203494453",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Гигиенический душ IDDIS Аксес (Axes) 004SBS0i08 встраиваемый хром",
+        "available": true,
+        "price": 8235,
+        "rating": 4.8,
+        "reviews": 81,
+        "bought": 242,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102203494453",
+        "url": "https://market.yandex.ru/cc/BFZtCY"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102203494453"
+      },
+      "decisions": []
+    },
+    "lemark-solo-lm7165c": {
+      "card_id": "103211710435",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-lemark-solo-lm7165c-s-gigiyenicheskim-dushem-vstraivayemyy/103211710435",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Solo LM7165C с гигиеническим душем, встраиваемый",
+        "available": true,
+        "price": 10192,
+        "rating": 4.9,
+        "reviews": 57,
+        "bought": 184,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211710435",
+        "url": "https://market.yandex.ru/cc/BFZtSg"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211710435"
+      },
+      "decisions": []
+    },
+    "lemark-yeti-lm7820c": {
+      "card_id": "102280536026",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-lemark-yeti-lm7820c-termostaticheskiy-s-gigiyenicheskim-dushem-vstraivayemyy/102280536026",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Yeti LM7820C термостатический с гигиеническим душем, встраиваемый",
+        "available": true,
+        "price": 14425,
+        "rating": 5.0,
+        "reviews": 5,
+        "bought": 17,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102280536026",
+        "url": "https://market.yandex.ru/cc/BFZu22"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102280536026"
+      },
+      "decisions": []
+    },
+    "ampm-func-f0h8f922": {
+      "card_id": "102575844718",
+      "card": {
+        "url": "https://market.yandex.ru/card/gigiyenicheskiy-dush-so-smesitelem-ampm-func-f0h8f922-chernyy-smesitel-polka-dlya-unitaza-leyka-dlya-bide-derzhatel-dlya-tualetnoy-bumagi-kryuchok-avtomaticheskoye-otklyucheniye---tekhnologiya-smart-lock-garantiya-10-let-germaniya/102575844718",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Гигиенический душ со смесителем AM.PM Func черный, с полкой, автоматическое отключение",
+        "available": true,
+        "price": 18652,
+        "rating": 4.5,
+        "reviews": 80,
+        "bought": 204,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102575844718",
+        "url": "https://market.yandex.ru/cc/BFZsBf"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102575844718"
+      },
+      "decisions": []
+    },
+    "gappo-g7290": {
+      "card_id": "103211923600",
+      "card": {
+        "url": "https://market.yandex.ru/card/gigiyenicheskiy-dush-skrytogo-montazha-s-termostatom-gappo-g7290-khrom/103211923600",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Гигиенический душ скрытого монтажа с термостатом GAPPO G7290, хром",
+        "available": true,
+        "price": 14781,
+        "rating": 4.9,
+        "reviews": 21,
+        "bought": 115,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211923600",
+        "url": "https://market.yandex.ru/cc/BFZuFZ"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211923600"
+      },
+      "decisions": []
+    },
+    "grohe-bauflow-29328000": {
+      "card_id": "103719049900",
+      "card": {
+        "url": "https://market.yandex.ru/card/gotovyy-komplekt-grohe-dlya-gigiyen-dusha-29328000-bauflow-vstraivayemyy-smesitel-gigiyen-dush-so-shlangom-i-derzhatelem-khrom/103719049900",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для биде Grohe BauFlow с гигиеническим душем, со шлангом и держателем, хром (29328000)",
+        "available": true,
+        "price": 19270,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103719049900",
+        "url": "https://market.yandex.ru/cc/BFZuTr"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103719049900"
+      },
+      "decisions": []
+    },
+    "iddis-kero-kersbsti06": {
+      "card_id": "103789381574",
+      "card": {
+        "url": "https://market.yandex.ru/card/dushevaya-sistema-s-tropicheskim-dushem-i-izlivom-s-termostatom-khrom-glyantsevyy-kero-iddis-kersbsti06/103789381574",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система IDDIS Керо (Kero) KERSBSTi06 c тропическим душем, с изливом, с термостатом хром глянцевый",
+        "available": true,
+        "price": 27150,
+        "rating": 4.9,
+        "reviews": 24,
+        "bought": 75,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103789381574",
+        "url": "https://market.yandex.ru/cc/BFfde4"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103789381574"
+      },
+      "decisions": []
+    },
+    "esko-stt2000": {
+      "card_id": "4322991373",
+      "card": {
+        "url": "https://market.yandex.ru/card/dushevaya-sistema-esko-stt2000-so-smesitelem-termostatom-i-polkoy-khrom/4322991373",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система ESKO STT2000 со смесителем-термостатом и полкой, хром",
+        "available": true,
+        "price": 27033,
+        "rating": 4.6,
+        "reviews": 144,
+        "bought": 453,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4322991373",
+        "url": "https://market.yandex.ru/cc/BFfd4n"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4322991373"
+      },
+      "decisions": []
+    },
+    "ampm-chic-termostat": {
+      "card_id": "4374529279",
+      "card": {
+        "url": "https://market.yandex.ru/card/dushevaya-sistema-s-tropicheskim-dushem-ampm-chic-so-smesitelem-termostat-so-stoporom-bezopasnosti-khrom/4374529279",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система с тропическим душем AM.PM Chic со смесителем, термостат со стопором безопасности, хром",
+        "available": true,
+        "price": 22550,
+        "rating": 4.4,
+        "reviews": 174,
+        "bought": 623,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4374529279",
+        "url": "https://market.yandex.ru/cc/BFfcVK"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4374529279"
+      },
+      "decisions": []
+    },
+    "ampm-like-f0780564": {
+      "card_id": "102873993407",
+      "card": {
+        "url": "https://market.yandex.ru/card/dushevaya-sistema-s-tropicheskim-dushem-i-smesitelem-ampm-like-f0780564-khrom-termostat-so-stoporom-bezopasnosti-s-kranom-s-monolitnym-izlivom-dlya-vanny-germaniya/102873993407",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система с тропическим душем и смесителем AM.PM Like хром, термостат с краном",
+        "available": true,
+        "price": 24240,
+        "rating": 4.3,
+        "reviews": 249,
+        "bought": 823,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102873993407",
+        "url": "https://market.yandex.ru/cc/BFfckp"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102873993407"
+      },
+      "decisions": []
+    },
+    "damixa-base-termostat": {
+      "card_id": "4584448508",
+      "card": {
+        "url": "https://market.yandex.ru/card/dushevaya-sistema-s-tropicheskim-dushem-damixa-base-smesitel-s-termostatom-skladnoy-izliv-khrom/4584448508",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система с тропическим душем Damixa Base смеситель с термостатом, складной излив, хром",
+        "available": true,
+        "price": 22965,
+        "rating": 5.0,
+        "reviews": 2,
+        "bought": 13,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4584448508",
+        "url": "https://market.yandex.ru/cc/BFfdtV"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4584448508"
+      },
+      "decisions": []
+    },
+    "grohe-euphoria-260-26510000": {
+      "card_id": "103210077029",
+      "card": {
+        "url": "https://market.yandex.ru/card/dushevaya-sistema-grohe-euphoria-smartcontrol-260-mono-s-termostatom-dlya-vanny-khrom-26510000/103210077029",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система GROHE Euphoria SmartControl 260 MONO с термостатом для ванны, хром (26510000)",
+        "available": true,
+        "price": 126169,
+        "rating": 5.0,
+        "reviews": 1,
+        "bought": 4,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103210077029",
+        "url": "https://market.yandex.ru/cc/BFfe9Y"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103210077029"
+      },
+      "decisions": []
+    },
+    "milardo-rora-rorbl4fm06": {
+      "card_id": "103210238874",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103210238874",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система Milardo Рора (Rora) RORBL4FM06 с тропическим душем черный матовый",
+        "available": true,
+        "price": 21330,
+        "rating": 4.9,
+        "reviews": 51,
+        "bought": 143,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103210238874"
+      },
+      "decisions": []
+    },
+    "argo-pers": {
+      "card_id": "103212989336",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103212989336",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая стойка ARGO перс с верхним душем и смесителем для ванны, латунь, покрытие хром / эмаль",
+        "available": true,
+        "price": 10933,
+        "rating": 4.5,
+        "reviews": 69,
+        "bought": 122,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103212989336"
+      },
+      "decisions": []
+    },
+    "bauheim-bau-wf-1003": {
+      "card_id": "4697040520",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4697040520",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система BAUHEIM BAU-WF-1003 — стойка с тропическим душем, смесителем и ручной лейкой, вороненая сталь",
+        "available": true,
+        "price": 8502,
+        "rating": 4.7,
+        "reviews": 33,
+        "bought": 56,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4697040520"
+      },
+      "decisions": []
+    },
+    "wergrauf-3w-25g": {
+      "card_id": "102854424083",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102854424083",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система Wergrauf 3W-25G с тропическим душем 25х25 цвет золото",
+        "available": true,
+        "price": 11844,
+        "rating": 4.7,
+        "reviews": 40,
+        "bought": 106,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102854424083"
+      },
+      "decisions": []
+    },
+    "frap-f24806": {
+      "card_id": "103209535395",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103209535395",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система для ванны Frap F24806 сатин, нержавеющая сталь",
+        "available": true,
+        "price": 15286,
+        "rating": 4.7,
+        "reviews": 49,
+        "bought": 102,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103209535395"
+      },
+      "decisions": []
+    },
+    "ampm-sunny-f0785c922": {
+      "card_id": "102142846634",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102142846634",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система с тропическим душем AM.PM Sunny, черная матовая, поворотный излив",
+        "available": true,
+        "price": 21223,
+        "rating": 4.7,
+        "reviews": 64,
+        "bought": 207,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102142846634"
+      },
+      "decisions": []
+    },
+    "lemark-linara-lm0415c": {
+      "card_id": "103209542772",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-lemark-linara-lm0415c-gray-dlya-kukhni-s-gibkim-izlivom/103209542772",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Linara LM0415C-Gray для кухни с гибким изливом",
+        "available": true,
+        "price": 6309,
+        "rating": 5.0,
+        "reviews": 10,
+        "bought": 39,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103209542772",
+        "url": "https://market.yandex.ru/cc/BFgACU"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103209542772"
+      },
+      "decisions": []
+    },
+    "rainsberg-gibkij-sinij": {
+      "card_id": "103178911624",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-kukhni--kukhonnyy-smesitel-rainsberg-s-gibkim-silikonovym-izlivom-siniy/103178911624",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни / Кухонный смеситель Rainsberg с гибким силиконовым изливом синий",
+        "available": true,
+        "price": 6016,
+        "rating": 4.7,
+        "reviews": 116,
+        "bought": 233,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103178911624",
+        "url": "https://market.yandex.ru/cc/BFgAST"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103178911624"
+      },
+      "decisions": []
+    },
+    "lemark-expert-lm5082s": {
+      "card_id": "102189441802",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-lemark-expert-lm5082s-blue-dlya-kukhni-s-gibkim-izlivom/102189441802",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Expert LM5082S-Blue для кухни с гибким изливом",
+        "available": true,
+        "price": 8667,
+        "rating": 4.9,
+        "reviews": 93,
+        "bought": 262,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102189441802",
+        "url": "https://market.yandex.ru/cc/BFrdVA"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102189441802"
+      },
+      "decisions": []
+    },
+    "iddis-duna-dunsbv0i08": {
+      "card_id": "4347492857",
+      "card": {
+        "url": "https://market.yandex.ru/card/vstraivayemyy-smesitel-s-gigiyenicheskim-dushem-s-zashchitnym-klapanom-glyantsevyy-khrom-duna-iddis-dunsbv0i08/4347492857",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Гигиенический душ IDDIS Дюна (Duna) DUNSBV0i08 встраиваемый с защитным клапаном глянцевый хром",
+        "available": true,
+        "price": 17450,
+        "rating": 5.0,
+        "reviews": 23,
+        "bought": 86,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4347492857",
+        "url": "https://market.yandex.ru/cc/BFg9jT"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4347492857"
+      },
+      "decisions": []
+    },
+    "lemark-solo-lm7165bl": {
+      "card_id": "103211710430",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-lemark-solo-lm7165bl-s-gigiyenicheskim-dushem-vstraivayemyy/103211710430",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Solo LM7165BL с гигиеническим душем, встраиваемый",
+        "available": true,
+        "price": 14385,
+        "rating": 4.6,
+        "reviews": 18,
+        "bought": 45,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211710430",
+        "url": "https://market.yandex.ru/cc/BFyZ42"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211710430"
+      },
+      "decisions": []
+    },
+    "wisent-wp14118": {
+      "card_id": "103404555346",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-rakoviny-umyvalnika-s-gigiyenicheskoy-leykoy-wisent-wp14118-khrom/103404555346",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Гигиенический душ со смесителем WISENT WP14118, рычажное управление, хромированный",
+        "available": true,
+        "price": 2972,
+        "rating": 4.6,
+        "reviews": 42,
+        "bought": 94,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103404555346",
+        "url": "https://market.yandex.ru/cc/BFhuZ5"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103404555346"
+      },
+      "decisions": []
+    },
+    "shevanik-s8271h": {
+      "card_id": "103207649911",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-rakoviny-s-gigiyenicheskim-dushem-shevanik-s8271h/103207649911",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для раковины с гигиеническим душем Shevanik S8271H",
+        "available": true,
+        "price": 7941,
+        "rating": 4.5,
+        "reviews": 29,
+        "bought": 70,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103207649911",
+        "url": "https://market.yandex.ru/cc/BFhuyy"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103207649911"
+      },
+      "decisions": []
+    },
+    "damixa-venus": {
+      "card_id": "4511882564",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-rakoviny-v-vannuyu-damixa-venus-s-gigiyenicheskim-dushem-latun-khrom/4511882564",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для раковины в ванную Damixa Venus, с гигиеническим душем, латунь, хром",
+        "available": true,
+        "price": 9114,
+        "rating": 4.8,
+        "reviews": 26,
+        "bought": 210,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4511882564",
+        "url": "https://market.yandex.ru/cc/BFhv9H"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4511882564"
+      },
+      "decisions": []
+    },
+    "ampm-gem-f90a03000": {
+      "card_id": "103212847742",
+      "card": {
+        "url": "https://market.yandex.ru/card/smesitel-dlya-rakoviny-umyvalnika-ampm-gem-f90a03000-s-gigiyenicheskim-dushem/103212847742",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для раковины (умывальника) AM.PM Gem с гигиеническим душем",
+        "available": true,
+        "price": 20559,
+        "rating": 4.6,
+        "reviews": 11,
+        "bought": 67,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103212847742",
+        "url": "https://market.yandex.ru/cc/BFhvGv"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103212847742"
+      },
+      "decisions": []
+    },
+    "ampm-x-joy-f85a50000": {
+      "card_id": "102264496315",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102264496315",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны AM.PM X-Joy, с термостатом, короткий поворотный излив 176 мм, хром",
+        "available": true,
+        "price": 16578,
+        "rating": 4.7,
+        "reviews": 767,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102264496315",
+        "url": "https://market.yandex.ru/cc/BFiRrR"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102264496315"
+      },
+      "decisions": []
+    },
+    "esko-line-thermo": {
+      "card_id": "101862103247",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/101862103247",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель термостатический ESKO Line для ванны и душа, латунь",
+        "available": true,
+        "price": 7136,
+        "rating": 4.8,
+        "reviews": 413,
+        "bought": 883,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 101862103247",
+        "url": "https://market.yandex.ru/cc/BFiSDq"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 101862103247"
+      },
+      "decisions": []
+    },
+    "ampm-brava-shower": {
+      "card_id": "102309007918",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102309007918",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель термостатический для душа AM.PM Brava хром, картридж с термоэлементом, стопор безопасности",
+        "available": true,
+        "price": 11602,
+        "rating": 4.8,
+        "reviews": 391,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102309007918",
+        "url": "https://market.yandex.ru/cc/BFiS4H"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102309007918"
+      },
+      "decisions": []
+    },
+    "ampm-x-joy-f85a95600": {
+      "card_id": "103275992049",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103275992049",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Термостатический смеситель AM.PM X-Joy хром для ванны и душа встраиваемый, высокочувствительный термоэлемент",
+        "available": true,
+        "price": 25535,
+        "rating": 4.9,
+        "reviews": 29,
+        "bought": 105,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103275992049",
+        "url": "https://market.yandex.ru/cc/BFiTiQ"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103275992049"
+      },
+      "decisions": []
+    },
+    "esko-t3054": {
+      "card_id": "103206712657",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103206712657",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель-термостат с изливом ESKO T3054 для душа и ванны хром",
+        "available": true,
+        "price": 12577,
+        "rating": 4.7,
+        "reviews": 56,
+        "bought": 133,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103206712657",
+        "url": "https://market.yandex.ru/cc/BFiSPt"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103206712657"
+      },
+      "decisions": []
+    },
+    "zeta-br-840": {
+      "card_id": "101883984202",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/101883984202",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Термостатический смеситель для ванны и душа ZETA BR-840, хромированный",
+        "available": true,
+        "price": 5383,
+        "rating": 4.9,
+        "reviews": 33,
+        "bought": 33,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 101883984202",
+        "url": "https://market.yandex.ru/cc/BFiSem"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 101883984202"
+      },
+      "decisions": []
+    },
+    "sunjpro-thermo-bath": {
+      "card_id": "102459687872",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102459687872",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель термостатический для ванны и душа с длинным изливом и лейкой",
+        "available": true,
+        "price": 6050,
+        "rating": 4.4,
+        "reviews": 162,
+        "bought": 162,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102459687872",
+        "url": "https://market.yandex.ru/cc/BFiSsq"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102459687872"
+      },
+      "decisions": []
+    },
+    "damixa-gala-thermo": {
+      "card_id": "103211600901",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103211600901",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Термостатический смеситель Damixa Gala, черный, латунь, поворотный излив",
+        "available": true,
+        "price": 26129,
+        "rating": 4.8,
+        "reviews": 23,
+        "bought": 65,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211600901",
+        "url": "https://market.yandex.ru/cc/BFiT8b"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211600901"
+      },
+      "decisions": []
+    },
+    "iddis-duna-dungm02i74wa": {
+      "card_id": "4347377830",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4347377830",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны с термостатом IDDIS Дюна (Duna) DUNGM02i74WA графит матовый",
+        "available": true,
+        "price": 27150,
+        "rating": 4.9,
+        "reviews": 23,
+        "bought": 62,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4347377830",
+        "url": "https://market.yandex.ru/cc/BFiTMF"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4347377830"
+      },
+      "decisions": []
+    },
+    "swedbe-platta": {
+      "card_id": "103209854282",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103209854282",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель встраиваемый Swedbe, для душа, латунь, встраиваемый, хром",
+        "available": true,
+        "price": 2857,
+        "rating": 5.0,
+        "reviews": 4,
+        "bought": 8,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103209854282",
+        "url": "https://market.yandex.ru/cc/BFq8uA"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103209854282"
+      },
+      "decisions": []
+    },
+    "paini-arena-92cr690ft1lmkm": {
+      "card_id": "4678390477",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4678390477",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемый смеситель для душа и ванны Paini Arena 92CR690FT1LMKM С внутренней частью, латунный, рычажный, настенный, хром, глянцевый, с керамическим картриджем",
+        "available": true,
+        "price": 4945,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4678390477",
+        "url": "https://market.yandex.ru/cc/BFq92i"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4678390477"
+      },
+      "decisions": []
+    },
+    "grohe-bauloop-29042000": {
+      "card_id": "103211430886",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103211430886",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для душа GROHE BauLoop (внешняя и встраиваемая части), хром (29042000)",
+        "available": true,
+        "price": 12590,
+        "rating": 5.0,
+        "reviews": 3,
+        "bought": 8,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211430886",
+        "url": "https://market.yandex.ru/cc/BFq8as"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211430886"
+      },
+      "decisions": []
+    },
+    "grohe-eurosmart-new-33556002": {
+      "card_id": "103210397051",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103210397051",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для душа GROHE Eurosmart New (внешняя и встраиваемая части), хром (33556002)",
+        "available": true,
+        "price": 15801,
+        "rating": 5.0,
+        "reviews": 2,
+        "bought": 9,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103210397051",
+        "url": "https://market.yandex.ru/cc/BFq8Sk"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103210397051"
+      },
+      "decisions": []
+    },
+    "iddis-slide-slibl02i67": {
+      "card_id": "102284124942",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102284124942",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемая душевая система IDDIS Слайд (Slide) SLIBL02i67 с тропическим душем черный матовый",
+        "available": true,
+        "price": 15905,
+        "rating": 4.8,
+        "reviews": 22,
+        "bought": 54,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102284124942",
+        "url": "https://market.yandex.ru/cc/BFq73S"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102284124942"
+      },
+      "decisions": []
+    },
+    "timo-torne-sx-4319-03sm": {
+      "card_id": "103211976151",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103211976151",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система Timo \"Torne\" SX-4319/03SM, встроенный монтаж, латунь, чёрный цвет",
+        "available": true,
+        "price": 21688,
+        "rating": 5.0,
+        "reviews": 5,
+        "bought": 8,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103211976151",
+        "url": "https://market.yandex.ru/cc/BFq8Lp"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211976151"
+      },
+      "decisions": []
+    },
+    "avs-elegant-4v1": {
+      "card_id": "5524532115",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/5524532115",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемый душевой комплект скрытого монтажа AVS Элегант с тропическим душем и смесителем с изливом хром, латунь",
+        "available": true,
+        "price": 23667,
+        "rating": 4.8,
+        "reviews": 47,
+        "bought": 156,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 5524532115",
+        "url": "https://market.yandex.ru/cc/BFq7ws"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 5524532115"
+      },
+      "decisions": []
+    },
+    "grohe-essence-24057001": {
+      "card_id": "6114322013",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/6114322013",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель однорычажный для душа GROHE Essence, круглая розетка, хром (24057001)",
+        "available": true,
+        "price": 14697,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 6114322013"
+      },
+      "decisions": [
+        "цена — сумма нескольких карточек, проверить вручную (на этой карточке 14697, в статье 24935)"
+      ]
+    },
+    "gappo-g1206-9": {
+      "card_id": "4545953650",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4545953650",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для раковины скрытого монтажа Gappo G1206-9, оружейная сталь",
+        "available": true,
+        "price": 9595,
+        "rating": 5.0,
+        "reviews": 9,
+        "bought": 30,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4545953650",
+        "url": "https://market.yandex.ru/cc/BFq97n"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4545953650"
+      },
+      "decisions": []
+    },
+    "hansen-h22055": {
+      "card_id": "103206474166",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103206474166",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны и душа из латуни с лейкой и шлангом Hansen H22055 хром",
+        "available": true,
+        "price": 5634,
+        "rating": 4.6,
+        "reviews": 28,
+        "bought": 86,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103206474166",
+        "url": "https://market.yandex.ru/cc/BFqbbZ"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103206474166"
+      },
+      "decisions": []
+    },
+    "ledeme-l2272": {
+      "card_id": "103207442436",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103207442436",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны с поворотным длинным изливом 40 см, лейка 5 режимов латунь, хром, Ledeme L2272",
+        "available": true,
+        "price": 6609,
+        "rating": 4.9,
+        "reviews": 86,
+        "bought": 247,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103207442436",
+        "url": "https://market.yandex.ru/cc/BFqbnK"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103207442436"
+      },
+      "decisions": []
+    },
+    "milardo-rora-rorsb00m02": {
+      "card_id": "102685704812",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102685704812",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны и душа Milardo Рора (Rora) RORSB00M02 глянцевый хром",
+        "available": true,
+        "price": 7653,
+        "rating": 4.6,
+        "reviews": 38,
+        "bought": 78,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102685704812",
+        "url": "https://market.yandex.ru/cc/BFqdDY"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102685704812"
+      },
+      "decisions": []
+    },
+    "rossinka-rs27-33": {
+      "card_id": "102270774954",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102270774954",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны Rossinka Silvermix RS27-33, латунь, 5 режимов, с лейкой, серый, серебристый",
+        "available": true,
+        "price": 7471,
+        "rating": 4.8,
+        "reviews": 20,
+        "bought": 53,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102270774954",
+        "url": "https://market.yandex.ru/cc/BFqdyY"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102270774954"
+      },
+      "decisions": []
+    },
+    "iddis-ray-raysbl2i10wa": {
+      "card_id": "102190670651",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102190670651",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны с длинным изливом и керамическим дивертором IDDIS Рэй (Ray) RAYSBL2i10WA глянцевый хром",
+        "available": true,
+        "price": 9846,
+        "rating": 4.8,
+        "reviews": 24,
+        "bought": 46,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102190670651",
+        "url": "https://market.yandex.ru/cc/BFqcGy"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102190670651"
+      },
+      "decisions": []
+    },
+    "cersanit-odra-63051": {
+      "card_id": "6205339721",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/6205339721",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны Cersanit ODRA 63051",
+        "available": false,
+        "price": 10298,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 6205339721"
+      },
+      "decisions": [
+        "нет в продаже"
+      ]
+    },
+    "grohe-bauloop-23602001": {
+      "card_id": "103210397075",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103210397075",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для ванны GROHE BauLoop, хром (23602001)",
+        "available": true,
+        "price": 13935,
+        "rating": 4.9,
+        "reviews": 34,
+        "bought": 91,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103210397075",
+        "url": "https://market.yandex.ru/cc/BFqdgy"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103210397075"
+      },
+      "decisions": []
+    },
+    "kaiser-art35k": {
+      "card_id": "102205723300",
+      "card": {
+        "url": "https://market.yandex.ru/card/kartridzh-kaiser-f35-krasnyy-v-korobke-art35k-6230/102205723300",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Картридж KАISER art35K/6230, керамика, универсальный, красный",
+        "available": true,
+        "price": 356,
+        "rating": 4.9,
+        "reviews": 73,
+        "bought": 282,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102205723300",
+        "url": "https://market.yandex.ru/cc/BFrYxo"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102205723300"
+      },
+      "decisions": []
+    },
+    "frap-f51-8": {
+      "card_id": "102965867349",
+      "card": {
+        "url": "https://market.yandex.ru/card/kartridzh-na-nozhkakh-keramicheskiy-frap-f51-8-diametr-35-mm/102965867349",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Картридж Frap F51-8, универсальный, керамика/резина, двухцветный, 35мм",
+        "available": true,
+        "price": 381,
+        "rating": 4.8,
+        "reviews": 64,
+        "bought": 64,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102965867349",
+        "url": "https://market.yandex.ru/cc/BFrYrr"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102965867349"
+      },
+      "decisions": []
+    },
+    "grohe-46374000": {
+      "card_id": "102203970760",
+      "card": {
+        "url": "https://market.yandex.ru/card/keramicheskiy-kartridzh-46374000/102203970760",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Керамический картридж 46374000",
+        "available": true,
+        "price": 4196,
+        "rating": 4.8,
+        "reviews": 92,
+        "bought": 358,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102203970760",
+        "url": "https://market.yandex.ru/cc/BFrWz2"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102203970760"
+      },
+      "decisions": []
+    },
+    "sedal-g51-35": {
+      "card_id": "103050467353",
+      "card": {
+        "url": "https://market.yandex.ru/card/kartridzh-dlya-smesitelya-sedal-g51-35-mm/103050467353",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Картридж для смесителей рычажного типа SEDAL-G51 35 мм керамический",
+        "available": true,
+        "price": 998,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103050467353",
+        "url": "https://market.yandex.ru/cc/BFreqV"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103050467353"
+      },
+      "decisions": []
+    },
+    "sedal-g50-1-d40": {
+      "card_id": "4518481355",
+      "card": {
+        "url": "https://market.yandex.ru/card/kartridzh-dlya-smesiteley-rychazhnogo-tipa-sedal-g50-1-d40-keramicheskiy/4518481355",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Картридж для смесителей рычажного типа G50-1' D40 керамический",
+        "available": true,
+        "price": 1092,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 4518481355",
+        "url": "https://market.yandex.ru/cc/BFrZZa"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4518481355"
+      },
+      "decisions": []
+    },
+    "gappo-g55-1": {
+      "card_id": "102900790539",
+      "card": {
+        "url": "https://market.yandex.ru/card/termostaticheskiy-kartridzh-gappo-g55-1-dlya-stoyki-g2490-g2491-g2491-6-i-dr-20-shlitsov-diametr-shtoka-76-mm/102900790539",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Термостатический картридж Gappo G55-1 (для стойки G2490, G2491, G2491-6 и др.), 20 шлицов, диаметр штока 7,6 мм",
+        "available": true,
+        "price": 2928,
+        "rating": 4.9,
+        "reviews": 65,
+        "bought": 297,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 102900790539",
+        "url": "https://market.yandex.ru/cc/BFrZHa"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102900790539"
+      },
+      "decisions": []
+    },
+    "grohe-47439000": {
+      "card_id": "103210066182",
+      "card": {
+        "url": "https://market.yandex.ru/card/termostaticheskiy-kartridzh-grohe-47439000/103210066182",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Термостатический картридж Grohe 47439000",
+        "available": true,
+        "price": 10119,
+        "rating": 4.9,
+        "reviews": 22,
+        "bought": 22,
+        "source": "html"
+      },
+      "ref": {
+        "ok": true,
+        "detail": "-> id 103210066182",
+        "url": "https://market.yandex.ru/cc/BFrZNa"
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103210066182"
+      },
+      "decisions": []
+    },
+    "pragma-esdel-esd7c1lu010": {
+      "card_id": "103566349153",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103566349153",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни Pragma Esdel, хром, ESD7. C1LU.010",
+        "available": true,
+        "price": 4726,
+        "rating": 4.9,
+        "reviews": 333,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103566349153"
+      },
+      "decisions": []
+    },
+    "lemark-minima-lm3805c": {
+      "card_id": "103211987030",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103211987030",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Minima LM3805C для кухни поворотный излив, латунь, хром",
+        "available": true,
+        "price": 4893,
+        "rating": 4.9,
+        "reviews": 16,
+        "bought": 41,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211987030"
+      },
+      "decisions": []
+    },
+    "iddis-alborg-k56001c": {
+      "card_id": "103211815685",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103211815685",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни Альборг (Alborg) IDDIS K56001C латунь глянцевый хром",
+        "available": true,
+        "price": 5907,
+        "rating": 4.9,
+        "reviews": 70,
+        "bought": 193,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211815685"
+      },
+      "decisions": []
+    },
+    "bach-kuhnya-sus304": {
+      "card_id": "102196502049",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102196502049",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Bach , кухонный, нержавеющая сталь, выдвижная лейка",
+        "available": true,
+        "price": 6733,
+        "rating": 4.8,
+        "reviews": 200,
+        "bought": 566,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102196502049"
+      },
+      "decisions": []
+    },
+    "ampm-jump-f77v07100": {
+      "card_id": "103211600820",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103211600820",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни AM.PM Jump, высокий поворотный излив 270 мм, стабилизирующий картридж",
+        "available": true,
+        "price": 8218,
+        "rating": 4.8,
+        "reviews": 82,
+        "bought": 146,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103211600820"
+      },
+      "decisions": []
+    },
+    "lemark-soul-lm6008br": {
+      "card_id": "103209645561",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103209645561",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель Lemark Soul LM6008BR для кухни/раковины, латунь, черный/красный",
+        "available": true,
+        "price": 9652,
+        "rating": 4.8,
+        "reviews": 48,
+        "bought": 100,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103209645561"
+      },
+      "decisions": []
+    },
+    "iddis-copter-copsbj0i05": {
+      "card_id": "103212239018",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103212239018",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни IDDIS Коптер (Copter) COPSBJ0i05 глянцевый хром",
+        "available": true,
+        "price": 9593,
+        "rating": 5.0,
+        "reviews": 27,
+        "bought": 69,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103212239018"
+      },
+      "decisions": []
+    },
+    "omoikiri-shinagawa-bn-bl": {
+      "card_id": "103209924964",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103209924964",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Смеситель для кухни OMOIKIRI Shinagawa-BN-BL с поворотным изливом / нержавеющая сталь/черный",
+        "available": true,
+        "price": 12788,
+        "rating": 4.9,
+        "reviews": 77,
+        "bought": 287,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103209924964"
+      },
+      "decisions": []
+    },
+    "almaes-leine-tvz-0810": {
+      "card_id": "103558192854",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103558192854",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемая Душевая Система Со Смесителем И Тропическим Душем На 2 Потребителя Черная Матовая Leine TVZ-0810 ALMAes Латунь",
+        "available": true,
+        "price": 14765,
+        "rating": 4.5,
+        "reviews": 11,
+        "bought": 11,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103558192854"
+      },
+      "decisions": []
+    },
+    "damixa-scandinavian-pure-936520000": {
+      "card_id": "103052466664",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103052466664",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Душевая система Damixa Scandinavian Pure встраиваемая, с тропическим душем, с ручной лейкой, хром",
+        "available": true,
+        "price": 16993,
+        "rating": 4.6,
+        "reviews": 11,
+        "bought": 40,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103052466664"
+      },
+      "decisions": []
+    },
+    "voda-vessel-3v1": {
+      "card_id": "103452684700",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103452684700",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "VODA. Душевая система скрытого монтажа цвет оружейная сталь 3 в 1 Vessel",
+        "available": true,
+        "price": 34259,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103452684700"
+      },
+      "decisions": [
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 4.6)"
+      ]
+    },
+    "avs-beauty-n811-703-1": {
+      "card_id": "6074373343",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/6074373343",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемый душевой комплект скрытого монтажа AVS Бьюти, с смесителем и изливом, оружейная сталь",
+        "available": true,
+        "price": 23750,
+        "rating": 4.8,
+        "reviews": 47,
+        "bought": 156,
+        "source": "json-ld"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 6074373343"
+      },
+      "decisions": []
+    },
+    "almaes-khabur-tvz-0897": {
+      "card_id": "103205592681",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103205592681",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Встраиваемая Душевая Система Со Смесителем С Термостатом И Тропическим Душем На 3 Потребителя Черная Матовая Khabur TVZ-0897 ALMAes Латунь",
+        "available": true,
+        "price": 27871,
+        "rating": 4.4,
+        "reviews": 7,
+        "bought": 25,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103205592681"
+      },
+      "decisions": []
+    },
+    "litokol-litochrom-evo-lle115": {
+      "card_id": "102215721755",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102215721755",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Цементно-полимерная затирка Литохром Лакшери ЭВО ЛЛЕ.115/Litochrom Luxury EVO 1-10 LLE.115 Cветло-серый, 2 кг",
+        "available": true,
+        "price": 786,
+        "rating": 4.9,
+        "reviews": 220,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102215721755"
+      },
+      "decisions": []
+    },
+    "litokol-starlike-evo-1kg": {
+      "card_id": "102923017014",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102923017014",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Эпоксидная затирка LITOKOL STARLIKE ЭВО С.330 Серо-Голубой/STARLIKE EVO S.330 Blu Avio, 1 кг",
+        "available": true,
+        "price": 2230,
+        "rating": 4.9,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102923017014"
+      },
+      "decisions": []
+    },
+    "litokol-starlike-evo-2-5kg": {
+      "card_id": "102835836771",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102835836771",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Эпоксидный состав для укладки и затирки мозаики LITOKOL Starlike Evo S.115 2,5 кг Цвет: Серый шёлк",
+        "available": true,
+        "price": 4844,
+        "rating": 4.8,
+        "reviews": 46,
+        "bought": 383,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102835836771"
+      },
+      "decisions": []
+    },
+    "haier-es30v-d1": {
+      "card_id": "4620936255",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4620936255",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Haier Водонагреватель накопительный ES30V-D1, 30 литров, 2000 Вт, эмалированный бак, магниевый анод, LED-дисплей , защита от перегрева, shock proof, белый",
+        "available": true,
+        "price": 15300,
+        "rating": 4.8,
+        "reviews": 673,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4620936255"
+      },
+      "decisions": []
+    },
+    "thermex-fora-30": {
+      "card_id": "103554932385",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103554932385",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Водонагреватель накопительный THERMEX Fora 30",
+        "available": true,
+        "price": 15525,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103554932385"
+      },
+      "decisions": [
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 4.8)"
+      ]
+    },
+    "electrolux-gladius-30": {
+      "card_id": "102990757277",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102990757277",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Водонагреватель накопительный Electrolux EWH 30 Gladius Inverter Grafit",
+        "available": true,
+        "price": 17455,
+        "rating": 4.8,
+        "reviews": 228,
+        "bought": 674,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102990757277"
+      },
+      "decisions": []
+    },
+    "thermex-fora-50": {
+      "card_id": "103554937836",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103554937836",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Водонагреватель накопительный электрический THERMEX Fora 50",
+        "available": true,
+        "price": 17026,
+        "rating": null,
+        "reviews": null,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103554937836"
+      },
+      "decisions": [
+        "на Маркете нет оценок/не извлечён рейтинг (в статье 4.7)"
+      ]
+    },
+    "electrolux-formax-50": {
+      "card_id": "103173893422",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/103173893422",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Водонагреватель ELECTROLUX EWH 50 Formax (сухой тэн)",
+        "available": true,
+        "price": 19390,
+        "rating": 4.9,
+        "reviews": 52,
+        "bought": 175,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 103173893422"
+      },
+      "decisions": []
+    },
+    "haier-es80v-fd4": {
+      "card_id": "4621244248",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4621244248",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Haier Водонагреватель накопительный ES80V-FD4 INOX , 80 литров, два режима,1300/2000 Вт, нержавеющий бак, магниевый анод, защита от перегрева",
+        "available": true,
+        "price": 19996,
+        "rating": 4.8,
+        "reviews": 534,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4621244248"
+      },
+      "decisions": []
+    },
+    "electrolux-gladius-80": {
+      "card_id": "102990757278",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/102990757278",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Водонагреватель накопительный Electrolux EWH 80 Gladius Inverter Grafit",
+        "available": true,
+        "price": 23347,
+        "rating": 4.8,
+        "reviews": 228,
+        "bought": 674,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 102990757278"
+      },
+      "decisions": []
+    },
+    "haier-es100v-c3": {
+      "card_id": "4620942094",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4620942094",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Haier Водонагреватель накопительный ES100V-C3 ,100 литров, 1750 Вт, эмалированный бак, магниевый анод, защита от перегрева, shock proof, белый",
+        "available": true,
+        "price": 12546,
+        "rating": 4.8,
+        "reviews": 673,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4620942094"
+      },
+      "decisions": []
+    },
+    "haier-es100v-fd4": {
+      "card_id": "4621244249",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4621244249",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Haier Водонагреватель накопительный ES100V-FD4 INOX,100 литров, два режима,1300/2000 Вт, нержавеющий бак, магниевый анод, защита от перегрева, белый",
+        "available": true,
+        "price": 23995,
+        "rating": 4.8,
+        "reviews": 534,
+        "bought": null,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4621244249"
+      },
+      "decisions": []
+    },
+    "edisson-er-100-v": {
+      "card_id": "4562757311",
+      "card": {
+        "url": "https://market.yandex.ru/card/x/4562757311",
+        "http_status": 200,
+        "status": "ok",
+        "error": null,
+        "title": "Накопительный электрический водонагреватель EDISSON ER 100 V ЭдЭ001798, белый",
+        "available": true,
+        "price": 8433,
+        "rating": 4.9,
+        "reviews": 76,
+        "bought": 76,
+        "source": "html"
+      },
+      "ref": {
+        "ok": null,
+        "detail": "ссылка не задана",
+        "url": null
+      },
+      "aff": {
+        "ok": true,
+        "detail": "-> id 4562757311"
+      },
+      "decisions": []
+    }
+  }
+}

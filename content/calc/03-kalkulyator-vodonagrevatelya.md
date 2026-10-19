@@ -9,29 +9,30 @@ slug: kalkulyator-vodonagrevatelya
 type: calculator
 script: calc-vodonagrevatel.js
 published: '2026-10-14'
-updated: 2026-10-14
+updated: 2026-10-19
 products:
   haier-es30v-d1:
     name: Haier ES30V-D1 30 л, 2 кВт
-    price: 11826
+    price: 15300
     feature: 30 л, круглый, эмаль, магниевый анод, 2 кВт
     rating: 4.8
-    reviews: 325
+    reviews: 673
   thermex-fora-30:
     name: Thermex Fora 30 плоский, 2 кВт
-    price: 14030
+    price: 15525
     feature: 30 л, плоский, 2 кВт
     rating: 4.8
     reviews: 34
   electrolux-gladius-30:
     name: Electrolux EWH 30 Gladius Inverter Grafit
-    price: 19455
+    price: 17455
     feature: 30 л, плоский, сухой ТЭН, анод, 2 кВт
     rating: 4.8
-    reviews: 91
+    reviews: 228
+    bought: 674
   thermex-fora-50:
     name: Thermex Fora 50 плоский, нержавеющий бак
-    price: 12909
+    price: 17026
     feature: 50 л, плоский, нержавеющий бак, 2 кВт
     rating: 4.7
     reviews: 63
@@ -40,37 +41,40 @@ products:
     price: 19990
     feature: 50 л, прямоугольный, сухой ТЭН, анод, 2 кВт
     rating: 4.9
-    reviews: 17
+    reviews: 52
+    bought: 175
   haier-es80v-fd4:
     name: Haier ES80V-FD4 INOX 80 л
     price: 19996
     feature: 80 л, плоский, нержавеющий бак, анод, 2 кВт
     rating: 4.8
-    reviews: 273
+    reviews: 534
   electrolux-gladius-80:
     name: Electrolux EWH 80 Gladius Inverter Grafit
     price: 25769
     feature: 80 л, плоский, сухой ТЭН, анод, 2 кВт
     rating: 4.8
-    reviews: 91
+    reviews: 228
+    bought: 674
   haier-es100v-c3:
     name: Haier ES100V-C3 100 л, 1,75 кВт
     price: 12547
     feature: 100 л, круглый, эмаль, магниевый анод, 1,75 кВт
     rating: 4.8
-    reviews: 325
+    reviews: 673
   haier-es100v-fd4:
     name: Haier ES100V-FD4 INOX 100 л
     price: 23996
     feature: 100 л, плоский, нержавеющий бак, 2 кВт
     rating: 4.8
-    reviews: 273
+    reviews: 534
   edisson-er-100-v:
     name: Edisson ER 100 V 100 л, 1,5 кВт
     price: 8292
     feature: 100 л, круглый, эмаль, 1,5 кВт
     rating: 4.9
-    reviews: 20
+    reviews: 76
+    bought: 76
 ---
 
 # Калькулятор объёма водонагревателя

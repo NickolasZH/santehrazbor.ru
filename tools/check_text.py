@@ -26,7 +26,8 @@ MONTHS = ["января", "февраля", "марта", "апреля", "ма�
 
 SP = r"[ \u00a0\u202f]"
 NUM = rf"\d{{1,3}}(?:{SP}\d{{3}})+|\d+"
-PRICE_RE = re.compile(rf"(?P<num>{NUM})(?P<k>{SP}?тыс\.?)?{SP}?(?:₽|руб\w*|р\.)", re.I)
+# «5,4 тыс.» / «5.4 тыс.»: десятичная дробь допустима только перед «тыс»
+PRICE_RE = re.compile(rf"(?P<num>\d+[.,]\d+(?={SP}?тыс)|{NUM})(?P<k>{SP}?тыс\.?)?{SP}?(?:₽|руб\w*|р\.)", re.I)
 RANGE_RE = re.compile(
     rf"от{SP}(?P<a>{NUM}){SP}?(?:₽|руб\w*)?{SP}до{SP}(?P<b>{NUM}){SP}?(?:₽|руб\w*)", re.I)
 DATE_RE = re.compile(
@@ -40,6 +41,13 @@ FM_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n?", re.S)
 
 def to_int(s):
     return int(re.sub(r"\D", "", s))
+
+
+def price_value(num, k):
+    """Число из PRICE_RE -> рубли: «5,4» + «тыс» = 5400, «3 649» = 3649."""
+    if k and re.fullmatch(r"\d+[.,]\d+", num):
+        return round(float(num.replace(",", ".")) * 1000)
+    return to_int(num) * (1000 if k else 1)
 
 
 def norm(s):
@@ -74,7 +82,8 @@ def load_articles():
         for label, p in (meta.get("products") or {}).items():
             if p.get("name") and isinstance(p.get("price"), (int, float)):
                 prods.append({"label": label, "name": str(p["name"]), "price": int(p["price"]),
-                              "status": p.get("status")})
+                              "status": p.get("status"), "rating": p.get("rating"),
+                              "reviews": p.get("reviews"), "bought": p.get("bought")})
         arts.append({"path": path, "lines": text.split("\n"), "fm_lines": m.group(0).count("\n"),
                      "prods": prods, "meta": meta})
     return arts
@@ -102,7 +111,7 @@ def price_mentions(line):
     """Упоминания цен: (начало, конец, значение, хвост_диапазона, порог_«до»)."""
     res = []
     for m in PRICE_RE.finditer(line):
-        v = to_int(m.group("num")) * (1000 if m.group("k") else 1)
+        v = price_value(m.group("num"), m.group("k"))
         pre = line[max(0, m.start() - 12):m.start()].lower()
         is_range_tail = bool(re.search(r"\d[–—-]$", pre))
         is_upto = bool(re.search(r"(?:до|дешевле|менее|не дороже)\s*[~≈]?$", pre))
@@ -135,6 +144,72 @@ def mismatches_in_line(line, names, ments, price_of):
         if d > TOLERANCE * 100:
             res.append((quote(line, s, e), v, ref, d, p["name"]))
     return res
+
+
+# --- числа отзывов / оценок / покупок / рейтинга -------------------------------------------------
+CARD_KEYS = ("subtitle", "feature", "who", "reviews_text", "pros", "cons")
+RATING_TOL = 0.05       # допуск рейтинга (абсолютный)
+COUNT_TOL = 0.05        # допуск числа оценок/отзывов (и больше COUNT_MIN_DIFF шт.)
+COUNT_MIN_DIFF = 2
+BOUGHT_TOL = 0.10       # допуск числа покупок
+APPROX_TOL = 0.10       # «около N» — допуск 10 %
+APPROX = r"(?:около|почти|порядка|~|≈)"
+COUNT_RE = re.compile(
+    rf"(?P<pre>{APPROX}{SP}?)?(?P<n>{NUM}){SP}(?P<w>оцен\w*|отзыв\w*|покупк\w*|покупок|купили)", re.I)
+BOUGHT_RE = re.compile(
+    rf"купил\w*{SP}(?P<pre>{APPROX}{SP}?)?(?P<n>{NUM})(?!{SP}?(?:₽|руб|тыс))", re.I)
+RATING_RES = (
+    re.compile(r"рейтинг\w*[  ]*[—:-]?[  ]*(?P<r>\d[.,]\d)(?![\d.,]*\s*(?:[–—-]|до\b))", re.I),
+    re.compile(r"(?P<r>\d[.,]\d)[  ]*из[  ]*5", re.I),
+    re.compile(r"★[  ]*(?P<r>\d[.,]\d)"),
+)
+THRESHOLD_PRE = re.compile(
+    r"(?:от|до|более|свыше|минимум|больше|менее|не менее|не более|всего|только)\s*[~≈]?$", re.I)
+
+
+def stat_mentions(line):
+    """Упоминания рейтинга и счётчиков: [(начало, конец, вид, значение, приблизительно)].
+    вид: rating | reviews (оценки/отзывы) | bought (покупки)."""
+    res = set()
+    for rx in RATING_RES:
+        for m in rx.finditer(line):
+            res.add((m.start(), m.end(), "rating", float(m.group("r").replace(",", ".")), False))
+    for m in COUNT_RE.finditer(line):
+        pre = line[max(0, m.start() - 14):m.start()].lower()
+        if THRESHOLD_PRE.search(pre) or re.search(r"\d[–—-]$", pre):
+            continue  # пороги и диапазоны («от 5 отзывов») — не заявление о числе
+        w = m.group("w").lower()
+        kind = "reviews" if w.startswith("оцен") else "reviews_t" if w.startswith("отзыв") else "bought"
+        res.add((m.start(), m.end(), kind, to_int(m.group("n")), bool(m.group("pre"))))
+    for m in BOUGHT_RE.finditer(line):
+        res.add((m.start(), m.end(), "bought", to_int(m.group("n")), bool(m.group("pre"))))
+    return sorted(res)
+
+
+def stat_mismatch(kind, v, approx, p):
+    """-> (в_карточке, расхождение) если число расходится с карточкой товара p, иначе None."""
+    # в карточке нет отдельного поля для текстовых отзывов: их не больше, чем оценок (reviews),
+    # поэтому «N отзывов» — находка только если N больше числа оценок
+    ref = p.get("reviews" if kind == "reviews_t" else kind)
+    if not isinstance(ref, (int, float)):
+        return None
+    if kind == "reviews_t" and v <= ref:
+        return None
+    if kind == "rating":
+        return (ref, f"{abs(v - ref):.2f}") if abs(v - ref) > RATING_TOL + 1e-9 else None
+    tol = APPROX_TOL if approx else (BOUGHT_TOL if kind == "bought" else COUNT_TOL)
+    if abs(v - ref) / max(ref, 1) > tol and (kind == "bought" or abs(v - ref) > COUNT_MIN_DIFF):
+        return (ref, f"{pct(v, ref):.0f} %")
+    return None
+
+
+# --- сравнительные утверждения ------------------------------------------------------------------
+CHEAP_RE = re.compile(
+    r"самы[йе]\s+(?:дешёв|дешев|бюджетн)\w+|самая\s+(?:низкая\s+цена|доступн\w+|дешёв\w+|дешев\w+)"
+    r"|дешевле\s+всех", re.I)
+POPULAR_RE = re.compile(
+    r"самы[йе]\s+(?:популярн|покупаем)\w+|самая\s+популярн\w+"
+    r"|больше\s+всего\s+(?P<what>отзыв\w*|оцен\w*|покупок|покупател\w+)", re.I)
 
 
 def parse_date(m, today):
@@ -238,6 +313,90 @@ def analyze(arts, today):
     return price_rows, range_rows, thr_rows, date_rows
 
 
+def pick_subject(line, pos, names, owner):
+    """Товар, к которому относится утверждение в позиции pos: владелец карточки, иначе ближайшее имя
+    в том же предложении (слева приоритетнее) в пределах NAME_WINDOW."""
+    if owner:
+        return owner
+    best = None
+    for ns, ne, p in names:
+        gap = pos - ne if ne <= pos else ns - pos
+        seg = line[ne:pos] if ne <= pos else line[pos:ns]
+        if gap > NAME_WINDOW or re.search(r"[.!?;]\s", seg):
+            continue
+        key = (0 if ne <= pos else 1, gap)
+        if best is None or key < best[0]:
+            best = (key, p)
+    return best[1] if best else None
+
+
+def analyze_stats(arts):
+    """-> (строки расхождений чисел, строки сравнительных утверждений)."""
+    stat_rows, cmp_rows = [], []
+    labels = {"rating": "рейтинг", "reviews": "оценки", "reviews_t": "отзывы (больше оценок)", "bought": "покупки"}
+    for art in arts:
+        prods = art["prods"]
+        if not prods:
+            continue
+        fname = art["path"].name
+        lo = min(prods, key=lambda p: p["price"])
+        with_b = [p for p in prods if isinstance(p.get("bought"), (int, float))]
+        with_r = [p for p in prods if isinstance(p.get("reviews"), (int, float))]
+        cur_key = None
+        for i, line, heading, owner in body_lines(art):
+            where = f"{fname}:{i}"
+            if owner:
+                km = re.match(r"    (\w+):", line)
+                if km:
+                    cur_key = km.group(1)
+                if cur_key not in CARD_KEYS or "+" in owner["name"]:
+                    continue
+                names = []
+            else:
+                cur_key = None
+                names = find_names(line, prods)
+                if not names:
+                    continue
+            ments = stat_mentions(line)
+            for s_, e_, kind, v, approx in ments:
+                p = owner
+                if not owner:
+                    left = [n for n in names if n[1] <= s_ and s_ - n[1] <= NAME_WINDOW]
+                    if not left:
+                        continue
+                    n1, p = left[-1][1], left[-1][2]
+                    # другое предложение или другое число между именем и этим числом — привязка ненадёжна
+                    if re.search(r"[.!?;]\s", line[n1:s_]) or any(n1 <= ms < s_ for ms, *_ in ments):
+                        continue
+                bad = stat_mismatch(kind, v, approx, p)
+                if bad:
+                    shown = f"{v:g}" if kind == "rating" else str(v)
+                    stat_rows.append((where, quote(line, s_, e_), f"{labels[kind]}: {shown}",
+                                      f"{bad[0]:g} (расх. {bad[1]})", p["name"]))
+            for rx, which in ((CHEAP_RE, "cheap"), (POPULAR_RE, "popular")):
+                for m in rx.finditer(line):
+                    p = pick_subject(line, m.start(), names, owner)
+                    if not p or "+" in p["name"]:
+                        continue
+                    if which == "cheap":
+                        if p["price"] > lo["price"]:
+                            cmp_rows.append((where, quote(line, m.start(), m.end()),
+                                             f"{p['name']}: {p['price']} ₽",
+                                             f"дешевле всех — {lo['name']}: {lo['price']} ₽", p["name"]))
+                        continue
+                    what = (m.group("what") or "").lower()
+                    by_rev = what.startswith(("отзыв", "оцен"))
+                    pool, field = (with_r, "reviews") if by_rev or not with_b else (with_b, "bought")
+                    if not pool or not isinstance(p.get(field), (int, float)):
+                        continue
+                    top = max(pool, key=lambda q: q[field])
+                    if p[field] < top[field]:
+                        cmp_rows.append((where, quote(line, m.start(), m.end()),
+                                         f"{p['name']}: {field} {p[field]}",
+                                         f"больше всего — {top['name']}: {top[field]}", p["name"]))
+    return stat_rows, cmp_rows
+
+
 def analyze_dzen(arts):
     by_name = {}
     for art in arts:
@@ -303,7 +462,8 @@ def build_report(today=None):
     price_rows, range_rows, thr_rows, date_rows = analyze(arts, today)
     dz = analyze_dzen(arts)
     fm_rows = analyze_fm_ranges(arts)
-    n = len(price_rows) + len(range_rows) + len(thr_rows) + len(date_rows) + len(dz) + len(fm_rows)
+    stat_rows, cmp_rows = analyze_stats(arts)
+    n = len(stat_rows) + len(cmp_rows) + len(price_rows) + len(range_rows) + len(thr_rows) + len(date_rows) + len(dz) + len(fm_rows)
     pc = lambda d: f"{d:.0f} %"
     md = ["## Проверка текста: цены в статьях и Дзене", "",
           f"Допуск {int(TOLERANCE * 100)} %, устаревшая дата — старше {STALE_DAYS} дн. "
@@ -327,7 +487,13 @@ def build_report(today=None):
         md += ["### Цена «от N ₽» в title/description не совпадает с товарами статьи", ""]
         md += table(["Статья:поле", "Цитата", "В тексте", "Товары статьи", "Расхождение"],
                     [(w, q, a, b, pc(d)) for w, q, a, b, d in fm_rows]) + [""]
-    if not (price_rows or range_rows or thr_rows or date_rows or fm_rows):
+    if stat_rows:
+        md += ["### Числа отзывов, оценок, покупок и рейтинга не совпадают с карточкой", ""]
+        md += table(["Статья:строка", "Цитата", "В тексте", "В карточке", "Товар"], stat_rows) + [""]
+    if cmp_rows:
+        md += ["### Сравнительные утверждения (предупреждение, возможны ложные срабатывания)", ""]
+        md += table(["Статья:строка", "Цитата", "Товар из текста", "На самом деле", "Товар"], cmp_rows) + [""]
+    if not (stat_rows or cmp_rows or price_rows or range_rows or thr_rows or date_rows or fm_rows):
         md += ["В статьях расхождений нет.", ""]
     md += ["### Что поправить в Дзене", ""]
     if dz:

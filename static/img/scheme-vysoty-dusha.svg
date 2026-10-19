@@ -5,10 +5,10 @@
 <path d="M8 416 H392" stroke="#555" stroke-width="3"/>
 <text x="12" y="440">Пол</text>
 <rect x="274" y="52" width="118" height="364" fill="#eef0f2" stroke="#9aa0a6"/>
-<!-- полоса 60-80 см -->
-<rect x="20" y="176" width="254" height="60" fill="#2f6fb5" opacity="0.12"/>
-<path d="M20 176 H274 M20 236 H274" stroke="#2f6fb5" stroke-width="1.5" stroke-dasharray="6 4"/>
-<text x="30" y="212" font-weight="600" fill="#2f6fb5">60–80 см</text>
+<!-- полоса 60-90 см -->
+<rect x="20" y="146" width="254" height="90" fill="#2f6fb5" opacity="0.12"/>
+<path d="M20 146 H274 M20 236 H274" stroke="#2f6fb5" stroke-width="1.5" stroke-dasharray="6 4"/>
+<text x="30" y="212" font-weight="600" fill="#2f6fb5">60–90 см</text>
 <!-- унитаз: бачок, сиденье, основание -->
 <rect x="128" y="212" width="64" height="64" rx="5" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
 <rect x="105" y="296" width="110" height="14" rx="6" fill="#fff" stroke="#2b2f33" stroke-width="2.5"/>
@@ -24,7 +24,7 @@
 <text x="333" y="142" text-anchor="middle" font-weight="600">и лейка</text>
 <!-- размер -->
 <path d="M20 416 V176 M12 416 H28 M12 236 H28 M12 176 H28" stroke="#2b2f33" stroke-width="2" fill="none"/>
-<text x="200" y="468" text-anchor="middle" font-weight="600">примерно 60–80 см от пола</text>
+<text x="200" y="468" text-anchor="middle" font-weight="600">примерно 60–90 см от пола</text>
 <text x="200" y="498" text-anchor="middle">Сядьте и отметьте, куда</text>
 <text x="200" y="518" text-anchor="middle">естественно тянется рука</text>
 </svg>

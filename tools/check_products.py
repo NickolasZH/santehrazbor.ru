@@ -46,6 +46,10 @@ CAPTCHA_PAUSE = (45.0, 75.0)
 RETRIES = 2              # повторов после первой неудачной попытки
 PRICE_APPLY_THRESHOLD = 0.10
 RATING_LOW = 4.3
+# Скачок цены относительно прошлого снимка (в долях): если новая цена отличается больше —
+# не применяем автоматически, а выносим в «Требует решения». Ловит «последнюю штуку
+# по двойной цене», цену чужого магазина после «Разобрали в магазине» и смену упаковки.
+PRICE_JUMP_MAX = 0.40
 RATING_DROP = 0.2
 
 FRONT_RE = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.S)
@@ -159,7 +163,8 @@ def parse_card(text, pid):
     запасные варианты — data-auto блоки карточки. Что не найдено — None.
     """
     res = {"title": None, "available": None, "price": None, "rating": None,
-           "reviews": None, "bought": None, "source": None}
+           "reviews": None, "bought": None, "source": None,
+           "main_sold_out": False, "other_offers_from": None, "multipack": None}
     # 1. JSON-LD Product с нужным sku. Весь фрагмент до следующего "review" —
     #    там offers и aggregateRating; ищем в окне после sku.
     for m in re.finditer(r'"sku":"%s"' % re.escape(pid), text):
@@ -210,6 +215,19 @@ def parse_card(text, pid):
             if res["price"] is not None and res["source"] is None:
                 res["source"] = "html"
     res["bought"] = parse_bought(text)
+    # 2a. «Разобрали в магазине»: основной продавец распродал товар, а цена и оценки на
+    #     странице — от других магазинов (часто мусорных). На реальных страницах JSON-LD
+    #     нет совсем, надёжный признак — этот заголовок и блок «N предложений от X ₽».
+    if "Разобрали в магазине" in text:
+        res["main_sold_out"] = True
+    m = re.search(r"предложени[а-я]*\s+от\s*(?:<[^>]+>)*\s*([\d\s  ]+)\s*(?:<[^>]+>)*\s*₽", text)
+    if m:
+        res["other_offers_from"] = _to_int(m.group(1))
+    # 2b. «N шт в упаковке» в заголовке: цена за комплект, а не за одну штуку
+    if res["title"]:
+        m = re.search(r"(\d+)\s*шт\.?\s*в\s*упаковке", res["title"], re.I)
+        if m and int(m.group(1)) >= 2:
+            res["multipack"] = int(m.group(1))
     # 3. наличие: явные признаки «нет в продаже»
     if res["available"] is None:
         low = text.lower()
@@ -383,7 +401,27 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
                 auto["status"] = None  # вернулся в продажу
         else:
             decide_.append("не удалось определить наличие")
-        if r["available"] is not False:
+        # основной продавец распродал / упаковка из нескольких штук: цена, рейтинг и
+        # число оценок на странице недостоверны — ничего из этого не применяем
+        suspicious = False
+        if r["available"] is not False and r.get("main_sold_out"):
+            suspicious = True
+            frm = r.get("other_offers_from")
+            decide_.append("основной продавец распродал («Разобрали в магазине»), "
+                           + (f"от {frm} ₽ у других магазинов" if frm else "цена — других магазинов")
+                           + f"; цена/рейтинг не применены (в статье {fm_price} ₽)")
+        if r["available"] is not False and r.get("multipack"):
+            suspicious = True
+            decide_.append(f"карточка продаёт {r['multipack']} шт в упаковке"
+                           f" (цена {r['price']} ₽); цена/рейтинг не применены")
+        prev_price = (((prev or {}).get(label) or {}).get("card") or {}).get("price")
+        if r["available"] is not False and not suspicious and r["price"] and prev_price                 and abs(r["price"] - prev_price) / prev_price > PRICE_JUMP_MAX:
+            suspicious = True
+            decide_.append(f"скачок {(r['price'] - prev_price) / prev_price * 100:+.0f} % "
+                           f"({prev_price} -> {r['price']} ₽ к прошлому снимку) — проверить вручную")
+        if r["available"] is not False and suspicious:
+            pass
+        elif r["available"] is not False:
             if r["price"] is None:
                 decide_.append("не удалось извлечь цену")
             elif price_is_sum:
@@ -399,7 +437,7 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
                 if r["reviews"] is not None and r["reviews"] != fm_prod.get("reviews"):
                     auto["reviews"] = r["reviews"]
             elif r["status"] == "ok" and fm_rating is not None:
-                # на карточке нет блока оценок (или он не разобрался) — решает человек
+                # рейтинг в статье не удаляем; на карточке нет блока оценок — решает человек
                 decide_.append(f"на Маркете нет оценок/не извлечён рейтинг (в статье {fm_rating})")
             if r["bought"] is not None and r["bought"] != fm_prod.get("bought"):
                 auto["bought"] = r["bought"]
@@ -454,8 +492,12 @@ def main():
     ap.add_argument("--apply", action="store_true", help="обновить front matter статей")
     ap.add_argument("--limit", type=int, help="проверить только первые N товаров")
     ap.add_argument("--only", action="append", help="только эта метка (можно несколько раз)")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="ничего не писать (ни статьи, ни снимок, ни отчёт), только вывод в консоль")
     ap.add_argument("--no-links", action="store_true", help="не проверять партнёрские ссылки")
     args = ap.parse_args()
+    if args.dry_run and args.apply:
+        ap.error("--dry-run несовместим с --apply")
 
     sys.stdout.reconfigure(encoding="utf-8")
     today = date.today().isoformat()
@@ -469,7 +511,8 @@ def main():
             usage.setdefault(label, []).append((art, p))
     labels = list(usage)
     if args.only:
-        labels = [l for l in labels if l in args.only]
+        only = {x.strip() for v in args.only for x in v.split(",") if x.strip()}
+        labels = [l for l in labels if l in only]
     if args.limit:
         labels = labels[:args.limit]
     prev = latest_previous_snapshot(today)
@@ -521,6 +564,13 @@ def main():
                                   f"{v if v is not None else 'снято'}")
             for d in dec:
                 decide_lines.append(f"- `{label}` ({art['path'].name}): {d}")
+
+    if args.dry_run:  # только консоль: ничего не пишем в content/, data/snapshots/, data/reports/
+        print("\nДРАЙ-РАН. Было бы обновлено автоматически:")
+        print("\n".join(auto_lines) or "  нет изменений")
+        print("\nТребует решения:")
+        print("\n".join(decide_lines) or "  ничего")
+        return 0
 
     # --- снимок
     SNAP_DIR.mkdir(parents=True, exist_ok=True)

@@ -10,6 +10,7 @@
 python tools/check_products.py                    # только проверка, статьи не меняются
 python tools/check_products.py --apply            # + точечно обновить front matter статей
 python tools/check_products.py --only atoll-1713-gs   # одна метка (можно повторять флаг)
+python tools/check_products.py --dry-run --only a,b   # без записи (статьи, снимок, отчёт), решения — в консоль; метки через запятую
 python tools/check_products.py --limit 3          # первые N товаров (отладка)
 python tools/check_products.py --no-links         # не проверять партнёрские ссылки (быстрее)
 ```
@@ -104,3 +105,8 @@ python tools/check_products.py --no-links         # не проверять па
   `data/indexnow_last.json`; `--all` — все URL; `--dry-run` — только список, без сети и записи состояния.
 - POST на `yandex.com/indexnow` и `api.indexnow.org`, печатает код ответа каждого. Состояние обновляется,
   если хотя бы один ответ 200/202. Ошибка сети — сообщение и код выхода 1.
+
+## Защита от мусорных цен
+Автоприменение цены/рейтинга/оценок отключается и запись уходит в «Требует решения», если: на карточке
+«Разобрали в магазине» (`main_sold_out`: цена и оценки тогда от других магазинов), в заголовке «N шт в упаковке»
+(`multipack`), цена отличается от прошлого снимка больше чем на `PRICE_JUMP_MAX` (40 %). Пропавший рейтинг из статьи не удаляется.

@@ -383,7 +383,7 @@ def render_markdown(body_md, aff, used_labels, env, article_ctx):
                     f'width="{w}" height="{h}" loading="lazy" decoding="async"></a>'
                     f'<figcaption>{html_escape(cap)}</figcaption></figure>')
         if code.startswith("minitable:"):
-            # товары берём из глобального индекса: дата цены — дата обновления статьи-источника
+            # товары берём из глобального индекса: дата цены — prices_checked статьи-источника (иначе updated, иначе date)
             rows = [article_ctx["global_products"][x.strip()]
                     for x in code.split(":", 1)[1].split(",") if x.strip()]
             for r in rows:
@@ -509,13 +509,13 @@ def main():
     env.filters.update(rub=rub, num=fmt_int, plural=plural, count_word=count_word,
                        md=md_inline, nbsp=lambda s: nbsp_text(str(s)))
 
-    # --- глобальный индекс товаров всех статей (для [[minitable:...]]): метка -> {p, updated_ru}
+    # --- глобальный индекс товаров всех статей (для [[minitable:...]]): метка -> {p, updated_ru}; updated_ru = prices_checked → updated → date
     global_products = {}
     for path in sorted(CONTENT.glob("*.md")):
         meta, _ = split_front_matter(path.read_text(encoding="utf-8"), path)
         if "date" not in meta:
             continue  # ошибку про отсутствие поля выдаст основной цикл
-        upd_ru = ru_date(to_date(meta.get("updated", meta["date"])))
+        upd_ru = ru_date(to_date(meta.get("prices_checked") or meta.get("updated") or meta["date"]))
         for p in build_products(meta, aff, path.name)[0]:
             # конфликт (одна метка с разными данными в двух статьях) — ошибка только при использовании в minitable
             prev = global_products.get(p["label"])

@@ -255,13 +255,19 @@ def body_lines(art):
         yield i, line, heading, None
 
 
+def price_bounds(prods):
+    """(min, max) цен товаров в продаже; товары со status: unavailable не считаются. Нет таких — (None, None)."""
+    prices = [p["price"] for p in prods if p["status"] != "unavailable"]
+    return (min(prices), max(prices)) if prices else (None, None)
+
+
 def analyze(arts, today):
     price_rows, range_rows, thr_rows, date_rows = [], [], [], []
     for art in arts:
         prods = art["prods"]
         if not prods:
             continue
-        lo, hi = min(p["price"] for p in prods), max(p["price"] for p in prods)
+        lo, hi = price_bounds(prods)
         fname = art["path"].name
         for i, line, heading, owner in body_lines(art):
             where = f"{fname}:{i}"
@@ -278,7 +284,7 @@ def analyze(arts, today):
                 price_rows.append((where, q, v, ref, d, nm))
             # диапазон «N моделей от X до Y ₽» — только в строках про набор моделей
             for m in RANGE_RE.finditer(line):
-                if "модел" not in line.lower():
+                if "модел" not in line.lower() or lo is None:
                     continue
                 a, b = to_int(m.group("a")), to_int(m.group("b"))
                 d = max(pct(a, lo), pct(b, hi))
@@ -364,7 +370,9 @@ def analyze_stats(arts):
         if not prods:
             continue
         fname = art["path"].name
-        lo = min(prods, key=lambda p: p["price"])
+        # «самый дешёвый» — только среди товаров в продаже
+        on_sale = [p for p in prods if p["status"] != "unavailable"]
+        lo = min(on_sale, key=lambda p: p["price"]) if on_sale else None
         with_b = [p for p in prods if isinstance(p.get("bought"), (int, float))]
         with_r = [p for p in prods if isinstance(p.get("reviews"), (int, float))]
         cur_key = None
@@ -404,7 +412,7 @@ def analyze_stats(arts):
                     if not p or "+" in p["name"]:
                         continue
                     if which == "cheap":
-                        if p["price"] > lo["price"]:
+                        if lo and p["price"] > lo["price"]:
                             cmp_rows.append((where, quote(line, m.start(), m.end()),
                                              f"{p['name']}: {p['price']} ₽",
                                              f"дешевле всех — {lo['name']}: {lo['price']} ₽", p["name"]))
@@ -457,7 +465,9 @@ def analyze_fm_ranges(arts):
         prods = art["prods"]
         if not prods:
             continue
-        lo, hi = min(p["price"] for p in prods), max(p["price"] for p in prods)
+        lo, hi = price_bounds(prods)
+        if lo is None:
+            continue
         for key in FM_KEYS:
             val = str((art["meta"] or {}).get(key) or "")
             for m in FROM_RE.finditer(val):

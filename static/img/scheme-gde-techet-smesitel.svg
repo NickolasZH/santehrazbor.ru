@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 620" role="img" aria-label="Где может течь смеситель" font-family="system-ui, sans-serif" font-size="15" fill="#2b2f33">
+<rect width="400" height="620" fill="#fff"/>
+<text x="200" y="30" text-anchor="middle" font-size="18" font-weight="600">Где может течь смеситель</text>
+<text x="200" y="54" text-anchor="middle">Схема условная, шесть частых мест</text>
+<!-- ручка и колпачок -->
+<g stroke="#2b2f33" stroke-width="2.5" fill="#fff">
+<rect x="110" y="95" width="100" height="22" rx="10"/>
+<rect x="140" y="117" width="40" height="53"/>
+<!-- корпус -->
+<rect x="125" y="170" width="70" height="140" rx="8"/>
+<!-- переключатель душа -->
+<rect x="95" y="215" width="30" height="24" rx="4"/>
+<!-- гайка у основания -->
+<rect x="115" y="310" width="90" height="12"/>
+<!-- подводки -->
+<rect x="140" y="322" width="12" height="75"/>
+<rect x="168" y="322" width="12" height="75"/>
+<!-- аэратор -->
+<rect x="296" y="268" width="30" height="14"/>
+</g>
+<!-- излив (гусак) -->
+<path d="M195 195 H255 Q311 195 311 245 V268" stroke="#2b2f33" stroke-width="30" fill="none" stroke-linecap="butt"/>
+<path d="M195 195 H255 Q311 195 311 245 V268" stroke="#fff" stroke-width="24" fill="none" stroke-linecap="butt"/>
+<!-- капли -->
+<path d="M311 292 q-5 9 0 12 q5 -3 0 -12 M311 318 q-5 9 0 12 q5 -3 0 -12" fill="#2f6fb5" stroke="#2f6fb5" stroke-width="1.5"/>
+<!-- трещина -->
+<path d="M160 235 L170 252 L158 266 L170 284" stroke="#c0392b" stroke-width="2.5" fill="none"/>
+<!-- номера -->
+<g fill="#2f6fb5">
+<circle cx="238" cy="106" r="13"/>
+<circle cx="260" cy="150" r="13"/>
+<circle cx="335" cy="245" r="13"/>
+<circle cx="62" cy="227" r="13"/>
+<circle cx="116" cy="360" r="13"/>
+<circle cx="225" cy="260" r="13"/>
+</g>
+<g stroke="#2f6fb5" stroke-width="1.5">
+<path d="M225 106 H210"/>
+<path d="M248 158 L240 188"/>
+<path d="M322 245 H326"/>
+<path d="M75 227 H95"/>
+<path d="M129 360 H140"/>
+<path d="M212 260 H178"/>
+</g>
+<g fill="#fff" font-weight="700" text-anchor="middle" font-size="15">
+<text x="238" y="111">1</text>
+<text x="260" y="155">2</text>
+<text x="335" y="250">3</text>
+<text x="62" y="232">4</text>
+<text x="116" y="365">5</text>
+<text x="225" y="265">6</text>
+</g>
+<!-- пояснения -->
+<g>
+<text x="30" y="440"><tspan font-weight="700" fill="#2f6fb5">1</tspan>  из-под рычага — картридж или букса</text>
+<text x="30" y="468"><tspan font-weight="700" fill="#2f6fb5">2</tspan>  из-под гусака у основания — кольца</text>
+<text x="30" y="496"><tspan font-weight="700" fill="#2f6fb5">3</tspan>  из излива при закрытом кране</text>
+<text x="30" y="524"><tspan font-weight="700" fill="#2f6fb5">4</tspan>  у переключателя на душ — букса</text>
+<text x="30" y="552"><tspan font-weight="700" fill="#2f6fb5">5</tspan>  подводка и гайки под мойкой</text>
+<text x="30" y="580"><tspan font-weight="700" fill="#2f6fb5">6</tspan>  трещина корпуса — менять смеситель</text>
+</g>
+</svg>

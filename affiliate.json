@@ -816,5 +816,29 @@
     "ref_link_no_erid": "https://market.yandex.ru/cc/BPhbru",
     "reward_rub_2026_10_26": 626,
     "note": "26.10.2026: замена WISENT W5221 (нет в продаже) в статье 03"
+  },
+  "kaiser-6102-kran-buksa": {
+    "url": "https://market.yandex.ru/card/x/103209725866",
+    "aff_url": "https://market.yandex.ru/cc/BQaZ6Y?erid=5jtCeReNx12oak2syQocZJb",
+    "erid": "5jtCeReNx12oak2syQocZJb",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2syQocZJb",
+    "ref_link_no_erid": "https://market.yandex.ru/cc/BQaZ6Y",
+    "reward_rub_2026_10_28": 108
+  },
+  "haiba-hb52-6": {
+    "url": "https://market.yandex.ru/card/x/103210403847",
+    "aff_url": "https://market.yandex.ru/cc/BQabvd?erid=5jtCeReNx12oak2syQocZcF",
+    "erid": "5jtCeReNx12oak2syQocZcF",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2syQocZcF",
+    "ref_link_no_erid": "https://market.yandex.ru/cc/BQabvd",
+    "reward_rub_2026_10_28": 27
+  },
+  "gappo-g52-6": {
+    "url": "https://market.yandex.ru/card/x/103014777787",
+    "aff_url": "https://market.yandex.ru/cc/BQae9Z?erid=5jtCeReNx12oak2syQq3X6m",
+    "erid": "5jtCeReNx12oak2syQq3X6m",
+    "ad_label": "Реклама. ООО «Яндекс Маркет», ИНН 9704254424, erid: 5jtCeReNx12oak2syQq3X6m",
+    "ref_link_no_erid": "https://market.yandex.ru/cc/BQae9Z",
+    "reward_rub_2026_10_28": 43
   }
 }

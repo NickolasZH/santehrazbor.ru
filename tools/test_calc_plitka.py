@@ -146,7 +146,13 @@ class JsMatchesRef(unittest.TestCase):
             got = js[name]
             self.assertNotIn("error", got, name)
             for k in KEYS:
-                self.assertAlmostEqual(float(got[k]), float(exp[k]), places=6, msg=f"{name}.{k}")
+                if got[k] is None and exp[k] is None:
+                    # поле не считается (например, boxes без размера упаковки) — в JS и эталоне оба null
+                    self.assertIsNone(got[k], f"{name}.{k}")
+                elif got[k] is None or exp[k] is None:
+                    self.fail(f"{name}.{k}: JS={got[k]!r}, эталон={exp[k]!r}")
+                else:
+                    self.assertAlmostEqual(float(got[k]), float(exp[k]), places=6, msg=f"{name}.{k}")
 
     def test_validation(self):
         bad = dict(CASES["bath_default"], joint="250")  # шов не меньше плитки

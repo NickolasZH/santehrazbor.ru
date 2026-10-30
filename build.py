@@ -31,22 +31,29 @@ DOCS = ROOT / "docs"
 
 AFF_REL = "sponsored nofollow noopener"
 
+# Иконка «i» в рекламной метке: встроенный SVG вместо символа U+24D8, который на системах без
+# нужного глифа рисуется пустым квадратом. Контур — currentColor (цвет метки, тёмная тема и
+# forced-colors работают сами), размер задаёт CSS-класс .ad-icon; width/height — запас до загрузки CSS.
+AD_ICON_SVG = ('<svg class="ad-icon" viewBox="0 0 16 16" width="12" height="12" fill="none" '
+               'stroke="currentColor" stroke-width="1.25" stroke-linecap="round" aria-hidden="true" focusable="false">'
+               '<circle cx="8" cy="8" r="6.6"/><path d="M8 7.2v4M8 4.8v.1"/></svg>')
+
 
 def ad_mark_inline_html(ad_label):
     """Рекламная метка для ссылок внутри абзаца: только phrasing-content (<details> в <p> недопустим)."""
     if not ad_label:
         return ""
     info = ad_label[len("Реклама. "):] if ad_label.startswith("Реклама. ") else ad_label
-    return ('<span class="ad-mark ad-mark-inline" tabindex="0" role="button">Реклама <span aria-hidden="true">ⓘ</span>'
+    return ('<span class="ad-mark ad-mark-inline" tabindex="0" role="button">Реклама ' + AD_ICON_SVG +
             f'<span class="ad-mark-info">: {html_escape(info)}</span></span>')
 
 
 def ad_mark_html(ad_label):
-    """Компактная рекламная метка: «Реклама ⓘ» видна всегда, сведения — в раскрывающемся <details>."""
+    """Компактная рекламная метка: «Реклама» с иконкой «i» видна всегда, сведения — в раскрывающемся <details>."""
     if not ad_label:
         return ""
     info = ad_label[len("Реклама. "):] if ad_label.startswith("Реклама. ") else ad_label
-    return ('<details class="ad-mark"><summary>Реклама <span aria-hidden="true">ⓘ</span></summary>'
+    return ('<details class="ad-mark"><summary>Реклама ' + AD_ICON_SVG + '</summary>'
             f'<span class="ad-mark-info">{html_escape(info)}</span></details>')
 
 

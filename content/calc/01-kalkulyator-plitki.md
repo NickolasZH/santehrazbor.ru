@@ -8,15 +8,15 @@ slug: kalkulyator-plitki
 type: calculator
 script: calc-plitka.js
 published: '2026-10-14'
-updated: 2026-10-26
-prices_checked: 2026-10-26
+updated: 2026-10-30
+prices_checked: 2026-10-30
 products:
   litokol-litochrom-evo-lle115:
     name: Litokol Litochrom Luxury EVO LLE.115 2 кг
     price: 810
     feature: цементно-полимерная затирка 1–10 мм
-    rating: 4.9
-    reviews: 222
+    rating: 4.8
+    reviews: 224
   litokol-starlike-evo-1kg:
     name: Litokol Starlike EVO S.330 1 кг
     price: 2299
@@ -29,7 +29,7 @@ products:
     feature: эпоксидная затирка 1–15 мм
     rating: 4.8
     reviews: 47
-    bought: 415
+    bought: 418
 ---
 
 # Калькулятор плитки, клея и затирки

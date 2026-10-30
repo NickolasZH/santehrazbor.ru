@@ -1,10 +1,17 @@
 """Генерирует общую og-карточку static/img/og/default.png (1280x720) в стиле обложек Дзена.
-Запуск: python tools/make_og_default.py (из папки site)."""
+Запуск: .venv/bin/python tools/make_og_default.py [ПАПКА_ШРИФТОВ] (из папки site).
+Нужны шрифты segoeui.ttf и segoeuib.ttf; без аргумента берётся C:/Windows/Fonts, если она есть."""
+import sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 OUT = Path(__file__).resolve().parent.parent / "static" / "img" / "og" / "default.png"
-FONTS = Path("C:/Windows/Fonts")
+# Папка со шрифтами Segoe UI: аргумент или системная папка Windows
+FONTS = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("C:/Windows/Fonts")
+for _name in ("segoeui.ttf", "segoeuib.ttf"):
+    if not (FONTS / _name).is_file():
+        sys.exit(f"Не найден шрифт {FONTS / _name}. Укажите папку со шрифтами: "
+                 ".venv/bin/python tools/make_og_default.py ПАПКА_ШРИФТОВ")
 TEAL, BG, FOOT = (16, 117, 145), (243, 246, 250), (71, 85, 105)
 
 img = Image.new("RGB", (1280, 720), BG)

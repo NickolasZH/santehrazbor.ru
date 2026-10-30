@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Статический генератор сайта: content/*.md -> docs/ (GitHub Pages).
 
-Запуск: python build.py
+Запуск: .venv/bin/python build.py
 """
 import hashlib
 import json

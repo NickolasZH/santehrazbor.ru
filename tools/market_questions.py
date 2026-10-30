@@ -1,6 +1,6 @@
 """Новые вопросы покупателей и ответы продавцов с карточек Яндекс Маркета для товаров статей.
 
-Запуск из site/: PYTHONIOENCODING=utf-8 python tools/market_questions.py [--init] [--dry-run]
+Запуск из site/: .venv/bin/python tools/market_questions.py [--init] [--dry-run]
 Товары берутся из шорткодов [[product:id]] в content/*.md, id карточки — из affiliate.json.
 Состояние ({товар: {id вопроса: число ответов}}) — data/market_questions_seen.json,
 отчёт — data/reports/questions-<дата>.md. Капчу не обходит: останавливается, код выхода 2.

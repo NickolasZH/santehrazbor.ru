@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Тесты формул калькулятора водонагревателя: Python-эталон + те же кейсы через JS (если в системе есть node).
 
-Запуск: python tools/test_calc_vodonagrevatel.py
+Запуск: .venv/bin/python tools/test_calc_vodonagrevatel.py
 Без node JS-часть пропускается — те же кейсы прогоняются вручную в браузере:
 в консоли страницы /kalkulyator-vodonagrevatelya/ выполнить CalcVodonagrevatel.calc({...}) (входы — см. CASES).
 """

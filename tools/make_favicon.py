@@ -2,7 +2,7 @@
 """Генерирует значок сайта в static/: favicon.svg, favicon.ico, favicon-32.png, apple-touch-icon.png.
 
 Дизайн: скруглённый квадрат цвета #0e7490 и белая капля по центру.
-Запуск: python tools/make_favicon.py
+Запуск: .venv/bin/python tools/make_favicon.py
 """
 import math
 from pathlib import Path

@@ -7,12 +7,12 @@
 и с прошлым снимком, пишет снимок и отчёт.
 
 ```
-python tools/check_products.py                    # только проверка, статьи не меняются
-python tools/check_products.py --apply            # + точечно обновить front matter статей
-python tools/check_products.py --only atoll-1713-gs   # одна метка (можно повторять флаг)
-python tools/check_products.py --dry-run --only a,b   # без записи (статьи, снимок, отчёт), решения — в консоль; метки через запятую
-python tools/check_products.py --limit 3          # первые N товаров (отладка)
-python tools/check_products.py --no-links         # не проверять партнёрские ссылки (быстрее)
+.venv/bin/python tools/check_products.py                    # только проверка, статьи не меняются
+.venv/bin/python tools/check_products.py --apply            # + точечно обновить front matter статей
+.venv/bin/python tools/check_products.py --only atoll-1713-gs   # одна метка (можно повторять флаг)
+.venv/bin/python tools/check_products.py --dry-run --only a,b   # без записи (статьи, снимок, отчёт), решения — в консоль; метки через запятую
+.venv/bin/python tools/check_products.py --limit 3          # первые N товаров (отладка)
+.venv/bin/python tools/check_products.py --no-links         # не проверять партнёрские ссылки (быстрее)
 ```
 
 Нужны Python 3.12 и PyYAML (как для `build.py`); остальное — стандартная библиотека.
@@ -52,7 +52,7 @@ python tools/check_products.py --no-links         # не проверять па
 
 Товар со `status: unavailable` на сайте: вместо кнопки — серая плашка «Сейчас нет в
 продаже», карточка приглушена, в JSON-LD `ItemList` не попадает, из блока «Наш выбор»
-скрывается. После `--apply` нужно запустить `python build.py`.
+скрывается. После `--apply` нужно запустить `.venv/bin/python build.py`.
 Решения из раздела «Требует решения» (замена модели, правка текста) принимаются вручную.
 
 ## Награды (rewards.js)
@@ -72,8 +72,8 @@ python tools/check_products.py --no-links         # не проверять па
 
 Оба скрипта запускаются автоматически в конце `check_products.py` (локальный режим, без сети) и
 дописывают свои разделы в `data/reports/<дата>.md`. Ошибка внутри них в отчёт попадает строкой
-«ошибка проверки …» и не ломает основную проверку. Вручную: `python tools/check_text.py`,
-`python tools/check_site.py` (печать в stdout; `--out FILE` дописывает в файл). Код возврата всегда 0.
+«ошибка проверки …» и не ломает основную проверку. Вручную: `.venv/bin/python tools/check_text.py`,
+`.venv/bin/python tools/check_site.py` (печать в stdout; `--out FILE` дописывает в файл). Код возврата всегда 0.
 
 **`check_text.py`** — цены в тексте против `price` товаров статьи.
 - Ищет «N ₽», «N руб.», «~N ₽», «5 тыс. ₽», числа с пробелом/неразрывным пробелом («3 649 ₽») в теле статьи
@@ -113,7 +113,7 @@ python tools/check_products.py --no-links         # не проверять па
 
 ## indexnow.py — уведомление поисковиков о новых и изменённых страницах
 
-Запуск из `site/` после деплоя: `PYTHONIOENCODING=utf-8 python tools/indexnow.py`.
+Запуск из `site/` после деплоя: `.venv/bin/python tools/indexnow.py`.
 - Читает `docs/sitemap.xml` (loc + lastmod), ключ — `indexnow_key` из `config.json`; файл ключа
   `static/<key>.txt` попадает в корень сайта при сборке и должен быть доступен по https до первой отправки.
 - По умолчанию шлёт только URL, у которых lastmod новый или изменился относительно
@@ -124,7 +124,7 @@ python tools/check_products.py --no-links         # не проверять па
 ## market_questions.py — вопросы покупателей
 
 Еженедельно собирает НОВЫЕ вопросы покупателей и НОВЫЕ ответы продавцов с карточек Маркета для всех товаров статей — материал для FAQ и списков минусов.
-- Запуск из `site/`: `PYTHONIOENCODING=utf-8 python tools/market_questions.py`; `--init` — заполнить состояние текущими вопросами без отчёта (первый запуск, после добавления много новых товаров); `--dry-run` — отчёт в stdout, ничего не пишет.
+- Запуск из `site/`: `.venv/bin/python tools/market_questions.py`; `--init` — заполнить состояние текущими вопросами без отчёта (первый запуск, после добавления много новых товаров); `--dry-run` — отчёт в stdout, ничего не пишет.
 - Товары — из шорткодов `[[product:id]]` в `content/*.md` (все статьи), id карточки — из `affiliate.json`. Товар из нескольких статей запрашивается один раз, в отчёте он стоит под каждой статьёй. Страница `market.yandex.ru/card/x/<id>/questions` через `curl`, пауза 1,5 с. Новый товар без состояния только запоминается.
 - Файлы: состояние `data/market_questions_seen.json` (`{товар: {id вопроса: число ответов}}`, старые вопросы не удаляются); отчёт `data/reports/questions-<дата>.md` (по статьям и товарам: `[новый вопрос | новый ответ] (ГГГГ-ММ) вопрос → ответ продавца`, до 400 знаков).
 - Капча или блокировка: инструмент останавливается, не обходит её, записывает в отчёт товар, на котором прервался, сохраняет состояние по уже проверенным товарам и завершается с кодом 2. Сетевые ошибки по отдельному товару пропускаются и перечисляются в отчёте.

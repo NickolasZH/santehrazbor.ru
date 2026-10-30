@@ -1,9 +1,15 @@
 """Обработка фото автора: поворот по EXIF, кроп, ресайз до 1000px, JPEG без метаданных.
-Исходники не изменяются. Запуск: python tools/process_photos.py"""
+Исходники не изменяются. Запуск: .venv/bin/python tools/process_photos.py ПАПКА_С_ИСХОДНИКАМИ"""
+import sys
 from pathlib import Path
 from PIL import Image, ImageOps
 
-SRC = Path(r"C:\Users\nicko\.claude\uploads\05295037-62fb-4624-99f5-573f91daf0bb")
+# Папка с исходными фото — обязательный аргумент командной строки
+if len(sys.argv) != 2:
+    sys.exit("Укажите папку с исходными фото: .venv/bin/python tools/process_photos.py ПАПКА")
+SRC = Path(sys.argv[1])
+if not SRC.is_dir():
+    sys.exit(f"Папка не найдена: {SRC}")
 OUT = Path(__file__).resolve().parent.parent / "static" / "img"
 MAX_W = 1000
 

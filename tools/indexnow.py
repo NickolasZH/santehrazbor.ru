@@ -1,6 +1,6 @@
 """Отправка изменённых URL в IndexNow (Яндекс, Bing и др.).
 
-Запуск из site/: PYTHONIOENCODING=utf-8 python tools/indexnow.py [--all] [--dry-run]
+Запуск из site/: .venv/bin/python tools/indexnow.py [--all] [--dry-run]
 Берёт URL и lastmod из docs/sitemap.xml, ключ — из config.json (indexnow_key).
 Состояние (что уже отправлено) — data/indexnow_last.json.
 """

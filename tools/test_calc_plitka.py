@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Тесты формул калькулятора плитки: Python-эталон + те же кейсы через JS (если в системе есть node).
 
-Запуск: python tools/test_calc_plitka.py
+Запуск: .venv/bin/python tools/test_calc_plitka.py
 Только стандартная библиотека.
 """
 import json

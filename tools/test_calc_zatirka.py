@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Тесты формул калькулятора затирки: Python-эталон + те же кейсы через JS (если в системе есть node).
 
-Запуск: python tools/test_calc_zatirka.py
+Запуск: .venv/bin/python tools/test_calc_zatirka.py
 Только стандартная библиотека. Без node JS-часть пропускается — те же кейсы прогоняются вручную в браузере:
 в консоли страницы /kalkulyator-zatirki/ выполнить CalcZatirka.calc({...}) (см. CASES ниже).
 """

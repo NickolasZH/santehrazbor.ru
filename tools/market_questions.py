@@ -73,6 +73,9 @@ def fetch(card_id):
          f"https://market.yandex.ru/card/x/{card_id}/questions"],
         capture_output=True)
     html = r.stdout.decode("utf-8", "replace")
+    if r.returncode == 0 and not html:
+        # Маркет отправляет на капчу редиректом 302 с пустым телом
+        raise Captcha("пустой ответ, вероятно редирект на showcaptcha")
     if r.returncode != 0 or not html:
         raise OSError(f"curl код {r.returncode}, длина {len(html)}")
     if "showcaptcha" in html[:5000] or len(html) < MIN_HTML:

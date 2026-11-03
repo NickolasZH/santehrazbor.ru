@@ -255,7 +255,7 @@ products:
 | Тесный санузел с инсталляцией | **Lemark Solo LM7165C** |
 | Нужен чёрный цвет | **Lemark Solo LM7165BL** |
 | Нужна постоянная температура | **Lemark Yeti** или **GAPPO G7290** |
-| Вся сантехника Grohe | **Grohe BauFlow** |
+| Вся сантехника Grohe (сейчас нет в продаже) | **Grohe BauFlow** |
 
 ---
 

@@ -6,8 +6,8 @@ category: smesiteli
 seo_title: 'Как отличить подделку Grohe: признаки оригинала в 2026'
 seo_description: 'Как отличить подделку Grohe: что проверить при получении, подозрительная цена, картриджи, гарантия и страны производства. Что известно, а чего нет.'
 date: '2026-10-28'
-updated: 2026-11-03
-prices_checked: 2026-11-03
+updated: 2026-11-09
+prices_checked: 2026-11-09
 main_query: подделка grohe
 queries:
 - как отличить подделку grohe
@@ -29,7 +29,7 @@ products:
     subtitle: бренд, картридж SilkMove 35 мм, автоматический переключатель
     badge: Бренд
     type: однорычажный, настенный, автоматический переключатель
-    price: 14211
+    price: 12617
     material: латунь
     feature: картридж Grohe SilkMove 35 мм, вынос 168 мм
     rating: 4.9

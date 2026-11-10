@@ -9,15 +9,15 @@ slug: kalkulyator-vodonagrevatelya
 type: calculator
 script: calc-vodonagrevatel.js
 published: '2026-10-14'
-updated: 2026-11-03
-prices_checked: 2026-11-03
+updated: 2026-11-09
+prices_checked: 2026-11-09
 products:
   haier-es30v-d1:
     name: Haier ES30V-D1 30 л, 2 кВт
     price: 15300
     feature: 30 л, круглый, эмаль, магниевый анод, 2 кВт
     rating: 4.8
-    reviews: 691
+    reviews: 697
   thermex-fora-30:
     name: Thermex Fora 30 плоский, 2 кВт
     price: 15525
@@ -48,34 +48,34 @@ products:
     name: Haier ES80V-FD4 INOX 80 л
     price: 19996
     feature: 80 л, плоский, нержавеющий бак, анод, 2 кВт
-    rating: 4.8
-    reviews: 554
+    rating: 4.9
+    reviews: 572
   electrolux-gladius-80:
     name: Electrolux EWH 80 Gladius Inverter Grafit
     price: 22879
     feature: 80 л, плоский, сухой ТЭН, анод, 2 кВт
     rating: 4.8
     reviews: 228
-    bought: 682
+    bought: 685
   haier-es100v-c3:
     name: Haier ES100V-C3 100 л, 1,75 кВт
     price: 12547
     feature: 100 л, круглый, эмаль, магниевый анод, 1,75 кВт
     rating: 4.8
-    reviews: 691
+    reviews: 697
   haier-es100v-fd4:
     name: Haier ES100V-FD4 INOX 100 л
     price: 23996
     feature: 100 л, плоский, нержавеющий бак, 2 кВт
-    rating: 4.8
-    reviews: 554
+    rating: 4.9
+    reviews: 572
   edisson-er-100-v:
     name: Edisson ER 100 V 100 л, 1,5 кВт
-    price: 8292
+    price: 9840
     feature: 100 л, круглый, эмаль, 1,5 кВт
     rating: 4.9
-    reviews: 79
-    bought: 342
+    reviews: 80
+    bought: 356
 ---
 
 # Калькулятор объёма водонагревателя

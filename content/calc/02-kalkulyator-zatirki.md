@@ -9,7 +9,7 @@ type: calculator
 script: calc-zatirka.js
 published: '2026-10-14'
 updated: 2026-11-09
-prices_checked: 2026-11-09
+prices_checked: 2026-11-10
 products:
   litokol-litochrom-evo-lle115:
     name: Litokol Litochrom Luxury EVO LLE.115 2 кг

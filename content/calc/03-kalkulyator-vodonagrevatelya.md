@@ -10,7 +10,7 @@ type: calculator
 script: calc-vodonagrevatel.js
 published: '2026-10-14'
 updated: 2026-11-09
-prices_checked: 2026-11-09
+prices_checked: 2026-11-10
 products:
   haier-es30v-d1:
     name: Haier ES30V-D1 30 л, 2 кВт

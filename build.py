@@ -57,6 +57,9 @@ def ad_mark_html(ad_label):
             f'<span class="ad-mark-info">{html_escape(info)}</span></details>')
 
 
+MIN_REVIEWS_FOR_RATING = 5  # при меньшем числе оценок рейтинг и число оценок не выводим
+
+
 def fail(msg):
     sys.exit(f"ОШИБКА СБОРКИ: {msg}")
 
@@ -253,6 +256,10 @@ def build_products(meta, aff, ctx_name):
             if key not in p:
                 fail(f"{ctx_name}: у товара {label} нет поля {key}")
         data = aff[label]
+        p = dict(p)
+        if not isinstance(p.get("reviews"), (int, float)) or p["reviews"] < MIN_REVIEWS_FOR_RATING:
+            p["rating"] = None
+            p["reviews"] = None
         products.append({
             **p, "label": label, "n": i,
             "href": build_aff_url(label, data), "rel": AFF_REL,
@@ -278,6 +285,62 @@ def apply_prices_date(body, meta, name):
     d = to_date(meta["prices_checked"])
     return (body.replace("{{prices_date_text}}", ru_date(d))
                 .replace("{{prices_date}}", d.strftime("%d.%m.%Y")))
+
+
+PRICE_PH_RE = re.compile(r"\{\{price:([^{}\s]+)\}\}")
+COUNT_PH_RE = re.compile(r"\{\{(reviews|bought):([^{}\s]+)\}\}")
+
+
+def apply_price_placeholders(text, meta, name, global_products):
+    """Подставляет {{price:метка}} (цена товара, «7 432», без «₽»), {{min_price}} и {{max_price}}
+    (мин/макс среди товаров статьи без status: unavailable). Метку ищем в products статьи,
+    затем в глобальном индексе. Нет метки или цены — сборка падает."""
+    if not isinstance(text, str) or "{{" not in text:
+        return text
+    own = meta.get("products") or {}
+
+    def price_of(label):
+        p = own.get(label)
+        if p is None:
+            g = global_products.get(label)
+            p = g["p"] if g else None
+        if p is None:
+            fail(f"{name}: плейсхолдер {{{{price:{label}}}}} — метки нет ни в products статьи, ни в других статьях")
+        if p.get("price") in (None, ""):
+            fail(f"{name}: у товара {label} нет цены для плейсхолдера {{{{price:{label}}}}}")
+        return p["price"]
+
+    text = PRICE_PH_RE.sub(lambda m: fmt_int(price_of(m.group(1))), text)
+
+    def count_of(field, label):
+        p = own.get(label)
+        if p is None:
+            g = global_products.get(label)
+            p = g["p"] if g else None
+        if p is None:
+            fail(f"{name}: плейсхолдер {{{{{field}:{label}}}}} — метки нет ни в products статьи, ни в других статьях")
+        if p.get(field) in (None, ""):
+            fail(f"{name}: у товара {label} нет значения {field} для плейсхолдера {{{{{field}:{label}}}}}")
+        return p[field]
+
+    text = COUNT_PH_RE.sub(lambda m: fmt_int(count_of(m.group(1), m.group(2))), text)
+    for ph, fn in (("{{min_price}}", min), ("{{max_price}}", max)):
+        if ph in text:
+            prices = [p["price"] for p in own.values()
+                      if p.get("status") != "unavailable" and p.get("price") not in (None, "")]
+            if not prices:
+                fail(f"{name}: плейсхолдер {ph}, а в products нет товаров с ценой без status: unavailable")
+            text = text.replace(ph, fmt_int(fn(prices)))
+    return text
+
+
+def apply_placeholders(body, meta, name, global_products):
+    """Плейсхолдеры цен и даты в теле и в полях front matter (мутирует meta)."""
+    for key in ("title", "description", "seo_title", "seo_description", "lead"):
+        if key in meta:
+            meta[key] = apply_price_placeholders(meta[key], meta, name, global_products)
+    body = apply_price_placeholders(body, meta, name, global_products)
+    return apply_prices_date(body, meta, name)
 
 
 def render_markdown(body_md, aff, used_labels, env, article_ctx):
@@ -537,7 +600,7 @@ def main():
     used_labels = set()
     for path in sorted(CONTENT.glob("*.md")):
         meta, body = split_front_matter(path.read_text(encoding="utf-8"), path)
-        body = apply_prices_date(body, meta, path.name)
+        body = apply_placeholders(body, meta, path.name, global_products)
         for key in ("title", "description", "slug", "date"):
             if key not in meta:
                 fail(f"{path.name}: в front matter нет поля {key}")
@@ -578,7 +641,7 @@ def main():
     calcs = []
     for path in sorted((CONTENT / "calc").glob("*.md")):
         meta, body = split_front_matter(path.read_text(encoding="utf-8"), path)
-        body = apply_prices_date(body, meta, path.name)
+        body = apply_placeholders(body, meta, "calc/" + path.name, global_products)
         for key in ("title", "description", "slug", "script", "type"):
             if key not in meta:
                 fail(f"calc/{path.name}: в front matter нет поля {key}")

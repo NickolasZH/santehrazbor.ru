@@ -20,20 +20,20 @@ products:
     reviews: 697
   thermex-fora-30:
     name: Thermex Fora 30 плоский, 2 кВт
-    price: 15525
+    price: 15324
     feature: 30 л, плоский, 2 кВт
     rating: 4.8
     reviews: 34
   electrolux-gladius-30:
     name: Electrolux EWH 30 Gladius Inverter Grafit
-    price: 17455
+    price: 16429
     feature: 30 л, плоский, сухой ТЭН, анод, 2 кВт
     rating: 4.8
     reviews: 228
     bought: 674
   thermex-fora-50:
     name: Thermex Fora 50 плоский, нержавеющий бак
-    price: 19523
+    price: 17739
     feature: 50 л, плоский, нержавеющий бак, 2 кВт
     rating: 4.7
     reviews: 63

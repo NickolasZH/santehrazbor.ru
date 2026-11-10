@@ -45,6 +45,7 @@ CAPTCHA_RETRIES = 3         # повторов при капче
 CAPTCHA_PAUSE = (45.0, 75.0)
 RETRIES = 2              # повторов после первой неудачной попытки
 PRICE_APPLY_THRESHOLD = 0.10
+MIN_REVIEWS_FOR_RATING = 5  # как в build.py: при меньшем числе оценок рейтинг на сайте не выводится
 RATING_LOW = 4.3
 # Скачок цены относительно прошлого снимка (в долях): если новая цена отличается больше —
 # не применяем автоматически, а выносим в «Требует решения». Ловит «последнюю штуку
@@ -432,8 +433,10 @@ def latest_previous_snapshot(today):
 
 
 def decide(entry, fm_prod, prev, price_is_sum=False):
-    """Формирует решения по товару: что обновить автоматически, что требует решения."""
-    auto, decide_ = {}, []
+    """Формирует решения по товару: (auto, decide_, info, remove).
+    auto — что обновить автоматически, decide_ — требует решения, info — справочные строки,
+    remove — True, если товар недоступен сейчас и был недоступен в прошлом снимке (убрать из статей)."""
+    auto, decide_, info, remove = {}, [], [], False
     r = entry["card"]
     label = entry["label"]
     fm_price = fm_prod.get("price")
@@ -446,7 +449,11 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
         decide_.append(f"не удалось получить карточку: {r['error']}")
     else:
         if r["available"] is False:
-            decide_.append("нет в продаже")
+            prev_card = ((prev or {}).get(label) or {}).get("card") or {}
+            if prev_card.get("status") == "ok" and prev_card.get("available") is False:
+                remove = True  # нет в продаже две проверки подряд
+            else:
+                decide_.append("нет в продаже")
             if not unavailable_now:
                 auto["status"] = "unavailable"
         elif r["available"] is True:
@@ -459,10 +466,17 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
         suspicious = False
         if r["available"] is not False and r.get("main_sold_out"):
             suspicious = True
-            frm = r.get("other_offers_from")
-            decide_.append("основной продавец распродал («Разобрали в магазине»), "
-                           + (f"от {frm} ₽ у других магазинов" if frm else "цена — других магазинов")
-                           + f"; цена/рейтинг не применены (в статье {fm_price} ₽)")
+            # цену берём у других магазинов (other_offers_from, иначе цена на странице); рейтинг/оценки/купили не применяем
+            sold_price = r.get("other_offers_from") or r.get("price")
+            if r.get("multipack"):
+                pass  # цена упаковки недостоверна — разбираем ниже как multipack
+            elif sold_price:
+                info.append(f"основной продавец распродал, цена взята у других магазинов: {sold_price} ₽")
+                if fm_price and abs(sold_price - fm_price) / fm_price > PRICE_APPLY_THRESHOLD:
+                    auto["price"] = sold_price
+            else:
+                decide_.append("основной продавец распродал («Разобрали в магазине»), цены у других магазинов нет"
+                               f"; цена/рейтинг не применены (в статье {fm_price} ₽)")
         if r["available"] is not False and r.get("multipack"):
             suspicious = True
             decide_.append(f"карточка продаёт {r['multipack']} шт в упаковке"
@@ -479,9 +493,10 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
                 decide_.append("не удалось извлечь цену")
             elif price_is_sum:
                 # в affiliate.json "price_is_sum": true — цена в статье равна сумме нескольких карточек
-                if fm_price and abs(r["price"] - fm_price) / fm_price > PRICE_APPLY_THRESHOLD:
-                    decide_.append("цена — сумма нескольких карточек, проверить вручную "
-                                   f"(на этой карточке {r['price']}, в статье {fm_price})")
+                # сравниваем цену карточки с её же ценой в прошлом снимке, а не с суммой в статье
+                if prev_price and abs(r["price"] - prev_price) / prev_price > PRICE_APPLY_THRESHOLD:
+                    decide_.append(f"компонент комплекта изменился: {prev_price} -> {r['price']} ₽, "
+                                   f"пересчитать сумму (в статье {fm_price})")
             elif fm_price and abs(r["price"] - fm_price) / fm_price > PRICE_APPLY_THRESHOLD:
                 auto["price"] = r["price"]
             if r["rating"] is not None:
@@ -489,7 +504,9 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
                     auto["rating"] = fmt_rating(r["rating"])
                 if r["reviews"] is not None and r["reviews"] != fm_prod.get("reviews"):
                     auto["reviews"] = r["reviews"]
-            elif r["status"] == "ok" and fm_rating is not None:
+            elif (r["status"] == "ok" and fm_rating is not None
+                  and isinstance(fm_prod.get("reviews"), (int, float))
+                  and fm_prod["reviews"] >= MIN_REVIEWS_FOR_RATING):
                 # рейтинг в статье не удаляем; на карточке нет блока оценок — решает человек
                 decide_.append(f"на Маркете нет оценок/не извлечён рейтинг (в статье {fm_rating})")
             if r["bought"] is not None and r["bought"] != fm_prod.get("bought"):
@@ -511,7 +528,7 @@ def decide(entry, fm_prod, prev, price_is_sum=False):
             decide_.append(f"aff_url ведёт не на ту карточку ({entry[k]['detail']})")
     if entry["ref"]["ok"] is None and entry["ref"]["detail"] != "ссылка не задана":
         decide_.append(f"ссылку не удалось проверить ({entry['ref']['detail']})")
-    return auto, decide_
+    return auto, decide_, info, remove
 
 
 def apply_changes(arts, plan, today, checked=()):
@@ -604,13 +621,18 @@ def main():
     plan = {}
     rows = []
     auto_lines, decide_lines = [], []
+    remove_lines, info_lines = [], []
     for e in entries:
         label = e["label"]
         if label not in usage:
             continue
         for art, fm_prod in usage[label]:
-            auto, dec = decide(e, fm_prod, prev_items, (aff.get(label) or {}).get("price_is_sum", False))
+            auto, dec, inf, rm = decide(e, fm_prod, prev_items, (aff.get(label) or {}).get("price_is_sum", False))
             e.setdefault("decisions", []).extend(dec)
+            if rm:
+                remove_lines.append(f"- `{label}` ({art['path'].name})")
+            for d in inf:
+                info_lines.append(f"- `{label}` ({art['path'].name}): {d}")
             if auto:
                 plan.setdefault(art["path"], {})[label] = auto
             c = e["card"]
@@ -626,6 +648,10 @@ def main():
     if args.dry_run:  # только консоль: ничего не пишем в content/, data/snapshots/, data/reports/
         print("\nДРАЙ-РАН. Было бы обновлено автоматически:")
         print("\n".join(auto_lines) or "  нет изменений")
+        print("\nСправочно:")
+        print("\n".join(info_lines) or "  нет")
+        print("\nУбрать из статей (нет в продаже 2 проверки подряд):")
+        print("\n".join(remove_lines) or "  нет")
         print("\nТребует решения:")
         print("\n".join(decide_lines) or "  ничего")
         print("\n" + "\n".join(reread_lines(rows, aff)))
@@ -703,6 +729,10 @@ def main():
         decide_lines.append(line)
     md += ["", "## Награда 0 (по affiliate.json)", ""]
     md += reward_lines or ["Нет."]
+    md += ["", "## Справочно", ""]
+    md += info_lines or ["Нет."]
+    md += ["", "## Убрать из статей (нет в продаже 2 проверки подряд)", ""]
+    md += remove_lines or ["Нет."]
     md += ["", "## Требует решения", ""]
     md += decide_lines or ["Ничего."]
     md += [""]

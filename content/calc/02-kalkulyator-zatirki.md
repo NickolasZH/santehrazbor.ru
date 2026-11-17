@@ -8,15 +8,15 @@ slug: kalkulyator-zatirki
 type: calculator
 script: calc-zatirka.js
 published: '2026-10-14'
-updated: 2026-11-09
-prices_checked: 2026-11-10
+updated: 2026-11-17
+prices_checked: 2026-11-17
 products:
   litokol-litochrom-evo-lle115:
     name: Litokol Litochrom Luxury EVO LLE.115 2 кг
     price: 810
     feature: цементно-полимерная затирка 1–10 мм
     rating: 4.9
-    reviews: 227
+    reviews: 228
   litokol-starlike-evo-1kg:
     name: Litokol Starlike EVO S.330 1 кг
     price: 2299
@@ -28,8 +28,8 @@ products:
     price: 4844
     feature: эпоксидная затирка 1–15 мм
     rating: 4.8
-    reviews: 48
-    bought: 434
+    reviews: 50
+    bought: 447
 ---
 
 # Калькулятор затирки

@@ -5,7 +5,7 @@ slug: gigienicheskij-dush-kakoj-vybrat
 cover: scheme-tipy-gigienicheskogo-dusha.svg
 cover_alt: 'Схема: пять способов установки гигиенического душа'
 category: gigienicheskie-dushi
-seo_title: "Гигиенический душ: какой выбрать в 2026 — 8 моделей с разбором"
+seo_title: "Гигиенический душ: какой выбрать в {{year}} — 8 моделей с разбором"
 seo_description: "Открытый, встраиваемый или с термостатом: как выбрать гигиенический душ и не устроить потоп. 8 моделей от {{min_price}} до {{max_price}} ₽ с плюсами и минусами по отзывам."
 date: 2026-10-07
 updated: 2026-11-17

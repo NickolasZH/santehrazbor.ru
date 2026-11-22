@@ -334,11 +334,20 @@ def apply_price_placeholders(text, meta, name, global_products):
     return text
 
 
+def apply_year_placeholder(text, meta):
+    """Подставляет {{year}} — год из поля updated статьи (нет updated — из date)."""
+    if not isinstance(text, str) or "{{year}}" not in text:
+        return text
+    return text.replace("{{year}}", str(to_date(meta.get("updated") or meta["date"]).year))
+
+
 def apply_placeholders(body, meta, name, global_products):
     """Плейсхолдеры цен и даты в теле и в полях front matter (мутирует meta)."""
     for key in ("title", "description", "seo_title", "seo_description", "lead"):
         if key in meta:
+            meta[key] = apply_year_placeholder(meta[key], meta)
             meta[key] = apply_price_placeholders(meta[key], meta, name, global_products)
+    body = apply_year_placeholder(body, meta)
     body = apply_price_placeholders(body, meta, name, global_products)
     return apply_prices_date(body, meta, name)
 
@@ -540,6 +549,29 @@ NOSCRIPT_BUILDERS = {"kalkulyator-plitki": plitka_noscript_html, "kalkulyator-za
                      "kalkulyator-vodonagrevatelya": vodonagrevatel_noscript_html}
 
 
+KOROTKO_RE = re.compile(r"^>\s*\*\*Коротко[^*]*\*\*\s*(.*)$", re.M)
+SENT_END_RE = re.compile(r"(?<=[.!?])\s+(?=[А-ЯЁA-Z«\"*\[])")
+
+
+def extract_korotko(body_md, limit=300):
+    """Первые 1-2 предложения блока «> **Коротко...**» без markdown и без заголовка «Коротко.».
+    Шорткоды {{...}} к этому моменту уже подставлены. Не больше limit символов (по границе предложения).
+    Нет блока — пустая строка."""
+    m = KOROTKO_RE.search(body_md)
+    if not m:
+        return ""
+    t = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", m.group(1))
+    t = re.sub(r"[*_`]+", "", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    out = ""
+    for sent in SENT_END_RE.split(t)[:2]:
+        cand = f"{out} {sent}".strip()
+        if len(cand) > limit:
+            break
+        out = cand
+    return out
+
+
 def md_plain_text(body_md):
     """Markdown-тело -> чистый текст для поискового индекса: без шорткодов, ссылок, разметки и таблиц-разделителей."""
     t = SHORTCODE_RE.sub(" ", body_md)
@@ -627,6 +659,7 @@ def main():
             "title": meta["title"], "h1": h1_text, "description": meta["description"],
             "seo_title": meta.get("seo_title") or meta["title"],
             "seo_description": meta.get("seo_description") or meta["description"],
+            "korotko": extract_korotko(body),
             "category": meta.get("category"),
             "cover": cover, "cover_alt": meta.get("cover_alt"),
             "cover_w": cover_w if cover else None, "cover_h": cover_h if cover else None,
@@ -899,6 +932,8 @@ def main():
         "",
         f"> {config['home_description']}",
         "",
+        f"Обновлено: {max(a['updated'] for a in articles).isoformat()}",
+        "",
         "Сайт о выборе сантехники: смесители, гигиенические души, душевые системы. В статьях разбираем, "
         "что внутри: материал корпуса, картридж, гарантия, реальные отзывы покупателей. "
         "Автор — Николай. Модели для подборок отбираем по характеристикам из карточек и отзывам покупателей.",
@@ -909,6 +944,10 @@ def main():
     llms += [f"- [{h['name']}]({base}{h['path']}): {h['seo_description']}" for h in hubs]
     llms += ["", "## Статьи", ""]
     llms += [f"- [{a['title']}]({base}{a['path']}): {a['description']}" for a in articles]
+    short = [a for a in articles if a["korotko"]]
+    if short:
+        llms += ["", "## Коротко по темам", ""]
+        llms += [f"- [{a['title']}]({base}{a['path']}): {a['korotko']}" for a in short]
     if calcs:
         llms += ["", "## Калькуляторы", ""]
         llms += [f"- [{c['h1']}]({base}{c['path']}): {c['description']}" for c in calcs]

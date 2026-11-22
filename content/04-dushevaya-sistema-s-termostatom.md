@@ -5,7 +5,7 @@ slug: dushevaya-sistema-s-termostatom
 cover: scheme-dushevaya-sistema.svg
 cover_alt: 'Схема: из чего состоит душевая система'
 category: dushevye-sistemy
-seo_title: "Душевая система с термостатом или без: 10 моделей 2026"
+seo_title: "Душевая система с термостатом или без: 10 моделей {{year}}"
 seo_description: "Нужен ли термостат или хватит обычного смесителя. Материал корпуса, излив, гарантия. 10 душевых систем от {{min_price}} ₽ с плюсами и минусами по отзывам."
 date: 2026-10-07
 updated: 2026-11-17

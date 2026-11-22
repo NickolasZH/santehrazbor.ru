@@ -5,7 +5,7 @@ slug: smesitel-dlya-rakoviny-s-gigienicheskim-dushem
 cover: scheme-rakovina-gigienicheskij-dush.svg
 cover_alt: 'Схема: смеситель на раковине с гигиеническим душем'
 category: gigienicheskie-dushi
-seo_title: 'Смеситель для раковины с гигиеническим душем — 3 модели 2026'
+seo_title: 'Смеситель для раковины с гигиеническим душем — 3 модели {{year}}'
 seo_description: 'Плюсы и минусы смесителя для раковины с гигиеническим душем, как выбрать (шланг, картридж, держатель) и 3 модели от {{min_price}} ₽ с разбором отзывов.'
 date: '2026-10-07'
 updated: 2026-11-17

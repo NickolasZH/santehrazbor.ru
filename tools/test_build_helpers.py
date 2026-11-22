@@ -33,6 +33,13 @@ class Korotko(unittest.TestCase):
     def test_no_block(self):
         self.assertEqual(build.extract_korotko("просто текст"), "")
 
+    def test_long_first_sentence_truncated(self):
+        body = "> **Коротко.** " + "слово " * 80 + "конец."
+        out = build.extract_korotko(body)
+        self.assertTrue(out.endswith("…"))
+        self.assertLessEqual(len(out), 300)
+        self.assertNotIn("  ", out)
+
     def test_limit(self):
         body = "> **Коротко.** " + "Слово " * 30 + "конец. Ещё " + "слово " * 40 + "конец."
         self.assertLessEqual(len(build.extract_korotko(body)), 300)

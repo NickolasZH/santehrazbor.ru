@@ -10,7 +10,7 @@
             {{ badge(p) }}
             <h3 class="pick-name"><a href="#{{ p.label }}">{{ p.name }}</a></h3>
             <p class="pick-meta"><span class="pick-price">{{ p.price|rub }}</span> <span class="pick-rating">{{ rating(p) }}{% if p.bought %} <span class="dot">·</span> купили {{ p.bought|num }}{% endif %}</span></p>
-            {% if p.subtitle %}<p class="pick-why">{{ p.subtitle }}</p>{% endif %}
+            {% if p.subtitle %}<p class="pick-why">{{ p.subtitle[0]|upper }}{{ p.subtitle[1:] }}</p>{% endif %}
             <p class="pick-feature">{{ p.feature }}</p>
             <div class="pick-cta">{{ offer(p, 'picks', 'Смотреть цену →') }}</div>
         </article>

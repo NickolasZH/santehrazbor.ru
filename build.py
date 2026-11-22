@@ -338,7 +338,10 @@ def apply_year_placeholder(text, meta):
     """Подставляет {{year}} — год из поля updated статьи (нет updated — из date)."""
     if not isinstance(text, str) or "{{year}}" not in text:
         return text
-    return text.replace("{{year}}", str(to_date(meta.get("updated") or meta["date"]).year))
+    src = meta.get("updated") or meta.get("published") or meta.get("date")
+    if not src:
+        fail(f"{meta.get('slug') or meta.get('title') or '?'}: {{{{year}}}}: нет updated/published/date")
+    return text.replace("{{year}}", str(to_date(src).year))
 
 
 def apply_placeholders(body, meta, name, global_products):
@@ -564,7 +567,11 @@ def extract_korotko(body_md, limit=300):
     t = re.sub(r"[*_`]+", "", t)
     t = re.sub(r"\s+", " ", t).strip()
     out = ""
-    for sent in SENT_END_RE.split(t)[:2]:
+    sents = SENT_END_RE.split(t)[:2]
+    if sents and len(sents[0]) > limit:
+        cut = sents[0][:limit - 1].rsplit(" ", 1)[0].rstrip(",;:—- ")
+        return cut + "…"
+    for sent in sents:
         cand = f"{out} {sent}".strip()
         if len(cand) > limit:
             break
@@ -722,6 +729,8 @@ def main():
 
     def write(rel, html):
         p = DOCS / rel
+        if "{{year}}" in html:
+            fail(f"{rel}: остался неподставленный {{{{year}}}}")
         p.parent.mkdir(parents=True, exist_ok=True)
         p.write_text(html, encoding="utf-8")
 

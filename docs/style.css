@@ -273,7 +273,7 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
     .pick { padding: 10px 12px; gap: 2px; border-top-width: 3px; }
     .pick .badge { margin-bottom: 0; }
     .pick-name { font-size: 1rem; }
-    .pick-feature { display: none; }
+    .pick-feature { font-size: 0.85rem; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .pick-meta { gap: 0 10px; }
     .pick-price { font-size: 1.25rem; }
     .pick-rating { font-size: 0.85rem; }

@@ -266,18 +266,21 @@ tbody tr:last-child td, tbody tr:last-child th { border-bottom: 0; }
 .pick-price { font-size: 1.45rem; font-weight: 800; white-space: nowrap; }
 .pick-rating, .pick-feature { margin: 0 !important; font-size: 0.92rem; }
 .pick-feature { color: var(--muted); flex: 1; }
+.pick-why { margin: 0 !important; font-size: 0.92rem; line-height: 1.35; color: var(--text); display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .pick-cta { width: 100%; margin-top: 10px; }
 .pick-cta .btn { width: 100%; }
 @media (max-width: 639px) {
     .picks-grid { gap: 8px; }
-    .pick { padding: 10px 12px; gap: 2px; border-top-width: 3px; }
+    .pick { padding: 8px 12px 10px; gap: 1px; border-top-width: 3px; }
     .pick .badge { margin-bottom: 0; }
     .pick-name { font-size: 1rem; }
-    .pick-feature { font-size: 0.85rem; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .pick-why { font-size: 0.88rem; line-height: 1.3; }
+    .pick-feature { font-size: 0.82rem; line-height: 1.3; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .pick-meta { gap: 0 10px; }
     .pick-price { font-size: 1.25rem; }
     .pick-rating { font-size: 0.85rem; }
-    .pick-cta { margin-top: 6px; }
+    .pick-cta { margin-top: 4px; }
+    .pick-cta .ad-mark { font-size: 0.75rem; margin-top: 2px; }
     .pick-cta .btn { min-height: 44px; display: flex; align-items: center; justify-content: center; }
 }
 

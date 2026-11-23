@@ -9,28 +9,28 @@ slug: kalkulyator-vodonagrevatelya
 type: calculator
 script: calc-vodonagrevatel.js
 published: '2026-10-14'
-updated: 2026-11-17
-prices_checked: 2026-11-17
+updated: 2026-11-23
+prices_checked: 2026-11-23
 products:
   haier-es30v-d1:
     name: Haier ES30V-D1 30 л, 2 кВт
     price: 15300
     feature: 30 л, круглый, эмаль, магниевый анод, 2 кВт
     rating: 4.8
-    reviews: 707
+    reviews: 719
   thermex-fora-30:
     name: Thermex Fora 30 плоский, 2 кВт
-    price: 17001
+    price: 14126
     feature: 30 л, плоский, 2 кВт
     rating: 4.8
     reviews: 34
   electrolux-gladius-30:
     name: Electrolux EWH 30 Gladius Inverter Grafit
-    price: 19616
+    price: 12751
     feature: 30 л, плоский, сухой ТЭН, анод, 2 кВт
     rating: 4.8
     reviews: 228
-    bought: 687
+    bought: 690
   thermex-fora-50:
     name: Thermex Fora 50 плоский, нержавеющий бак
     price: 17739
@@ -49,14 +49,14 @@ products:
     price: 19996
     feature: 80 л, плоский, нержавеющий бак, анод, 2 кВт
     rating: 4.8
-    reviews: 586
+    reviews: 599
   electrolux-gladius-80:
     name: Electrolux EWH 80 Gladius Inverter Grafit
-    price: 22879
+    price: 18163
     feature: 80 л, плоский, сухой ТЭН, анод, 2 кВт
     rating: 4.8
     reviews: 228
-    bought: 687
+    bought: 690
   haier-es100v-c3:
     name: Haier ES100V-C3 100 л, 1,75 кВт
     price: 28641
@@ -68,13 +68,13 @@ products:
     price: 23996
     feature: 100 л, плоский, нержавеющий бак, 2 кВт
     rating: 4.8
-    reviews: 586
+    reviews: 599
   edisson-er-100-v:
     name: Edisson ER 100 V 100 л, 1,5 кВт
     price: 9840
     feature: 100 л, круглый, эмаль, 1,5 кВт
-    rating: 4.9
-    reviews: 83
+    rating: 4.8
+    reviews: 86
     bought: 363
 ---
 

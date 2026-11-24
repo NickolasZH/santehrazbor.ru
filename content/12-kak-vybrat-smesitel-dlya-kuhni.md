@@ -135,7 +135,7 @@ products:
     name: Lemark Soul LM6008BR
     subtitle: вытяжной излив от Lemark
     type: вытяжной излив
-    price: 8606
+    price: 12966
     material: латунь
     feature: вытяжной шланг 1,5 м, картридж 30 мм
     rating: 4.8

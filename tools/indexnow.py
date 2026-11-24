@@ -83,7 +83,9 @@ def main():
         state.update({u: sitemap[u] for u in urls})
         STATE.parent.mkdir(parents=True, exist_ok=True)
         STATE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
-    return 0 if ok and not failed else 1
+    if failed and ok:
+        print("Предупреждение: часть endpoint'ов недоступна, но хотя бы один принял список")
+    return 0 if ok else 1
 
 
 if __name__ == "__main__":
